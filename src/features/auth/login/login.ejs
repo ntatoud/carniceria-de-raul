@@ -5,8 +5,21 @@
     <%- include('../../imports.ejs') %>
   </head>
   <body>
-    <%- include('./layout/layout.ejs') %> LOGINPAGE
-    <a href="/auth/login"> login</a>
-    <a href="/auth/singup"> signup</a>
+    <header><%- include('./layout/layout.ejs') %></header>
+    <main class="d-flex flex-column align-items-center">
+      <%- include('./auth/auth-tab.ejs') %>
+      <form class="login-form d-grid">
+        <h2>Login</h2>
+        <%- include('./auth/email-password-form.ejs') %>
+        <div
+          class="d-flex flex-row gap-3 align-items-center justify-content-between"
+        >
+          <button class="button button-sm button-link-neutral">
+            <a class="nav-link" href="/auth/reset">Forgot Password ?</a>
+          </button>
+          <button type="submit" class="button button-primary">Log In</button>
+        </div>
+      </form>
+    </main>
   </body>
 </html>

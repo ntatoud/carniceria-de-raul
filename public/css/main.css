@@ -1,0 +1,39 @@
+@import "colors.css";
+@import "styles.css";
+@import url(https://fonts.googleapis.com/css?family=Inter);
+
+body {
+  font-family: "Inter";
+  display: flex;
+  flex-direction: column;
+  background-color: var(--gray-100);
+  min-height: 100vh;
+}
+main {
+  padding: 150px;
+}
+form {
+  background: white;
+  gap: 24px;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+form h2 {
+  font-weight: bold;
+  font-size: var(--font-xl);
+}
+
+form button {
+  justify-self: flex-end;
+}
+
+.login-form,
+.reset-password-form {
+  width: 360px;
+}
+
+.signup-form {
+  width: 460px;
+}

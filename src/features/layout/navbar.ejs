@@ -1,8 +1,9 @@
 <!-- Author : Noé TATOUD -->
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+<link rel="stylesheet" type="text/css" href="/css/navbar.css" />
+<script src="/jquery.min.js"></script>
+<nav class="navbar menu-navbar navbar-expand-lg sticky-top">
   <div class="container-fluid navbar-container">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="/">Inicio</a>
       </li>
@@ -15,9 +16,27 @@
       <li class="nav-item">
         <a class="nav-link" href="/contact">Contacto</a>
       </li>
+      <span class="nav-item justify-self-end">
+        <a class="nav-link" href="/admin">Admin</a>
+      </span>
     </ul>
-    <span class="nav-item justify-self-end">
-      <a class="nav-link" href="/admin">Admin</a>
-    </span>
   </div>
 </nav>
+<!-- <script type="text/javascript" src="/features/layout/navbar.js"> -->
+<script type="text/javascript">
+  const navItems = $(".menu-navbar .nav-link");
+  // Remove the active tag of the previous item
+  $(".nav-item .active").removeClass("active");
+
+  // Add the active tag to the new current item
+  const currentPath = window.location.pathname;
+  const currentElement = navItems.filter((index, navItem) => {
+    if (
+      navItem.getAttribute("href") === currentPath ||
+      (navItem.getAttribute("href") === "/admin" &&
+        currentPath.includes("/admin/"))
+    )
+      return navItem;
+  });
+  currentElement.addClass("active");
+</script>

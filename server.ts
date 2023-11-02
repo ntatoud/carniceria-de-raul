@@ -16,16 +16,22 @@ const app: Express = express();
 const port = 3000;
 
 app.use(urlencoded({ extended: true }));
-app.use(staticSrc("./public"));
 
+app.use(staticSrc("public"));
+app.use(staticSrc("dist/src"));
 app.use(staticSrc("node_modules/bootstrap/dist/"));
+app.use(staticSrc("node_modules/@popperjs/core/dist/umd"));
+app.use(staticSrc("node_modules/jquery/dist/"));
 app.use(staticSrc("node_modules/bootstrap-icons/font"));
+
 app.set("view engine", "ejs");
+
 app.set("views", [
   "src/features",
   "src/features/auth",
   "src/features/auth/login",
   "src/features/auth/signup",
+  "src/features/auth/reset",
   "src/features/admin",
   "src/features/admin/users",
   "src/features/admin/products",
@@ -34,6 +40,7 @@ app.set("views", [
   "src/features/order/infos",
   "src/features/order/payment",
   "src/features/shop",
+  "src/features/layout",
   "src/features/about",
   "src/features/contact",
 ]);

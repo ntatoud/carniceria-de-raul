@@ -1,1 +1,14 @@
+.topbar,
+.topbar-navbar li {
+  background-color: var(--gray-800);
+}
 
+.topbar,
+.topbar-navbar a,
+.navbar-brand {
+  color: white;
+}
+
+.navbar-brand:hover {
+  color: var(--gray-300);
+}

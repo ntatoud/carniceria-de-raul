@@ -1,0 +1,39 @@
+@import "colors.css";
+
+.input-group {
+  background-color: var(--gray-50);
+  border-radius: 6px;
+  border: 1px solid var(--gray-200);
+  height: 40px;
+}
+
+.form-control {
+  background-color: var(--gray-50);
+  border-radius: 6px;
+  border: 1px solid var(--gray-200);
+  height: 40px;
+}
+
+.input-group .input-group-text,
+.input-group .form-control {
+  background-color: transparent;
+  border: 0px;
+  height: 100%;
+}
+
+/* CSS for the password input */
+#togglePassword {
+  cursor: pointer;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  outline: 2px blue solid;
+  border: none;
+}
+.input-group .form-control:focus {
+  outline: none;
+}
+.input-group:has(.form-control:focus) {
+  outline: 2px blue solid;
+}
