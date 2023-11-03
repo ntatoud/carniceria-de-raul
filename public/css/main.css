@@ -1,18 +1,29 @@
 @import "colors.css";
 @import "styles.css";
 @import url(https://fonts.googleapis.com/css?family=Inter);
+html,
+body {
+  height: 100%;
+}
 
 body {
   font-family: "Inter";
   display: flex;
   flex-direction: column;
   background-color: var(--gray-100);
-  min-height: 100vh;
 }
+
+header {
+  height: 15%;
+}
+
 main {
-  padding: 150px;
+  width: 100%;
+  height: 100%;
 }
+
 form {
+  width: 80vw;
   background: white;
   gap: 24px;
   padding: 24px;
@@ -31,9 +42,20 @@ form button {
 
 .login-form,
 .reset-password-form {
-  width: 360px;
+  width: 40%;
 }
 
 .signup-form {
   width: 460px;
+}
+
+@media screen and (max-width: 768px) {
+  .login-form,
+  .reset-password-form {
+    width: 100%;
+  }
+
+  .signup-form {
+    width: 460px;
+  }
 }

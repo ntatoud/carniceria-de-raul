@@ -5,13 +5,7 @@
     <%- include('../../imports.ejs') %>
   </head>
   <body>
-    <%- include('./layout/layout.ejs') %> SHOP
-    <div class="d-flex flex-column">
-      <% for(let i=0;i<categories.length;i++){%> 
-      <a href="/shop/<%= categories[i].toLowerCase()%>">
-          <%= categories[i]%> 
-      </a>
-          <%}%>
-  </div>
+    <header><%- include('./layout/layout.ejs') %></header>
+    <main><%- include('./shop/leftMenu.ejs')%></main>
   </body>
 </html>

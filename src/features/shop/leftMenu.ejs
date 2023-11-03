@@ -1,7 +1,17 @@
-<div class="d-flex flex-column">
-    <%- for(let i=0;i<categories.length;i++){%> 
-    <span>
-        <%= categories[i]%> 
-    </span>
-        <%-}%>
+<div class="left-menu d-flex flex-column">
+  <div class="left-menu-categories">
+    <div class="left-menu-title">Categories</div>
+    <% for(let i=0;i < categories.length;i++) {%>
+    <a
+      class="left-menu-item justify-content-between"
+      href="/case/<%= categories[i].toLowerCase() %>"
+    >
+      <%= categories[i] %>
+      <i class="bi bi-arrow-right"></i>
+    </a>
+    <% } %>
+  </div>
+  <div class="left-menu-filters">
+    <div class="left-menu-title">Filters</div>
+  </div>
 </div>

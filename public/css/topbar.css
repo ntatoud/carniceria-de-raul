@@ -1,6 +1,7 @@
 .topbar,
 .topbar-navbar li {
   background-color: var(--gray-800);
+  height: 60%;
 }
 
 .topbar,

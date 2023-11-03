@@ -12,8 +12,8 @@
   outline-offset: -1px;
   box-shadow: none;
   font-weight: 500;
-  height: 40px;
-  padding: 0px 14px;
+  height: fit-content;
+  padding: 0.5em 1em;
   font-size: var(--font-md);
   background-color: white;
   color: var(--gray-600);
@@ -28,20 +28,14 @@
 /* Button sizes */
 .button-xs {
   font-size: var(--font-xs);
-  height: 24px;
-  padding: 0px 8px;
 }
 
 .button-sm {
   font-size: var(--font-sm);
-  height: 32px;
-  padding: 0 12px;
 }
 
 .button-lg {
   font-size: var(--font-lg);
-  height: 48px;
-  padding: 0 20px;
 }
 
 /* Button color variants */
@@ -65,18 +59,21 @@
 
 .button-link {
   outline: 0px;
+  background-color: transparent;
   color: var(--brand-600);
 }
 
 .button-link i {
   color: var(--brand-600);
 }
+
 .button-link a {
   color: var(--brand-600);
   text-decoration: none;
 }
 
 .button-link-neutral {
+  background-color: transparent;
   outline: 0px;
 }
 
