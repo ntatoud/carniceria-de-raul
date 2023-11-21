@@ -2,19 +2,27 @@ import mysql from "mysql2";
 import { databaseCredentials } from "./index";
 
 export const databaseCreate = (): void => {
-  try {
-    // Create a connection to MySQL server
-    const connection = mysql.createConnection({
-      multipleStatements: true,
-      ...databaseCredentials,
-    });
-    // Execute SQL statements to create database and user
-    connection.query(`
+  // Create a connection to MySQL server
+  const connection = mysql.createConnection({
+    multipleStatements: true,
+    ...databaseCredentials,
+  });
+  // Execute SQL statements to create database and user
+  connection.query(
+    `
           CREATE DATABASE IF NOT EXISTS ${process.env.DATABASE_NAME};
           USE ${process.env.DATABASE_NAME};
-      `);
+      `,
+    (error: Error) => {
+      if (error) {
+        throw new Error(error.message);
+      }
+      console.log("Database created successfully");
+    }
+  );
 
-    connection.query(` 
+  connection.query(
+    ` 
       CREATE TABLE IF NOT EXISTS users (
         user_id INT AUTO_INCREMENT PRIMARY KEY,
         email VARCHAR(100) UNIQUE NOT NULL,
@@ -56,13 +64,14 @@ export const databaseCreate = (): void => {
         FOREIGN KEY (order_id) REFERENCES orders(order_id),
         FOREIGN KEY (product_id) REFERENCES products(product_id)
        );
-      `);
-    // Close the connection
-    connection.end();
-  } catch (error: any) {
-    console.error("Error:", error.message);
-  }
-  console.log("Database and tables created successfully");
+      `,
+    (error: Error) => {
+      if (error) throw new Error(error.message);
+      console.log("Tables created successfully");
+    }
+  );
+  // Close the connection
+  connection.end();
 };
 
 databaseCreate();
