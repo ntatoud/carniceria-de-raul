@@ -12,7 +12,6 @@ import shop from "./src/features/shop";
 import about from "./src/features/about";
 import contact from "./src/features/contact";
 const app: Express = express();
-
 const port = 3000;
 
 app.use(urlencoded({ extended: true }));
@@ -53,11 +52,11 @@ app.use("/order", order); // Has subroutes
 app.use("/about", about);
 app.use("/contact", contact);
 
-app.use("/", (req: Request, res: Response) => {
+app.use("/", (res: Response) => {
   res.render("index.ejs");
 });
 
-app.get("*", function (req: Request, res: Response) {
+app.get("*", function (res: Response) {
   res.status(404);
   res.render("404.ejs");
 });
