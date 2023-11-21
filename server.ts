@@ -52,11 +52,11 @@ app.use("/order", order); // Has subroutes
 app.use("/about", about);
 app.use("/contact", contact);
 
-app.use("/", (res: Response) => {
+app.use("/", (req: Request, res: Response) => {
   res.render("index.ejs");
 });
 
-app.get("*", function (res: Response) {
+app.get("*", function (req: Request, res: Response) {
   res.status(404);
   res.render("404.ejs");
 });
