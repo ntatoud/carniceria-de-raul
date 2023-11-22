@@ -18,6 +18,21 @@ export const databaseFill = (): void => {
   );
 
   connection.query(
+    `INSERT INTO categories (name)
+      VALUES
+      ('Ternera'),
+      ('Pollo'),
+      ('Cerdo'),
+      ('Elaborado');`,
+    (error: Error) => {
+      if (error) {
+        throw new Error(error.message);
+      }
+      console.log("👤 👉 Table 'categories' seeded successfully");
+    }
+  );
+
+  connection.query(
     `
     INSERT INTO products (name, price, stock, sale, sale_price, image, description)
     VALUES
@@ -29,6 +44,21 @@ export const databaseFill = (): void => {
         throw new Error(error.message);
       }
       console.log("📦 👉 Table 'products' seeded successfully");
+    }
+  );
+
+  connection.query(
+    `INSERT INTO product_categories (product_id, category_id)
+      VALUES
+      (1, 1),
+      (2, 2),
+      (3, 3);`,
+
+    (error: Error) => {
+      if (error) {
+        throw new Error(error.message);
+      }
+      console.log("👤 👉 Table 'product_categories' seeded successfully");
     }
   );
   connection.query(

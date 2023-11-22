@@ -34,7 +34,8 @@ export const databaseCreate = (): void => {
         creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         phone_number VARCHAR(20)
         );
-        
+      
+      
       CREATE TABLE IF NOT EXISTS products (
         product_id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(250) NOT NULL,
@@ -45,7 +46,20 @@ export const databaseCreate = (): void => {
         image BLOB NOT NULL,
         description VARCHAR(2048) NOT NULL
         );
-        
+      
+      CREATE TABLE IF NOT EXISTS categories (
+          category_id INT AUTO_INCREMENT PRIMARY KEY,
+          name VARCHAR(255) NOT NULL
+      );
+  
+      CREATE TABLE IF NOT EXISTS product_categories (
+        product_id INT,
+        category_id INT,
+        PRIMARY KEY (product_id, category_id),
+        FOREIGN KEY (product_id) REFERENCES products(product_id),
+        FOREIGN KEY (category_id) REFERENCES categories(category_id)
+      );
+
       CREATE TABLE IF NOT EXISTS orders (
         order_id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,

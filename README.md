@@ -20,13 +20,13 @@ npm run build
 ```
 
 ```bash
-npm run bd:create
+npm run db:create
 ```
 
 to create the database
 
 ```bash
-npm run bd:seed
+npm run db:seed
 ```
 
 to add some mockup data
