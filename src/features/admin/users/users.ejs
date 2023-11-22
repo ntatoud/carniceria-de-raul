@@ -14,10 +14,28 @@
       </menu>
       <data>
         <div class="d-flex flex-row">
-          <h1>Title</h1>
-          <button>Truc</button>
+          <h1>Users</h1>
+          <button class="button button-primary">Add user</button>
         </div>
-        <table></table>
+        <table>
+            <thead>
+              <tr>
+                <td  class="name-mail">Name/Email</td> 
+                <td class="id">ID</td>
+                <td>Authorities</td>
+              </tr>
+              </thead>
+              <tbody>              
+              <% users.map((user) =>  { %>
+              <tr>
+                <td class='name'><p><b><%= user.name%> <%=user.surname%></p></b><p><%= user.email%></p> </td>
+                <td class='name'><%= user.user_id%> </td>
+                <td class='name'><%= user.authorities%> </td>
+                <td class='name'><%= user.name%> </td>
+              </tr>
+              <%}) %>
+            </tbody>
+        </table>
       </data>
     </main>
   </body>
