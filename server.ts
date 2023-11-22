@@ -12,7 +12,6 @@ import shop from "./src/features/shop";
 import about from "./src/features/about";
 import contact from "./src/features/contact";
 const app: Express = express();
-
 const port = 3000;
 
 app.use(urlencoded({ extended: true }));
