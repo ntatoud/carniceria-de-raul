@@ -1,22 +1,22 @@
 import { Router, urlencoded, Request, Response } from "express";
-
+import { databaseConnect } from "../../../database";
+import { User } from "../../types";
 const router = Router();
 
 router.use(urlencoded({ extended: true }));
 
-type User = {
-  name: string;
-  id: string;
-  email: string;
-  status: string;
-  authorities: boolean;
-};
-
-const dataFromBack: User[] = [
-  { name: "TRUC", id: "10", email: "dad", status: "oui", authorities: true },
-];
 router.use("/", (req: Request, res: Response) => {
-  res.render("users.ejs", { dataToFront: dataFromBack });
+  const connection = databaseConnect();
+  connection.query(
+    "SELECT name, email, authorities FROM users",
+    (error: Error, results: Partial<User>[]) => {
+      if (error) {
+        res.send("404");
+        throw new Error(error.message);
+      }
+      res.render("users.ejs", { users: results });
+    }
+  );
 });
 
 export default router;
