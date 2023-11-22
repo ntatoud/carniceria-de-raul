@@ -1,3 +1,117 @@
-<a href="/order/cart">CART</a>
-<a href="/order/infos">infos</a>
-<a href="/order/payment">payment</a>
+<link rel="stylesheet" type="text/css" href="/css/orderNav.css" />
+<div class="order-nav-container">
+  <ul class="order-nav">
+    <li class="item-cart todo">
+      <a href="#">
+        <i class="state-icon bi bi-check-circle h2"></i>
+        <p>Cart</p>
+      </a>
+    </li>
+    <li class="spacer cart-infos">
+      <div class="start todo"></div>
+      <div class="end todo"></div>
+    </li>
+    <li class="item-infos todo">
+      <a href="#">
+        <i class="state-icon bi bi-clock h2"></i>
+        <p>Infos</p>
+      </a>
+    </li>
+    <li class="spacer infos-payment todo">
+      <div class="start todo"></div>
+      <div class="end todo"></div>
+    </li>
+
+    <li class="item-payment todo">
+      <a href="#">
+        <i class="state-icon bi bi-x-circle h2"></i>
+        <p>Payment</p>
+      </a>
+    </li>
+  </ul>
+</div>
+<script>
+  $(document).ready(() => {
+    const updateClass = (mainElement, elementToUpdate) => {
+      // Just a trick to simulate change
+      if (mainElement === elementToUpdate) {
+        if ($(mainElement).hasClass("done")) {
+          $(elementToUpdate).removeClass("done").addClass("todo");
+        } else if ($(mainElement).hasClass("current")) {
+          $(elementToUpdate).removeClass("current").addClass("done");
+        } else if ($(mainElement).hasClass("todo")) {
+          $(elementToUpdate).removeClass("todo").addClass("current");
+        }
+
+        // Actually useful
+      } else {
+        if ($(mainElement).hasClass("done")) {
+          $(elementToUpdate)
+            .removeClass("current")
+            .removeClass("todo")
+            .addClass("done");
+        } else if ($(mainElement).hasClass("current")) {
+          $(elementToUpdate)
+            .removeClass("done")
+            .removeClass("todo")
+            .addClass("current");
+        } else if ($(mainElement).hasClass("todo")) {
+          $(elementToUpdate)
+            .removeClass("current")
+            .removeClass("done")
+            .addClass("todo");
+        }
+      }
+    };
+    const orderNavItems = $(".order-nav li");
+    orderNavItems.click((event) => {
+      // Change the class of the item
+      const element = event.target.parentElement.parentElement;
+      updateClass(element, element);
+
+      // Change the spacer according to the item
+      console.log($(element));
+      if ($(element).hasClass("item-cart")) {
+        const spacer = $(".spacer.cart-infos .start");
+        updateClass(element, spacer);
+      }
+
+      if ($(element).hasClass("item-payment")) {
+        const spacer = $(".spacer.infos-payment .end");
+        updateClass(element, spacer);
+      }
+
+      if ($(element).hasClass("item-infos")) {
+        const spacer1 = $(".spacer.cart-infos .end");
+        const spacer2 = $(".spacer.infos-payment .start");
+        updateClass(element, spacer1);
+        updateClass(element, spacer2);
+      }
+
+      // Change the icon accord to the class of the item
+      const stateIcon = $(element).find(".state-icon");
+      if ($(element).hasClass("done")) {
+        $(element)
+          .find(".state-icon")
+          .removeClass("bi-clock")
+          .addClass("bi-check-circle");
+      }
+
+      if ($(element).hasClass("current")) {
+        $(element)
+          .find(".state-icon")
+          .removeClass("bi-check-circle")
+          .removeClass("bi-x-circle")
+          .addClass("bi-clock");
+      }
+
+      if ($(element).hasClass("todo")) {
+        $(element)
+          .find(".state-icon")
+          .removeClass("bi-clock")
+          .removeClass("bi-check-circle")
+          .addClass("bi-x-circle");
+      }
+    });
+  });
+</script>
