@@ -30,6 +30,11 @@ export type Order = {
   comment?: string;
 };
 
+export type Category = {
+  id: number;
+  name: string;
+};
+
 export enum Authorities {
   ROLE_ADMIN,
   ROLE_USER,
