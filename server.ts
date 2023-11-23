@@ -11,10 +11,16 @@ import order from "./src/features/order";
 import shop from "./src/features/shop";
 import about from "./src/features/about";
 import contact from "./src/features/contact";
+import bodyParser from "body-parser";
 const app: Express = express();
 const port = 3000;
 
-app.use(urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 app.use(staticSrc("public"));
 app.use(staticSrc("dist/src"));
