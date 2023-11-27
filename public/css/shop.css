@@ -204,6 +204,12 @@
   border-radius: 0 0 0.25rem 0;
   border-width: 1px 1px 1px 0;
 }
+
+/* PRODUCT PAGE */
+
+.product-details {
+  height: 100vh;
+}
 @media screen and (max-width: 768px) {
   .shop-products-container {
     align-items: center;

@@ -1,4 +1,3 @@
-<!-- Author : Noé TATOUD -->
 <link rel="stylesheet" type="text/css" href="/css/shop.css" />
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +6,9 @@
   </head>
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
-    <main class="d-flex flex-row"><%=product.name%></main>
+    <%- include('./layout/mainbar.ejs') %>
+    <main>
+      <div class="product-details"><%=product.name%></div>
+    </main>
   </body>
 </html>
