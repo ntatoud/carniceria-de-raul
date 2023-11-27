@@ -2,9 +2,13 @@
 @import "styles.css";
 /*  Defining button variants as we want them to look */
 
-/* Default Button styling */
+/* -------- Default Button styling --------*/
 
 .button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   border-radius: 6px;
   border: 0px;
@@ -17,15 +21,16 @@
   font-size: var(--font-md);
   background-color: white;
   color: var(--gray-600);
-  width: fit-content;
   text-decoration: none;
+  gap: 1rem;
 }
+
 .button a {
   color: var(--gray-600);
   text-decoration: none;
 }
 
-/* Button sizes */
+/* -------- Button sizes -------- */
 .button-xs {
   font-size: var(--font-xs);
 }
@@ -38,7 +43,9 @@
   font-size: var(--font-lg);
 }
 
-/* Button color variants */
+/* -------- Button color variants -------- */
+
+/* Primary */
 .button-primary {
   outline: 0px;
   background-color: var(--brand-600);
@@ -49,6 +56,7 @@
   color: white;
 }
 
+/* Secondary */
 .button-secondary {
   color: var(--brand-600);
 }
@@ -57,6 +65,7 @@
   color: var(--brand-600);
 }
 
+/* Link */
 .button-link {
   outline: 0px;
   background-color: transparent;
@@ -72,6 +81,7 @@
   text-decoration: none;
 }
 
+/* Link-Neutral */
 .button-link-neutral {
   background-color: transparent;
   outline: 0px;
@@ -80,4 +90,15 @@
 .button-link-neutral a {
   color: var(--gray-600);
   text-decoration: none;
+}
+
+/* Disabled */
+.button:disabled {
+  border: 1px solid var(--gray-300);
+}
+.button:disabled,
+.button:disabled * {
+  background-color: var(--gray-50);
+  color: var(--gray-400);
+  cursor: not-allowed;
 }

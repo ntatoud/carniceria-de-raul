@@ -4,7 +4,7 @@
   direction: row;
   flex-wrap: wrap;
   background-color: var(--gray-600);
-  height: 40%;
+  height: 3rem;
   color: var(--gray-300);
   align-content: center;
   justify-content: center;

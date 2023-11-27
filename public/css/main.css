@@ -5,7 +5,9 @@ html,
 body {
   height: 100%;
 }
-
+body * {
+  margin: 0;
+}
 body {
   font-family: "Inter";
   display: flex;
@@ -14,15 +16,16 @@ body {
 }
 
 header {
-  height: 15%;
+  height: 7rem;
 }
 
 main {
   width: 100%;
   height: 100%;
+  overflow: scroll;
 }
 
-form {
+.form {
   width: 80vw;
   background: white;
   gap: 24px;
@@ -31,12 +34,12 @@ form {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-form h2 {
+.form h2 {
   font-weight: bold;
   font-size: var(--font-xl);
 }
 
-form button {
+.form button {
   justify-self: flex-end;
 }
 
