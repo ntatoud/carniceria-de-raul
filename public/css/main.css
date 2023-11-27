@@ -53,6 +53,10 @@ main {
 }
 
 @media screen and (max-width: 768px) {
+  header {
+    position: fixed;
+    z-index: 3;
+  }
   .login-form,
   .reset-password-form {
     width: 100%;

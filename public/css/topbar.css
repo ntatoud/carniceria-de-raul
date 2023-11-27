@@ -1,3 +1,29 @@
+.topbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: 100vw;
+}
+
+.topbar .navbar-nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.topbar .navbar-nav .nav-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: fit-content;
+}
+
+.topbar .navbar-nav .nav-item:hover i,
+.topbar .navbar-nav .nav-item:hover a {
+  color: var(--gray-200);
+}
+
 .topbar,
 .topbar-navbar li {
   background-color: var(--gray-800);
@@ -12,4 +38,10 @@
 
 .navbar-brand:hover {
   color: var(--gray-300);
+}
+
+@media screen and (max-width: 768px) {
+  .topbar .navbar-nav .nav-item {
+    padding-right: 1rem;
+  }
 }
