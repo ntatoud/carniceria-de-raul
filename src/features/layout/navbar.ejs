@@ -34,7 +34,9 @@
     if (
       navItem.getAttribute("href") === currentPath ||
       (navItem.getAttribute("href") === "/admin" &&
-        currentPath.includes("/admin/"))
+        currentPath.includes("/admin/")) ||
+      (navItem.getAttribute("href") === "/shop" &&
+        currentPath.includes("/shop/"))
     )
       return navItem;
   });
