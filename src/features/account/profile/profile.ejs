@@ -1,0 +1,69 @@
+<!-- Author : Noé TATOUD -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../../imports.ejs') %>
+    <link rel="stylesheet" href="account.css">
+  </head>
+  <body>
+    <header><%- include('./layout/layout.ejs') %></header>
+    <section class="main-view">
+      <div class="profile-title">
+        <h1>Bienvenido <%= accountName %></h1>
+      </div>
+    </section>
+      <main class = "main-content">
+        <div class = "left-content">
+          <%- include('../../features/account/accountNav.ejs') %>
+        </div>
+
+        <div class="right-content">
+          <form class="login-form justify-content a">
+            <div>
+              <h2>Información del perfil</h2>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" required />
+            </div>
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <input type="email" class="form-control" id="name" required />
+            </div>
+            <div class="form-group">
+              <label for="surname1">Primer Apellido</label>
+              <input type="text" class="form-control" id="surname1" required />
+            </div>
+            <div class="form-group">
+              <label for="surname2">Segundo Apellido</label>
+              <input type="text" class="form-control" id="surname2" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Teléfono</label>
+              <input type="tel" class="form-control" id="phone" required />
+            </div>
+            <div class="form-group">
+              <label for="address">Dirección</label>
+              <input type="text" class="form-control" id="address" required />
+            </div>
+            <div class="form-group">
+              <label for="postalCode">Código Postal</label>
+              <input type="text" class="form-control" id="postalCode" required />
+            </div>
+            <div class="form-group">
+              <label for="city">Ciudad</label>
+              <input type="text" class="form-control" id="city" required />
+            </div>
+            <div class="form-group">
+              <label for="country">Pais</label>
+              <input type="text" class="form-control" id="country" required />
+            </div>
+            <div class="d-flex flex-row pt-3 gap-3 "> 
+            <button type="submit" class="button button-primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </main>
+
+  </body>
+</html>
