@@ -10,10 +10,26 @@ const getCategoryNameFromUrl = (url: string): string => {
   return url[0].toUpperCase() + url.slice(1);
 };
 
+router.use("/:category/:product_id", (req: Request, res: Response) => {
+  const currentCategory = req.params.category ?? "";
+  const productId = req.params.product_id ?? 0;
+  const connection = databaseConnect();
+
+  connection.query(
+    `SELECT * from products WHERE product_id = ${productId};`,
+    (error: QueryError, results: Partial<Product>[]) => {
+      if (error) throw new Error(error.message);
+      res.render("product.ejs", {
+        product: results[0],
+        currentCategory: currentCategory,
+      });
+    }
+  );
+});
 router.get("/:category/filters", (req: Request, res: Response) => {
   const currentCategory =
     req.params.category[0].toUpperCase() + req.params.category.slice(1);
-  const isOnlyOffers = req.url.includes("offertasa=on");
+  const isOnlyOffers = req.url.includes("offertas=on");
   const isSortedByPrice = req.url.includes("price=on");
   const isSortedByName = req.url.includes("name=on");
   const connection = databaseConnect();
