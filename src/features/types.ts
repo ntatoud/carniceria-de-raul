@@ -16,7 +16,7 @@ export type Product = {
   price: number;
   stock: number;
   sale: Boolean;
-  image: HTMLImageElement; // Not sure about that
+  image: string;
   description: string;
   salePrice?: number;
 };

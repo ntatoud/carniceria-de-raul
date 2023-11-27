@@ -1,4 +1,5 @@
 <!-- Author : Noé TATOUD -->
+<link rel="stylesheet" type="text/css" href="/css/shop.css" />
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,6 +7,47 @@
   </head>
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
-    <main><%- include('./shop/leftMenu.ejs')%></main>
+    <main class="d-flex flex-row">
+      <%- include('./shop/leftMenu.ejs', {currentCategory: currentCategory})%>
+      <div class="shop-products-container">
+        <!-- \ -->
+        <% if(!products?.length) {%>
+        <p>No products here</p>
+        <%} else { products.map((product) => {%><%- include('./card.ejs',
+        {product : product, currentCategory: currentCategory})%><%})}%>
+      </div>
+    </main>
   </body>
+  <script>
+    if ($(".product-card").hasClass("disabled")) {
+      $(`.product-card.disabled button, .product-card.disabled select`).attr(
+        "disabled",
+        "disabled"
+      );
+    }
+
+    $(".button-quantity .button").on("click", (event) => {
+      const id = $(event.currentTarget).parents(".product-card").attr("id");
+      const add = $(event.currentTarget).hasClass("button-plus");
+      let currentProductQuantity = $(`.product-card#${id} .quantity`)[0];
+
+      if (currentProductQuantity.value <= 2) {
+        $(`.product-card#${id} .button-minus`).attr("disabled", "disabled");
+      }
+
+      if (add) {
+        currentProductQuantity.value = +currentProductQuantity.value + 1;
+      } else {
+        currentProductQuantity.value = +currentProductQuantity.value - 1;
+      }
+
+      if (currentProductQuantity.value === 1) {
+        $(`.product-card#${id} .button-minus`).attr("disabled", "disabled");
+      }
+
+      if (currentProductQuantity.value > 1) {
+        $(`.product-card#${id} .button-minus`).removeAttr("disabled");
+      }
+    });
+  </script>
 </html>

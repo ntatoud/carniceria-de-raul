@@ -1,45 +1,123 @@
 @import "colors.css";
 @import "styles.css";
 
+/* ---------- Default LeftMenu ----------*/
 .left-menu {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   background-color: white;
-  width: 15%;
+  width: 15rem;
   font-size: var(--font-lg);
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  transition: 0.2s;
+}
+.left-menu i {
+  margin: 0;
+}
+/* ---------- Collaspsed LeftMenu ----------*/
+
+.left-menu.collapse {
+  width: 3rem;
+  background-color: transparent;
+  margin-left: 0.25rem;
+}
+
+.left-menu.collapse .left-menu-categories,
+.left-menu.collapse .left-menu-filters,
+.left-menu.collapse .left-menu-item,
+.left-menu.collapse .left-menu-title,
+.left-menu.collapse .left-menu-toggle .bi-chevron-left {
+  transition: 0.05s;
+  visibility: hidden;
+}
+
+.left-menu.collapse .left-menu-toggle {
+  border-radius: 3rem;
+  background-color: var(--gray-400);
+  justify-content: center;
+  padding: 0;
+}
+
+/* ---------- Collaspse button part ----------*/
+
+.left-menu-toggle {
+  display: flex;
+  width: 100%;
+  height: 3rem;
+  align-items: center;
+  justify-content: end;
+  background-color: var(--gray-200);
+  padding-right: 0.25rem;
+  cursor: pointer;
 }
 
 .left-menu-categories {
-  height: 50%;
+  background-color: var(--gray-200);
+}
+
+.left-menu-filters {
+  height: fit-content;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
 }
 
 .left-menu-title {
-  padding-left: 0.5em;
-  padding-top: 0.5em;
+  display: flex;
+  flex-direction: row;
+  padding: 0 0.5rem 0 0.5rem;
   font-weight: bold;
   font-size: var(--font-xl);
-  height: 10%;
+  height: 2.5rem;
   align-items: center;
 }
-.left-menu-item {
+
+.left-menu-categories .left-menu-item {
   display: flex;
   color: var(--gray-800);
   text-decoration: none;
   padding: 0 0.5em 0 0.5em;
-  border: 1px solid var(--gray-200);
+  margin: 0.25rem 0.5rem 0.25rem 0.5rem;
+  border-radius: 0.75rem;
   align-items: center;
-  height: 10%;
+  height: 2rem;
   transition: all 0.2s;
 }
 
-.left-menu-item:hover {
-  background: var(--gray-200);
+.left-menu-categories .left-menu-item:hover {
   font-size: var(--font-2xl);
+}
+
+.left-menu-categories .left-menu-item.active {
+  background: var(--gray-500);
+  color: white;
+  font-weight: bold;
+}
+
+.left-menu-filters .left-menu-item {
+  display: flex;
+  flex-direction: row;
+  height: 2rem;
+  padding: 0 0.5em 0 0.5em;
+  margin: 0.25rem 0.5rem 0.25rem 0.5rem;
+}
+
+.left-menu-filters .button {
+  width: 100%;
 }
 /* For mobile devices */
 @media screen and (max-width: 768px) {
   .left-menu {
-    font-size: var(--font-xs);
+    font-size: var(--font-sm);
+    position: fixed;
+    right: 0;
+    z-index: 2;
+    width: 10rem;
+  }
+  .left-menu-categories .left-menu-item:hover {
+    font-size: var(--font-lg);
+  }
+
+  .left-menu-toggle {
+    justify-content: flex-start;
+    padding-left: 0.25rem;
   }
 }

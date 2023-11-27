@@ -40,6 +40,7 @@ export const databaseCreate = (): void => {
         product_id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(250) NOT NULL,
         price DECIMAL(10, 2) NOT NULL,
+        unit ENUM("€/kg", "€/unidad"),
         stock INT NOT NULL,
         sale Boolean,
         sale_price DECIMAL(10, 2),

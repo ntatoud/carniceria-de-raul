@@ -37,3 +37,22 @@
 .input-group:has(.form-control:focus) {
   outline: 2px blue solid;
 }
+
+.form-check-input:checked {
+  background-color: var(--brand-500);
+  box-shadow: none;
+  border: 1px solid var(--brand-800);
+}
+
+.form-check-input:focus {
+  box-shadow: none;
+  border: 1px solid var(--red-800);
+}
+
+.form-check-input:not(:checked):focus {
+  border: 1px solid var(--blue-800);
+}
+
+.form-check-input:not(:checked):focus {
+  filter: hue-rotate(130deg);
+}

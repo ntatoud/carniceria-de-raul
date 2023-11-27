@@ -24,7 +24,9 @@
   text-decoration: none;
   gap: 1rem;
 }
-
+.button:focus {
+  box-shadow: 0 0 4px var(--brand-300);
+}
 .button a {
   color: var(--gray-600);
   text-decoration: none;
