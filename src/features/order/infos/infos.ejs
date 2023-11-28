@@ -3,9 +3,74 @@
 <html lang="en">
   <head>
     <%- include('../../../imports.ejs') %>
+    <style>
+      .view { display: none; }
+      .active { display: block; }
+      .form-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .form-element {
+            margin-right: 10px;
+        }
+  </style>
   </head>
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
     <main>infos <%- include('../orderNav.ejs') %></main>
+    <div id="billing" class="view active">
+      <h2>Billing address</h2>
+      <form>
+          <label for="country">Country:</label><br>
+          <input type="text" id="country" name="country"><br>
+          <label for="region">Region:</label><br>
+          <input type="text" id="region" name="region"><br>
+          <label for="city">City:</label><br>
+          <input type="text" id="city" name="city"><br>
+          <label for="postal">Postal Code:</label><br>
+          <input type="text" id="postal" name="postal"><br>
+          <label for="address1">Address1:</label><br>
+          <input type="text" id="address1" name="address1"><br>
+          <label for="address2">Address2:</label><br>
+          <input type="text" id="address2" name="address2"><br>
+          <button type="button" onclick="nextView('contact')">Next</button>
+      </form>
+  </div>
+
+  <div id="contact" class="view">
+      <h2>Client Details</h2>
+      <form>
+          <label for="phone">Phone Number:</label><br>
+          <input type="tel" id="phone" name="phone"><br>
+          <label for="email">Email:</label><br>
+          <input type="email" id="email" name="email"><br>
+          <button type="button" onclick="nextView('billing')">Back</button>
+          <button type="button" onclick="nextView('recovery')">Next</button>
+          
+      </form>
+  </div>
+
+  <div id="recovery" class="view">
+      <h2>Order Details</h2>
+      <form>
+          <label for="day">Recovery Day:</label><br>
+          <input type="date" id="day" name="day"><br>
+          <label for="time">Time Frame:</label><br>
+          <input type="time" id="time" name="time"><br>
+          <label for="comment">Comment:</label><br>
+          <textarea id="comment" name="comment"></textarea><br>
+          <button type="button" onclick="nextView('contact')">Back</button>
+      </form>
+  </div>
+
+  <script>
+      function nextView(viewId) {
+          var views = document.getElementsByClassName('view');
+          for (var i = 0; i < views.length; i++) {
+              views[i].classList.remove('active');
+          }
+          document.getElementById(viewId).classList.add('active');
+      }
+  </script>
   </body>
 </html>
