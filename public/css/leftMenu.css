@@ -5,7 +5,7 @@
 .left-menu {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex-basis: 1;
   background-color: white;
   width: 15rem;
   font-size: var(--font-lg);
@@ -14,7 +14,7 @@
 .left-menu i {
   margin: 0;
 }
-/* ---------- Collaspsed LeftMenu ----------*/
+/* ---------- Collapsed LeftMenu ----------*/
 
 .left-menu.collapse {
   width: 3rem;
@@ -106,12 +106,13 @@
 /* For mobile devices */
 @media screen and (max-width: 768px) {
   .left-menu {
-    font-size: var(--font-sm);
     position: fixed;
     right: 0;
     top: 7rem;
     z-index: 2;
+    font-size: var(--font-sm);
     width: 10rem;
+    height: 100%;
   }
   .left-menu-categories .left-menu-item:hover {
     font-size: var(--font-lg);

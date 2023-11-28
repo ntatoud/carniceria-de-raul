@@ -8,6 +8,10 @@ body {
 body * {
   margin: 0;
 }
+
+body *::selection {
+  background-color: var(--brand-400);
+}
 body {
   font-family: "Inter";
   display: flex;
@@ -23,21 +27,6 @@ main {
   width: 100%;
   height: max-content;
   overflow: scroll;
-}
-
-.mainbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  background: white;
-  box-shadow: 0px 3px 3px rbga(0, 0, 0, 1);
-  padding-left: 20rem;
-  padding-right: 20rem;
-  gap: 3rem;
-  height: 4rem;
-  font-size: var(--font-3xl);
-  font-weight: bold;
 }
 
 .form {
@@ -70,6 +59,7 @@ main {
 @media screen and (max-width: 768px) {
   header {
     position: fixed;
+    width: 100%;
     z-index: 3;
   }
   .login-form,
