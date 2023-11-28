@@ -37,6 +37,8 @@ body{
 
 }
 .sidebar-button {
+    justify-content: center;
+    align-items: center;
     background-color: var(--red-200);
     color: #fff;
     border: none;
