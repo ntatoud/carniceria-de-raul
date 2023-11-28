@@ -9,7 +9,12 @@
     <header><%- include('./layout/layout.ejs') %></header>
     <%- include('./layout/mainbar.ejs') %>
     <main>
-      <div class="product-details"><%=product.name%></div>
+      <div class="product-details">
+        <img
+          src="/assets/images/products/<%=currentCategory%>.jpg"
+          alt="product-image"
+        /><%=product.name%>
+      </div>
     </main>
   </body>
 </html>

@@ -6,7 +6,7 @@
     <a
       id="<%=category.id%>"
       class="left-menu-item justify-content-between"
-      href="/shop/<%= category.name.toLowerCase() %>"
+      href="/shop/<%=category.name.toLowerCase()%>"
     >
       <%= category.name %>
       <i class="bi bi-arrow-right"></i>
@@ -17,10 +17,7 @@
     <div class="left-menu-title">
       <i class="bi bi-filter-left h3"></i>Filters
     </div>
-    <form
-      action="/shop/<%=currentCategory.toLowerCase()%>/filters"
-      method="get"
-    >
+    <form action="/shop/<%=currentCategory%>/filters" method="get">
       <div class="left-menu-item">
         <div class="form-check form-switch">
           <i class="bi bi-percent"></i>

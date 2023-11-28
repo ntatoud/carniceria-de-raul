@@ -4,12 +4,6 @@ import { QueryError } from "mysql2";
 import { Category, Product } from "../types";
 const router = Router();
 
-const getCategoryNameFromUrl = (url: string): string => {
-  if (url.length < 1) return "";
-
-  return url[0].toUpperCase() + url.slice(1);
-};
-
 router.use("/:category/:product_id", (req: Request, res: Response) => {
   const currentCategory = req.params.category ?? "";
   const productId = req.params.product_id ?? 0;
@@ -27,8 +21,7 @@ router.use("/:category/:product_id", (req: Request, res: Response) => {
   );
 });
 router.get("/:category/filters", (req: Request, res: Response) => {
-  const currentCategory =
-    req.params.category[0].toUpperCase() + req.params.category.slice(1);
+  const currentCategory = req.params.category;
   const isOnlyOffers = req.url.includes("offertas=on");
   const isSortedByPrice = req.url.includes("price=on");
   const isSortedByName = req.url.includes("name=on");
@@ -64,8 +57,7 @@ router.get("/:category/filters", (req: Request, res: Response) => {
 });
 
 router.use("/", (req: Request, res: Response) => {
-  const currentCategory = getCategoryNameFromUrl(req.url.split("/")[1]);
-
+  const currentCategory = req.url.split("/")[1];
   const connection = databaseConnect();
   const getCategoriesQuery = `SELECT * FROM categories;`;
   connection.query(
@@ -76,7 +68,9 @@ router.use("/", (req: Request, res: Response) => {
         const getProductsFromCategoryQuery = `SELECT products.* FROM products
       JOIN product_categories ON products.product_id = product_categories.product_id
       JOIN categories ON product_categories.category_id = categories.category_id
-      WHERE categories.name = "${currentCategory}";`;
+      WHERE categories.name = "${
+        currentCategory[0].toUpperCase() + currentCategory.slice(1)
+      }";`;
 
         connection.query(
           getProductsFromCategoryQuery,
