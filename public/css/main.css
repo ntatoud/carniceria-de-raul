@@ -71,3 +71,7 @@ main {
     width: 460px;
   }
 }
+
+.hide {
+  visibility: hidden;
+}

@@ -159,62 +159,16 @@
   background: var(--red-200);
 }
 
-.button-quantity {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: fit-content;
-  border: 1px solid var(--gray-200);
-  border-radius: 0.1rem;
-}
-
-.button-quantity input::-webkit-inner-spin-button {
-  position: absolute;
-  width: 0;
-  visibility: hidden;
-  opacity: 0;
-}
-
 .button-quantity input {
   width: 2rem;
   height: 2.5rem;
-  border: none;
-  display: flex;
-  flex-direction: row;
-  text-align: center;
   padding-right: 0.25rem;
 }
 
 .button-quantity .buttons {
-  display: flex;
-  flex-direction: column;
   height: 2.5rem;
   padding: 0;
 }
-
-.button-quantity .buttons .button {
-  font-size: var(--font-sm);
-  width: 1.5rem;
-  height: 1.25rem;
-  padding: 0;
-  border-radius: 0.1rem;
-}
-
-.button-quantity .buttons .button:disabled,
-.button-quantity .buttons .button:disabled i {
-  border: none;
-  background-color: transparent;
-}
-
-/* .button-quantity .buttons .button-plus {
-  border-radius: 0 0.25rem 0 0;
-  border-width: 1px 1px 0 0;
-}
-
-.button-quantity .buttons .button-minus {
-  border-radius: 0 0 0.25rem 0;
-  border-width: 0 1px 1px 0;
-} */
 
 @media screen and (max-width: 768px) {
   .shop-products-container {
