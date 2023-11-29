@@ -32,24 +32,22 @@ body{
 .sidebar{
     display: flex;
     flex-direction: column;
-    width : 100%;
     border-radius: 10rem;
 
 }
 .sidebar-button {
-    justify-content: center;
-    align-items: center;
     background-color: var(--red-200);
     color: #fff;
     border: none;
     cursor: pointer;
-    font-size: 3rem;
+    border-radius: 0.2rem;
     transition: background-color 0.3s;
+    width:100%;
   }
 
-  .sidebar-button:hover {
+.sidebar-button:hover {
     background-color: var(--red-100);
-  }
+    }
 
 .profile-title{
     font-size: 1.5rem;
