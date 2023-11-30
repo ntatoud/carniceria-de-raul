@@ -1,44 +1,26 @@
-/**
- * Author: Sica Mattia
- * Description: This module contains functions related to user authentication.
- */
-
-import { Router, urlencoded, Request, Response } from "express";
-import { generate32ByteSalt, xorStringWith32ByteKey, sha256HexString } from "../util";
-import { databaseConnect } from "../../../database";
+import { Router, urlencoded, Request, Response, NextFunction } from "express";
+import { checkEmailTaken, isStrongPassword, registerIfPossible } from "./utils";
 
 const router = Router();
 
 router.use(urlencoded({ extended: true }));
 
-// Define a route for handling POST requests to the "/login" endpoint
-router.post('/sign', (req: Request, res: Response) => {
-  const { name, surname, email, password } = req.body;
-  const salt = generate32ByteSalt();
-  const saltedPwd = xorStringWith32ByteKey(password, salt);
-  const hashPwd = sha256HexString(saltedPwd);
+router.post("/checkEmail", (req, res) => {
+  checkEmailTaken(res, req.body.email);
+});
 
-  try {
-    const connection = databaseConnect(); // Assuming databaseConnect returns a Promise resolving to a database connection
+router.post("/checkPassword", (req, res) => {
+  const { isStrong, problems } = isStrongPassword(req.body.password);
 
-    const insertQuery = `
-      INSERT INTO users (name, surname, email, password, salt)
-      VALUES (?, ?, ?, ?, ?);
-    `;
+  res.status(200).send(isStrong ? "OK" : problems);
+});
 
-    connection.execute(insertQuery, [name, surname, email, hashPwd, salt]); // Using execute for promises
-
-    connection.end();
-
-    res.status(200).send('User registered successfully.');
-  } catch (error) {
-    console.error('Error registering user:', error);
-    res.status(500).send('Error registering user.');
-  }
+router.post("/", (req: Request, res: Response, next: NextFunction) => {
+  registerIfPossible(res, req.body);
 });
 
 router.use("/", (req: Request, res: Response) => {
-  res.render("signup.ejs");
+  res.render("signup.ejs", { error: {} });
 });
 
 export default router;

@@ -8,9 +8,20 @@
     <header><%- include('./layout/layout.ejs') %></header>
     <main class="d-flex flex-column align-items-center">
       <%- include('./auth/auth-tab.ejs') %>
-      <form class="login-form d-grid" action="/auth/login/log" method="post" role="form">
+      <form
+        class="login-form d-grid"
+        action="/auth/login/"
+        method="post"
+        role="form"
+      >
         <h2>Login</h2>
-        <%- include('./auth/email-password-form.ejs') %>
+        <%if(signed) {%>
+        <span class="success-alert bi bi-exclamation-circle">
+          Inscription done succesfully
+        </span>
+        <%}%> <%if(error.state) {%>
+        <span class="credential-error"> <%=error.message%> </span>
+        <%}%> <%- include('./auth/email-password-form.ejs') %>
         <div
           class="d-flex flex-row gap-3 align-items-center justify-content-between"
         >
@@ -22,5 +33,5 @@
       </form>
       <div id="existingResultDiv"></div>
     </main>
-</body>
+  </body>
 </html>
