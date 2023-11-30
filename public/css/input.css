@@ -31,9 +31,56 @@
   outline: 2px blue solid;
   border: none;
 }
+
 .input-group .form-control:focus {
   outline: none;
 }
 .input-group:has(.form-control:focus) {
   outline: 2px blue solid;
+}
+
+.form-control#email.error,
+.input-group:has(.form-control.error:focus) {
+  outline: 2px var(--brand-500) solid;
+}
+
+span.error {
+  display: none;
+  color: var(--brand-600);
+  opacity: 0;
+}
+
+span.error.show {
+  display: block;
+  opacity: 1;
+}
+
+.credential-error {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  background-color: var(--brand-100);
+  color: var(--brand-800);
+  border: 1px solid var(--brand-700);
+  font-size: var(--font-lg);
+  border-radius: 0.25rem;
+  font-weight: bold;
+  gap: 1rem;
+  margin-bottom: -1rem;
+}
+
+.success-alert {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  background-color: limegreen;
+  color: green;
+  border: 1px solid darkgreen;
+  font-size: var(--font-lg);
+  border-radius: 0.25rem;
+  font-weight: bold;
+  gap: 1rem;
+  margin-bottom: -1rem;
 }

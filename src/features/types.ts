@@ -1,3 +1,5 @@
+import { ProcedureCallPacket, ResultSetHeader, RowDataPacket } from "mysql2";
+
 export type User = {
   id: number;
   email: string;
@@ -40,3 +42,9 @@ export enum Authorities {
   ROLE_ADMIN,
   ROLE_USER,
 }
+
+export type QueryResult =
+  | RowDataPacket[]
+  | ResultSetHeader[]
+  | RowDataPacket[][]
+  | ProcedureCallPacket;
