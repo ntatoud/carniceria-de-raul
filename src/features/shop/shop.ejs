@@ -9,20 +9,116 @@
     <link rel="stylesheet" type="text/css" href="/css/leftMenu.css" />
   </head>
   <body>
-    <% const produits = products %>
     <header><%- include('./layout/layout.ejs') %></header>
     <main class="d-flex flex-row">
       <%- include('./shop/leftMenu.ejs', {currentCategory: currentCategory})%>
+      <!-- \ -->
+      <%if(!currentCategory) {%>
+      <div class="shop-home">
+        <ul class="nav nav-tabs" onclick="handleClick(event)">
+          <li class="nav-item">
+            <button class="tab active" id="ofertas" aria-current="page">
+              <i class="bi bi-percent"></i>
+              Ofertas
+              <span class="tag-amount">
+                <%=products.filter((product) => product.sale).length%>
+              </span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="tab" id="mejores">
+              <i class="bi bi-award"></i>
+              Mejor vendido
+              <span class="tag-amount">
+                <%=products.filter((product) => product.best).length%>
+              </span>
+            </button>
+          </li>
+        </ul>
+        <div class="product-carousel">
+          <button
+            class="button button-link-neutral bi bi-chevron-left"
+            onclick="scrollToLeft()"
+          ></button>
+
+          <div class="shop-products-container ofertas" onscroll="setScroll()">
+            <% products?.filter((product) => product.sale).map((product) => {%>
+            <!-- -->
+            <%- include('./card.ejs', {product : product, currentCategory: ""})
+            %> <%}) %>
+          </div>
+          <div class="shop-products-container mejores hide">
+            <% products?.filter((product) => product.best).map((product) => {%>
+            <!-- -->
+            <%- include('./card.ejs', {product : product, currentCategory: ""})
+            %> <%}) %>
+          </div>
+          <button
+            class="button button-link-neutral bi bi-chevron-right"
+            onclick="scrollToRight()"
+          ></button>
+        </div>
+
+        <h2>Todos nos productos</h2>
+        <div class="shop-products-container">
+          <% products?.map((product) => {%><%- include('./card.ejs', {product :
+          product, currentCategory: ""})%><%}) %>
+        </div>
+      </div>
+      <%}else { %>
       <div class="shop-products-container">
-        <!-- \ -->
-        <% if(!products?.length) {%>
+        <% if(!products?.length) { %>
         <p>No products here</p>
-        <%} else { products.map((product) => {%><%- include('./card.ejs',
+
+        <%} else { products.map((product) => {%> <%- include('./card.ejs',
         {product : product, currentCategory: currentCategory})%><%})}%>
       </div>
+      <%}%>
     </main>
   </body>
+
   <script>
+    // Home javascript
+    let scroll = 0;
+    const scrollToRight = () => {
+      console.log(window.screen.width);
+      scroll += window.screen.width <= 768 ? 256 : 400;
+      $(`.shop-products-container:not(.hide)`).scrollLeft(scroll);
+    };
+    const scrollToLeft = () => {
+      scroll -= window.screen.width <= 768 ? 256 : 400;
+      $(`.shop-products-container:not(.hide)`).scrollLeft(scroll);
+    };
+    const setScroll = () => {
+      scroll = $(`.shop-products-container:not(.hide)`).scrollLeft();
+    };
+
+    $(`.shop-products-container.mejores`).hide();
+
+    const handleClick = (event) => {
+      const tab = event.target;
+      const tabId = $(tab).attr("id");
+      const otherTab = $(
+        `button#${tabId === "ofertas" ? "mejores" : "ofertas"}`
+      );
+      const otherTabId = $(otherTab).attr("id");
+
+      // Display the products related to the tab that has been clicked and activate the tab
+      $(tab).addClass("active");
+      $(`.shop-products-container.${tabId}`).show();
+      $(`.shop-products-container.${tabId}`).removeClass("hide");
+
+      // Remove the products related to the other tab and desactivate the tab
+      $(otherTab).removeClass("active");
+      $(`.shop-products-container.${otherTabId}`).addClass("hide");
+      $(`.shop-products-container.${otherTabId}`).hide();
+
+      // Reset the scroll for the new tab
+      scroll = 0;
+    };
+
+    /*---------------------------- */
+    // Cards javascript
     if ($(".product-card").hasClass("disabled")) {
       $(`.product-card.disabled button, .product-card.disabled select`).attr(
         "disabled",

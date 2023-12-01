@@ -44,6 +44,7 @@ export const databaseCreate = (): void => {
         stock INT NOT NULL,
         sale Boolean,
         sale_price DECIMAL(10, 2),
+        best Boolean,
         image BLOB NOT NULL,
         description VARCHAR(2048) NOT NULL
         );

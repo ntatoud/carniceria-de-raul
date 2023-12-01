@@ -12,11 +12,13 @@ body * {
 body *::selection {
   background-color: var(--brand-400);
 }
+
 body {
   font-family: "Inter";
   display: flex;
   flex-direction: column;
   background-color: var(--gray-100);
+  overflow: scroll;
 }
 
 header {
@@ -26,7 +28,6 @@ header {
 main {
   width: 100%;
   height: max-content;
-  overflow: scroll;
 }
 
 .form {

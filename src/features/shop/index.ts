@@ -1,5 +1,10 @@
 import { Router, Response, Request } from "express";
-import { renderCategoryPage, renderProductPage, renderShopHome } from "./utils";
+import {
+  getAllProductsWithCategory,
+  renderCategoryPage,
+  renderProductPage,
+  renderShopHome,
+} from "./utils";
 const router = Router();
 
 router.use("/:category/:product_id", (req: Request, res: Response) => {
@@ -25,7 +30,7 @@ router.get("/:category", (req: Request, res: Response) => {
 });
 
 router.use("/", (req: Request, res: Response) => {
-  renderShopHome(res);
+  getAllProductsWithCategory(res);
 });
 
 export default router;

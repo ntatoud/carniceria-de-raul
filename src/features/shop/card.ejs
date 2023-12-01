@@ -4,20 +4,29 @@
 >
   <!-- CARD HEADER -->
   <div class="product-header" data-toggle="tooltip" title="<%=product.name%>">
-    <!-- Sale tag -->
     <% if(product.sale) { %>
+    <!-- Sale tag -->
     <div class="sale-tag">
       -<%=Math.round(100*(product.price-product.sale_price)/product.price)%>%
     </div>
+    <% }%> <% if(product.best) { %>
+    <!-- Best tag -->
+    <div
+      class="best-tag bi bi-award"
+      data-toggle="tooltip"
+      title="This product is one of the client's favorite !"
+    ></div>
     <% }%>
     <!-- Out of order tag -->
     <% if(product.stock === 0) { %>
     <div class="product-empty-tag">Agotado</div>
     <% }%>
-    <img
-      src="/assets/images/products/<%=currentCategory%>.jpg"
-      alt="product-image"
-    />
+    <a href="/shop/<%=product.category%>/<%=product.product_id%>">
+      <img
+        src="/assets/images/products/<%=product.category%>.jpg"
+        alt="product-image"
+      />
+    </a>
     <div class="product-name">
       <%=product.name[0]+product.name.slice(1).toLowerCase()%>
     </div>
@@ -38,9 +47,7 @@
   </div>
   <!-- CARD FOOTER -->
   <div class="product-footer">
-    <a
-      href="/shop/<%=currentCategory[0].toLowerCase() + currentCategory.slice(1)%>/<%=product.product_id%>"
-    >
+    <a href="/shop/<%=product.category%>/<%=product.product_id%>">
       <i class="bi bi-chevron-down"></i>
       Mas informaciones
     </a>

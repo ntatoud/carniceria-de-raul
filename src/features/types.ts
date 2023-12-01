@@ -16,9 +16,11 @@ export type Product = {
   price: number;
   stock: number;
   sale: Boolean;
+  salePrice?: number;
+  best: boolean;
   image: string;
   description: string;
-  salePrice?: number;
+  category: string;
 };
 
 export type Order = {
