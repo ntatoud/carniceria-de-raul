@@ -1,9 +1,8 @@
 body {
   display: flex;
   justify-content: space-between;
-
 }
-.main{
+.main {
   display: flex;
   justify-content: space-between;
 }
@@ -19,7 +18,7 @@ tr {
   margin-top: 20px;
   border: 2px solid black;
 }
-td button{
+td button {
   outline: 0px;
   background-color: transparent;
   color: var(--brand-600);
@@ -37,7 +36,7 @@ table {
   margin-top: 20px;
 }
 
-i{
+i {
   margin-right: 5px;
 }
 
@@ -47,27 +46,35 @@ td {
   text-align: left;
 }
 
-.button-primary {
-  margin-top: auto;
-  margin-left: 10px;
+a {
+  text-decoration: none;
 }
 
-  a {
-    
-    text-decoration: none;
-  }
-  
-
-.admin-menu{
+.admin-menu {
   margin-top: 0%;
   height: 100%;
   /*border: 1px solid black;*/
 }
-.admin-menu a{
+.admin-menu a {
   margin-right: 30px;
   text-decoration: none;
   color: black;
 }
 .admin-menu a:hover {
   color: black; /* Couleur du texte lorsqu'on survole le lien */
+}
+
+.user-form {
+  height: 100%;
+  width: 100%;
+  justify-content: end;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.user-form .authorities-form-group {
+  display: flex;
+  flex-direction: row;
 }

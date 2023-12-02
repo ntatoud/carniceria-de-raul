@@ -1,0 +1,26 @@
+<!-- Author : Noé TATOUD -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../imports.ejs') %>
+
+    <link rel="stylesheet" type="text/css" href="/css/admin.css" />
+    <link rel="stylesheet" type="text/css" href="/css/actionbar.css" />
+  </head>
+  <body>
+    <header><%- include('./layout/layout.ejs') %></header>
+    <main class="d-flex flex-column align-items-center">
+      <form
+        class="user-form"
+        action="/admin/users/create"
+        method="post"
+        role="form"
+      >
+        <div class="form-container">
+          <%- include('./admin/users/userForm.ejs')%>
+        </div>
+        <%- include('./admin/users/actionbar.ejs')%>
+      </form>
+    </main>
+  </body>
+</html>
