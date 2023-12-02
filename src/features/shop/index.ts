@@ -16,7 +16,7 @@ router.use("/:category/:product_id", (req: Request, res: Response) => {
 
 router.get("/:category", (req: Request, res: Response) => {
   const currentCategory = req.params.category;
-  const isOnlyOffers = req.url.includes("offertas=on");
+  const isOnlyOffers = req.url.includes("ofertas=on");
   const isSortedByPrice = req.url.includes("price=on");
   const isSortedByName = req.url.includes("name=on");
 

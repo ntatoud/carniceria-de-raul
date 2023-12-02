@@ -42,10 +42,10 @@
 }
 
 .menu-navbar .nav-link:hover::after {
-  width: 1.5em;
+  width: 1.5rem;
 }
 .menu-navbar .nav-link.active::after {
-  width: 1.5em;
+  width: 1.5rem;
   background: white;
 }
 

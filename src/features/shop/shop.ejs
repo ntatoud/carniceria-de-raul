@@ -61,9 +61,8 @@
 
         <h2>Todos nos otros productos</h2>
         <div class="shop-products-container">
-          <% products?.filter((product) => product.best === 0 && product.sale
-          === 0).map((product) => {%><%- include('card.ejs', {product : product,
-          currentCategory: ""})%><%}) %>
+          <% products.map((product) => {%><%- include('card.ejs', {product :
+          product, currentCategory: ""})%><%}) %>
         </div>
       </div>
       <%}else { %>
@@ -80,4 +79,5 @@
 
   <script src="/features/shop/frontend/shopHome.js"></script>
   <script src="/features/shop/frontend/productCard.js"></script>
+  <script src="/features/shop/frontend/leftMenu.js"></script>
 </html>
