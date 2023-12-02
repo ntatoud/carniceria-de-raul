@@ -43,7 +43,7 @@
   height: 0;
 }
 
-.product-carousel .button {
+.product-carousel > .button {
   height: 100%;
   font-size: var(--font-3xl);
 }

@@ -15,7 +15,7 @@
       <!-- \ -->
       <%if(!currentCategory) {%>
       <div class="shop-home">
-        <ul class="nav nav-tabs" onclick="handleClick(event)">
+        <ul class="nav nav-tabs" onclick="switchTab(event)">
           <li class="nav-item">
             <button class="tab active" id="ofertas" aria-current="page">
               <i class="bi bi-percent"></i>
@@ -44,14 +44,14 @@
           <div class="shop-products-container ofertas" onscroll="setScroll()">
             <% products?.filter((product) => product.sale).map((product) => {%>
             <!-- -->
-            <%- include('./card.ejs', {product : product, currentCategory: ""})
-            %> <%}) %>
+            <%- include('card.ejs', {product : product, currentCategory: ""}) %>
+            <%}) %>
           </div>
           <div class="shop-products-container mejores hide">
             <% products?.filter((product) => product.best).map((product) => {%>
             <!-- -->
-            <%- include('./card.ejs', {product : product, currentCategory: ""})
-            %> <%}) %>
+            <%- include('card.ejs', {product : product, currentCategory: ""}) %>
+            <%}) %>
           </div>
           <button
             class="button button-link-neutral bi bi-chevron-right"
@@ -59,10 +59,11 @@
           ></button>
         </div>
 
-        <h2>Todos nos productos</h2>
+        <h2>Todos nos otros productos</h2>
         <div class="shop-products-container">
-          <% products?.map((product) => {%><%- include('./card.ejs', {product :
-          product, currentCategory: ""})%><%}) %>
+          <% products?.filter((product) => product.best === 0 && product.sale
+          === 0).map((product) => {%><%- include('card.ejs', {product : product,
+          currentCategory: ""})%><%}) %>
         </div>
       </div>
       <%}else { %>
@@ -70,84 +71,13 @@
         <% if(!products?.length) { %>
         <p>No products here</p>
 
-        <%} else { products.map((product) => {%> <%- include('./card.ejs',
+        <%} else { products.map((product) => {%> <%- include('card.ejs',
         {product : product, currentCategory: currentCategory})%><%})}%>
       </div>
       <%}%>
     </main>
   </body>
 
-  <script>
-    // Home javascript
-    let scroll = 0;
-    const scrollToRight = () => {
-      console.log(window.screen.width);
-      scroll += window.screen.width <= 768 ? 256 : 400;
-      $(`.shop-products-container:not(.hide)`).scrollLeft(scroll);
-    };
-    const scrollToLeft = () => {
-      scroll -= window.screen.width <= 768 ? 256 : 400;
-      $(`.shop-products-container:not(.hide)`).scrollLeft(scroll);
-    };
-    const setScroll = () => {
-      scroll = $(`.shop-products-container:not(.hide)`).scrollLeft();
-    };
-
-    $(`.shop-products-container.mejores`).hide();
-
-    const handleClick = (event) => {
-      const tab = event.target;
-      const tabId = $(tab).attr("id");
-      const otherTab = $(
-        `button#${tabId === "ofertas" ? "mejores" : "ofertas"}`
-      );
-      const otherTabId = $(otherTab).attr("id");
-
-      // Display the products related to the tab that has been clicked and activate the tab
-      $(tab).addClass("active");
-      $(`.shop-products-container.${tabId}`).show();
-      $(`.shop-products-container.${tabId}`).removeClass("hide");
-
-      // Remove the products related to the other tab and desactivate the tab
-      $(otherTab).removeClass("active");
-      $(`.shop-products-container.${otherTabId}`).addClass("hide");
-      $(`.shop-products-container.${otherTabId}`).hide();
-
-      // Reset the scroll for the new tab
-      scroll = 0;
-    };
-
-    /*---------------------------- */
-    // Cards javascript
-    if ($(".product-card").hasClass("disabled")) {
-      $(`.product-card.disabled button, .product-card.disabled select`).attr(
-        "disabled",
-        "disabled"
-      );
-    }
-
-    $(".button-quantity .button").on("click", (event) => {
-      const id = $(event.currentTarget).parents(".product-card").attr("id");
-      const add = $(event.currentTarget).hasClass("button-plus");
-      let currentProductQuantity = $(`.product-card#${id} .quantity`)[0];
-
-      if (currentProductQuantity.value <= 2) {
-        $(`.product-card#${id} .button-minus`).attr("disabled", "disabled");
-      }
-
-      if (add) {
-        currentProductQuantity.value = +currentProductQuantity.value + 1;
-      } else {
-        currentProductQuantity.value = +currentProductQuantity.value - 1;
-      }
-
-      if (currentProductQuantity.value === 1) {
-        $(`.product-card#${id} .button-minus`).attr("disabled", "disabled");
-      }
-
-      if (currentProductQuantity.value > 1) {
-        $(`.product-card#${id} .button-minus`).removeAttr("disabled");
-      }
-    });
-  </script>
+  <script src="/features/shop/frontend/shopHome.js"></script>
+  <script src="/features/shop/frontend/productCard.js"></script>
 </html>

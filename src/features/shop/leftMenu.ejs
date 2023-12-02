@@ -1,5 +1,7 @@
 <div class="left-menu d-flex flex-column">
-  <div class="left-menu-toggle"><i class="bi bi-list h3"></i></div>
+  <div class="left-menu-toggle" onclick="toggleLeftMenu(event)">
+    <i class="bi bi-list h3"></i>
+  </div>
   <div class="left-menu-categories">
     <div class="left-menu-title"><i class="bi bi-play h2"></i>Categories</div>
     <% categories.map((category) => {%>
@@ -13,6 +15,7 @@
     </a>
     <% }) %>
   </div>
+  <%if(currentCategory) {%>
   <div class="left-menu-filters">
     <div class="left-menu-title">
       <i class="bi bi-filter-left h3"></i>Filters
@@ -23,7 +26,7 @@
           <i class="bi bi-percent"></i>
           <input
             id="filterOffers"
-            name="offertas"
+            name="ofertas"
             class="form-check-input"
             type="checkbox"
             role="switch"
@@ -40,6 +43,7 @@
             class="form-check-input"
             type="checkbox"
             role="switch"
+            onclick="turnOtherSwitchOff(event)"
           />
           <label class="form-check-label" for="filterName">Name </label>
         </div>
@@ -53,6 +57,7 @@
             class="form-check-input"
             type="checkbox"
             role="switch"
+            onclick="turnOtherSwitchOff(event)"
           />
           <label class="form-check-label" for="filterPrice">Price </label>
         </div>
@@ -64,45 +69,6 @@
       </div>
     </form>
   </div>
+  <% }%>
 </div>
-<script type="text/javascript">
-  const leftMenuItems = $(".left-menu-categories .left-menu-item");
-  // Remove the active tag of the previous item
-  $(".left-menu-categories .left-menu-items.active").removeClass("active");
-
-  // Add the active tag to the new current item
-  const currentCategory = leftMenuItems.filter((index, leftMenuItem) => {
-    console.log(leftMenuItem.getAttribute("href"), window.location.pathname);
-    if (window.location.pathname.includes(leftMenuItem.getAttribute("href")))
-      return leftMenuItem;
-  });
-  currentCategory.addClass("active");
-  $(".left-menu-toggle").click((event) =>
-    $(".left-menu").toggleClass("collapse")
-  );
-
-  // Ensures that the offertas switch stays on
-  if (window.location.search.includes("offertas=on")) {
-    $(".form-switch input[name='offertas']").prop("checked", true);
-  }
-  // Ensures that the price switch stays on
-  if (window.location.search.includes("price=on")) {
-    $(".form-switch input[name='price']").prop("checked", true);
-  }
-  // Ensures that the name switch stays on
-  if (window.location.search.includes("name=on")) {
-    $(".form-switch input[name='name']").prop("checked", true);
-  }
-  // Ensures that the name and price switch are not on at the same time
-  $(".form-switch input[name='name']").on("click", (event) => {
-    if ($(event.currentTarget).prop("checked")) {
-      $(".form-switch input[name='price']").prop("checked", false);
-    }
-  });
-
-  $(".form-switch input[name='price']").on("click", (event) => {
-    if ($(event.currentTarget).prop("checked")) {
-      $(".form-switch input[name='name']").prop("checked", false);
-    }
-  });
-</script>
+<script type="text/javascript" src="/features/shop/leftMenu.js"></script>

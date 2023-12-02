@@ -78,7 +78,7 @@
   margin: 0.25rem 0.5rem 0.25rem 0.5rem;
   border-radius: 0.75rem;
   align-items: center;
-  height: 2rem;
+  height: 3rem;
   transition: all 0.2s;
 }
 
@@ -95,7 +95,7 @@
 .left-menu-filters .left-menu-item {
   display: flex;
   flex-direction: row;
-  height: 2rem;
+  height: 3rem;
   padding: 0 0.5em 0 0.5em;
   margin: 0.25rem 0.5rem 0.25rem 0.5rem;
 }

@@ -19,12 +19,17 @@
   <div class="button-quantity">
     <input class="quantity" name="quantity" type="number" value="1" />
     <div class="buttons">
-      <button class="button button-link-neutral button-plus" type="button">
+      <button
+        class="button button-link-neutral button-plus"
+        type="button"
+        onclick="updateValue(event)"
+      >
         <i class="bi bi-chevron-up"></i>
       </button>
       <button
         class="button button-link-neutral button-minus"
         type="button"
+        onclick="updateValue(event)"
         disabled
       >
         <i class="bi bi-chevron-down"></i>
