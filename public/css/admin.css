@@ -1,0 +1,73 @@
+body {
+  display: flex;
+  justify-content: space-between;
+
+}
+.main{
+  display: flex;
+  justify-content: space-between;
+}
+thead,
+tfoot {
+  background-color: whitesmoke;
+  color: grey;
+}
+
+tbody,
+tr {
+  font: var(--font-sm);
+  margin-top: 20px;
+  border: 2px solid black;
+}
+td button{
+  outline: 0px;
+  background-color: transparent;
+  color: var(--brand-600);
+  text-decoration: none;
+}
+
+.data {
+  flex: 1;
+  overflow-y: auto;
+}
+
+table {
+  width: max-content;
+  /*border-collapse: collapse;*/
+  margin-top: 20px;
+}
+
+i{
+  margin-right: 5px;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+.button-primary {
+  margin-top: auto;
+  margin-left: 10px;
+}
+
+  a {
+    
+    text-decoration: none;
+  }
+  
+
+.admin-menu{
+  margin-top: 0%;
+  height: 100%;
+  /*border: 1px solid black;*/
+}
+.admin-menu a{
+  margin-right: 30px;
+  text-decoration: none;
+  color: black;
+}
+.admin-menu a:hover {
+  color: black; /* Couleur du texte lorsqu'on survole le lien */
+}

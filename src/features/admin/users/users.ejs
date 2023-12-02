@@ -1,42 +1,64 @@
 <!-- Author : Noé TATOUD -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('../../../imports.ejs') %>
-  </head>
+<link rel="stylesheet" type="text/css" href="/css/admin.css" />
 
-  <body>
-    <header><%- include('./layout/layout.ejs') %></header>
-    <main class="d-flex flex-row">
-      <menu class="admin-menu d-flex flex-column">
-        <a href="/admin/products"> products</a>
-        <a href="/admin/users"> users</a>
-      </menu>
-      <data>
-        <div class="d-flex flex-row">
-          <h1>Users</h1>
-          <button class="button button-primary">Add user</button>
-        </div>
+<head>
+  <%- include('../../../imports.ejs') %>
+</head>
+
+<body>
+  <header><%- include('./layout/layout.ejs') %></header>
+  <main class="d-flex flex-row">
+    <menu class="admin-menu d-flex flex-column">
+      <a href="/admin/products"><i class="bi bi-people"></i> products</a>
+      <a href="/admin/users"><i class="bi bi-tag"></i> users</a>
+    </menu>
+    <data>
+      <div class="main d-flex flex-row">
+        <h1 class="">Users</h1>
+        <button class="button button-primary">Add user</button>
+      </div>
+      <div>
         <table>
-            <thead>
+          <thead class="table-head">
+            <tr>
+              <td class="name-mail">Name/Email</td>
+              <td class="id">ID</td>
+              <td>Authorities</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.map((user)=> { %>
               <tr>
-                <td  class="name-mail">Name/Email</td> 
-                <td class="id">ID</td>
-                <td>Authorities</td>
-              </tr>
-              </thead>
-              <tbody>              
-              <% users.map((user) =>  { %>
-              <tr>
-                <td class='name'><p><b><%= user.name%> <%=user.surname%></p></b><p><%= user.email%></p> </td>
-                <td class='name'><%= user.user_id%> </td>
-                <td class='name'><%= user.authorities%> </td>
-                <td class='name'><%= user.name%> </td>
+                <td class='name'>
+                  <p><b>
+                      <%= user.name%>
+                        <%=user.surname%>
+                  </p></b>
+                  <p>
+                    <%= user.email%>
+                  </p>
+                </td>
+                <td class='name'>
+                  <%= user.user_id%>
+                </td>
+                <td class='name'>
+                  <%= user.authorities%>
+                </td>
+                <td class="autre">
+                  <button class="button button-link-neutral bi bi-three-dots-vertical">
+                  </button>
+
+                </td>
               </tr>
               <%}) %>
-            </tbody>
+          </tbody>
+          
         </table>
-      </data>
-    </main>
-  </body>
+      </div>
+    </data>
+  </main>
+</body>
+
 </html>
