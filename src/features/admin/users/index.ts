@@ -1,11 +1,19 @@
 import { Router, urlencoded, Request, Response } from "express";
-import { databaseConnect } from "../../../database";
-import { User } from "../../types";
-import { QueryError } from "mysql2";
-import { getUserToUpdate, userCreate, userUpdate } from "./utils";
+import {
+  userDelete,
+  getUserList,
+  getUserToUpdate,
+  userCreate,
+  userUpdate,
+} from "./utils";
 const router = Router();
 
 router.use(urlencoded({ extended: true }));
+
+router.post("/delete/:id", (req: Request, res: Response) => {
+  const userId = req.body.id; // Might change
+  userDelete(res, userId);
+});
 
 router.post("/create", (req: Request, res: Response) => {
   userCreate(res, req.body);
@@ -25,17 +33,7 @@ router.use("/update/:id", (req: Request, res: Response) => {
 });
 
 router.use("/", (req: Request, res: Response) => {
-  const connection = databaseConnect();
-  connection.query(
-    "SELECT name, surname, email, user_id, authorities FROM users;",
-    (error: QueryError, results: Partial<User>[]) => {
-      if (error) {
-        res.send("404");
-        throw new Error(error.message);
-      }
-      res.render("users.ejs", { users: results });
-    }
-  );
+  getUserList(res);
 });
 
 export default router;

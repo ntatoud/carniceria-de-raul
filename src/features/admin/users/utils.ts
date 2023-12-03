@@ -19,7 +19,7 @@ export const userCreate = (res: Response, user: Partial<User>) => {
     if (error) {
       throw new Error(error.message);
     } else {
-      res.redirect("/admin/users");
+      res.redirect(302, "/admin/users");
     }
   });
 };
@@ -61,4 +61,28 @@ export const getUserToUpdate = (res: Response, id: string) => {
       }
     }
   );
+};
+
+export const getUserList = (res: Response) => {
+  const connection = databaseConnect();
+  connection.query(
+    "SELECT name, surname, email, user_id, authorities FROM users;",
+    (error: QueryError, results: Partial<User>[]) => {
+      if (error) {
+        res.send("404");
+        throw new Error(error.message);
+      }
+      res.render("users.ejs", { users: results });
+    }
+  );
+};
+
+export const userDelete = (res: Response, userId: string) => {
+  const connection = databaseConnect();
+  const deleteQuery = `DELETE FROM users WHERE user_id = ?;`;
+  connection.query(deleteQuery, [userId], (error: QueryError | null) => {
+    if (error) throw new Error(error.message);
+
+    res.status(200).send("OK");
+  });
 };
