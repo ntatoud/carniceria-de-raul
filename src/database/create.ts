@@ -29,6 +29,7 @@ export const databaseCreate = (): void => {
         name VARCHAR(50),
         surname VARCHAR(50),
         password VARCHAR(255) NOT NULL,
+        salt VARCHAR(255) NOT NULL,
         address VARCHAR(255),
         authorities ENUM('ROLE_USER', 'ROLE_ADMIN') NOT NULL,
         creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
