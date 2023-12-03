@@ -19,9 +19,11 @@ export type Product = {
   price: number;
   stock: number;
   sale: Boolean;
-  image: HTMLImageElement; // Not sure about that
-  description: string;
   salePrice?: number;
+  best: boolean;
+  image: string;
+  description: string;
+  category: string;
 };
 
 export type Order = {

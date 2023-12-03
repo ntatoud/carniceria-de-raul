@@ -1,49 +1,36 @@
 import { Router, Response, Request } from "express";
-import { databaseConnect } from "../../database";
-import { QueryError } from "mysql2";
-import { Category, Product } from "../types";
+import {
+  getAllProductsWithCategory,
+  renderCategoryPage,
+  renderProductPage,
+  renderShopHome,
+} from "./utils";
 const router = Router();
 
-const getCategoryNameFromUrl = (url: string): string => {
-  if (url.length < 2) return "";
-  const categoryName = url.slice(1);
-  return categoryName[0].toUpperCase() + categoryName.slice(1);
-};
+router.use("/:category/:product_id", (req: Request, res: Response) => {
+  const currentCategory = req.params.category ?? "";
+  const productId = req.params.product_id ?? 0;
+
+  renderProductPage({ res, currentCategory, productId });
+});
+
+router.get("/:category", (req: Request, res: Response) => {
+  const currentCategory = req.params.category;
+  const isOnlyOffers = req.url.includes("ofertas=on");
+  const isSortedByPrice = req.url.includes("price=on");
+  const isSortedByName = req.url.includes("name=on");
+
+  renderCategoryPage({
+    res,
+    currentCategory,
+    isOnlyOffers,
+    isSortedByPrice,
+    isSortedByName,
+  });
+});
 
 router.use("/", (req: Request, res: Response) => {
-  const currentCategory = getCategoryNameFromUrl(req.url);
-
-  const connection = databaseConnect();
-  const getCategoriesQuery = `SELECT * FROM categories;`;
-  connection.query(
-    getCategoriesQuery,
-    (error: QueryError, categoryResults: Category[]) => {
-      if (error) throw new Error(error.message);
-      if (currentCategory) {
-        const getProductsFromCategoryQuery = `SELECT products.* FROM products
-      JOIN product_categories ON products.product_id = product_categories.product_id
-      JOIN categories ON product_categories.category_id = categories.category_id
-      WHERE categories.name = "${currentCategory}";`;
-
-        connection.query(
-          getProductsFromCategoryQuery,
-          (error: QueryError, productResults: Partial<Product>[]) => {
-            if (error) throw new Error(error.message);
-            res.render("shop.ejs", {
-              categories: categoryResults,
-              products: productResults,
-            });
-          }
-        );
-      } else
-        res.render("shop.ejs", {
-          categories: categoryResults,
-          products: undefined,
-        });
-
-      connection.end();
-    }
-  );
+  getAllProductsWithCategory(res);
 });
 
 export default router;

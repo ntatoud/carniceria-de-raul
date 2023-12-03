@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../imports.ejs') %>
+    <!-- Page specific styles -->
+    <link rel="stylesheet" type="text/css" href="/css/product.css" />
+  </head>
+  <body>
+    <header><%- include('./layout/layout.ejs') %></header>
+    <%- include('./layout/mainbar.ejs') %>
+    <main>
+      <div class="product-card">
+        <img
+          src="/assets/images/products/<%=currentCategory%>.jpg"
+          alt="product-image"
+        />
+        <div class="product-details">
+          <div class="card-header">
+            <div class="product-name">
+              <%=product.name[0]+product.name.slice(1).toLowerCase()%>
+            </div>
+            <% if(+product.stock === 0) {%>
+            <div class="product-stock tag-empty">
+              Agotado<i class="bi bi-cart-x"></i>
+            </div>
+            <% } else if(product.stock < 25) {%>
+            <div class="product-stock tag-warning">
+              Solo queda <%=product.stock%><i class="bi bi-cart-check"></i>
+            </div>
+            <% } else {%>
+            <div class="product-stock tag-full">
+              Disponible <i class="bi bi-cart-check"></i>
+            </div>
+            <% } %>
+          </div>
+          <div class="card-body">
+            <div class="product-price">
+              <%=product.price%> <%=product.unit%>
+            </div>
+            <div class="product-desc"><%=product.description%></div>
+          </div>
+          <div class="card-footer">
+            <form class="product-form"><%- include('productForm.ejs')%></form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      $(".button-quantity .button").on("click", (event) => {
+        const add = $(event.currentTarget).hasClass("button-plus");
+        let currentProductQuantity = $(`.product-card .quantity`)[0];
+
+        if (currentProductQuantity.value <= 2) {
+          $(`.product-card .button-minus`).attr("disabled", "disabled");
+        }
+        if (add) {
+          currentProductQuantity.value = +currentProductQuantity.value + 1;
+        } else {
+          currentProductQuantity.value = +currentProductQuantity.value - 1;
+        }
+
+        if (currentProductQuantity.value === 1) {
+          $(`.product-card .button-minus`).attr("disabled", "disabled");
+        }
+
+        if (currentProductQuantity.value > 1) {
+          $(`.product-card .button-minus`).removeAttr("disabled");
+        }
+      });
+    </script>
+  </body>
+</html>
