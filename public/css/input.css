@@ -145,3 +145,9 @@ span.error.show {
   gap: 1rem;
   margin-bottom: -1rem;
 }
+
+.form-group:has(*:required) label:after {
+  content: "*";
+  color: red;
+  padding-left: 0.25rem;
+}
