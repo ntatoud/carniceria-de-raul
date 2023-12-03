@@ -111,7 +111,8 @@
     top: 7rem;
     z-index: 2;
     font-size: var(--font-sm);
-    width: 10rem;
+    width: 100vw;
+    opacity: 0.9;
     height: 100%;
   }
   .left-menu-categories .left-menu-item:hover {

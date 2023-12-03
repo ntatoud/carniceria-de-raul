@@ -1,12 +1,10 @@
 // Home javascript
 const scrollToRight = () => {
-  scrollPos +=
-    window.screen.width <= mobileScreenWidth ? mobileScroll : desktopScroll;
+  scrollPos += desktopScroll;
   $(`.shop-products-container:not(.hide)`).scrollLeft(scrollPos);
 };
 const scrollToLeft = () => {
-  scrollPos -=
-    window.screen.width <= mobileScreenWidth ? mobileScroll : desktopScroll;
+  scrollPos -= desktopScroll;
   $(`.shop-products-container:not(.hide)`).scrollLeft(scrollPos);
 };
 
@@ -34,8 +32,6 @@ const switchTab = (event: MouseEvent) => {
   scrollPos = 0;
 };
 
-const mobileScreenWidth = 768;
-const mobileScroll = 256;
 const desktopScroll = 400;
 $(`.shop-products-container.mejores`).hide();
 let scrollPos = 0;

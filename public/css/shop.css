@@ -22,18 +22,19 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 80vw;
   padding: 1rem;
 }
 
 .shop-home .shop-products-container.mejores,
 .shop-home .shop-products-container.ofertas {
-  max-width: 75vw;
   flex-wrap: nowrap;
+  max-width: 75vw;
   background: var(--gray-50);
   outline: 1px var(--gray-200) solid;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1) inset;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
   scroll-behavior: smooth;
 }
 
@@ -247,9 +248,15 @@
     margin-top: 7rem;
   }
 
+  .product-carousel {
+    width: 100vw;
+    padding: 0;
+  }
+
   .product-carousel .shop-products-container {
-    width: 16rem;
-    padding: 0.5rem;
+    width: 100%;
+    max-width: 100vw;
+    padding: 0;
     flex-direction: row;
     margin-top: 4rem;
     background: transparent;
@@ -258,9 +265,14 @@
     box-shadow: none;
   }
 
+  .product-carousel .shop-products-container::-webkit-scrollbar {
+    visibility: hidden;
+  }
+
   .product-carousel .button {
-    font-size: var(--font-md);
-    height: 80%;
+    width: 0;
+    visibility: hidden;
+    padding: 0;
   }
   .product-card {
     width: 18rem;
