@@ -11,7 +11,7 @@ const router = Router();
 router.use(urlencoded({ extended: true }));
 
 router.post("/delete/:id", (req: Request, res: Response) => {
-  const userId = req.body.id; // Might change
+  const userId = req.params.id;
   userDelete(res, userId);
 });
 
@@ -20,7 +20,6 @@ router.post("/create", (req: Request, res: Response) => {
 });
 
 router.post("/update/:id", (req: Request, res: Response) => {
-  console.log(req.params.id, req.body);
   userUpdate(res, req.body, req.params.id);
 });
 

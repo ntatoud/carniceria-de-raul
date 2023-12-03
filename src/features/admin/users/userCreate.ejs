@@ -19,7 +19,7 @@
         <div class="form-container">
           <%- include('./admin/users/userForm.ejs')%>
         </div>
-        <%- include('./admin/users/actionbar.ejs')%>
+        <%- include('./layout/actionbar.ejs', {data: user})%>
       </form>
     </main>
   </body>
