@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../imports.ejs') %>
+
+    <link rel="stylesheet" type="text/css" href="/css/admin.css" />
+    <link rel="stylesheet" type="text/css" href="/css/actionbar.css" />
+  </head>
+  <body>
+    <header><%- include('./layout/layout.ejs') %></header>
+    <main class="d-flex flex-column align-items-center">
+      <form
+        class="user-form"
+        action="/admin/products/update/<%=product.product_id%>"
+        method="post"
+        role="form"
+      >
+        <div class="form-container">
+          <%- include('./admin/products/productForm.ejs')%>
+        </div>
+        <%- include('./layout/actionbar.ejs', {data : product})%>
+      </form>
+    </main>
+    <script>
+      const setIsRequired = (event) => {
+        const isSale = +$(event.currentTarget).val();
+        if (isSale === 1) {
+          $("input[name='salePrice']")
+            .removeAttr("disabled")
+            .attr("required", true);
+        } else if (+isSale === 0) {
+          $("input[name='salePrice']")
+            .attr("disabled", "disabled")
+            .attr("required", false);
+        }
+      };
+    </script>
+  </body>
+</html>
