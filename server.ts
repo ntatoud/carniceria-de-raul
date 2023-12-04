@@ -39,6 +39,7 @@ app.set("views", [
   "src/features/order/infos",
   "src/features/order/payment",
   "src/features/shop",
+  "src/features/shop/_partials",
   "src/features/layout",
   "src/features/about",
   "src/features/contact",

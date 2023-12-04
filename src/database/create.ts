@@ -29,23 +29,40 @@ export const databaseCreate = (): void => {
         name VARCHAR(50),
         surname VARCHAR(50),
         password VARCHAR(255) NOT NULL,
+        salt VARCHAR(255) NOT NULL,
         address VARCHAR(255),
         authorities ENUM('ROLE_USER', 'ROLE_ADMIN') NOT NULL,
         creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         phone_number VARCHAR(20)
         );
-        
+      
+      
       CREATE TABLE IF NOT EXISTS products (
         product_id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(250) NOT NULL,
         price DECIMAL(10, 2) NOT NULL,
+        unit ENUM("€/kg", "€/unidad"),
         stock INT NOT NULL,
         sale Boolean,
         sale_price DECIMAL(10, 2),
+        best Boolean,
         image BLOB NOT NULL,
         description VARCHAR(2048) NOT NULL
         );
-        
+      
+      CREATE TABLE IF NOT EXISTS categories (
+          category_id INT AUTO_INCREMENT PRIMARY KEY,
+          name VARCHAR(255) NOT NULL
+      );
+  
+      CREATE TABLE IF NOT EXISTS product_categories (
+        product_id INT,
+        category_id INT,
+        PRIMARY KEY (product_id, category_id),
+        FOREIGN KEY (product_id) REFERENCES products(product_id),
+        FOREIGN KEY (category_id) REFERENCES categories(category_id)
+      );
+
       CREATE TABLE IF NOT EXISTS orders (
         order_id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,

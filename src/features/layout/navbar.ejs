@@ -1,5 +1,3 @@
-<!-- Author : Noé TATOUD -->
-<link rel="stylesheet" type="text/css" href="/css/navbar.css" />
 <script src="/jquery.min.js"></script>
 <nav class="navbar menu-navbar navbar-expand sticky-top">
   <div class="container-fluid navbar-container">
@@ -34,7 +32,9 @@
     if (
       navItem.getAttribute("href") === currentPath ||
       (navItem.getAttribute("href") === "/admin" &&
-        currentPath.includes("/admin/"))
+        currentPath.includes("/admin/")) ||
+      (navItem.getAttribute("href") === "/shop" &&
+        currentPath.includes("/shop/"))
     )
       return navItem;
   });
