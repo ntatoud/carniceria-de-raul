@@ -8,6 +8,7 @@
   color: var(--gray-300);
   align-content: center;
   justify-content: center;
+  z-index: 1;
 }
 
 .navbar.menu-navbar,
