@@ -4,67 +4,337 @@
   <head>
     <%- include('../../../imports.ejs') %>
     <style>
-      .view { display: none; }
-      .active { display: block; }
-      
-  </style>
+      .view {
+        display: none;
+      }
+      .active {
+        display: block;
+      }
+      .progress-bar {
+        display: flex;
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 20px;
+      }
+      .progress-bar span {
+        margin-right: 5px;
+        font-weight: bold;
+      }
+      .progress-bar .current {
+        color: blue;
+      }
+      .progress-bar .completed {
+        color: green;
+      }
+      .progress-bar .pending {
+        color: black;
+      }
+
+      form {
+        width: 40%;
+        height: 65%;
+        padding: 20px;
+        background-color: #ffffff83;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        margin: auto;
+      }
+      h1 {
+        text-align: left;
+        margin-bottom: 20px;
+        font-size: 1.2em;
+      }
+      .form-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      .form-group {
+        flex: 1;
+        margin-right: 10px;
+      }
+      .form-group:last-child {
+        margin-right: 0;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      .buttonWhite {
+        display: block;
+        width: 150px;
+        height: 40px;
+        margin: 10px;
+        background-color: white;
+        color: blue;
+        text-align: center;
+        border-radius: 8px;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 0;
+      }
+      .buttonWhite2 {
+        display: block;
+        width: 150px;
+        height: 40px;
+        margin: 10px;
+        background-color: white;
+        color: blue;
+        text-align: center;
+        border-radius: 8px;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+      }
+      .buttonWhite3 {
+        display: block;
+        width: 300px;
+        height: 40px;
+        margin: 10px;
+        background-color: white;
+        color: blue;
+        text-align: center;
+        border-radius: 8px;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 0;
+      }
+      .buttonBlue2 {
+        display: block;
+        width: 200px;
+        height: 40px;
+        margin: 10px;
+        background-color: rgb(50, 71, 226);
+        color: white;
+        text-align: center;
+        border-radius: 8px;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 0;
+      }
+      .button-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+        position: relative;
+        bottom: 0;
+        background-color: white;
+        padding-left: 690px;
+      }
+      .button-container2 {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+        position: fixed;
+        bottom: 0;
+        background-color: white;
+        padding-left: 690px;
+      }
+      .button-container3 {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 70px;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        background-color: white;
+      }
+      .space-below {
+        margin-bottom: 50px;
+      }
+    </style>
   </head>
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
-    <main>infos <%- include('../orderNav.ejs') %></main>
-    <div id="billing" class="view active">
-      <h2>Billing address</h2>
-      <form>
-          <label for="country">Country:</label><br>
-          <input type="text" id="country" name="country"><br>
-          <label for="region">Region:</label><br>
-          <input type="text" id="region" name="region"><br>
-          <label for="city">City:</label><br>
-          <input type="text" id="city" name="city"><br>
-          <label for="postal">Postal Code:</label><br>
-          <input type="text" id="postal" name="postal"><br>
-          <label for="address1">Address1:</label><br>
-          <input type="text" id="address1" name="address1"><br>
-          <label for="address2">Address2:</label><br>
-          <input type="text" id="address2" name="address2"><br>
-          <button type="button" onclick="nextView('contact')">Next</button>
-      </form>
-  </div>
+    <main>
+      <%- include('../orderNav.ejs') %>
+      <div id="billing" class="view active">
+        <div class="progress-bar">
+          <span class="current"
+            >✓ Dirección de facturación >
+            <span class="pending">
+              Contacto > <span class="pending"> Recogida </span></span
+            ></span
+          >
+          <div class="current">
+            -----------------------------<span class="pending"
+              >-------------<span class="pending">----------</span></span
+            >
+          </div>
+        </div>
 
-  <div id="contact" class="view">
-      <h2>Client Details</h2>
-      <form>
-          <label for="phone">Phone Number:</label><br>
-          <input type="tel" id="phone" name="phone"><br>
-          <label for="email">Email:</label><br>
-          <input type="email" id="email" name="email"><br>
-          <button type="button" onclick="nextView('billing')">Back</button>
-          <button type="button" onclick="nextView('recovery')">Next</button>
-          
-      </form>
-  </div>
+        <form>
+          <h1>Dirección de facturación</h1>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="field1">País</label>
+              <input type="text" id="field1" name="field1" />
+            </div>
+            <div class="form-group">
+              <label for="field2">Región</label>
+              <input type="text" id="field2" name="field2" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="field3">Ciudad</label>
+              <input type="text" id="field3" name="field3" />
+            </div>
+            <div class="form-group">
+              <label for="field4">Código postal</label>
+              <input type="text" id="field4" name="field4" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="field5">Dirección 1</label>
+            <input type="text" id="field5" name="field5" />
+          </div>
+          <div class="form-group">
+            <label for="field6">Dirección 2</label>
+            <input type="text" id="field6" name="field6" />
+          </div>
+        </form>
+        <button
+          type="button"
+          class="buttonWhite"
+          onclick="changeView('contact')"
+        >
+          Contacto->
+        </button>
+        <div class="space-below"></div>
+        <div class="button-container">
+          <a href="/order/cart" class="buttonWhite2"> <- Carrito </a>
+        </div>
+      </div>
 
-  <div id="recovery" class="view">
-      <h2>Order Details</h2>
-      <form>
-          <label for="day">Recovery Day:</label><br>
-          <input type="date" id="day" name="day"><br>
-          <label for="time">Time Frame:</label><br>
-          <input type="time" id="time" name="time"><br>
-          <label for="comment">Comment:</label><br>
-          <textarea id="comment" name="comment"></textarea><br>
-          <button type="button" onclick="nextView('contact')">Back</button>
-      </form>
-  </div>
+      <div id="contact" class="view">
+        <div class="progress-bar">
+          <span class="completed"
+            >✓ Dirección de facturación >
+            <span class="current">
+              Contacto > <span class="pending"> Recogida </span></span
+            ></span
+          >
+          <div class="completed">
+            -----------------------------<span class="current"
+              >-------------<span class="pending">----------</span></span
+            >
+          </div>
+        </div>
+        <form>
+          <h1>Contacto</h1>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Teléfono:</label><br />
+              <input type="tel" id="phone" name="phone" /><br />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Correo Electrónico:</label><br />
+              <input type="email" id="email" name="email" /><br />
+            </div>
+          </div>
+        </form>
 
-  <script>
-      function nextView(viewId) {
-          var views = document.getElementsByClassName('view');
+        <button
+          type="button"
+          class="buttonWhite3"
+          onclick="changeView('billing')"
+        >
+          <-Dirección de facturación
+        </button>
+        <button
+          type="button"
+          class="buttonWhite"
+          onclick="changeView('recovery')"
+        >
+          Recogida->
+        </button>
+        <div class="space-below"></div>
+        <div class="button-container">
+          <a href="/order/cart" class="buttonWhite2"> <- Carrito </a>
+        </div>
+      </div>
+
+      <div id="recovery" class="view">
+        <div class="progress-bar">
+          <span class="completed"
+            >✓ Dirección de facturación ✓
+            <span class="completed">
+              Contacto > <span class="current"> Recogida </span></span
+            ></span
+          >
+          <div class="completed">
+            -----------------------------<span class="completed"
+              >-------------<span class="current">----------</span></span
+            >
+          </div>
+        </div>
+        <form>
+          <h1>Recogida</h1>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="day">Fecha de recogida:</label><br />
+              <input type="date" id="day" name="day" /><br />
+            </div>
+            <div class="form-group">
+              <label for="time">Hora:</label><br />
+              <input type="time" id="time" name="time" /><br />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="comment">Comentarios:</label><br />
+              <textarea id="comment" name="comment"></textarea><br />
+            </div>
+          </div>
+        </form>
+
+        <button
+          type="button"
+          class="buttonWhite3"
+          onclick="changeView('contact')"
+        >
+          Back
+        </button>
+        <div class="space-below"></div>
+        <div class="button-container3">
+          <a href="/order/cart" class="buttonWhite3"> <- Carrito </a>
+          <a href="/order/payment" class="buttonBlue2"> Confirmar compra ✓ </a>
+        </div>
+      </div>
+
+      <script>
+        function changeView(viewId) {
+          var views = document.getElementsByClassName("view");
           for (var i = 0; i < views.length; i++) {
-              views[i].classList.remove('active');
+            views[i].classList.remove("active");
           }
-          document.getElementById(viewId).classList.add('active');
-      }
-  </script>
+          document.getElementById(viewId).classList.add("active");
+        }
+      </script>
+    </main>
   </body>
 </html>
