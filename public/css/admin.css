@@ -42,6 +42,7 @@ main {
 
 .admin-menu a.active i {
   color: var(--brand-600);
+  font-size: var(--font-2xl);
 }
 /* Data styling */
 data {
@@ -79,10 +80,22 @@ table {
 }
 
 .table-row {
+  position: relative;
   height: 5rem;
   border-style: solid;
   border-color: var(--gray-200);
   border-width: 1px 0 1px 0;
+  align-items: center;
+}
+
+.table-row a {
+  content: " ";
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: transparent;
 }
 
 .table-cell {
@@ -90,7 +103,8 @@ table {
   text-align: center;
 }
 
-.name {
+.name,
+.email {
   text-align: start;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -102,6 +116,7 @@ table {
   flex-direction: row;
   justify-content: end;
   align-items: center;
+  height: 5rem;
 }
 
 /* Users specific style */
@@ -135,7 +150,33 @@ table {
 .salePrice {
   color: var(--brand-600);
 }
-/*  */
+/* Order Specific styles */
+
+.orders-table .status {
+  text-align: end;
+}
+.orders-table .name {
+  width: 15rem;
+}
+.order-container {
+  width: 100%;
+  align-items: center;
+  margin: 5rem 10rem;
+  gap: 1rem;
+}
+
+.product-row {
+  width: 100%;
+  justify-content: space-between;
+  background: white;
+  padding: 1rem 1rem;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+}
+.order-summary {
+  width: 100%;
+  justify-content: end;
+  gap: 0.5rem;
+}
 
 .user-form {
   height: 100%;
