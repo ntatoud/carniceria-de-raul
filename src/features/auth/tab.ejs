@@ -1,0 +1,16 @@
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="tab active" aria-current="page"></a>
+    </li>
+    <li class="nav-item">
+      <a class="tab"></a>
+    </li>
+  </ul>
+  <script>
+    const currentAuthPage = window.location.pathname;
+    const activeTab = $(`a[href="${currentAuthPage}"]`);
+    if (!activeTab.hasClass("active")) {
+      $(".nav-tabs .active").removeClass("active");
+      activeTab.addClass("active");
+    }
+  </script>

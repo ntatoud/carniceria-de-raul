@@ -1,4 +1,3 @@
-<!-- Author : Noé TATOUD -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,12 +6,14 @@
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
     <main class="d-flex flex-column align-items-center justify-content-center">
-      <form class="form reset-password-form d-grid">
+      <%- include('./auth/tab.ejs') %>
+      <form class="form login-form d-grid" action="/auth/reset/send" method="POST">
         <h2>Reset Password</h2>
         <div class="form-group">
           <label for="email">Email</label>
           <input
             type="email"
+            name="email"
             class="form-control"
             id="email"
             aria-describedby="emailHelp"

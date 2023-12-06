@@ -33,7 +33,8 @@ export const databaseCreate = (): void => {
         address VARCHAR(255),
         authorities ENUM('ROLE_USER', 'ROLE_ADMIN') NOT NULL,
         creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        phone_number VARCHAR(20)
+        phone_number VARCHAR(20),
+        token VARCHAR(255) DEFAULT NULL
         );
       
       

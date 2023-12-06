@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../imports.ejs') %>
+    <!-- Other style imports or CSS links -->
+    <style>
+      /* Center the h2 element */
+      h2 {
+        text-align: center; /* Centers the text horizontally */
+        width: 100%; /* Ensures the text is centered within the parent container */
+        margin-bottom: 5%;
+      }
+    </style>
+  </head>
+  <body>
+    <header><%- include('./layout/layout.ejs') %></header>
+    <main class="d-flex flex-column align-items-center">
+      <%- include('./auth/tab.ejs') %>
+      <form class="login-form form d-grid" action="/auth/update/updatePassword" method="post" role="form">        
+        <%- include('./pwd-pwd.ejs') %>
+        <!-- Hidden input to hold the token value -->
+        <input type="hidden" id="token" name="token" value="<%= token %>" />
+        <!--<button type="submit" class="button button-primary">Reset Password</button>-->
+      </form>
+    </main>
+  </body>
+</html>

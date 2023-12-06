@@ -31,6 +31,7 @@ app.set("views", [
   "src/features/auth/login",
   "src/features/auth/signup",
   "src/features/auth/reset",
+  "src/features/auth/update",
   "src/features/admin",
   "src/features/admin/users",
   "src/features/admin/products",

@@ -1,12 +1,12 @@
 import * as crypto from "crypto";
 import { User } from "../types";
 
-const generate32ByteSalt = (): string => {
+export const generate32ByteSalt = (): string => {
   const saltBytes = crypto.randomBytes(32); // 32 bytes for the salt
   return saltBytes.toString("hex"); // Convert the buffer to a hexadecimal string
 };
 
-const xorStringWith32ByteKey = (
+export const xorStringWith32ByteKey = (
   inputString: string,
   key32Bytes: string
 ): string => {
@@ -22,7 +22,7 @@ const xorStringWith32ByteKey = (
   // Convert the result to a hexadecimal string
   return xorResult.toString("hex");
 };
-const sha256HexString = (inputHex: string): string => {
+export const sha256HexString = (inputHex: string): string => {
   const inputBuffer = Buffer.from(inputHex, "hex");
   const hashBuffer = crypto.createHash("sha256").update(inputBuffer).digest();
   return hashBuffer.toString("hex");
