@@ -33,6 +33,7 @@ router.post("/", (req: Request, res: Response) => {
 
         if (isPasswordCorrect(password, userData)) {
           // Passwords match, login successful
+          console.log(req.session);
           res.status(200).redirect("/");
         } else {
           res.status(401).render("login.ejs", {

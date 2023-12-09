@@ -2,11 +2,10 @@ import express, {
   Express,
   Request,
   Response,
-  urlencoded,
   static as staticSrc,
 } from "express";
 import bodyParser from "body-parser";
-
+import session from "express-session";
 import auth from "./src/features/auth";
 import admin from "./src/features/admin";
 import order from "./src/features/order";
@@ -31,6 +30,15 @@ app.use(staticSrc("node_modules/bootstrap/dist/"));
 app.use(staticSrc("node_modules/@popperjs/core/dist/umd"));
 app.use(staticSrc("node_modules/jquery/dist/"));
 app.use(staticSrc("node_modules/bootstrap-icons/font"));
+
+app.use(
+  session({
+    secret: "email", //used to sign the session ID cookie
+    name: "login", // (optional) name of the session cookie
+    resave: true, // forces the session to be saved back to the session store
+    saveUninitialized: true, // forces a session an uninitialized session to be saved to the store
+  })
+);
 
 app.set("view engine", "ejs");
 

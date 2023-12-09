@@ -1,30 +1,38 @@
 // Global form functions
-const canSubmitChangePassword = () => {};
+const canSubmitChangePassword = () => {
+  $("input").on("keyup", () => {
+    $("button[type='submit']").prop(
+      "disabled",
+      !(
+        !$(".error").hasClass("show") &&
+        !!$("input#oldPassword").val() &&
+        !!$("input#newPassword").val() &&
+        !!$("input#newPasswordCheck").val() &&
+        areNewPasswordsEqual()
+      )
+    );
+  });
+};
 
-$("input").on("keyup", () => {
+const canSignUp = () => {
+  console.log(
+    !$(".error").hasClass("show") && $("input#name").val(),
+    $("input#surname").val(),
+    $("input#email").val(),
+    $("input#password").val()
+  );
   $("button[type='submit']").prop(
     "disabled",
     !(
       !$(".error").hasClass("show") &&
-      !!$("input#oldPassword").val() &&
-      !!$("input#newPassword").val() &&
-      !!$("input#newPasswordCheck").val() &&
-      areNewPasswordsEqual()
+      $("input#name").val() &&
+      $("input#surname").val() &&
+      $("input#email").val() &&
+      $("input#password").val()
     )
   );
-});
+};
 
-const canSignUp = () => {};
-$("button[type='submit']").prop(
-  "disabled",
-  !(
-    !$(".error").hasClass("show") &&
-    $("input#name").val() &&
-    $("input#surname").val() &&
-    $("input#email").val() &&
-    $("input#password").val()
-  )
-);
 // Password related functions
 const togglePassword = (event: MouseEvent) => {
   const toggleButton = $(event.currentTarget!);
@@ -41,6 +49,7 @@ const checkPassword = (event: KeyboardEvent) => {
   const id = $(event.currentTarget!).attr("id");
   const password = $(event.currentTarget!).val();
   const url = window.location.pathname;
+
   $.post(
     `${window.location.pathname}/checkPassword`,
     { password },
@@ -60,6 +69,9 @@ const checkPassword = (event: KeyboardEvent) => {
         } else {
           $(`.${id}.error`).removeClass("show");
           $(`input#${id}`).removeClass("error");
+        }
+        if (window.location.pathname === "/auth/signup") {
+          canSignUp();
         }
       }
     }
