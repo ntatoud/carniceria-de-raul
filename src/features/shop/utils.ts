@@ -30,7 +30,6 @@ export const getAllProductsWithCategory = (res: Response, filter?: string) => {
             const { category, ...rest } = product;
             return { category: category.toLowerCase(), ...rest };
           });
-          console.log(productResults[0]);
           res.status(200).render("shop.ejs", {
             error: { state: false, message: "" },
             categories: categoryResults,
