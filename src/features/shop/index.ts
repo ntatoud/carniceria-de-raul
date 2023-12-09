@@ -1,3 +1,4 @@
+import { databaseConnect } from "../../database";
 import { Router, Response, Request } from "express";
 import {
   getAllProductsWithCategory,
@@ -6,6 +7,7 @@ import {
   renderShopHome,
 } from "./utils";
 const router = Router();
+
 
 router.use("/:category/:product_id", (req: Request, res: Response) => {
   const currentCategory = req.params.category ?? "";

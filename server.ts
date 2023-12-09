@@ -5,6 +5,8 @@ import express, {
   urlencoded,
   static as staticSrc,
 } from "express";
+import bodyParser from "body-parser";
+
 import auth from "./src/features/auth";
 import admin from "./src/features/admin";
 import order from "./src/features/order";
@@ -12,10 +14,16 @@ import shop from "./src/features/shop";
 import about from "./src/features/about";
 import contact from "./src/features/contact";
 import account from "./src/features/account";
+
 const app: Express = express();
 const port = 3000;
 
-app.use(urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 app.use(staticSrc("public"));
 app.use(staticSrc("dist/src"));
