@@ -42,7 +42,7 @@ router.post("/", (req: Request, res: Response) => {
               message: "Invalid Credentials",
             },
             isLogged: req.session.isLogged,
-            sessionUser: req.session.user,
+            account: req.session.user,
           });
         }
       } else {
@@ -52,7 +52,7 @@ router.post("/", (req: Request, res: Response) => {
             message: "Invalid Credentials",
           },
           isLogged: req.session.isLogged,
-          sessionUser: req.session.user,
+          account: req.session.user,
         });
       }
     }
@@ -66,7 +66,7 @@ router.use("/", (req: Request, res: Response) => {
     signed: false,
     error: {},
     isLogged: req.session.isLogged,
-    sessionUser: req.session.user,
+    account: req.session.user,
   });
 });
 

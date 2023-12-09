@@ -95,7 +95,7 @@ export const registerIfPossible = (
             state: true,
             message: "Your password is too weak",
             isLogged: req.session.isLogged,
-            sessionUser: req.session.user,
+            account: req.session.user,
           },
         });
       else {

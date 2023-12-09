@@ -33,36 +33,36 @@
               <td
                 class="table-cell name"
                 data-toggle="tooltip"
-                title="<%= order.user_name%> <%=order.user_surname%>"
+                title="<%= order.name%> <%=order.surname%>"
               >
-                <b><%= order.user_name%> <%=order.user_surname%></b>
-                <p class="email"><%= order.user_email%></p>
-                <a href="/admin/orders/<%=order.order_id%>"></a>
+                <b><%= order.name%> <%=order.surname%></b>
+                <p class="email"><%= order.email%></p>
+                <a href="/admin/orders/<%=order.orderId%>"></a>
               </td>
-              <td class="table-cell id"><%= order.order_id %></td>
+              <td class="table-cell id"><%= order.orderId %></td>
               <td class="table-cell date">
-                <%= String(order.order_date.getDate()).padStart(2,
-                '0')+"/"+String(order.order_date.getMonth() + 1).padStart(2,'0')
-                +"/"+order.order_date.getFullYear()%>
+                <%= String(order.orderDate.getDate()).padStart(2,
+                '0')+"/"+String(order.orderDate.getMonth() + 1).padStart(2,'0')
+                +"/"+order.orderDate.getFullYear()%>
               </td>
               <td class="table-cell date">
-                <%= String(order.recovery_date.getDate()).padStart(2,
-                '0')+"/"+String(order.recovery_date.getMonth() +
-                1).padStart(2,'0') +"/"+order.recovery_date.getFullYear()%>
+                <%= String(order.recoveryDate.getDate()).padStart(2,
+                '0')+"/"+String(order.recoveryDate.getMonth() +
+                1).padStart(2,'0') +"/"+order.recoveryDate.getFullYear()%>
               </td>
 
-              <td class="table-cell price"><%= order.total_price %></td>
+              <td class="table-cell price"><%= order.totalPrice %></td>
               <th class="table-cell status">Done</th>
               <td class="table-cell actions dropdown">
                 <button
-                  id="actions-button-<%= order.order_id %>"
+                  id="actions-button-<%= order.orderId %>"
                   class="button menu-button button-link-neutral bi bi-three-dots-vertical"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
                 ></button>
                 <div
-                  id="actions-<%= order.order_id %>"
+                  id="actions-<%= order.orderId %>"
                   class="dropdown-menu dropdown-menu-end"
                 >
                   <button class="dropdown-item" type="button">

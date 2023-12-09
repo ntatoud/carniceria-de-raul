@@ -1,6 +1,6 @@
 declare global {
   type User = {
-    id: number;
+    userId: number;
     email: string;
     password: string;
     salt: string;

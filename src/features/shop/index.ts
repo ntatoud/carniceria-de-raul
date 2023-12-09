@@ -7,9 +7,9 @@ import {
 } from "./utils";
 const router = Router();
 
-router.use("/:category/:product_id", (req: Request, res: Response) => {
+router.use("/:category/:productId", (req: Request, res: Response) => {
   const currentCategory = req.params.category ?? "";
-  const productId = req.params.product_id ?? 0;
+  const productId = req.params.productId ?? 0;
 
   renderProductPage({ req, res, currentCategory, productId });
 });

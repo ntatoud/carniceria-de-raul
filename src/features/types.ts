@@ -1,6 +1,6 @@
 import { Session, SessionData } from "express-session";
 export type User = {
-  id: number;
+  userId: number;
   email: string;
   password: string;
   salt: string;
@@ -18,7 +18,7 @@ export type User = {
 };
 
 export type Product = {
-  id: number;
+  productId: number;
   name: string;
   price: number;
   stock: number;
@@ -31,7 +31,7 @@ export type Product = {
 };
 
 export type Order = {
-  id: number;
+  orderId: number;
   userId: number;
   orderDate: Date;
   recoveryDate: Date;
@@ -40,7 +40,7 @@ export type Order = {
 };
 
 export type Category = {
-  id: number;
+  categoryId: number;
   name: string;
 };
 

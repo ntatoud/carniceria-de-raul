@@ -18,7 +18,7 @@
         <a class="nav-link" href="/account">Cuenta</a>
       </li>
     </ul>
-    <%if(sessionUser?.authorities === 'ROLE_ADMIN') {%>
+    <%if(account?.authorities === 'ROLE_ADMIN') {%>
     <span class="nav-item justify-self-end">
       <a class="nav-link" href="/admin">Admin</a>
     </span>
