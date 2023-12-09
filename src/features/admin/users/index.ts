@@ -27,6 +27,7 @@ router.use("/create", (req: Request, res: Response) => {
   res.render("userCreate.ejs", {
     user: undefined,
     isLogged: req.session.isLogged,
+    sessionUser: req.session.user,
   });
 });
 

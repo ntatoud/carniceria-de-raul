@@ -1,9 +1,9 @@
 import { databaseConnect } from "../../../database";
 import { Order } from "@/features/types";
-import { Response } from "express";
+import { Request, Response } from "express";
 import { QueryError, RowDataPacket } from "mysql2";
 
-export const getOrderFromId = (res: Response, id: string) => {
+export const getOrderFromId = (req: Request, res: Response, id: string) => {
   const getOrderAndProduct = `SELECT \
     o.order_id, \
     o.user_id, \
@@ -43,13 +43,17 @@ export const getOrderFromId = (res: Response, id: string) => {
         throw new Error(error.message);
       } else {
         console.log(results);
-        res.render("orderDetails.ejs", { orderProducts: results });
+        res.render("orderDetails.ejs", {
+          orderProducts: results,
+          isLogged: req.session.isLogged,
+          sessionUser: req.session.user,
+        });
       }
     }
   );
 };
 
-export const getOrderList = (res: Response) => {
+export const getOrderList = (req: Request, res: Response) => {
   const connection = databaseConnect();
 
   const getOrderQuery =
@@ -72,7 +76,11 @@ export const getOrderList = (res: Response) => {
         throw new Error(error.message);
       } else {
         console.log(results);
-        res.render("orders.ejs", { orders: results });
+        res.render("orders.ejs", {
+          orders: results,
+          isLogged: req.session.isLogged,
+          sessionUser: req.session.user,
+        });
       }
     }
   );

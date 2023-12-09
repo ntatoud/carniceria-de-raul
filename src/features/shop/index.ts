@@ -4,7 +4,6 @@ import {
   getAllProductsWithCategory,
   renderCategoryPage,
   renderProductPage,
-  renderShopHome,
 } from "./utils";
 const router = Router();
 
@@ -32,7 +31,7 @@ router.get("/:category", (req: Request, res: Response) => {
 });
 
 router.use("/", (req: Request, res: Response) => {
-  getAllProductsWithCategory(res);
+  getAllProductsWithCategory(req, res);
 });
 
 export default router;

@@ -16,6 +16,7 @@ router.use("/", (req: Request, res: Response) => {
     error: {},
     accountName: "Nombre de usuario",
     isLogged: req.session.isLogged,
+    sessionUser: req.session.user,
   });
 });
 

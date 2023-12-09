@@ -81,7 +81,7 @@ app.use("/", (req: Request, res: Response) => {
   res.render("index.ejs", {
     isLogged: isLogged,
     hasJustLogged: hasJustLogged,
-    user: user,
+    sessionUser: user,
   });
 });
 

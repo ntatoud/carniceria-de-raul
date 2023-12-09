@@ -79,6 +79,7 @@ export const getProductToUpdate = (
       res.render("productUpdate.ejs", {
         product: product,
         isLogged: req.session.isLogged,
+        sessionUser: req.session.user,
       });
     }
   );
@@ -110,6 +111,7 @@ export const getProductList = (
       res.render("products.ejs", {
         products: results as Product[],
         isLogged: req.session.isLogged,
+        sessionUser: req.session.user,
       });
     }
   );

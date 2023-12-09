@@ -1,3 +1,4 @@
+import { generateSaltHashedPassword } from "../../auth/util";
 import { databaseConnect } from "../../../database";
 import { User } from "@/features/types";
 import { Request, Response } from "express";
@@ -5,15 +6,17 @@ import { QueryError } from "mysql2";
 
 export const userCreate = (res: Response, user: Partial<User>) => {
   const connection = databaseConnect();
+  const { salt, hashPwd } = generateSaltHashedPassword("admin");
   const queryParams = [
     user.email,
-    "admin",
+    hashPwd,
+    salt,
     user.authorities,
     user.name,
     user.surname,
   ];
   const createUserQuery =
-    "INSERT INTO users (email, password, authorities, name, surname) VALUES (?, ?, ?, ?, ?);";
+    "INSERT INTO users (email, password, salt, authorities, name, surname) VALUES (?, ?, ?, ?, ?, ?);";
 
   connection.query(createUserQuery, queryParams, (error: QueryError | null) => {
     if (error) {
@@ -60,6 +63,7 @@ export const getUserToUpdate = (req: Request, res: Response, id: string) => {
         res.render("userUpdate.ejs", {
           user: result[0] as Partial<User>,
           isLogged: req.session.isLogged,
+          sessionUser: req.session.user,
         });
       }
     }
@@ -78,6 +82,7 @@ export const getUserList = (req: Request, res: Response) => {
       res.render("users.ejs", {
         users: results,
         isLogged: req.session.isLogged,
+        sessionUser: req.session.user,
       });
     }
   );

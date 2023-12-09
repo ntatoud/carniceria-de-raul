@@ -3,7 +3,11 @@ import { databaseConnect } from "../../database";
 import { Category, Product } from "../types";
 import { Request, Response } from "express";
 
-export const getAllProductsWithCategory = (res: Response, filter?: string) => {
+export const getAllProductsWithCategory = (
+  req: Request,
+  res: Response,
+  filter?: string
+) => {
   const connection = databaseConnect();
   const getProductsQuery =
     "SELECT p.*, c.name AS category FROM products p JOIN product_categories pc ON p.product_id = pc.product_id JOIN categories c ON pc.category_id = c.category_id;";
@@ -24,6 +28,8 @@ export const getAllProductsWithCategory = (res: Response, filter?: string) => {
               categories: categoryResults,
               products: undefined,
               currentCategory: "",
+              isLogged: req.session.isLogged,
+              sessionUser: req.session.user,
             });
 
           const products: Product[] = productResults.map((product: Product) => {
@@ -35,6 +41,8 @@ export const getAllProductsWithCategory = (res: Response, filter?: string) => {
             categories: categoryResults,
             products: products,
             currentCategory: "",
+            isLogged: req.session.isLogged,
+            sessionUser: req.session.user,
           });
           connection.end();
         }
@@ -62,6 +70,8 @@ export const renderShopHome = (req: Request, res: Response) => {
               categories: categoryResults,
               products: undefined,
               currentCategory: "",
+              isLogged: req.session.isLogged,
+              sessionUser: req.session.user,
             });
         }
       );
@@ -71,6 +81,7 @@ export const renderShopHome = (req: Request, res: Response) => {
         products: undefined,
         currentCategory: "",
         isLogged: req.session.isLogged,
+        sessionUser: req.session.user,
       });
 
       connection.end();
@@ -127,6 +138,7 @@ export const renderCategoryPage = ({
               products: undefined,
               currentCategory: currentCategory,
               isLogged: req.session.isLogged,
+              sessionUser: req.session.user,
             });
 
           const products: Product[] = productResults.map((product) => {
@@ -139,6 +151,7 @@ export const renderCategoryPage = ({
             products: products,
             currentCategory: currentCategory,
             isLogged: req.session.isLogged,
+            sessionUser: req.session.user,
           });
 
           connection.end();
@@ -171,6 +184,7 @@ export const renderProductPage = ({
         product: results[0],
         currentCategory: currentCategory,
         isLogged: req.session.isLogged,
+        sessionUser: req.session.user,
       });
     }
   );

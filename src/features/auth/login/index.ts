@@ -37,13 +37,22 @@ router.post("/", (req: Request, res: Response) => {
           res.status(200).redirect("/");
         } else {
           res.status(401).render("login.ejs", {
-            signed: false,
-            error: { state: true, message: "Invalid Credentials" },
+            error: {
+              state: true,
+              message: "Invalid Credentials",
+            },
+            isLogged: req.session.isLogged,
+            sessionUser: req.session.user,
           });
         }
       } else {
         res.status(401).render("login.ejs", {
-          error: { signed: false, state: true, message: "Invalid Credentials" },
+          error: {
+            state: true,
+            message: "Invalid Credentials",
+          },
+          isLogged: req.session.isLogged,
+          sessionUser: req.session.user,
         });
       }
     }
@@ -57,6 +66,7 @@ router.use("/", (req: Request, res: Response) => {
     signed: false,
     error: {},
     isLogged: req.session.isLogged,
+    sessionUser: req.session.user,
   });
 });
 

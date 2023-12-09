@@ -17,10 +17,12 @@
       <li class="nav-item">
         <a class="nav-link" href="/account">Cuenta</a>
       </li>
-      <span class="nav-item justify-self-end">
-        <a class="nav-link" href="/admin">Admin</a>
-      </span>
     </ul>
+    <%if(sessionUser?.authorities === 'ROLE_ADMIN') {%>
+    <span class="nav-item justify-self-end">
+      <a class="nav-link" href="/admin">Admin</a>
+    </span>
+    <%}%>
   </div>
 </nav>
 <!-- <script type="text/javascript" src="/features/layout/navbar.js"> -->
