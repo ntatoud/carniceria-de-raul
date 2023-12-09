@@ -31,9 +31,12 @@ export const databaseCreate = (): void => {
         password VARCHAR(255) NOT NULL,
         salt VARCHAR(255) NOT NULL,
         address VARCHAR(255),
+        city VARCHAR(255),
+        postalCode VARCHAR(255),
+        country VARCHAR(255),
         authorities ENUM('ROLE_USER', 'ROLE_ADMIN') NOT NULL,
         creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        phone_number VARCHAR(20)
+        phone VARCHAR(20)
         );
       
       

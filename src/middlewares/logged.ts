@@ -6,7 +6,7 @@ export const loggedOnlyRoute = (
   res: Response,
   next: NextFunction
 ) => {
-  if (req.session.isLogged && req.session.user?.authorities === "ROLE_USER") {
+  if (req.session.isLogged) {
     next();
   } else {
     res.redirect("/");

@@ -4,7 +4,7 @@ export const databaseFill = (): void => {
   const connection = databaseConnect();
 
   connection.query(
-    `INSERT INTO users (email, name, surname, password, salt, address, authorities, creation_date, phone_number)
+    `INSERT INTO users (email, name, surname, password, salt, address, authorities, creation_date, phone)
       VALUES
       ('john.doe@example.com', 'John', 'Doe', 'hashed_password_1', 123456789, '123 Main St', 'ROLE_USER', '2022-01-01', '123-456-7890'),
       ('jane.smith@example.com', 'Jane', 'Smith', 'hashed_password_2', 123456789, '456 Oak St', 'ROLE_ADMIN', '2022-01-02', '987-654-3210'),

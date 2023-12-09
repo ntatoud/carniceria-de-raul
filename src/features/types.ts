@@ -7,9 +7,14 @@ export type User = {
   authorities: Authorities;
   name?: string;
   surname?: string;
+  phone?: string;
+
   address?: string;
+  city?: string;
+  postalCode?: string;
+  country: string;
+
   creationDate?: Date;
-  phoneNumber?: string;
 };
 
 export type Product = {

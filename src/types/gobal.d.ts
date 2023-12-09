@@ -5,11 +5,15 @@ declare global {
     password: string;
     salt: string;
     authorities: Authorities;
-    name?: string;
     surname?: string;
+    name?: string;
+    phone?: string;
+    address?: string;
+    city?: string;
+    postalCode?: string;
+    country: string;
     address?: string;
     creationDate?: Date;
-    phoneNumber?: string;
   };
   declare module "express-session" {
     interface SessionData {
