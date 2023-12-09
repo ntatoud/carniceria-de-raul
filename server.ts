@@ -76,10 +76,16 @@ app.use("/contact", contact);
 app.use("/account", account); // Has subroutes
 
 app.use("/", (req: Request, res: Response) => {
-  res.render("index.ejs");
+  const { isLogged, hasJustLogged, user } = req.session;
+  req.session.hasJustLogged = false;
+  res.render("index.ejs", {
+    isLogged: isLogged,
+    hasJustLogged: hasJustLogged,
+    user: user,
+  });
 });
 
-app.get("*", function (req: Request, res: Response) {
+app.get("*", (req: Request, res: Response) => {
   res.status(404);
   res.render("404.ejs");
 });

@@ -3,6 +3,7 @@ import { isPasswordCorrect } from "../util";
 import { databaseConnect } from "../../../database";
 import { QueryError, RowDataPacket } from "mysql2/promise";
 import { User } from "@/features/types";
+import { createSession } from "./utils";
 
 const router = Router();
 
@@ -14,11 +15,9 @@ router.post("/", (req: Request, res: Response) => {
   const connection = databaseConnect(); // Establish database connection
 
   const selectQuery = `
-      SELECT user_id, email, password, salt
+      SELECT *
       FROM users
-      WHERE email = "${email}";
-    `;
-
+      WHERE email = ?`;
   connection.execute(
     selectQuery,
     [email],
@@ -32,8 +31,9 @@ router.post("/", (req: Request, res: Response) => {
         const userData = (result as User[])[0];
 
         if (isPasswordCorrect(password, userData)) {
-          // Passwords match, login successful
-          console.log(req.session);
+          const { salt, password, ...safeUser } = userData;
+          // Passwords match, login successful, we create the session
+          createSession(req.session, safeUser);
           res.status(200).redirect("/");
         } else {
           res.status(401).render("login.ejs", {

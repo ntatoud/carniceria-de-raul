@@ -10,6 +10,13 @@ router.use("/reset", reset);
 router.use("/login", login);
 router.use("/signup", signup);
 
+router.use("/logout", (req: Request, res: Response) => {
+  req.session.destroy((error: ErrorEvent) => {
+    if (error) throw new Error(error.message);
+  });
+  res.redirect("/");
+});
+
 router.use("/", (req: Request, res: Response) => {
   res.redirect("/auth/login");
 });

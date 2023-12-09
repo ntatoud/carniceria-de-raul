@@ -1,5 +1,4 @@
-import { ProcedureCallPacket, ResultSetHeader, RowDataPacket } from "mysql2";
-
+import { Session, SessionData } from "express-session";
 export type User = {
   id: number;
   email: string;
@@ -45,8 +44,4 @@ export enum Authorities {
   ROLE_USER,
 }
 
-export type QueryResult =
-  | RowDataPacket[]
-  | ResultSetHeader[]
-  | RowDataPacket[][]
-  | ProcedureCallPacket;
+export type UserSession = Session & Partial<SessionData>;
