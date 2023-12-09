@@ -13,7 +13,6 @@ import about from "./src/features/about";
 import contact from "./src/features/contact";
 import account from "./src/features/account";
 const app: Express = express();
-
 const port = 3000;
 
 app.use(urlencoded({ extended: true }));
@@ -41,6 +40,7 @@ app.set("views", [
   "src/features/order/infos",
   "src/features/order/payment",
   "src/features/shop",
+  "src/features/shop/_partials",
   "src/features/layout",
   "src/features/about",
   "src/features/contact",

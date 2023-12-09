@@ -1,15 +1,90 @@
 <!-- Author : Noé TATOUD -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('../../../imports.ejs') %>
-  </head>
-  <body>
-    <header><%- include('./layout/layout.ejs') %></header>
-    <main>
-      ADMINS USERS
-      <a href="/admin/products"> products</a>
-      <a href="/admin/users"> users</a>
-    </main>
-  </body>
+<link rel="stylesheet" type="text/css" href="/css/admin.css" />
+
+<head>
+  <%- include('../../../imports.ejs') %>
+</head>
+
+<body>
+  <header><%- include('./layout/layout.ejs') %></header>
+  <main class="d-flex flex-row">
+    <menu class="admin-menu d-flex flex-column">
+      <a href="/admin/products"><i class="bi bi-people"></i> products</a>
+      <a href="/admin/users"><i class="bi bi-tag"></i> users</a>
+    </menu>
+    <data>
+      <div class="main d-flex flex-row">
+        <h1 class="">Users</h1>
+        <a href="/admin/users/create" class="button button-primary">Add user</a>
+      </div>
+      <div>
+        <table>
+          <thead class="table-head">
+            <tr>
+              <td class="name-mail">Name/Email</td>
+              <td class="id">ID</td>
+              <td>Authorities</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.map((user)=> { %>
+              <tr>
+                <td class='name'>
+                  <b>
+                    <%= user.name%>
+                      <%=user.surname%>
+                  </b>
+                  <p>
+                    <%= user.email%>
+                  </p>
+                </td>
+                <td class='name'>
+                  <%= user.user_id%>
+                </td>
+                <td class='name'>
+                  <%= user.authorities%>
+                </td>
+                <td class="btn-group">
+                  <button id="user_<%= user.user_id %>"
+                    class="button button-link-neutral bi bi-three-dots-vertical dropdown-toggle"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  </button>
+                  <div id="edit_<%= user.user_id %>" class="dropdown-menu dropdown-menu-right">
+                    <a href="/admin/users/update/<%= user.user_id%>" class="dropdown-item" type="button"><i
+                        class="bi bi-pencil"></i> Edit</a>
+                    <button id="<%=user.user_id%>" onclick="deleteUser(event)" class="dropdown-item" type="button"><i
+                        class="bi bi-trash"></i>
+                      Delete</button>
+                  </div>
+                </td>
+                <script>
+
+                  $('.dropdown-toggle').on('click', (event) => {
+                    const contenu = $(`#edit${event.currentTarget.attr("id")}`);
+                  })
+
+                  document.getElementsByClassName('dropdown-toggle').addEventListener('click', function () {
+                    var contenu = document.getElementById('edit');
+                    if (contenu.style.display === 'none') {
+                      contenu.style.display = 'block';
+                    } else {
+                      contenu.style.display = 'none';
+                    }
+                  });                    
+                </script>
+              </tr>
+              <%}) %>
+          </tbody>
+
+        </table>
+      </div>
+    </data>
+  </main>
+  <script src="/features/admin/users/frontend/utils.js">
+
+  </script>
+</body>
+
 </html>

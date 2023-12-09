@@ -3,9 +3,81 @@
 <html lang="en">
   <head>
     <%- include('../../imports.ejs') %>
+
+    <!-- Page specific styles -->
+    <link rel="stylesheet" type="text/css" href="/css/shop.css" />
+    <link rel="stylesheet" type="text/css" href="/css/leftMenu.css" />
   </head>
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
-    <main><%- include('./shop/leftMenu.ejs')%></main>
+    <main class="d-flex flex-row">
+      <%- include('./shop/leftMenu.ejs', {currentCategory: currentCategory})%>
+      <!-- \ -->
+      <%if(!currentCategory) {%>
+      <div class="shop-home">
+        <ul class="nav nav-tabs" onclick="switchTab(event)">
+          <li class="nav-item">
+            <button class="tab active" id="ofertas" aria-current="page">
+              <i class="bi bi-percent"></i>
+              Ofertas
+              <span class="tag-amount">
+                <%=products.filter((product) => product.sale).length%>
+              </span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="tab" id="mejores">
+              <i class="bi bi-award"></i>
+              Mejor vendido
+              <span class="tag-amount">
+                <%=products.filter((product) => product.best).length%>
+              </span>
+            </button>
+          </li>
+        </ul>
+        <div class="product-carousel">
+          <button
+            class="button button-link-neutral bi bi-chevron-left"
+            onclick="scrollToLeft()"
+          ></button>
+
+          <div class="shop-products-container ofertas" onscroll="setScroll()">
+            <% products?.filter((product) => product.sale).map((product) => {%>
+            <!-- -->
+            <%- include('card.ejs', {product : product, currentCategory: ""}) %>
+            <%}) %>
+          </div>
+          <div class="shop-products-container mejores hide">
+            <% products?.filter((product) => product.best).map((product) => {%>
+            <!-- -->
+            <%- include('card.ejs', {product : product, currentCategory: ""}) %>
+            <%}) %>
+          </div>
+          <button
+            class="button button-link-neutral bi bi-chevron-right"
+            onclick="scrollToRight()"
+          ></button>
+        </div>
+
+        <h2>Todos nos otros productos</h2>
+        <div class="shop-products-container">
+          <% products.map((product) => {%><%- include('card.ejs', {product :
+          product, currentCategory: ""})%><%}) %>
+        </div>
+      </div>
+      <%}else { %>
+      <div class="shop-products-container">
+        <% if(!products?.length) { %>
+        <p>No products here</p>
+
+        <%} else { products.map((product) => {%> <%- include('card.ejs',
+        {product : product, currentCategory: currentCategory})%><%})}%>
+      </div>
+      <%}%>
+    </main>
   </body>
+
+  <script src="/features/shop/frontend/shopHome.js"></script>
+  <script src="/features/shop/frontend/productCard.js"></script>
+  <script src="/features/shop/frontend/leftMenu.js"></script>
 </html>

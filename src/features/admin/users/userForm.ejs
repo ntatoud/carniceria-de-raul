@@ -1,0 +1,35 @@
+<div class="d-flex flex-row gap-3">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input name="name" type="text" class="form-control" id="name"
+    value="<%=user?.name ?? ""%>" required />
+  </div>
+  <div class="form-group">
+    <label for="surname">Surname</label>
+    <input name="surname" type="text" class="form-control" id="surname"
+    value="<%=user?.surname ?? ""%>" required />
+  </div>
+</div>
+<div class="form-group">
+  <label for="email">Email</label>
+  <input
+    name="email"
+    type="email"
+    class="form-control"
+    id="email"
+    value="<%=user?.email%>"
+    required
+  />
+</div>
+<div class="authorities-form-group">
+  <div class="form-check">
+    <input name="authorities" type="radio" value="ROLE_USER" id="roleUser"
+    <%if(user?.authorities === 'ROLE_USER') { %> checked<%}%> />
+    <label for="roleUser">ROLE_USER</label>
+  </div>
+  <div class="form-check">
+    <input name="authorities" value="ROLE_ADMIN" type="radio" id="roleAdmin"
+    <%if(user?.authorities === 'ROLE_ADMIN') { %> checked<%}%>/>
+    <label for="roleAdmin">ROLE_ADMIN</label>
+  </div>
+</div>

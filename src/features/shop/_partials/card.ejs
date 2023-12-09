@@ -1,0 +1,55 @@
+<div
+  id="<%=product.product_id%>"
+  class="product-card<% if(product.stock === 0) { %> disabled<% }%>"
+>
+  <!-- CARD HEADER -->
+  <div class="product-header" data-toggle="tooltip" title="<%=product.name%>">
+    <% if(product.sale) { %>
+    <!-- Sale tag -->
+    <div class="sale-tag">
+      -<%=Math.round(100*(product.price-product.sale_price)/product.price)%>%
+    </div>
+    <% }%> <% if(product.best) { %>
+    <!-- Best tag -->
+    <div
+      class="best-tag bi bi-award"
+      data-toggle="tooltip"
+      title="This product is one of the client's favorite !"
+    ></div>
+    <% }%>
+    <!-- Out of order tag -->
+    <% if(product.stock === 0) { %>
+    <div class="product-empty-tag">Agotado</div>
+    <% }%>
+    <a href="/shop/<%=product.category%>/<%=product.product_id%>">
+      <img
+        src="/assets/images/products/<%=product.category%>.jpg"
+        alt="product-image"
+      />
+    </a>
+    <div class="product-name">
+      <%=product.name[0]+product.name.slice(1).toLowerCase()%>
+    </div>
+  </div>
+  <!-- CARD BODY -->
+
+  <div class="product-body">
+    <!-- Product price -->
+    <div class="product-price">
+      <% if(product.sale) { %>
+      <div class="normal-price"><%=product.price%></div>
+      <i class="bi bi-arrow-right"></i>
+      <div class="sale-price"><%=product.sale_price%> <%=product.unit%></div>
+      <% } else {%><%=product.price%> <%=product.unit%><% }%>
+    </div>
+    <!-- Product Form -->
+    <form class="product-form"><%- include('productForm.ejs') %></form>
+  </div>
+  <!-- CARD FOOTER -->
+  <div class="product-footer">
+    <a href="/shop/<%=product.category%>/<%=product.product_id%>">
+      <i class="bi bi-chevron-down"></i>
+      Mas informaciones
+    </a>
+  </div>
+</div>

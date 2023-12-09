@@ -7,9 +7,55 @@
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
     <main>
-      ADMIN PRODUCTS
-      <a href="/admin/products"> products</a>
-      <a href="/admin/users"> users</a>
+      <menu class="admin-menu d-flex flex-column">
+        <a href="/admin/products"><i class="bi bi-people"></i> products</a>
+        <a href="/admin/users"><i class="bi bi-tag"></i> users</a>
+      </menu>
+      <data>
+        <div class="main d-flex flex-row">
+          <h1 class="">Products</h1>
+        </div>
+        <div>
+          <table>
+            <thead class="table-head">
+              <tr>
+                <td class="name">Name</td>
+                <td class="id">Id</td>
+                <td class="Price">Price</td>
+              </tr>
+            </thead>
+            <tbody>
+              <% products.map((product)=> { %>
+              <tr>
+                <td class="name">
+                  <p><b> <%= product.name%> </b></p>
+                </td>
+                <td class="name"><%= product.product_id%></td>
+                <td class="price"><%= product.price%></td>
+                <td class="autre">
+                  <a
+                    class="button button-primary"
+                    href="/admin/products/update/<%=product.product_id%>"
+                    >Update Product</a
+                  >
+                  <button
+                    class="button button-primary"
+                    id="<%=product.product_id%>"
+                    onclick="deleteProduct(event)"
+                  >
+                    Delete Product
+                  </button>
+                </td>
+              </tr>
+              <%}) %>
+            </tbody>
+          </table>
+        </div>
+      </data>
+      <a class="button button-primary" href="/admin/products/create"
+        >Create Product</a
+      >
     </main>
+    <script src="/features/admin/products/frontend/utils.js"></script>
   </body>
 </html>
