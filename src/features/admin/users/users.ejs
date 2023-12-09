@@ -3,22 +3,77 @@
 <html lang="en">
   <head>
     <%- include('../../../imports.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/css/admin.css" />
+    <link rel="stylesheet" type="text/css" href="/css/menuNav.css" />
   </head>
 
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
     <main class="d-flex flex-row">
-      <menu class="admin-menu d-flex flex-column">
-        <a href="/admin/products"> products</a>
-        <a href="/admin/users"> users</a>
-      </menu>
+      <%- include('./admin/adminNav.ejs') %>
+
       <data>
-        <div class="d-flex flex-row">
-          <h1>Title</h1>
-          <button>Truc</button>
+        <div class="data-top">
+          <h1 class="">Users</h1>
+          <a href="/admin/users/create" class="button button-primary"
+            >Add User</a
+          >
         </div>
-        <table></table>
+        <table class="users-table">
+          <tr class="table-head">
+            <th class="table-cell name">Name/Email</th>
+            <th class="table-cell id">ID</th>
+            <th class="table-cell auth">Authorities</th>
+            <th class="table-cell actions"></th>
+          </tr>
+          <tbody class="table-body">
+            <% users.map((user)=> { %>
+            <tr class="table-row">
+              <td
+                class="table-cell name"
+                data-toggle="tooltip"
+                title="<%= user.name%> <%=user.surname%>"
+              >
+                <b><%= user.name%> <%=user.surname%></b>
+                <p class="email"><%= user.email%></p>
+              </td>
+              <td class="table-cell id tag"><%= user.user_id%></td>
+              <td class="table-cell auth tag"><%= user.authorities%></td>
+              <td class="table-cell actions dropdown">
+                <button
+                  id="actions-button-<%= user.user_id %>"
+                  class="button menu-button button-link-neutral bi bi-three-dots-vertical"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                ></button>
+                <div
+                  id="actions-<%= user.user_id %>"
+                  class="dropdown-menu dropdown-menu-end"
+                >
+                  <a
+                    href="/admin/users/update/<%= user.user_id%>"
+                    class="dropdown-item"
+                    type="button"
+                    ><i class="bi bi-pencil"></i> Edit</a
+                  >
+                  <button
+                    id="<%=user.user_id%>"
+                    onclick="deleteUser(event)"
+                    class="dropdown-item"
+                    type="button"
+                  >
+                    <i class="bi bi-trash"></i> Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <%}) %>
+          </tbody>
+        </table>
       </data>
     </main>
+    <script src="/features/admin/users/frontend/utils.js"></script>
+    <script src="/features/layout/frontend/utils.js"></script>
   </body>
 </html>

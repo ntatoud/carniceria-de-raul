@@ -3,13 +3,93 @@
 <html lang="en">
   <head>
     <%- include('../../../imports.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/css/admin.css" />
+    <link rel="stylesheet" type="text/css" href="/css/menuNav.css" />
   </head>
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
     <main>
-      ADMIN PRODUCTS
-      <a href="/admin/products"> products</a>
-      <a href="/admin/users"> users</a>
+      <%- include('./admin/adminNav.ejs') %>
+      <data>
+        <div class="data-top">
+          <h1 class="">Products</h1>
+          <a href="/admin/products/create" class="button button-primary"
+            >Add product</a
+          >
+        </div>
+        <table class="products-table">
+          <tr class="table-head">
+            <th class="table-cell name">Name</th>
+            <th class="table-cell id">Id</th>
+            <th class="table-cell price">Price</th>
+            <th class="table-cell best">Best Seller</th>
+            <th class="table-cell category">Category</th>
+            <th class="table-cell stock">Stock</th>
+            <th class="table-cell status">Status</th>
+            <th class="table-cell actions dropdown"></th>
+          </tr>
+          <tbody class="table-body">
+            <% products.map((product)=> { %>
+            <tr class="table-row">
+              <td
+                class="table-cell name"
+                data-toggle="tooltip"
+                title="<%= product.name[0] + product.name.slice(1).toLowerCase()%> "
+              >
+                <b
+                  ><%= product.name[0] +
+                  product.name.slice(1).toLowerCase()%></b
+                >
+              </td>
+              <td class="table-cell id"><%= product.product_id%></td>
+              <td class="table-cell price">
+                <p><%= product.price%> <%= product.unit%></p>
+                <%if(product.sale) {%>
+                <p class="salePrice">
+                  <%= product.sale_price%> <%= product.unit%>
+                </p>
+                <%}%>
+              </td>
+              <td class="table-cell best"><%= product.best%></td>
+
+              <td class="table-cell category">CATEGORY</td>
+              <td class="table-cell status"><%= product.sale%></td>
+              <td class="table-cell stock"><%= product.stock%></td>
+              <td class="table-cell actions dropdown">
+                <button
+                  id="actions-button-<%= product.product_id %>"
+                  class="button menu-button button-link-neutral bi bi-three-dots-vertical"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                ></button>
+                <div
+                  id="actions-<%= product.product_id %>"
+                  class="dropdown-menu dropdown-menu-end"
+                >
+                  <a
+                    href="/admin/products/update/<%= product.product_id%>"
+                    class="dropdown-item"
+                    type="button"
+                    ><i class="bi bi-pencil"></i> Edit</a
+                  >
+                  <button
+                    id="<%=product.product_id%>"
+                    onclick="deleteProduct(event)"
+                    class="dropdown-item"
+                    type="button"
+                  >
+                    <i class="bi bi-trash"></i> Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <%}) %>
+          </tbody>
+        </table>
+      </data>
     </main>
+    <script src="/features/admin/products/frontend/utils.js"></script>
+    <script src="/features/layout/frontend/utils.js"></script>
   </body>
 </html>

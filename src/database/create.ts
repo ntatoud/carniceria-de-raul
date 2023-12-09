@@ -29,6 +29,7 @@ export const databaseCreate = (): void => {
         name VARCHAR(50),
         surname VARCHAR(50),
         password VARCHAR(255) NOT NULL,
+        salt VARCHAR(255) NOT NULL,
         address VARCHAR(255),
         authorities ENUM('ROLE_USER', 'ROLE_ADMIN') NOT NULL,
         creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -40,9 +41,11 @@ export const databaseCreate = (): void => {
         product_id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(250) NOT NULL,
         price DECIMAL(10, 2) NOT NULL,
+        unit ENUM("€/kg", "€/unidad"),
         stock INT NOT NULL,
         sale Boolean,
         sale_price DECIMAL(10, 2),
+        best Boolean,
         image VARCHAR(255) NOT NULL,
         description VARCHAR(2048) NOT NULL
         );

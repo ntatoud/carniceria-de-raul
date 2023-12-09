@@ -1,5 +1,3 @@
-<!-- Author : Noé TATOUD -->
-<link rel="stylesheet" type="text/css" href="/css/navbar.css" />
 <script src="/jquery.min.js"></script>
 <nav class="navbar menu-navbar navbar-expand sticky-top">
   <div class="container-fluid navbar-container">
@@ -15,6 +13,9 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/contact">Contacto</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/account">Cuenta</a>
       </li>
       <span class="nav-item justify-self-end">
         <a class="nav-link" href="/admin">Admin</a>
@@ -34,7 +35,9 @@
     if (
       navItem.getAttribute("href") === currentPath ||
       (navItem.getAttribute("href") === "/admin" &&
-        currentPath.includes("/admin/"))
+        currentPath.includes("/admin/")) ||
+      (navItem.getAttribute("href") === "/shop" &&
+        currentPath.includes("/shop/"))
     )
       return navItem;
   });

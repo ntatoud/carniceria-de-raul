@@ -1,7 +1,10 @@
+import { ProcedureCallPacket, ResultSetHeader, RowDataPacket } from "mysql2";
+
 export type User = {
   id: number;
   email: string;
   password: string;
+  salt: string;
   authorities: Authorities;
   name?: string;
   surname?: string;
@@ -16,9 +19,11 @@ export type Product = {
   price: number;
   stock: number;
   sale: Boolean;
+  salePrice?: number;
+  best: boolean;
   image: string;
   description: string;
-  salePrice?: number;
+  category: string;
 };
 
 export type Order = {
@@ -30,7 +35,18 @@ export type Order = {
   comment?: string;
 };
 
+export type Category = {
+  id: number;
+  name: string;
+};
+
 export enum Authorities {
   ROLE_ADMIN,
   ROLE_USER,
 }
+
+export type QueryResult =
+  | RowDataPacket[]
+  | ResultSetHeader[]
+  | RowDataPacket[][]
+  | ProcedureCallPacket;
