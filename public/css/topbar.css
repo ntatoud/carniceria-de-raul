@@ -27,6 +27,9 @@
   color: var(--gray-300);
 }
 
+.account-menu .dropdown-toggle::after {
+  display: none;
+}
 .account-menu .dropdown-item,
 .cart-menu .dropdown-item {
   display: flex;
@@ -62,6 +65,7 @@
   font-size: var(--font-sm);
   padding-right: 0.05rem;
 }
+
 @media screen and (max-width: 768px) {
   .topbar .navbar-nav .nav-item {
     padding-right: 1rem;
