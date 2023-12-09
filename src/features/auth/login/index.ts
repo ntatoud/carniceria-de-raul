@@ -1,8 +1,8 @@
 import { Router, urlencoded, Request, Response, query } from "express";
-import { arePasswordEqual } from "../util";
+import { isPasswordCorrect } from "../util";
 import { databaseConnect } from "../../../database";
 import { QueryError, RowDataPacket } from "mysql2/promise";
-import { QueryResult, User } from "@/features/types";
+import { User } from "@/features/types";
 
 const router = Router();
 
@@ -31,7 +31,7 @@ router.post("/", (req: Request, res: Response) => {
       if (result.length) {
         const userData = (result as User[])[0];
 
-        if (arePasswordEqual(password, userData)) {
+        if (isPasswordCorrect(password, userData)) {
           // Passwords match, login successful
           res.status(200).redirect("/");
         } else {

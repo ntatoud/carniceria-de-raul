@@ -2,142 +2,219 @@
 <html lang="en">
   <head>
     <%- include('../../../imports.ejs') %>
-    <link rel="stylesheet" href="account.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/account.css" />
+    <link rel="stylesheet" type="text/css" href="/css/menuNav.css" />
   </head>
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
-    <section class="main-view">
-      <div class="profile-title">
-        <h1>Bienvenido <%= accountName %></h1>
-      </div>
-    </section>
-      <main class = "main-content">
-        <div class = "left-content">
-          <%- include('../../features/account/accountNav.ejs') %>
-        </div>
-
-        <div class="right-content">
-          <form class="d-flex account-form ">
-            <div>
-              <h2>Información del perfil</h2>
+    <%-include('./layout/mainbar.ejs', {title: `Bienvenido ${accountName}`,
+    backLink:"./"})%>
+    <main class="d-flex">
+      <%- include('./account/accountNav.ejs') %>
+      <data class="d-flex flex-column align-items-start">
+        <div class="profile-title">Perfil</div>
+        <form
+          class="form account-form d-grid"
+          method="POST"
+          action="/account/profile"
+          role="form"
+        >
+          <div class="user-info">
+            <div class="row">
+              <div class="form-group col-md-5">
+                <label for="name">Nombre</label>
+                <input
+                  name="name"
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  required
+                />
+                <span id="nameError" style="color: red; display: none"
+                  >Introduzca un nombre válido.</span
+                >
+              </div>
+              <div class="form-group col-md-7">
+                <label for="surname">Apellido(s)</label>
+                <input
+                  name="surname"
+                  type="text"
+                  class="form-control"
+                  id="surname"
+                  required
+                />
+              </div>
+              <span id="surnameError" style="color: red; display: none"
+                >Introduzca un apellido válido.</span
+              >
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" required />
-              <span id="emailError" style="color: red; display: none;">Introduzca una dirección válida.</span>
-            </div>
-            <div class="form-group">
-              <label for="name">Nombre</label>
-              <input type="text" class="form-control" id="name" required />
-              <span id="nameError" style="color: red; display: none;">Introduzca un nombre válido.</span>
-              
-            </div>
-            <div class="form-group">
-              <label for="surname1">Primer Apellido</label>
-              <input type="text" class="form-control" id="surname1" required />
-              <span id="surname1Error" style="color: red; display: none;">Introduzca un apellido válido.</span>
-            </div>
-            <div class="form-group">
-              <label for="surname2">Segundo Apellido</label>
-              <input type="text" class="form-control" id="surname2" required />
-              <span id="surname2Error" style="color: red; display: none;">Introduzca un apellido válido.</span>
+              <input
+                name="email"
+                type="email"
+                class="form-control"
+                id="email"
+                required
+              />
+              <span id="emailError" style="color: red; display: none"
+                >Introduzca una dirección válida.</span
+              >
             </div>
             <div class="form-group">
               <label for="phone">Teléfono</label>
-              <input type="tel" class="form-control" id="phone" required />
+              <div class="input-group">
+                <input
+                  name="phone"
+                  type="tel"
+                  class="form-control"
+                  id="phone"
+                  required
+                />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <i class="bi bi-telephone"></i>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="user-address">
             <div class="form-group">
               <label for="address">Dirección</label>
-              <input type="text" class="form-control" id="address" required />
+              <div class="input-group">
+                <input
+                  name="address"
+                  type="text"
+                  class="form-control"
+                  id="address"
+                  required
+                />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <i class="bi bi-house"></i>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="postalCode">Código Postal</label>
-              <input type="text" class="form-control" id="postalCode" required />
+            <div class="row">
+              <div class="form-group col-md-5">
+                <label for="city">Ciudad</label>
+                <input
+                  name="city"
+                  type="text"
+                  class="form-control"
+                  id="city"
+                  required
+                />
+                <span id="cityError" style="color: red; display: none"
+                  >Introduzca nombre de ciudad válido.</span
+                >
+              </div>
+              <div class="form-group col-md-3">
+                <label for="postalCode">Código Postal</label>
+                <input
+                  name="postalCode"
+                  type="text"
+                  class="form-control"
+                  id="postalCode"
+                  required
+                />
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="country">Pais</label>
+                <input
+                  name="country"
+                  type="text"
+                  class="form-control"
+                  id="country"
+                  required
+                />
+                <span id="countryError" style="color: red; display: none"
+                  >Introduzca nombre de país válido.</span
+                >
+              </div>
             </div>
-            <div class="form-group">
-              <label for="city">Ciudad</label>
-              <input type="text" class="form-control" id="city" required />
-              <span id="cityError" style="color: red; display: none;">Introduzca nombre de ciudad válido.</span>
-            </div>
-            <div class="form-group">
-              <label for="country">Pais</label>
-              <input type="text" class="form-control" id="country" required />
-              <span id="countryError" style="color: red; display: none;">Introduzca nombre de país válido.</span>
-            </div>
-            <div class="d-flex flex-row pt-3 gap-3 "> 
-            <button type="submit" class="button button-primary">Guardar</button>
-            </div>
-          </form>
-          <script>
-             function validateNameAndDisplayError(inputId, errorSpanId) {
-                const nameInput = document.getElementById(inputId);
-                const nameError = document.getElementById(errorSpanId);
+          </div>
+          <div class="d-flex flex-row justify-content-end">
+            <button type="submit" class="button button-primary button-lg">
+              Guardar
+            </button>
+          </div>
+        </form>
+      </data>
+      <script>
+        const validateNameAndDisplayError = (inputId, errorSpanId) => {
+          const nameInput = document.getElementById(inputId);
+          const nameError = document.getElementById(errorSpanId);
 
-                nameInput.addEventListener('input', function() {
-                  const enteredName = nameInput.value.trim();
+          nameInput.addEventListener("input", function () {
+            const enteredName = nameInput.value.trim();
 
-                  if (containsNumber(enteredName)) {
-                    nameError.style.display = 'block';
-                  } else {
-                    nameError.style.display = 'none';
-                  }
-                });
-
-                const containsNumber = (name) => /\d/.test(name);
-                }
-
-                // Usage example: validate 'name' input field
-                validateNameAndDisplayError('name', 'nameError');
-                validateNameAndDisplayError('surname1', 'surname1Error');
-                validateNameAndDisplayError('surname2', 'surname2Error');
-                validateNameAndDisplayError('city', 'cityError');
-          </script>
-          <script>
-            <!--Check that post code has only 5 numbers-->
-            function validatePostCodeAndDisplayError(inputId, errorSpanId) {
-                const postCodeInput = document.getElementById(inputId);
-                const postCodeError = document.getElementById(errorSpanId);
-
-                postCodeInput.addEventListener('input', function() {
-                  const enteredPostCode = postCodeInput.value.trim();
-
-                  if (enteredPostCode.length != 5 || containsLetter(enteredPostCode)) {
-                    postCodeError.style.display = 'block';
-                  } else {
-                    posrCodeError.style.display = 'none';
-                  }
-                });
-                const containsLetter = (postCode) => /^(?=.*\d{5}).*$/.test(postCode);
-                }
-
-                // Usage example: validate 'name' input field
-                validatePostCodeAndDisplayError('postalCode', 'postalCodeError');
-          </script>
-          <script>
-            function validateAndShowErrorEmail(inputId, spanId) {
-              const inputElement = document.getElementById(inputId);
-              const errorSpan = document.getElementById(spanId);
-
-              inputElement.addEventListener('input', function() {
-                const enteredValue = inputElement.value.trim();
-
-                if (!validateEmail(enteredValue)) {
-                  errorSpan.style.display = 'block';
-                } else {
-                  errorSpan.style.display = 'none';
-                }
-              });
-
-              const validateEmail = (email) => {
-                const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return regex.test(email);
-              };
+            if (containsNumber(enteredName)) {
+              nameError.style.display = "block";
+            } else {
+              nameError.style.display = "none";
             }
-            validateAndShowErrorEmail('email', 'emailError');
+          });
 
-          </script>
-        </div>
-      </main>
+          const containsNumber = (name) => /\d/.test(name);
+        };
 
+        // Usage example: validate 'name' input field
+        validateNameAndDisplayError("name", "nameError");
+        validateNameAndDisplayError("surname", "surnameError");
+        validateNameAndDisplayError("city", "cityError");
+      </script>
+      <script>
+        // Check that post code has only 5 numbers
+        const validatePostCodeAndDisplayError = (inputId, errorSpanId) => {
+          const postCodeInput = document.getElementById(inputId);
+          const postCodeError = document.getElementById(errorSpanId);
+
+          postCodeInput.addEventListener("input", function () {
+            const enteredPostCode = postCodeInput.value.trim();
+
+            if (
+              enteredPostCode.length != 5 ||
+              containsLetter(enteredPostCode)
+            ) {
+              postCodeError.style.display = "block";
+            } else {
+              posrCodeError.style.display = "none";
+            }
+          });
+          const containsLetter = (postCode) => /^(?=.*\d{5}).*$/.test(postCode);
+        };
+
+        // Usage example: validate 'name' input field
+        validatePostCodeAndDisplayError("postalCode", "postalCodeError");
+      </script>
+      <script>
+        const validateAndShowErrorEmail = (inputId, spanId) => {
+          const inputElement = document.getElementById(inputId);
+          const errorSpan = document.getElementById(spanId);
+
+          inputElement.addEventListener("input", function () {
+            const enteredValue = inputElement.value.trim();
+
+            if (!validateEmail(enteredValue)) {
+              errorSpan.style.display = "block";
+            } else {
+              errorSpan.style.display = "none";
+            }
+          });
+
+          const validateEmail = (email) => {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+          };
+        };
+        validateAndShowErrorEmail("email", "emailError");
+      </script>
+    </main>
+    <script src="/features/layout/frontend/utils.js"></script>
   </body>
 </html>

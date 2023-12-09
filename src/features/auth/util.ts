@@ -38,7 +38,7 @@ export const generateSaltHashedPassword = (
   return { salt, hashPwd };
 };
 
-export const arePasswordEqual = (
+export const isPasswordCorrect = (
   enteredPassword: string,
   user: User
 ): boolean => {
