@@ -8,42 +8,6 @@ main {
   flex-direction: row;
 }
 
-/* Menu styling */
-.admin-menu {
-  height: 100%;
-  width: 10rem;
-  align-items: start;
-  justify-content: center;
-  padding: 1rem;
-  margin: 4rem;
-
-  font-size: var(--font-lg);
-  border-radius: 0.5rem;
-}
-
-.admin-menu a {
-  display: flex;
-  width: 100%;
-  height: 3rem;
-  gap: 0.5rem;
-  text-decoration: none;
-  color: var(--gray-700);
-  align-items: center;
-}
-
-.admin-menu a:hover {
-  color: var(--gray-900);
-  /* Couleur du texte lorsqu'on survole le lien */
-}
-.admin-menu a.active {
-  font-weight: bold;
-  color: var(--gray-900);
-}
-
-.admin-menu a.active i {
-  color: var(--brand-600);
-  font-size: var(--font-2xl);
-}
 /* Data styling */
 data {
   display: flex;

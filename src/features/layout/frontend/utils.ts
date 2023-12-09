@@ -1,5 +1,5 @@
 const activeNav = () => {
-  $(".admin-menu a")
+  $("menu a")
     .filter(
       (_, navItem) => $(navItem).attr("href") === window.location.pathname
     )

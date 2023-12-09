@@ -1,112 +1,44 @@
-@import 'colors.css';
+@import "colors.css";
 
+main {
+  justify-content: start;
+  padding-left: 20%;
+  padding-right: 20%;
+}
 
+data {
+  width: 40rem;
+  padding-top: 2rem;
+  gap: 2rem;
+}
 
-body{
-    display: flex;
-    direction: column;
+.account-menu {
+  width: 15rem;
+  margin: 4rem 1rem;
 }
-.main-title{
-    flex: 0.1;
-}
-.main-content{
-    flex: 0.9;
-    display: flex;
-    flex-direction: row;
-    padding: 5% 20% 20%;
-    background: var(--red-300);
-    height: 160%;
-}
-.left-content{
-    flex: 1;
-}
-.right-content{
-    flex: 2;
-}
-.account-form{
-    background: var(--red-100);
-    display: flex;
-    flex-direction: column;
-    width : 100%;
-}
-.sidebar{
-    display: flex;
-    flex-direction: column;
-    border-radius: 10rem;
 
+.profile-title {
+  font-size: var(--font-2xl);
+  font-weight: bold;
 }
-.sidebar-button {
-    background-color: var(--red-200);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 0.2rem;
-    transition: background-color 0.3s;
-    width:100%;
-  }
-
-.sidebar-button:hover {
-    background-color: var(--red-100);
-    }
-
-.profile-title{
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    text-align: center;
+.account-form {
+  width: 100%;
+  gap: 3rem;
 }
-.account-form ul {
-    overflow: auto;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-  }
-  
+
+.account-form > * > * {
+  padding: 0.25rem 0;
+}
+
+button[type="submit"] {
+  padding: 0.5rem 1rem;
+}
 @media screen and (max-width: 768px) {
-    .main-content{
-        flex-direction: column;
-        padding: 10% 20% 20%;
-        background: var(--red-300);
-        height: 160%;
-    }
-    .left-content{
-        flex: 1;
-    }
-    .right-content{
-        flex: 2;
-    }
-    .account-form{
-        background: var(--red-100);
-        display: flex;
-        flex-direction: column;
-        width : 100%;
-    }
-    .sidebar{
-        display: flex;
-        flex-direction: column;
-        border-radius: 10rem;
-    
-    }
-    .sidebar-button {
-        background-color: var(--red-200);
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        border-radius: 0.2rem;
-        transition: background-color 0.3s;
-        width:100%;
-      }
-    
-    .sidebar-button:hover {
-        background-color: var(--red-100);
-        }
-    
-    .profile-title{
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        margin-top: 1rem;
-        text-align: center;
-    }
+  main {
+    flex-direction: column;
+  }
+
+  .account-form {
+    width: 100%;
+  }
 }

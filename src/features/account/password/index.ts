@@ -1,5 +1,5 @@
 import { Router, urlencoded, Request, Response, NextFunction } from "express";
-import {isStrongPassword} from "./utils";
+import { isStrongPassword } from "../../auth/signup/utils";
 
 const router = Router();
 
@@ -13,8 +13,9 @@ router.post("/checkPassword", (req, res) => {
 
 router.use("/", (req: Request, res: Response) => {
   res.render("password.ejs", {
-     error: {},
-    accountName:"Nombre de usuario" });
+    error: {},
+    accountName: "Nombre de usuario",
+  });
 });
 
 export default router;

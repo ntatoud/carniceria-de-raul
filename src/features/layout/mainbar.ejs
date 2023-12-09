@@ -1,4 +1,6 @@
 <div class="mainbar">
-  <a href="./" class="button button-lg"> <- </a>
-  <p>Atras</p>
+  <a <% if(backLink) { %>
+    href="<%=backLink%>"<%} else {%> href="./"<%}%> class="button button-lg"> <-
+  </a>
+  <p><%=title%></p>
 </div>
