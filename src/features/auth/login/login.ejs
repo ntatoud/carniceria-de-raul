@@ -21,7 +21,7 @@
         </span>
         <%}%> <%if(error.state) {%>
         <span class="credential-error"> <%=error.message%> </span>
-        <%}%> <%- include('./auth/email-password-form.ejs') %>
+        <%}%> <%- include('./auth/email-password-form.ejs', {type: "login"}) %>
         <div
           class="d-flex flex-row gap-3 align-items-center justify-content-between"
         >
@@ -33,6 +33,6 @@
       </form>
       <div id="existingResultDiv"></div>
     </main>
-    <script src="/components/passwordInput.js"></script>
+    <script src="/components/form.js"></script>
   </body>
 </html>
