@@ -24,15 +24,18 @@ router.post("/update/:id", (req: Request, res: Response) => {
 });
 
 router.use("/create", (req: Request, res: Response) => {
-  res.render("userCreate.ejs", { user: undefined });
+  res.render("userCreate.ejs", {
+    user: undefined,
+    isLogged: req.session.isLogged,
+  });
 });
 
 router.use("/update/:id", (req: Request, res: Response) => {
-  getUserToUpdate(res, req.params.id);
+  getUserToUpdate(req, res, req.params.id);
 });
 
 router.use("/", (req: Request, res: Response) => {
-  getUserList(res);
+  getUserList(req, res);
 });
 
 export default router;

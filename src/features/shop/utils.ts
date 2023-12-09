@@ -1,7 +1,7 @@
 import { QueryError } from "mysql2";
 import { databaseConnect } from "../../database";
 import { Category, Product } from "../types";
-import { Response } from "express";
+import { Request, Response } from "express";
 
 export const getAllProductsWithCategory = (res: Response, filter?: string) => {
   const connection = databaseConnect();
@@ -43,7 +43,7 @@ export const getAllProductsWithCategory = (res: Response, filter?: string) => {
   );
 };
 
-export const renderShopHome = (res: Response) => {
+export const renderShopHome = (req: Request, res: Response) => {
   const connection = databaseConnect();
 
   const getCategoriesQuery = `SELECT * FROM categories;`;
@@ -70,6 +70,7 @@ export const renderShopHome = (res: Response) => {
         categories: categoryResults,
         products: undefined,
         currentCategory: "",
+        isLogged: req.session.isLogged,
       });
 
       connection.end();
@@ -78,6 +79,7 @@ export const renderShopHome = (res: Response) => {
 };
 
 type CategoryPageProps = {
+  req: Request;
   res: Response;
   currentCategory: string;
   isOnlyOffers?: boolean;
@@ -86,6 +88,7 @@ type CategoryPageProps = {
 };
 
 export const renderCategoryPage = ({
+  req,
   res,
   currentCategory,
   isOnlyOffers = false,
@@ -123,6 +126,7 @@ export const renderCategoryPage = ({
               categories: categoryResults,
               products: undefined,
               currentCategory: currentCategory,
+              isLogged: req.session.isLogged,
             });
 
           const products: Product[] = productResults.map((product) => {
@@ -134,6 +138,7 @@ export const renderCategoryPage = ({
             categories: categoryResults,
             products: products,
             currentCategory: currentCategory,
+            isLogged: req.session.isLogged,
           });
 
           connection.end();
@@ -144,12 +149,14 @@ export const renderCategoryPage = ({
 };
 
 type ProductPageProps = {
+  req: Request;
   res: Response;
   currentCategory: string;
   productId: string;
 };
 
 export const renderProductPage = ({
+  req,
   res,
   currentCategory,
   productId,
@@ -163,6 +170,7 @@ export const renderProductPage = ({
       res.render("product.ejs", {
         product: results[0],
         currentCategory: currentCategory,
+        isLogged: req.session.isLogged,
       });
     }
   );

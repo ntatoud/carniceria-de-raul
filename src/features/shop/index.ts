@@ -8,12 +8,11 @@ import {
 } from "./utils";
 const router = Router();
 
-
 router.use("/:category/:product_id", (req: Request, res: Response) => {
   const currentCategory = req.params.category ?? "";
   const productId = req.params.product_id ?? 0;
 
-  renderProductPage({ res, currentCategory, productId });
+  renderProductPage({ req, res, currentCategory, productId });
 });
 
 router.get("/:category", (req: Request, res: Response) => {
@@ -23,6 +22,7 @@ router.get("/:category", (req: Request, res: Response) => {
   const isSortedByName = req.url.includes("name=on");
 
   renderCategoryPage({
+    req,
     res,
     currentCategory,
     isOnlyOffers,

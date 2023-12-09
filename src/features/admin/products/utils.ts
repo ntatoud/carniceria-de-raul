@@ -1,6 +1,6 @@
 import { databaseConnect } from "../../../database";
 import { Product } from "@/features/types";
-import { Response } from "express";
+import { Request, Response } from "express";
 import { QueryError, RowDataPacket } from "mysql2";
 
 export const productCreate = (res: Response, product: Partial<Product>) => {
@@ -57,7 +57,11 @@ export const productUpdate = (res: Response, product: Product, id: string) => {
   );
 };
 
-export const getProductToUpdate = (res: Response, productId: string) => {
+export const getProductToUpdate = (
+  req: Request,
+  res: Response,
+  productId: string
+) => {
   const connection = databaseConnect();
   // To use once merged in main !
   // const getProductQuery =
@@ -70,10 +74,12 @@ export const getProductToUpdate = (res: Response, productId: string) => {
     (error: QueryError | null, result: RowDataPacket[]) => {
       if (error) throw new Error(error.message);
 
-      console.log(result);
       const product = result[0] as Product;
 
-      res.render("productUpdate.ejs", { product: product });
+      res.render("productUpdate.ejs", {
+        product: product,
+        isLogged: req.session.isLogged,
+      });
     }
   );
 };
@@ -88,7 +94,11 @@ export const productDelete = (res: Response, productId: string) => {
   });
 };
 
-export const getProductList = (res: Response, category?: string) => {
+export const getProductList = (
+  req: Request,
+  res: Response,
+  category?: string
+) => {
   const connection = databaseConnect();
   const getProductsQuery = "SELECT * from products;";
 
@@ -97,7 +107,10 @@ export const getProductList = (res: Response, category?: string) => {
     (error: QueryError | null, results: RowDataPacket[]) => {
       if (error) throw new Error(error.message);
 
-      res.render("products.ejs", { products: results as Product[] });
+      res.render("products.ejs", {
+        products: results as Product[],
+        isLogged: req.session.isLogged,
+      });
     }
   );
 };

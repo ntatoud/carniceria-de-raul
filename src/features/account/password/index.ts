@@ -15,6 +15,7 @@ router.use("/", (req: Request, res: Response) => {
   res.render("password.ejs", {
     error: {},
     accountName: "Nombre de usuario",
+    isLogged: req.session.isLogged,
   });
 });
 

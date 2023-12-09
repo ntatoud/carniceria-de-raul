@@ -1,6 +1,6 @@
 import { databaseConnect } from "../../../database";
 import { User } from "@/features/types";
-import { Response } from "express";
+import { Request, Response } from "express";
 import { QueryError } from "mysql2";
 
 export const userCreate = (res: Response, user: Partial<User>) => {
@@ -43,7 +43,7 @@ export const userUpdate = (res: Response, user: Partial<User>, id: string) => {
   });
 };
 
-export const getUserToUpdate = (res: Response, id: string) => {
+export const getUserToUpdate = (req: Request, res: Response, id: string) => {
   const getUserQuery =
     "SELECT user_id, email, name, surname, authorities FROM users WHERE user_id= ?;";
 
@@ -57,13 +57,16 @@ export const getUserToUpdate = (res: Response, id: string) => {
       if (error) {
         throw new Error(error.message);
       } else {
-        res.render("userUpdate.ejs", { user: result[0] as Partial<User> });
+        res.render("userUpdate.ejs", {
+          user: result[0] as Partial<User>,
+          isLogged: req.session.isLogged,
+        });
       }
     }
   );
 };
 
-export const getUserList = (res: Response) => {
+export const getUserList = (req: Request, res: Response) => {
   const connection = databaseConnect();
   connection.query(
     "SELECT name, surname, email, user_id, authorities FROM users;",
@@ -72,7 +75,10 @@ export const getUserList = (res: Response) => {
         res.send("404");
         throw new Error(error.message);
       }
-      res.render("users.ejs", { users: results });
+      res.render("users.ejs", {
+        users: results,
+        isLogged: req.session.isLogged,
+      });
     }
   );
 };

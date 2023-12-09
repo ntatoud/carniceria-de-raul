@@ -53,7 +53,11 @@ router.post("/", (req: Request, res: Response) => {
 });
 
 router.use("/", (req: Request, res: Response) => {
-  res.render("login.ejs", { signed: false, error: {} });
+  res.render("login.ejs", {
+    signed: false,
+    error: {},
+    isLogged: req.session.isLogged,
+  });
 });
 
 export default router;

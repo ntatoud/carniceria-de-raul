@@ -1,4 +1,4 @@
-import { Router, urlencoded, Request, Response } from "express";
+import { Router, urlencoded, Request, Response, NextFunction } from "express";
 
 import signup from "./signup";
 import login from "./login";
@@ -18,7 +18,11 @@ router.use("/logout", (req: Request, res: Response) => {
 });
 
 router.use("/", (req: Request, res: Response) => {
-  res.redirect("/auth/login");
+  if (req.session.isLogged) {
+    res.redirect("/");
+  } else {
+    res.redirect("/auth/login");
+  }
 });
 
 export default router;
