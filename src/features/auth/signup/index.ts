@@ -20,11 +20,7 @@ router.post("/", (req: Request, res: Response, next: NextFunction) => {
 });
 
 router.use("/", (req: Request, res: Response) => {
-  if (req.session.isLogged) {
-    res.redirect("/");
-  } else {
-    res.render("signup.ejs", { error: {}, isLogged: req.session.isLogged });
-  }
+  res.render("signup.ejs", { error: {}, isLogged: req.session.isLogged });
 });
 
 export default router;

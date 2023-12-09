@@ -40,8 +40,8 @@ export type Category = {
 };
 
 export enum Authorities {
-  ROLE_ADMIN,
-  ROLE_USER,
+  "ROLE_ADMIN",
+  "ROLE_USER",
 }
 
 export type UserSession = Session & Partial<SessionData>;
