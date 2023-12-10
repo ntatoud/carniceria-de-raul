@@ -1,3 +1,4 @@
+import { toastError } from "../components/toast";
 import { NextFunction, Request, Response } from "express";
 
 export const guestOnlyRoute = (
@@ -8,6 +9,7 @@ export const guestOnlyRoute = (
   if (!req.session.isLogged) {
     next();
   } else {
+    req.session.toast = toastError({ content: "Access Forbidden" });
     res.redirect("/");
   }
 };

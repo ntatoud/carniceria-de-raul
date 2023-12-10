@@ -1,6 +1,7 @@
-import { databaseConnect } from "../../../database";
-import { Request, Response } from "express";
-import { QueryError, RowDataPacket } from "mysql2";
+import { toastSuccess } from '../../../components/toast';
+import { databaseConnect } from '../../../database';
+import { Request, Response } from 'express';
+import { QueryError, RowDataPacket } from 'mysql2';
 
 export const getOrderFromId = (req: Request, res: Response, id: string) => {
   const getOrderAndProduct = `SELECT \
@@ -41,8 +42,7 @@ export const getOrderFromId = (req: Request, res: Response, id: string) => {
       if (error) {
         throw new Error(error.message);
       } else {
-        console.log(results);
-        res.render("orderDetails.ejs", {
+        res.render('orderDetails.ejs', {
           orderProducts: results,
           isLogged: req.session.isLogged,
           account: req.session.user,
@@ -56,7 +56,7 @@ export const getOrderList = (req: Request, res: Response) => {
   const connection = databaseConnect();
 
   const getOrderQuery =
-    "SELECT \
+    'SELECT \
     o.orderId, \
     o.userId, \
     u.email, \
@@ -67,15 +67,14 @@ export const getOrderList = (req: Request, res: Response) => {
     o.totalPrice \
     FROM \
     orders o \
-    JOIN users u ON o.userId = u.userId;";
+    JOIN users u ON o.userId = u.userId;';
   connection.query(
     getOrderQuery,
     (error: QueryError, results: RowDataPacket[]) => {
       if (error) {
         throw new Error(error.message);
       } else {
-        console.log(results);
-        res.render("orders.ejs", {
+        res.render('orders.ejs', {
           orders: results,
           isLogged: req.session.isLogged,
           account: req.session.user,
@@ -91,6 +90,6 @@ export const orderDelete = (res: Response, userId: string) => {
   connection.query(deleteQuery, [userId], (error: QueryError | null) => {
     if (error) throw new Error(error.message);
 
-    res.status(200).send("OK");
+    res.status(200).send('OK');
   });
 };

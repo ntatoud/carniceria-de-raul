@@ -12,15 +12,15 @@ router.use(urlencoded({ extended: true }));
 
 router.post("/delete/:id", (req: Request, res: Response) => {
   const userId = req.params.id;
-  userDelete(res, userId);
+  userDelete(res, userId, req.session);
 });
 
 router.post("/create", (req: Request, res: Response) => {
-  userCreate(res, req.body);
+  userCreate(res, req.body, req.session);
 });
 
 router.post("/update/:id", (req: Request, res: Response) => {
-  userUpdate(res, req.body, req.params.id);
+  userUpdate(res, req.body, req.params.id, req.session);
 });
 
 router.use("/create", (req: Request, res: Response) => {

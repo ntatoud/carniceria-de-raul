@@ -21,16 +21,14 @@ declare global {
     content: string;
     type: string;
   };
-  declare module "express-session" {
+  declare module 'express-session' {
     interface SessionData {
       user: Partial<User>;
     }
     interface Session {
       isLogged?: boolean;
-      hasJustLogged?: boolean;
       isPasswordUpdated?: boolean;
-      successToast: Toast;
-      errorToast: Toast;
+      toast: Toast;
     }
   }
 }

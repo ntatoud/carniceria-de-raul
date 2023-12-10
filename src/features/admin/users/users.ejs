@@ -9,6 +9,7 @@
 
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
+    <%-include('../components/toast/toast.ejs')%>
     <main class="d-flex flex-row">
       <%- include('./admin/adminNav.ejs') %>
 
@@ -55,8 +56,9 @@
                     href="/admin/users/update/<%= user.userId%>"
                     class="dropdown-item"
                     type="button"
-                    ><i class="bi bi-pencil"></i> Edit</a
                   >
+                    <i class="bi bi-pencil"></i> Edit
+                  </a>
                   <button
                     id="<%=user.userId%>"
                     onclick="deleteUser(event)"

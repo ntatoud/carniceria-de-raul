@@ -1,6 +1,7 @@
 .toast {
   position: fixed;
   display: flex;
+  flex-direction: row;
   top: 2rem;
   right: 2rem;
   z-index: 10000;
@@ -15,6 +16,12 @@
 .toast-success,
 .toast-success > * {
   background-color: var(--green-600);
+  color: white;
+}
+
+.toast-error,
+.toast-error > * {
+  background-color: var(--red-600);
   color: white;
 }
 

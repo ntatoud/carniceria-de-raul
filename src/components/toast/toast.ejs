@@ -1,7 +1,11 @@
 <%if(toast?.isVisible) {%>
-<div class="toast show <%if(toast.type==='success') {%>toast-success<%}%>">
+<div
+  class="toast show <%if(toast.type==='success') {%>toast-success<%}%> <%if(toast.type==='error') {%>toast-error<%}%>"
+>
   <div class="toast-icon">
-    <i class="bi bi-check-circle-fill"></i>
+    <i
+      class="bi <%if(toast.type==='success') {%>bi-check-circle-fill<%}%> <%if(toast.type==='error') {%>bi-x-circle-fill<%}%>"
+    ></i>
   </div>
   <div class="toast-body">
     <div class="toast-title d-flex justify-content-between">

@@ -1,8 +1,9 @@
-import { databaseConnect } from "../../../database";
-import { User } from "@/features/types";
-import { generateSaltHashedPassword } from "../util";
-import { QueryError, RowDataPacket } from "mysql2";
-import { Request, Response } from "express";
+import { databaseConnect } from '../../../database';
+import { User, UserSession } from '@/features/types';
+import { generateSaltHashedPassword } from '../util';
+import { QueryError, RowDataPacket } from 'mysql2';
+import { Response } from 'express';
+import { toastSuccess } from '../../../components/toast';
 
 export const isStrongPassword = (
   password: string
@@ -11,38 +12,38 @@ export const isStrongPassword = (
   const problems: string[] = [];
   if (password.length < 8) {
     isStrong = false;
-    problems.push("Be at least 8 characters long");
+    problems.push('Be at least 8 characters long');
   }
 
   // Check if the password contains at least one uppercase letter
   if (!/[A-Z]/.test(password)) {
     isStrong = false;
-    problems.push("Contain at least 1 Uppercase letter");
+    problems.push('Contain at least 1 Uppercase letter');
   }
 
   // Check if the password contains at least one lowercase letter
   if (!/[a-z]/.test(password)) {
     isStrong = false;
-    problems.push("Contain at least 1 Lowercase letter");
+    problems.push('Contain at least 1 Lowercase letter');
   }
 
   // Check if the password contains at least one digit
   if (!/\d/.test(password)) {
     isStrong = false;
-    problems.push("Contain at least 1 digit");
+    problems.push('Contain at least 1 digit');
   }
 
   // Check if the password contains at least one special character
   if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
     isStrong = false;
-    problems.push("Contain at least 1 Special character");
+    problems.push('Contain at least 1 Special character');
   }
   return { isStrong, problems };
 };
 
 export const checkEmailTaken = (res: Response, email: string) => {
   const connection = databaseConnect();
-  const checkEmailTakenQuery = "SELECT * FROM users WHERE email = ?";
+  const checkEmailTakenQuery = 'SELECT * FROM users WHERE email = ?';
 
   connection.execute(
     checkEmailTakenQuery,
@@ -51,23 +52,23 @@ export const checkEmailTaken = (res: Response, email: string) => {
       if (error) res.status(502).send(error);
 
       if (result.length) {
-        res.status(200).send("NOK");
+        res.status(200).send('NOK');
       } else {
-        res.status(200).send("OK");
+        res.status(200).send('OK');
       }
     }
   );
 };
 
 export const registerIfPossible = (
-  req: Request,
+  session: UserSession,
   res: Response,
   credentials: User
 ) => {
   const { name, surname, email, password } = credentials;
 
   const connection = databaseConnect();
-  const checkEmailTakenQuery = "SELECT * FROM users WHERE email = ?";
+  const checkEmailTakenQuery = 'SELECT * FROM users WHERE email = ?';
   const registerQuery = `
     INSERT INTO users (name, surname, email, password, salt)
     VALUES (?, ?, ?, ?, ?);
@@ -77,25 +78,25 @@ export const registerIfPossible = (
     [email],
     (error: QueryError | null, result: RowDataPacket[]) => {
       if (error)
-        res.status(502).render("signup.ejs", {
+        res.status(502).render('signup.ejs', {
           error: { state: true, message: error.message },
         });
 
       if (result.length)
-        res.render("signup.ejs", {
+        res.render('signup.ejs', {
           error: {
             state: true,
-            message: "An account already exists with this email.",
+            message: 'An account already exists with this email.',
           },
-          isLogged: req.session.isLogged,
+          isLogged: session.isLogged,
         });
       else if (!isStrongPassword(password).isStrong)
-        res.render("signup.ejs", {
+        res.render('signup.ejs', {
           error: {
             state: true,
-            message: "Your password is too weak",
-            isLogged: req.session.isLogged,
-            account: req.session.user,
+            message: 'Your password is too weak',
+            isLogged: session.isLogged,
+            account: session.user,
           },
         });
       else {
@@ -105,17 +106,14 @@ export const registerIfPossible = (
           [name, surname, email, hashPwd, salt],
           (error: QueryError | null) => {
             if (error)
-              res.status(502).render("signup.ejs", {
+              res.status(502).render('signup.ejs', {
                 error: { state: true, message: error.message },
               });
 
-            req.session.successToast = {
-              isVisible: true,
-              title: "Success",
-              content: "Account created successfully",
-              type: "success",
-            };
-            res.status(200).redirect("/auth/login");
+            session.toast = toastSuccess({
+              content: 'Account created successfuly',
+            });
+            res.status(200).redirect('/auth/login');
 
             connection.end();
           }

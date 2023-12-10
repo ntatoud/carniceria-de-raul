@@ -8,6 +8,7 @@
   </head>
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
+    <%- include('../../../components/toast/toast.ejs')%>
     <%-include('./layout/mainbar.ejs', {title: `Bienvenido ${accountName}`,
     backLink:"./"})%>
     <main class="d-flex">
@@ -158,13 +159,13 @@
           const nameInput = document.getElementById(inputId);
           const nameError = document.getElementById(errorSpanId);
 
-          nameInput.addEventListener("input", function () {
+          nameInput.addEventListener('input', function () {
             const enteredName = nameInput.value.trim();
 
             if (containsNumber(enteredName)) {
-              nameError.style.display = "block";
+              nameError.style.display = 'block';
             } else {
-              nameError.style.display = "none";
+              nameError.style.display = 'none';
             }
           });
 
@@ -172,9 +173,9 @@
         };
 
         // Usage example: validate 'name' input field
-        validateNameAndDisplayError("name", "nameError");
-        validateNameAndDisplayError("surname", "surnameError");
-        validateNameAndDisplayError("city", "cityError");
+        validateNameAndDisplayError('name', 'nameError');
+        validateNameAndDisplayError('surname', 'surnameError');
+        validateNameAndDisplayError('city', 'cityError');
       </script>
       <script>
         // Check that post code has only 5 numbers
@@ -182,36 +183,36 @@
           const postCodeInput = document.getElementById(inputId);
           const postCodeError = document.getElementById(errorSpanId);
 
-          postCodeInput.addEventListener("input", function () {
+          postCodeInput.addEventListener('input', function () {
             const enteredPostCode = postCodeInput.value.trim();
 
             if (
               enteredPostCode.length != 5 ||
               containsLetter(enteredPostCode)
             ) {
-              postCodeError.style.display = "block";
+              postCodeError.style.display = 'block';
             } else {
-              posrCodeError.style.display = "none";
+              posrCodeError.style.display = 'none';
             }
           });
           const containsLetter = (postCode) => /^(?=.*\d{5}).*$/.test(postCode);
         };
 
         // Usage example: validate 'name' input field
-        validatePostCodeAndDisplayError("postalCode", "postalCodeError");
+        validatePostCodeAndDisplayError('postalCode', 'postalCodeError');
       </script>
       <script>
         const validateAndShowErrorEmail = (inputId, spanId) => {
           const inputElement = document.getElementById(inputId);
           const errorSpan = document.getElementById(spanId);
 
-          inputElement.addEventListener("input", function () {
+          inputElement.addEventListener('input', function () {
             const enteredValue = inputElement.value.trim();
 
             if (!validateEmail(enteredValue)) {
-              errorSpan.style.display = "block";
+              errorSpan.style.display = 'block';
             } else {
-              errorSpan.style.display = "none";
+              errorSpan.style.display = 'none';
             }
           });
 
@@ -220,7 +221,7 @@
             return regex.test(email);
           };
         };
-        validateAndShowErrorEmail("email", "emailError");
+        validateAndShowErrorEmail('email', 'emailError');
       </script>
     </main>
     <script src="/features/layout/frontend/utils.js"></script>

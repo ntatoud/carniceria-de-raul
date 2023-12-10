@@ -16,7 +16,7 @@ router.post("/checkPassword", (req, res) => {
 });
 
 router.post("/", (req: Request, res: Response, next: NextFunction) => {
-  registerIfPossible(req, res, req.body);
+  registerIfPossible(req.session, res, req.body);
 });
 
 router.use("/", (req: Request, res: Response) => {

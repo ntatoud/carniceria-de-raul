@@ -52,7 +52,7 @@ table {
   align-items: center;
 }
 
-.table-row a {
+.table-row .link-box {
   content: " ";
   top: 0;
   left: 0;

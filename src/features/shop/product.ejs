@@ -40,7 +40,9 @@
             <div class="product-desc"><%=product.description%></div>
           </div>
           <div class="card-footer">
-            <form class="product-form"><%- include('productForm.ejs')%></form>
+            <form class="product-form">
+              <%- include('./_partials/productForm.ejs')%>
+            </form>
           </div>
         </div>
       </div>
