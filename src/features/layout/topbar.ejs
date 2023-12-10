@@ -17,7 +17,7 @@
         aria-labelledby="accountMenu"
       >
         <% if(!isLogged) {%>
-        <h6 class="dropdown-header">Welcome <b>Guest</b></h6>
+        <h6 class="dropdown-header">You are not connected!</h6>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="/auth/login"
           ><i class="bi bi-box-arrow-in-right"></i>Login</a
@@ -26,7 +26,7 @@
           ><i class="bi bi-person-lines-fill"></i>Signup</a
         >
         <%} else {%>
-        <h6 class="dropdown-header">Account Menu</h6>
+        <h6 class="dropdown-header"><%=account.email%></h6>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="/account"
           ><i class="bi bi-person"></i>My account</a
