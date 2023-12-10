@@ -15,9 +15,13 @@
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
     <main class="d-flex flex-column align-items-center">
-      <%- include('./auth/tab.ejs') %>
-      <form class="login-form form d-grid" action="/auth/update/updatePassword" method="post" role="form">        
-        <%- include('./pwd-pwd.ejs') %>
+      <form
+        class="login-form form d-grid"
+        action="/auth/update"
+        method="post"
+        role="form"
+      >
+        <%- include('./passwordResetForm.ejs') %>
         <!-- Hidden input to hold the token value -->
         <input type="hidden" id="token" name="token" value="<%= token %>" />
         <!--<button type="submit" class="button button-primary">Reset Password</button>-->

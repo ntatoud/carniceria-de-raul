@@ -1,17 +1,17 @@
-import * as crypto from "crypto";
-import { User } from "../types";
+import * as crypto from 'crypto';
+import { User } from '../types';
 
-export const generate32ByteSalt = (): string => {
+const generate32ByteSalt = (): string => {
   const saltBytes = crypto.randomBytes(32); // 32 bytes for the salt
-  return saltBytes.toString("hex"); // Convert the buffer to a hexadecimal string
+  return saltBytes.toString('hex'); // Convert the buffer to a hexadecimal string
 };
 
-export const xorStringWith32ByteKey = (
+const xorStringWith32ByteKey = (
   inputString: string,
   key32Bytes: string
 ): string => {
-  const inputBuffer = Buffer.from(inputString, "utf-8");
-  const keyBuffer = Buffer.from(key32Bytes, "hex");
+  const inputBuffer = Buffer.from(inputString, 'utf-8');
+  const keyBuffer = Buffer.from(key32Bytes, 'hex');
 
   // XOR the input buffer with the key buffer
   const xorResult = Buffer.alloc(inputBuffer.length);
@@ -20,12 +20,12 @@ export const xorStringWith32ByteKey = (
   }
 
   // Convert the result to a hexadecimal string
-  return xorResult.toString("hex");
+  return xorResult.toString('hex');
 };
-export const sha256HexString = (inputHex: string): string => {
-  const inputBuffer = Buffer.from(inputHex, "hex");
-  const hashBuffer = crypto.createHash("sha256").update(inputBuffer).digest();
-  return hashBuffer.toString("hex");
+const sha256HexString = (inputHex: string): string => {
+  const inputBuffer = Buffer.from(inputHex, 'hex');
+  const hashBuffer = crypto.createHash('sha256').update(inputBuffer).digest();
+  return hashBuffer.toString('hex');
 };
 
 export const generateSaltHashedPassword = (

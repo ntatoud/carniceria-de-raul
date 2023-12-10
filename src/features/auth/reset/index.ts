@@ -1,8 +1,9 @@
-import { Router, urlencoded, Request, Response } from "express";
-import nodemailer from "nodemailer";
+import { Router, urlencoded, Request, Response } from 'express';
+import nodemailer from 'nodemailer';
 import { v4 as uuidv4 } from 'uuid'; // Import UUID for generating unique tokens
 import { databaseConnect } from '../../../database'; // Import your database connection module
 import dotenv from 'dotenv';
+import { generateResetLink } from './utils';
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -10,11 +11,9 @@ const router = Router();
 
 router.use(urlencoded({ extended: true }));
 
-router.post("/send", (req: Request, res: Response) => {
-
+router.post('/', (req: Request, res: Response) => {
   const userEmail = req.body.email; // Assuming the email is sent as part of the request body
   const resetToken = uuidv4(); // Generate a unique token for this reset request
-
   try {
     const connection = databaseConnect(); // Establish database connection
 
@@ -30,7 +29,7 @@ router.post("/send", (req: Request, res: Response) => {
     const resetLink = generateResetLink(resetToken); // Pass the token to the reset link
 
     const transporter = nodemailer.createTransport({
-      host: "smtp-mail.outlook.com", // Outlook SMTP server
+      host: 'smtp-mail.outlook.com', // Outlook SMTP server
       port: 587, // Outlook SMTP port
       secure: false, // TLS requires secureConnection to be false
       auth: {
@@ -43,24 +42,21 @@ router.post("/send", (req: Request, res: Response) => {
     const mailOptions = {
       from: process.env.EMAIL,
       to: userEmail,
-      subject: "Reset Your Password",
+      subject: 'Reset Your Password',
       text: `Click on the link to reset your password: ${resetLink}`,
     };
 
     transporter.sendMail(mailOptions);
-    res.send("Reset link sent successfully!");
+
+    res.send('Reset link sent successfully!');
   } catch (error) {
-    console.error("Error sending email:", error);
-    res.status(500).send("Error sending reset link.");
+    console.error('Error sending email:', error);
+    res.status(500).send('Error sending reset link.');
   }
 });
 
-function generateResetLink(token: string) {
-  return `http://127.0.0.1:3000/auth/update/index?token=${token}`;
-}
-
-router.use("/", (req: Request, res: Response) => {
-  res.render("reset.ejs");
+router.use('/', (req: Request, res: Response) => {
+  res.render('reset.ejs');
 });
 
 export default router;

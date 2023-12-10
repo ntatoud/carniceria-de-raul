@@ -1,18 +1,19 @@
-import { Router, urlencoded, Request, Response } from "express";
-import { generate32ByteSalt, xorStringWith32ByteKey, sha256HexString } from "../util";
-import { databaseConnect } from "../../../database";
-import { RowDataPacket } from "mysql2";
+import { Router, urlencoded, Request, Response } from 'express';
+import { generateSaltHashedPassword } from '../util';
+import { databaseConnect } from '../../../database';
+import { QueryError } from 'mysql2';
+import { getUserIdFromToken } from './utils';
 
 const router = Router();
 
 router.use(urlencoded({ extended: true }));
 
-router.post('/updatePassword', (req: Request, res: Response) => {
+router.post('/', (req: Request, res: Response) => {
   const { newPassword, confirmPassword, token } = req.body;
-  
+  console.log('yo');
   // Check if the new password and confirm password match
   if (newPassword !== confirmPassword) {
-    return res.status(400).send("Passwords do not match.");
+    return res.status(400).send('Passwords do not match.');
   }
 
   try {
@@ -23,9 +24,7 @@ router.post('/updatePassword', (req: Request, res: Response) => {
           return res.status(404).send('User not found for this reset link.');
         }
 
-        const salt = generate32ByteSalt();
-        const saltedPwd = xorStringWith32ByteKey(newPassword, salt);
-        const hashPwd = sha256HexString(saltedPwd);
+        const { salt, hashPwd } = generateSaltHashedPassword(newPassword);
 
         const connection = databaseConnect(); // Assuming databaseConnect returns a Promise resolving to a database connection
 
@@ -35,18 +34,22 @@ router.post('/updatePassword', (req: Request, res: Response) => {
           WHERE user_id = ?;
         `;
 
-        connection.execute(updateQuery, [hashPwd, salt, userId], (error) => {
-          if (error) {
-            console.error('Error updating password:', error);
-            res.status(500).send('Error updating password.');
-          } else {
-            // Close the database connection
-            connection.end();
-            res.status(200).send('Password updated successfully.');
+        connection.execute(
+          updateQuery,
+          [hashPwd, salt, userId],
+          (error: QueryError | null) => {
+            if (error) {
+              console.error('Error updating password:', error);
+              res.status(500).send('Error updating password.');
+            } else {
+              // Close the database connection
+              connection.end();
+              res.status(200).send('Password updated successfully.');
+            }
           }
-        });
+        );
       })
-      .catch((error) => {
+      .catch((error: Error) => {
         console.error('Error retrieving user ID:', error);
         res.status(500).send('Error updating password.');
       });
@@ -56,42 +59,9 @@ router.post('/updatePassword', (req: Request, res: Response) => {
   }
 });
 
-function getUserIdFromToken(token: string): Promise<number | null> {
-  return new Promise((resolve, reject) => {
-    try {
-      const connection = databaseConnect(); // Assuming databaseConnect returns a Promise resolving to a database connection
-
-      const selectQuery = `
-        SELECT user_id
-        FROM users
-        WHERE token = ?;
-      `;
-
-      connection.execute(selectQuery, [token], (error, results) => {
-        if (error) {
-          // Close the database connection
-          connection.end();
-          reject(error);
-        } else {
-          // Close the database connection
-          connection.end();
-          if (Array.isArray(results) && results.length > 0) {
-            const row = results[0] as RowDataPacket;
-            resolve(row.user_id);
-          } else {
-            resolve(null);
-          }
-        }
-      });
-    } catch (error) {
-      reject(error);
-    }
-  });
-}
-
 router.use('/', (req: Request, res: Response) => {
   const { token } = req.query;
-  res.render("update.ejs", { token });
+  res.render('update.ejs', { token });
 });
 
 export default router;

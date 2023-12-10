@@ -6,8 +6,12 @@
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
     <main class="d-flex flex-column align-items-center justify-content-center">
-      <%- include('./auth/tab.ejs') %>
-      <form class="form login-form d-grid" action="/auth/reset/send" method="POST">
+      <form
+        class="form login-form d-grid"
+        action="/auth/reset"
+        method="POST"
+        role="form"
+      >
         <h2>Reset Password</h2>
         <div class="form-group">
           <label for="email">Email</label>
