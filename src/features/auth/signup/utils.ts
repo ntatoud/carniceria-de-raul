@@ -109,6 +109,12 @@ export const registerIfPossible = (
                 error: { state: true, message: error.message },
               });
 
+            req.session.successToast = {
+              isVisible: true,
+              title: "Success",
+              content: "Account created successfully",
+              type: "success",
+            };
             res.status(200).redirect("/auth/login");
 
             connection.end();

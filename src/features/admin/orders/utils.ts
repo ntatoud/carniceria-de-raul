@@ -1,5 +1,4 @@
 import { databaseConnect } from "../../../database";
-import { Order } from "@/features/types";
 import { Request, Response } from "express";
 import { QueryError, RowDataPacket } from "mysql2";
 
@@ -27,7 +26,7 @@ export const getOrderFromId = (req: Request, res: Response, id: string) => {
     FROM \
     orders o \
     JOIN products_orders po ON o.orderId = po.orderId \
-    JOIN products p ON po.productId = p.productIdd \
+    JOIN products p ON po.productId = p.productId \
     JOIN product_categories pc ON p.productId = pc.productId \
     JOIN categories c ON pc.categoryId = c.categoryId \
     WHERE \

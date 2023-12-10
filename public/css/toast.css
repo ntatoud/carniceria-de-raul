@@ -1,0 +1,41 @@
+.toast {
+  position: fixed;
+  display: flex;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10000;
+  padding: 0.25rem;
+}
+
+.toast-icon {
+  padding: 0.5rem 0.5rem;
+  font-size: var(--font-md);
+}
+
+.toast-success,
+.toast-success > * {
+  background-color: var(--green-600);
+  color: white;
+}
+
+.toast-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  gap: 0.25rem;
+  padding: 0.5rem;
+}
+
+.toast-title {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  border: 0;
+  font-size: var(--font-md);
+}
+
+.toast-title > div {
+  display: flex;
+  gap: 0.5rem;
+}

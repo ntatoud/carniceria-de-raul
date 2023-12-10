@@ -77,6 +77,7 @@ app.use("/account", account); // Has subroutes
 
 app.use("/", (req: Request, res: Response) => {
   const { isLogged, hasJustLogged, user } = req.session;
+
   req.session.hasJustLogged = false;
   res.render("index.ejs", {
     isLogged: isLogged,

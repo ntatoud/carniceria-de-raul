@@ -62,8 +62,18 @@ router.post("/", (req: Request, res: Response) => {
 });
 
 router.use("/", (req: Request, res: Response) => {
+  const toast = req.session.successToast;
+
+  if (req.session.successToast?.isVisible)
+    req.session.successToast = {
+      isVisible: false,
+      title: "",
+      content: "",
+      type: "",
+    };
+
   res.render("login.ejs", {
-    signed: false,
+    toast: toast,
     error: {},
     isLogged: req.session.isLogged,
     account: req.session.user,

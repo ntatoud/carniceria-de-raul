@@ -1,0 +1,14 @@
+<%if(toast?.isVisible) {%>
+<div class="toast show <%if(toast.type==='success') {%>toast-success<%}%>">
+  <div class="toast-icon">
+    <i class="bi bi-check-circle-fill"></i>
+  </div>
+  <div class="toast-body">
+    <div class="toast-title d-flex justify-content-between">
+      <%=toast.title%>
+      <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+    </div>
+    <div class="toast-content"><%=toast.content%></div>
+  </div>
+</div>
+<%}%>

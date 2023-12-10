@@ -15,6 +15,12 @@ declare global {
     address?: string;
     creationDate?: Date;
   };
+  type Toast = {
+    isVisible: boolean;
+    title: string;
+    content: string;
+    type: string;
+  };
   declare module "express-session" {
     interface SessionData {
       user: Partial<User>;
@@ -22,6 +28,9 @@ declare global {
     interface Session {
       isLogged?: boolean;
       hasJustLogged?: boolean;
+      isPasswordUpdated?: boolean;
+      successToast: Toast;
+      errorToast: Toast;
     }
   }
 }
