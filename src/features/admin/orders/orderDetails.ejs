@@ -8,7 +8,7 @@
 
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
-    <%- include('./layout/mainbar.ejs') %>
+    <%- include('./layout/mainbar.ejs', {title: "Orders", backLink: ""}) %>
     <div class="toast show">
       <div class="toast-header">
         Toast Header
@@ -25,16 +25,16 @@
       <div class="order-container d-flex flex-column">
         <%orderProducts.map((product) => {%>
         <div class="product-row d-flex">
-          <div><%=product.product_name%></div>
+          <div><%=product.productName%></div>
           <div>
-            <%=product.quantite%> x <%=product.product_price%> =
-            <%=product.quantite*product.product_price%>
+            <%=product.quantite%> x <%=product.productPrice%> =
+            <%=product.quantite*product.productPrice%>
           </div>
           <div></div>
         </div>
         <%})%>
         <div class="order-summary d-flex">
-          <b>Total: </b> <%=orderProducts[0].total_price%>
+          <b>Total: </b> <%=orderProducts[0].totalPrice%>
         </div>
       </div>
     </main>

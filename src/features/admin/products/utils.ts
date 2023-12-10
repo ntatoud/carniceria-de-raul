@@ -1,6 +1,6 @@
 import { databaseConnect } from "../../../database";
 import { Product } from "@/features/types";
-import { Response } from "express";
+import { Request, Response } from "express";
 import { QueryError, RowDataPacket } from "mysql2";
 
 export const productCreate = (res: Response, product: Partial<Product>) => {
@@ -15,7 +15,7 @@ export const productCreate = (res: Response, product: Partial<Product>) => {
     product.description,
   ];
   const createProductQuery =
-    "INSERT INTO products (name, price, stock, sale, sale_price, image, description) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    "INSERT INTO products (name, price, stock, sale, salePrice, image, description) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
   connection.query(
     createProductQuery,
@@ -44,7 +44,7 @@ export const productUpdate = (res: Response, product: Product, id: string) => {
   ];
 
   const updateProductQuery =
-    "UPDATE products SET name = ?, price = ?, stock = ?, sale = ?, sale_price = ?, image = ?, description = ? WHERE product_id = ?;";
+    "UPDATE products SET name = ?, price = ?, stock = ?, sale = ?, salePrice = ?, image = ?, description = ? WHERE productId = ?;";
   connection.query(
     updateProductQuery,
     queryParams,
@@ -57,12 +57,16 @@ export const productUpdate = (res: Response, product: Product, id: string) => {
   );
 };
 
-export const getProductToUpdate = (res: Response, productId: string) => {
+export const getProductToUpdate = (
+  req: Request,
+  res: Response,
+  productId: string
+) => {
   const connection = databaseConnect();
   // To use once merged in main !
   // const getProductQuery =
-  //   "SELECT p.product_id, p.name p.price, p.stock, p.sale, p.sale_price, p.image, p.description, c.name AS category FROM products p JOIN product_category pc ON p.product_id = pc.product_id JOIN category c ON pc.category_id = c.id;";
-  const getProductQuery = "SELECT * FROM products WHERE product_id = ?;";
+  //   "SELECT p.product_id, p.name p.price, p.stock, p.sale, p.salerice, p.image, p.description, c.name AS category FROM products p JOIN product_category pc ON p.product_id = pc.product_id JOIN category c ON pc.category_id = c.id;";
+  const getProductQuery = "SELECT * FROM products WHERE productId = ?;";
 
   connection.query(
     getProductQuery,
@@ -70,17 +74,20 @@ export const getProductToUpdate = (res: Response, productId: string) => {
     (error: QueryError | null, result: RowDataPacket[]) => {
       if (error) throw new Error(error.message);
 
-      console.log(result);
       const product = result[0] as Product;
 
-      res.render("productUpdate.ejs", { product: product });
+      res.render("productUpdate.ejs", {
+        product: product,
+        isLogged: req.session.isLogged,
+        account: req.session.user,
+      });
     }
   );
 };
 
 export const productDelete = (res: Response, productId: string) => {
   const connection = databaseConnect();
-  const deleteQuery = `DELETE FROM products WHERE product_id = ?;`;
+  const deleteQuery = `DELETE FROM products WHERE productId = ?;`;
   connection.query(deleteQuery, [productId], (error: QueryError | null) => {
     if (error) throw new Error(error.message);
 
@@ -88,7 +95,11 @@ export const productDelete = (res: Response, productId: string) => {
   });
 };
 
-export const getProductList = (res: Response, category?: string) => {
+export const getProductList = (
+  req: Request,
+  res: Response,
+  category?: string
+) => {
   const connection = databaseConnect();
   const getProductsQuery = "SELECT * from products;";
 
@@ -97,7 +108,11 @@ export const getProductList = (res: Response, category?: string) => {
     (error: QueryError | null, results: RowDataPacket[]) => {
       if (error) throw new Error(error.message);
 
-      res.render("products.ejs", { products: results as Product[] });
+      res.render("products.ejs", {
+        products: results as Product[],
+        isLogged: req.session.isLogged,
+        account: req.session.user,
+      });
     }
   );
 };

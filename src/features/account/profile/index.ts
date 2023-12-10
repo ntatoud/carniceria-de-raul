@@ -1,16 +1,19 @@
 import { Router, Response, Request } from "express";
+import { accountUpdate } from "./utils";
 
 const router = Router();
 
 router.post("/", (req: Request, res: Response) => {
   console.log(req.body);
-  res.render("profile.ejs", {
-    accountName: "Nombre de usuario",
-  });
+
+  accountUpdate(req, res, req.body);
 });
+
 router.use("/", (req: Request, res: Response) => {
   res.render("profile.ejs", {
-    accountName: "Nombre de usuario",
+    accountName: req.session.user?.name ?? "Usuario",
+    isLogged: req.session.isLogged,
+    account: req.session.user,
   });
 });
 

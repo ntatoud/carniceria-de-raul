@@ -1,5 +1,5 @@
 <div
-  id="<%=product.product_id%>"
+  id="<%=product.productId%>"
   class="product-card<% if(product.stock === 0) { %> disabled<% }%>"
 >
   <!-- CARD HEADER -->
@@ -7,7 +7,7 @@
     <% if(product.sale) { %>
     <!-- Sale tag -->
     <div class="sale-tag">
-      -<%=Math.round(100*(product.price-product.sale_price)/product.price)%>%
+      -<%=Math.round(100*(product.price-product.salePrice)/product.price)%>%
     </div>
     <% }%> <% if(product.best) { %>
     <!-- Best tag -->
@@ -21,7 +21,7 @@
     <% if(product.stock === 0) { %>
     <div class="product-empty-tag">Agotado</div>
     <% }%>
-    <a href="/shop/<%=product.category%>/<%=product.product_id%>">
+    <a href="/shop/<%=product.category%>/<%=product.productId%>">
       <img
         src="/assets/images/products/<%=product.category%>.jpg"
         alt="product-image"
@@ -39,7 +39,7 @@
       <% if(product.sale) { %>
       <div class="normal-price"><%=product.price%></div>
       <i class="bi bi-arrow-right"></i>
-      <div class="sale-price"><%=product.sale_price%> <%=product.unit%></div>
+      <div class="sale-price"><%=product.salePrice%> <%=product.unit%></div>
       <% } else {%><%=product.price%> <%=product.unit%><% }%>
     </div>
     <!-- Product Form -->
@@ -47,7 +47,7 @@
   </div>
   <!-- CARD FOOTER -->
   <div class="product-footer">
-    <a href="/shop/<%=product.category%>/<%=product.product_id%>">
+    <a href="/shop/<%=product.category%>/<%=product.productId%>">
       <i class="bi bi-chevron-down"></i>
       Mas informaciones
     </a>

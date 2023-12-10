@@ -11,11 +11,11 @@ router.post("/delete/:id", (req: Request, res: Response) => {
 });
 
 router.use("/:id", (req: Request, res: Response) => {
-  getOrderFromId(res, req.params.id);
+  getOrderFromId(req, res, req.params.id);
 });
 
 router.use("/", (req: Request, res: Response) => {
-  getOrderList(res);
+  getOrderList(req, res);
 });
 
 export default router;

@@ -3,6 +3,7 @@ import { isPasswordCorrect } from "../util";
 import { databaseConnect } from "../../../database";
 import { QueryError, RowDataPacket } from "mysql2/promise";
 import { User } from "@/features/types";
+import { createSession } from "./utils";
 
 const router = Router();
 
@@ -14,11 +15,9 @@ router.post("/", (req: Request, res: Response) => {
   const connection = databaseConnect(); // Establish database connection
 
   const selectQuery = `
-      SELECT user_id, email, password, salt
+      SELECT *
       FROM users
-      WHERE email = "${email}";
-    `;
-
+      WHERE email = ?`;
   connection.execute(
     selectQuery,
     [email],
@@ -32,17 +31,28 @@ router.post("/", (req: Request, res: Response) => {
         const userData = (result as User[])[0];
 
         if (isPasswordCorrect(password, userData)) {
-          // Passwords match, login successful
+          const { salt, password, ...safeUser } = userData;
+          // Passwords match, login successful, we create the session
+          createSession(req.session, safeUser);
           res.status(200).redirect("/");
         } else {
           res.status(401).render("login.ejs", {
-            signed: false,
-            error: { state: true, message: "Invalid Credentials" },
+            error: {
+              state: true,
+              message: "Invalid Credentials",
+            },
+            isLogged: req.session.isLogged,
+            account: req.session.user,
           });
         }
       } else {
         res.status(401).render("login.ejs", {
-          error: { signed: false, state: true, message: "Invalid Credentials" },
+          error: {
+            state: true,
+            message: "Invalid Credentials",
+          },
+          isLogged: req.session.isLogged,
+          account: req.session.user,
         });
       }
     }
@@ -52,7 +62,12 @@ router.post("/", (req: Request, res: Response) => {
 });
 
 router.use("/", (req: Request, res: Response) => {
-  res.render("login.ejs", { signed: false, error: {} });
+  res.render("login.ejs", {
+    signed: false,
+    error: {},
+    isLogged: req.session.isLogged,
+    account: req.session.user,
+  });
 });
 
 export default router;

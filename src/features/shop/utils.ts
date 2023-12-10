@@ -1,12 +1,16 @@
 import { QueryError } from "mysql2";
 import { databaseConnect } from "../../database";
 import { Category, Product } from "../types";
-import { Response } from "express";
+import { Request, Response } from "express";
 
-export const getAllProductsWithCategory = (res: Response, filter?: string) => {
+export const getAllProductsWithCategory = (
+  req: Request,
+  res: Response,
+  filter?: string
+) => {
   const connection = databaseConnect();
   const getProductsQuery =
-    "SELECT p.*, c.name AS category FROM products p JOIN product_categories pc ON p.product_id = pc.product_id JOIN categories c ON pc.category_id = c.category_id;";
+    "SELECT p.*, c.name AS category FROM products p JOIN product_categories pc ON p.productId = pc.productId JOIN categories c ON pc.categoryId = c.categoryId;";
 
   const getCategoriesQuery = `SELECT * FROM categories;`;
 
@@ -24,6 +28,8 @@ export const getAllProductsWithCategory = (res: Response, filter?: string) => {
               categories: categoryResults,
               products: undefined,
               currentCategory: "",
+              isLogged: req.session.isLogged,
+              account: req.session.user,
             });
 
           const products: Product[] = productResults.map((product: Product) => {
@@ -35,6 +41,8 @@ export const getAllProductsWithCategory = (res: Response, filter?: string) => {
             categories: categoryResults,
             products: products,
             currentCategory: "",
+            isLogged: req.session.isLogged,
+            account: req.session.user,
           });
           connection.end();
         }
@@ -43,7 +51,7 @@ export const getAllProductsWithCategory = (res: Response, filter?: string) => {
   );
 };
 
-export const renderShopHome = (res: Response) => {
+export const renderShopHome = (req: Request, res: Response) => {
   const connection = databaseConnect();
 
   const getCategoriesQuery = `SELECT * FROM categories;`;
@@ -62,6 +70,8 @@ export const renderShopHome = (res: Response) => {
               categories: categoryResults,
               products: undefined,
               currentCategory: "",
+              isLogged: req.session.isLogged,
+              account: req.session.user,
             });
         }
       );
@@ -70,6 +80,8 @@ export const renderShopHome = (res: Response) => {
         categories: categoryResults,
         products: undefined,
         currentCategory: "",
+        isLogged: req.session.isLogged,
+        account: req.session.user,
       });
 
       connection.end();
@@ -78,6 +90,7 @@ export const renderShopHome = (res: Response) => {
 };
 
 type CategoryPageProps = {
+  req: Request;
   res: Response;
   currentCategory: string;
   isOnlyOffers?: boolean;
@@ -86,6 +99,7 @@ type CategoryPageProps = {
 };
 
 export const renderCategoryPage = ({
+  req,
   res,
   currentCategory,
   isOnlyOffers = false,
@@ -101,8 +115,8 @@ export const renderCategoryPage = ({
       if (error) res.status(404).render("404.ejs");
 
       const getProductsFromCategoryQuery = `SELECT products.* FROM products
-        JOIN product_categories ON products.product_id = product_categories.product_id
-        JOIN categories ON product_categories.category_id = categories.category_id
+        JOIN product_categories ON products.productId = product_categories.productId
+        JOIN categories ON product_categories.categoryId = categories.categoryId
         WHERE categories.name = "${currentCategory}"
         ${isOnlyOffers ? "AND products.sale = 1" : ""}
         ${
@@ -123,6 +137,8 @@ export const renderCategoryPage = ({
               categories: categoryResults,
               products: undefined,
               currentCategory: currentCategory,
+              isLogged: req.session.isLogged,
+              account: req.session.user,
             });
 
           const products: Product[] = productResults.map((product) => {
@@ -134,6 +150,8 @@ export const renderCategoryPage = ({
             categories: categoryResults,
             products: products,
             currentCategory: currentCategory,
+            isLogged: req.session.isLogged,
+            account: req.session.user,
           });
 
           connection.end();
@@ -144,12 +162,14 @@ export const renderCategoryPage = ({
 };
 
 type ProductPageProps = {
+  req: Request;
   res: Response;
   currentCategory: string;
   productId: string;
 };
 
 export const renderProductPage = ({
+  req,
   res,
   currentCategory,
   productId,
@@ -157,12 +177,14 @@ export const renderProductPage = ({
   const connection = databaseConnect();
 
   connection.query(
-    `SELECT * from products WHERE product_id = ${productId};`,
+    `SELECT * from products WHERE productId = ${productId};`,
     (error: QueryError, results: Partial<Product>[]) => {
       if (error) throw new Error(error.message);
       res.render("product.ejs", {
         product: results[0],
         currentCategory: currentCategory,
+        isLogged: req.session.isLogged,
+        account: req.session.user,
       });
     }
   );

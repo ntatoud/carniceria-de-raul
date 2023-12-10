@@ -24,62 +24,65 @@ export const databaseCreate = (): void => {
   connection.query(
     ` 
       CREATE TABLE IF NOT EXISTS users (
-        user_id INT AUTO_INCREMENT PRIMARY KEY,
+        userId INT AUTO_INCREMENT PRIMARY KEY,
         email VARCHAR(100) UNIQUE NOT NULL,
         name VARCHAR(50),
         surname VARCHAR(50),
         password VARCHAR(255) NOT NULL,
         salt VARCHAR(255) NOT NULL,
         address VARCHAR(255),
+        city VARCHAR(255),
+        postalCode VARCHAR(255),
+        country VARCHAR(255),
         authorities ENUM('ROLE_USER', 'ROLE_ADMIN') NOT NULL,
-        creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        phone_number VARCHAR(20)
+        creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        phone VARCHAR(20)
         );
       
       
       CREATE TABLE IF NOT EXISTS products (
-        product_id INT AUTO_INCREMENT PRIMARY KEY,
+        productId INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(250) NOT NULL,
         price DECIMAL(10, 2) NOT NULL,
         unit ENUM("€/kg", "€/unidad"),
         stock INT NOT NULL,
         sale Boolean,
-        sale_price DECIMAL(10, 2),
+        salePrice DECIMAL(10, 2),
         best Boolean,
         image VARCHAR(255) NOT NULL,
         description VARCHAR(2048) NOT NULL
         );
       
       CREATE TABLE IF NOT EXISTS categories (
-          category_id INT AUTO_INCREMENT PRIMARY KEY,
+          categoryId INT AUTO_INCREMENT PRIMARY KEY,
           name VARCHAR(255) NOT NULL
       );
   
       CREATE TABLE IF NOT EXISTS product_categories (
-        product_id INT,
-        category_id INT,
-        PRIMARY KEY (product_id, category_id),
-        FOREIGN KEY (product_id) REFERENCES products(product_id),
-        FOREIGN KEY (category_id) REFERENCES categories(category_id)
+        productId INT,
+        categoryId INT,
+        PRIMARY KEY (productId, categoryId),
+        FOREIGN KEY (productId) REFERENCES products(productId),
+        FOREIGN KEY (categoryId) REFERENCES categories(categoryId)
       );
 
       CREATE TABLE IF NOT EXISTS orders (
-        order_id INT AUTO_INCREMENT PRIMARY KEY,
-        user_id INT NOT NULL,
-        order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        recovery_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        total_price DECIMAL(10, 2),
+        orderId INT AUTO_INCREMENT PRIMARY KEY,
+        userId INT NOT NULL,
+        orderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        recoveryDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        totalPrice DECIMAL(10, 2),
         comment VARCHAR(2048),
-        FOREIGN KEY (user_id) REFERENCES users(user_id)
+        FOREIGN KEY (userId) REFERENCES users(userId)
         );
           
       CREATE TABLE IF NOT EXISTS products_orders (
-        order_id INT,
-        product_id INT,
+        orderId INT,
+        productId INT,
         quantite INT,
-        PRIMARY KEY (order_id, product_id),
-        FOREIGN KEY (order_id) REFERENCES orders(order_id),
-        FOREIGN KEY (product_id) REFERENCES products(product_id)
+        PRIMARY KEY (orderId, productId),
+        FOREIGN KEY (orderId) REFERENCES orders(orderId),
+        FOREIGN KEY (productId) REFERENCES products(productId)
        );
       `,
     (error: Error) => {

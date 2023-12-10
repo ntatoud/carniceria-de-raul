@@ -12,7 +12,8 @@
 }
 
 .navbar.menu-navbar,
-.navbar.menu-navbar > .navbar-container {
+.navbar.menu-navbar > .navbar-container,
+.navbar.menu-navbar .nav-item {
   padding: 0;
 }
 
@@ -33,7 +34,7 @@
   border-radius: 1em;
   position: absolute;
   left: 50%;
-  bottom: 0.6em;
+  bottom: 0.6rem;
   transform: translate(-50%, 0);
   content: " ";
   width: 0.2em;
@@ -45,6 +46,7 @@
 .menu-navbar .nav-link:hover::after {
   width: 1.5rem;
 }
+
 .menu-navbar .nav-link.active::after {
   width: 1.5rem;
   background: white;

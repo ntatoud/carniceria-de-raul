@@ -26,7 +26,7 @@ export const storeImageInDb = (path: string, res: Response) => {
   const connection = databaseConnect();
 
   connection.query(
-    `INSERT INTO products (name, price, stock, sale, sale_price, image, description) 
+    `INSERT INTO products (name, price, stock, sale, salePrice, image, description) 
       VALUES ('Product BLOB', 29.99, 100, true, 19.99, '${path}', 'Long description for Product A');`,
     (error: QueryError) => {
       if (error) {

@@ -42,7 +42,7 @@
             />
           </div>
         </div>
-        <%- include('./auth/email-password-form.ejs') %>
+        <%- include('./auth/email-password-form.ejs', {type: "signup"}) %>
         <button type="submit" class="button button-primary" disabled>
           Create Account
         </button>
@@ -51,7 +51,7 @@
     <script src="/components/form.js"></script>
 
     <script>
-      $("input").on("keyup", (event) => {
+      $("input").on("keydown", () => {
         canSignUp();
       });
     </script>

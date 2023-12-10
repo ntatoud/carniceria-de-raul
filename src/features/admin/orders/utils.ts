@@ -1,37 +1,37 @@
 import { databaseConnect } from "../../../database";
 import { Order } from "@/features/types";
-import { Response } from "express";
+import { Request, Response } from "express";
 import { QueryError, RowDataPacket } from "mysql2";
 
-export const getOrderFromId = (res: Response, id: string) => {
+export const getOrderFromId = (req: Request, res: Response, id: string) => {
   const getOrderAndProduct = `SELECT \
-    o.order_id, \
-    o.user_id, \
+    o.orderId, \
+    o.userId, \
     po.quantite, \
-    o.order_date, \
-    o.recovery_date, \
-    o.total_price, \
+    o.orderDate, \
+    o.recoveryDate, \
+    o.totalPrice, \
     o.comment, \
-    pc.product_id, \
-    p.name AS product_name, \
-    p.price AS product_price, \
-    p.unit AS product_unit, \
-    p.stock AS product_stock, \
-    p.sale AS product_sale, \
-    p.sale_price AS product_sale_price, \
-    p.best AS product_best, \
-    p.image AS product_image, \
-    p.description AS product_description, \
-    c.category_id, \
-    c.name AS category_name \
+    pc.productId, \
+    p.name AS productName, \
+    p.price AS productPrice, \
+    p.unit AS productUnit, \
+    p.stock AS productStock, \
+    p.sale AS productSale, \
+    p.salePrice AS productSalePrice, \
+    p.best AS productBest, \
+    p.image AS productImage, \
+    p.description AS productDescription, \
+    c.categoryId, \
+    c.name AS categoryName \
     FROM \
     orders o \
-    JOIN products_orders po ON o.order_id = po.order_id \
-    JOIN products p ON po.product_id = p.product_id \
-    JOIN product_categories pc ON p.product_id = pc.product_id \
-    JOIN categories c ON pc.category_id = c.category_id \
+    JOIN products_orders po ON o.orderId = po.orderId \
+    JOIN products p ON po.productId = p.productIdd \
+    JOIN product_categories pc ON p.productId = pc.productId \
+    JOIN categories c ON pc.categoryId = c.categoryId \
     WHERE \
-    o.order_id = ${id};`;
+    o.orderId = ${id};`;
 
   const connection = databaseConnect();
 
@@ -43,28 +43,32 @@ export const getOrderFromId = (res: Response, id: string) => {
         throw new Error(error.message);
       } else {
         console.log(results);
-        res.render("orderDetails.ejs", { orderProducts: results });
+        res.render("orderDetails.ejs", {
+          orderProducts: results,
+          isLogged: req.session.isLogged,
+          account: req.session.user,
+        });
       }
     }
   );
 };
 
-export const getOrderList = (res: Response) => {
+export const getOrderList = (req: Request, res: Response) => {
   const connection = databaseConnect();
 
   const getOrderQuery =
     "SELECT \
-    o.order_id, \
-    o.user_id, \
-    u.email AS user_email, \
-    u.name AS user_name, \
-    u.surname AS user_surname, \
-    o.order_date, \
-    o.recovery_date, \
-    o.total_price \
+    o.orderId, \
+    o.userId, \
+    u.email, \
+    u.name, \
+    u.surname, \
+    o.orderDate, \
+    o.recoveryDate, \
+    o.totalPrice \
     FROM \
     orders o \
-    JOIN users u ON o.user_id = u.user_id;";
+    JOIN users u ON o.userId = u.userId;";
   connection.query(
     getOrderQuery,
     (error: QueryError, results: RowDataPacket[]) => {
@@ -72,7 +76,11 @@ export const getOrderList = (res: Response) => {
         throw new Error(error.message);
       } else {
         console.log(results);
-        res.render("orders.ejs", { orders: results });
+        res.render("orders.ejs", {
+          orders: results,
+          isLogged: req.session.isLogged,
+          account: req.session.user,
+        });
       }
     }
   );
@@ -80,7 +88,7 @@ export const getOrderList = (res: Response) => {
 
 export const orderDelete = (res: Response, userId: string) => {
   const connection = databaseConnect();
-  const deleteQuery = `DELETE FROM users WHERE user_id = ?;`;
+  const deleteQuery = `DELETE FROM users WHERE userId = ?;`;
   connection.query(deleteQuery, [userId], (error: QueryError | null) => {
     if (error) throw new Error(error.message);
 
