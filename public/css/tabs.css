@@ -1,48 +1,48 @@
 .nav-tabs,
 .nav-item {
-  height: fit-content;
+    height: fit-content;
 }
 
 .nav-item {
-  padding: 0;
+    padding: 0;
 }
 .nav-item:has(a) {
-  padding: 1rem 0;
+    padding: 1rem 0;
 }
 
 .nav-tabs {
-  padding: 0;
-  border: none;
+    padding: 0;
+    border: none;
 }
 
 .tab,
 .tab * {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .tab {
-  border: none;
-  color: var(--gray-600);
-  padding: 1rem 1rem;
-  background: transparent;
-  border-bottom: 1px solid var(--gray-600);
+    border: none;
+    color: var(--gray-600);
+    padding: 1rem 1rem;
+    background: transparent;
+    border-bottom: 1px solid var(--gray-600);
 }
 
 .tab.active {
-  border: none;
-  color: var(--brand-600);
-  border-bottom: 1px solid var(--brand-600);
-  font-weight: bold;
+    border: none;
+    color: var(--brand-600);
+    border-bottom: 1px solid var(--brand-600);
+    font-weight: bold;
 }
 
 .tab .tag-amount {
-  color: var(--gray-600);
-  background: var(--gray-100);
-  padding: 0.2rem;
-  border-radius: 0.5rem;
+    color: var(--gray-600);
+    background: var(--gray-100);
+    padding: 0.2rem;
+    border-radius: 0.5rem;
 }
 
 .tab.active .tag-amount {
-  background: var(--brand-100);
-  color: var(--brand-700);
+    background: var(--brand-100);
+    color: var(--brand-700);
 }

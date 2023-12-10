@@ -1,17 +1,17 @@
 {
-  "compilerOptions": {
-    "target": "es2022",
-    "module": "CommonJS",
-    "outDir": "./dist",
-    "rootDir": ".",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "skipLibCheck": true,
-    "incremental": true
-  }
+    "compilerOptions": {
+        "target": "es2022",
+        "module": "CommonJS",
+        "outDir": "./dist",
+        "rootDir": ".",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"]
+        },
+        "skipLibCheck": true,
+        "incremental": true
+    }
 }

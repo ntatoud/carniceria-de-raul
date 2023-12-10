@@ -6,119 +6,119 @@ import { Response } from 'express';
 import { toastSuccess } from '../../../components/toast';
 
 export const isStrongPassword = (
-  password: string
+    password: string
 ): { isStrong: boolean; problems: string[] } => {
-  let isStrong = true;
-  const problems: string[] = [];
-  if (password.length < 8) {
-    isStrong = false;
-    problems.push('Be at least 8 characters long');
-  }
+    let isStrong = true;
+    const problems: string[] = [];
+    if (password.length < 8) {
+        isStrong = false;
+        problems.push('Be at least 8 characters long');
+    }
 
-  // Check if the password contains at least one uppercase letter
-  if (!/[A-Z]/.test(password)) {
-    isStrong = false;
-    problems.push('Contain at least 1 Uppercase letter');
-  }
+    // Check if the password contains at least one uppercase letter
+    if (!/[A-Z]/.test(password)) {
+        isStrong = false;
+        problems.push('Contain at least 1 Uppercase letter');
+    }
 
-  // Check if the password contains at least one lowercase letter
-  if (!/[a-z]/.test(password)) {
-    isStrong = false;
-    problems.push('Contain at least 1 Lowercase letter');
-  }
+    // Check if the password contains at least one lowercase letter
+    if (!/[a-z]/.test(password)) {
+        isStrong = false;
+        problems.push('Contain at least 1 Lowercase letter');
+    }
 
-  // Check if the password contains at least one digit
-  if (!/\d/.test(password)) {
-    isStrong = false;
-    problems.push('Contain at least 1 digit');
-  }
+    // Check if the password contains at least one digit
+    if (!/\d/.test(password)) {
+        isStrong = false;
+        problems.push('Contain at least 1 digit');
+    }
 
-  // Check if the password contains at least one special character
-  if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-    isStrong = false;
-    problems.push('Contain at least 1 Special character');
-  }
-  return { isStrong, problems };
+    // Check if the password contains at least one special character
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+        isStrong = false;
+        problems.push('Contain at least 1 Special character');
+    }
+    return { isStrong, problems };
 };
 
 export const checkEmailTaken = (res: Response, email: string) => {
-  const connection = databaseConnect();
-  const checkEmailTakenQuery = 'SELECT * FROM users WHERE email = ?';
+    const connection = databaseConnect();
+    const checkEmailTakenQuery = 'SELECT * FROM users WHERE email = ?';
 
-  connection.execute(
-    checkEmailTakenQuery,
-    [email],
-    (error: QueryError | null, result: RowDataPacket[]) => {
-      if (error) res.status(502).send(error);
+    connection.execute(
+        checkEmailTakenQuery,
+        [email],
+        (error: QueryError | null, result: RowDataPacket[]) => {
+            if (error) res.status(502).send(error);
 
-      if (result.length) {
-        res.status(200).send('NOK');
-      } else {
-        res.status(200).send('OK');
-      }
-    }
-  );
+            if (result.length) {
+                res.status(200).send('NOK');
+            } else {
+                res.status(200).send('OK');
+            }
+        }
+    );
 };
 
 export const registerIfPossible = (
-  session: UserSession,
-  res: Response,
-  credentials: User
+    session: UserSession,
+    res: Response,
+    credentials: User
 ) => {
-  const { name, surname, email, password } = credentials;
+    const { name, surname, email, password } = credentials;
 
-  const connection = databaseConnect();
-  const checkEmailTakenQuery = 'SELECT * FROM users WHERE email = ?';
-  const registerQuery = `
+    const connection = databaseConnect();
+    const checkEmailTakenQuery = 'SELECT * FROM users WHERE email = ?';
+    const registerQuery = `
     INSERT INTO users (name, surname, email, password, salt)
     VALUES (?, ?, ?, ?, ?);
   `;
-  connection.execute(
-    checkEmailTakenQuery,
-    [email],
-    (error: QueryError | null, result: RowDataPacket[]) => {
-      if (error)
-        res.status(502).render('signup.ejs', {
-          error: { state: true, message: error.message },
-        });
-
-      if (result.length)
-        res.render('signup.ejs', {
-          error: {
-            state: true,
-            message: 'An account already exists with this email.',
-          },
-          isLogged: session.isLogged,
-        });
-      else if (!isStrongPassword(password).isStrong)
-        res.render('signup.ejs', {
-          error: {
-            state: true,
-            message: 'Your password is too weak',
-            isLogged: session.isLogged,
-            account: session.user,
-          },
-        });
-      else {
-        const { salt, hashPwd } = generateSaltHashedPassword(password);
-        connection.execute(
-          registerQuery,
-          [name, surname, email, hashPwd, salt],
-          (error: QueryError | null) => {
+    connection.execute(
+        checkEmailTakenQuery,
+        [email],
+        (error: QueryError | null, result: RowDataPacket[]) => {
             if (error)
-              res.status(502).render('signup.ejs', {
-                error: { state: true, message: error.message },
-              });
+                res.status(502).render('signup.ejs', {
+                    error: { state: true, message: error.message },
+                });
 
-            session.toast = toastSuccess({
-              content: 'Account created successfuly',
-            });
-            res.status(200).redirect('/auth/login');
+            if (result.length)
+                res.render('signup.ejs', {
+                    error: {
+                        state: true,
+                        message: 'An account already exists with this email.',
+                    },
+                    isLogged: session.isLogged,
+                });
+            else if (!isStrongPassword(password).isStrong)
+                res.render('signup.ejs', {
+                    error: {
+                        state: true,
+                        message: 'Your password is too weak',
+                        isLogged: session.isLogged,
+                        account: session.user,
+                    },
+                });
+            else {
+                const { salt, hashPwd } = generateSaltHashedPassword(password);
+                connection.execute(
+                    registerQuery,
+                    [name, surname, email, hashPwd, salt],
+                    (error: QueryError | null) => {
+                        if (error)
+                            res.status(502).render('signup.ejs', {
+                                error: { state: true, message: error.message },
+                            });
 
-            connection.end();
-          }
-        );
-      }
-    }
-  );
+                        session.toast = toastSuccess({
+                            content: 'Account created successfuly',
+                        });
+                        res.status(200).redirect('/auth/login');
+
+                        connection.end();
+                    }
+                );
+            }
+        }
+    );
 };
