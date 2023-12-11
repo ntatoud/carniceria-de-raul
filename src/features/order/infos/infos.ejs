@@ -9,13 +9,13 @@
     <header><%- include('./layout/layout.ejs') %></header>
     <main>
       <%- include('../orderNav.ejs') %>
+      <div class="progress-bar d-flex flex-row">
+        <span class="billing current bi bi-check">
+          Dirección de facturación</span
+        ><span class="contacto pending bi bi-chevron-right"> Contacto </span>
+        <span class="recogida pending bi bi-chevron-right"> Recogida </span>
+      </div>
       <div id="billing" class="d-flex flex-column align-items-center">
-        <div class="progress-bar d-flex flex-row">
-          <span class="current bi bi-check"> Dirección de facturación</span
-          ><span class="pending bi bi-chevron-right"> Contacto </span>
-          <span class="pending bi bi-chevron-right"> Recogida </span>
-        </div>
-
         <form class="form">
           <h1><b>Dirección de facturación</b></h1>
           <div class="form-row">
@@ -94,11 +94,6 @@
       </div>
 
       <div id="contact" class="d-none">
-        <div class="progress-bar d-flex flex-row">
-          <span class="completed">✓ Dirección de facturación > </span
-          ><span class="current"> Contacto > </span>
-          <span class="pending"> Recogida </span>
-        </div>
         <form class="form">
           <h1><b>Contacto</b></h1>
           <div class="form-row">
@@ -164,11 +159,6 @@
       </div>
 
       <div id="recovery" class="d-none">
-        <div class="progress-bar d-flex flex-row">
-          <span class="completed">✓ Dirección de facturación > </span
-          ><span class="completed"> Contacto > </span>
-          <span class="current"> Recogida </span>
-        </div>
         <form class="form">
           <h1><b>Recogida</b></h1>
           <div class="form-row">

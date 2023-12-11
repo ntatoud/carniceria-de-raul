@@ -99,13 +99,14 @@ h1 {
   padding: 0;
   margin-bottom: 20px;
 }
+
 .progress-bar span {
-  margin-right: 0px;
   font-weight: bold;
   border-style: solid;
   border-width: 0 0 1px 0;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
 }
+
 .progress-bar .current {
   color: blue;
   border-color: blue;
