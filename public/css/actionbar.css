@@ -1,21 +1,21 @@
 .actionbar {
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    flex-direction: row;
-    height: 4rem;
-    width: 100%;
-    justify-content: space-around;
-    align-items: center;
-    background: white;
-    border-top: 2px solid var(--gray-200);
-    padding-left: 20%;
-    padding-right: 20%;
-    gap: 2rem;
-    font-weight: bold;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  flex-direction: row;
+  height: 4rem;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  background: white;
+  border-top: 2px solid var(--gray-200);
+  padding-left: 20%;
+  padding-right: 20%;
+  gap: 2rem;
+  font-weight: bold;
 }
 
 .actionbar .button {
-    font-size: var(--font-3xl);
-    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  font-size: var(--font-3xl);
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }

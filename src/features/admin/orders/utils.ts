@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 
 export const getOrderFromId = (req: Request, res: Response, id: string) => {
-    const getOrderAndProduct = `SELECT \
+  const getOrderAndProduct = `SELECT \
     o.orderId, \
     o.userId, \
     po.quantite, \
@@ -33,31 +33,30 @@ export const getOrderFromId = (req: Request, res: Response, id: string) => {
     WHERE \
     o.orderId = ${id};`;
 
-    const connection = databaseConnect();
+  const connection = databaseConnect();
 
-    connection.query(
-        getOrderAndProduct,
-        [id],
-        (error: QueryError | null, results: RowDataPacket[]) => {
-            if (error) {
-                throw new Error(error.message);
-            } else {
-                res.render('orderDetails.ejs', {
-                    orderProducts: results as (Partial<Product> &
-                        Partial<Order>)[],
-                    isLogged: req.session.isLogged,
-                    account: req.session.user,
-                });
-            }
-        }
-    );
+  connection.query(
+    getOrderAndProduct,
+    [id],
+    (error: QueryError | null, results: RowDataPacket[]) => {
+      if (error) {
+        throw new Error(error.message);
+      } else {
+        res.render('orderDetails.ejs', {
+          orderProducts: results as (Partial<Product> & Partial<Order>)[],
+          isLogged: req.session.isLogged,
+          account: req.session.user,
+        });
+      }
+    }
+  );
 };
 
 export const getOrderList = (req: Request, res: Response) => {
-    const connection = databaseConnect();
+  const connection = databaseConnect();
 
-    const getOrderQuery =
-        'SELECT \
+  const getOrderQuery =
+    'SELECT \
     o.orderId, \
     o.userId, \
     u.email, \
@@ -69,28 +68,28 @@ export const getOrderList = (req: Request, res: Response) => {
     FROM \
     orders o \
     JOIN users u ON o.userId = u.userId;';
-    connection.query(
-        getOrderQuery,
-        (error: QueryError, results: RowDataPacket[]) => {
-            if (error) {
-                throw new Error(error.message);
-            } else {
-                res.render('orders.ejs', {
-                    orders: results,
-                    isLogged: req.session.isLogged,
-                    account: req.session.user,
-                });
-            }
-        }
-    );
+  connection.query(
+    getOrderQuery,
+    (error: QueryError, results: RowDataPacket[]) => {
+      if (error) {
+        throw new Error(error.message);
+      } else {
+        res.render('orders.ejs', {
+          orders: results,
+          isLogged: req.session.isLogged,
+          account: req.session.user,
+        });
+      }
+    }
+  );
 };
 
 export const orderDelete = (res: Response, userId: string) => {
-    const connection = databaseConnect();
-    const deleteQuery = `DELETE FROM users WHERE userId = ?;`;
-    connection.query(deleteQuery, [userId], (error: QueryError | null) => {
-        if (error) throw new Error(error.message);
+  const connection = databaseConnect();
+  const deleteQuery = `DELETE FROM users WHERE userId = ?;`;
+  connection.query(deleteQuery, [userId], (error: QueryError | null) => {
+    if (error) throw new Error(error.message);
 
-        res.status(200).send('OK');
-    });
+    res.status(200).send('OK');
+  });
 };

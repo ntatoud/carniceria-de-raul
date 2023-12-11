@@ -8,26 +8,26 @@ const router = Router();
 router.use(urlencoded({ extended: true }));
 
 router.post('/checkPassword', (req, res) => {
-    const { isStrong, problems } = isStrongPassword(req.body.password);
+  const { isStrong, problems } = isStrongPassword(req.body.password);
 
-    res.status(200).send(isStrong ? 'OK' : problems);
+  res.status(200).send(isStrong ? 'OK' : problems);
 });
 
 router.post('/', (req: Request, res: Response) => {
-    passwordUpdateIfOldPasswordCorrect(req, res, {
-        oldPassword: req.body.oldPassword,
-        newPassword: req.body.newPassword,
-    });
+  passwordUpdateIfOldPasswordCorrect(req, res, {
+    oldPassword: req.body.oldPassword,
+    newPassword: req.body.newPassword,
+  });
 });
 
 router.use('/', (req: Request, res: Response) => {
-    res.render('password.ejs', {
-        error: {},
-        accountName: req.session.user?.name ?? 'Usuario',
-        isLogged: req.session.isLogged,
-        account: req.session.user,
-        toast: toastDispatch(req),
-    });
+  res.render('password.ejs', {
+    error: {},
+    accountName: req.session.user?.name ?? 'Usuario',
+    isLogged: req.session.isLogged,
+    account: req.session.user,
+    toast: toastDispatch(req),
+  });
 });
 
 export default router;

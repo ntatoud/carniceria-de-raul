@@ -11,7 +11,7 @@ router.use('/infos', loggedOnlyRoute, infos);
 router.use('/payment', loggedOnlyRoute, payment);
 
 router.use('/', loggedOnlyRoute, (req: Request, res: Response) => {
-    res.redirect('/order/cart');
+  res.redirect('/order/cart');
 });
 
 export default router;

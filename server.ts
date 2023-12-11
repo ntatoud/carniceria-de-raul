@@ -1,8 +1,8 @@
 import express, {
-    Express,
-    Request,
-    Response,
-    static as staticSrc,
+  Express,
+  Request,
+  Response,
+  static as staticSrc,
 } from 'express';
 import bodyParser from 'body-parser';
 import session from 'express-session';
@@ -20,9 +20,9 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use(
-    bodyParser.urlencoded({
-        extended: true,
-    })
+  bodyParser.urlencoded({
+    extended: true,
+  })
 );
 
 app.use(staticSrc('public'));
@@ -33,38 +33,38 @@ app.use(staticSrc('node_modules/jquery/dist/'));
 app.use(staticSrc('node_modules/bootstrap-icons/font'));
 
 app.use(
-    session({
-        secret: 'email', //used to sign the session ID cookie
-        name: 'login', // (optional) name of the session cookie
-        resave: true, // forces the session to be saved back to the session store
-        saveUninitialized: true, // forces a session an uninitialized session to be saved to the store
-    })
+  session({
+    secret: 'email', //used to sign the session ID cookie
+    name: 'login', // (optional) name of the session cookie
+    resave: true, // forces the session to be saved back to the session store
+    saveUninitialized: true, // forces a session an uninitialized session to be saved to the store
+  })
 );
 
 app.set('view engine', 'ejs');
 
 app.set('views', [
-    'src/features',
-    'src/features/auth',
-    'src/features/auth/login',
-    'src/features/auth/signup',
-    'src/features/auth/reset',
-    'src/features/admin',
-    'src/features/admin/products',
-    'src/features/admin/users',
-    'src/features/admin/orders',
-    'src/features/order',
-    'src/features/order/cart',
-    'src/features/order/infos',
-    'src/features/order/payment',
-    'src/features/shop',
-    'src/features/shop/_partials',
-    'src/features/layout',
-    'src/features/about',
-    'src/features/contact',
-    'src/features/account',
-    'src/features/account/profile',
-    'src/features/account/password',
+  'src/features',
+  'src/features/auth',
+  'src/features/auth/login',
+  'src/features/auth/signup',
+  'src/features/auth/reset',
+  'src/features/admin',
+  'src/features/admin/products',
+  'src/features/admin/users',
+  'src/features/admin/orders',
+  'src/features/order',
+  'src/features/order/cart',
+  'src/features/order/infos',
+  'src/features/order/payment',
+  'src/features/shop',
+  'src/features/shop/_partials',
+  'src/features/layout',
+  'src/features/about',
+  'src/features/contact',
+  'src/features/account',
+  'src/features/account/profile',
+  'src/features/account/password',
 ]);
 
 // Declaration of the routes from the root of the website
@@ -77,20 +77,20 @@ app.use('/contact', contact);
 app.use('/account', account); // Has subroutes
 
 app.use('/', (req: Request, res: Response) => {
-    const { isLogged, user } = req.session;
+  const { isLogged, user } = req.session;
 
-    res.render('index.ejs', {
-        isLogged: isLogged,
-        account: user,
-        toast: toastDispatch(req),
-    });
+  res.render('index.ejs', {
+    isLogged: isLogged,
+    account: user,
+    toast: toastDispatch(req),
+  });
 });
 
 app.get('*', (req: Request, res: Response) => {
-    res.status(404);
-    res.render('404.ejs');
+  res.status(404);
+  res.render('404.ejs');
 });
 
 app.listen(port, () => {
-    console.log(`Now listening on port ${port}`);
+  console.log(`Now listening on port ${port}`);
 });

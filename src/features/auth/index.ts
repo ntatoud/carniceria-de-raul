@@ -13,15 +13,15 @@ router.use('/login', guestOnlyRoute, login);
 router.use('/signup', guestOnlyRoute, signup);
 
 router.use('/logout', loggedOnlyRoute, (req: Request, res: Response) => {
-    req.session.destroy((error: ErrorEvent) => {
-        if (error) throw new Error(error.message);
+  req.session.destroy((error: ErrorEvent) => {
+    if (error) throw new Error(error.message);
 
-        res.redirect('/');
-    });
+    res.redirect('/');
+  });
 });
 
 router.use('/', guestOnlyRoute, (req: Request, res: Response) => {
-    res.redirect('/auth/login');
+  res.redirect('/auth/login');
 });
 
 export default router;

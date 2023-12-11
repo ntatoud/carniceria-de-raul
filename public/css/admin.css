@@ -1,158 +1,158 @@
 body {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 main {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 /* Data styling */
 data {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    padding-top: 2rem;
-    gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  padding-top: 2rem;
+  gap: 2rem;
 }
 
 .data-top {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
 }
 
 table {
-    background-color: white;
-    table-layout: fixed;
-    width: 80%;
-    border-radius: 1rem;
-    box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  table-layout: fixed;
+  width: 80%;
+  border-radius: 1rem;
+  box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .table-head {
-    justify-content: space-between;
-    color: var(--gray-500);
-    background-color: var(--gray-50);
+  justify-content: space-between;
+  color: var(--gray-500);
+  background-color: var(--gray-50);
 }
 
 .table-body {
-    color: var(--gray-800);
+  color: var(--gray-800);
 }
 
 .table-row {
-    position: relative;
-    height: 5rem;
-    border-style: solid;
-    border-color: var(--gray-200);
-    border-width: 1px 0 1px 0;
-    align-items: center;
+  position: relative;
+  height: 5rem;
+  border-style: solid;
+  border-color: var(--gray-200);
+  border-width: 1px 0 1px 0;
+  align-items: center;
 }
 
 .table-row .link-box {
-    content: ' ';
-    top: 0;
-    left: 0;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: transparent;
+  content: ' ';
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: transparent;
 }
 
 .table-cell {
-    padding: 1rem;
-    text-align: center;
+  padding: 1rem;
+  text-align: center;
 }
 
 .name,
 .email {
-    text-align: start;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-wrap: nowrap;
+  text-align: start;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
 }
 
 .actions {
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    align-items: center;
-    height: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  height: 5rem;
 }
 
 /* Users specific style */
 
 .auth {
-    text-align: end;
+  text-align: end;
 }
 
 .table-body .tag {
-    text-emphasis: var(--gray-300);
+  text-emphasis: var(--gray-300);
 }
 
 .users-table .name {
-    width: 20rem;
-    max-width: 20rem;
+  width: 20rem;
+  max-width: 20rem;
 }
 
 .name .email {
-    color: var(--gray-500);
+  color: var(--gray-500);
 }
 /* Products specific style */
 .products-table .name {
-    width: 15rem;
-    max-width: 15rem;
+  width: 15rem;
+  max-width: 15rem;
 }
 
 .price {
-    min-width: 8rem;
+  min-width: 8rem;
 }
 
 .salePrice {
-    color: var(--brand-600);
+  color: var(--brand-600);
 }
 /* Order Specific styles */
 
 .orders-table .status {
-    text-align: end;
+  text-align: end;
 }
 .orders-table .name {
-    width: 15rem;
+  width: 15rem;
 }
 .order-container {
-    width: 100%;
-    align-items: center;
-    margin: 5rem 10rem;
-    gap: 1rem;
+  width: 100%;
+  align-items: center;
+  margin: 5rem 10rem;
+  gap: 1rem;
 }
 
 .product-row {
-    width: 100%;
-    justify-content: space-between;
-    background: white;
-    padding: 1rem 1rem;
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  justify-content: space-between;
+  background: white;
+  padding: 1rem 1rem;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
 }
 .order-summary {
-    width: 100%;
-    justify-content: end;
-    gap: 0.5rem;
+  width: 100%;
+  justify-content: end;
+  gap: 0.5rem;
 }
 
 .user-form {
-    height: 100%;
-    width: 100%;
-    justify-content: end;
-    align-items: center;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+  height: 100%;
+  width: 100%;
+  justify-content: end;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 .user-form .authorities-form-group {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }

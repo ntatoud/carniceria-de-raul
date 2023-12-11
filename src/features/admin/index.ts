@@ -11,7 +11,7 @@ router.use('/orders', adminOnlyRoute, orders);
 router.use('/users', adminOnlyRoute, users);
 router.use('/products', adminOnlyRoute, products);
 router.use('/', adminOnlyRoute, (req: Request, res: Response) => {
-    res.redirect('/admin/users');
+  res.redirect('/admin/users');
 });
 
 export default router;

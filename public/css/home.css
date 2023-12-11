@@ -1,105 +1,105 @@
 @import url(https://fonts.googleapis.com/css?family=Staatliches);
 
 main {
-    background-color: var(--gray-300);
+  background-color: var(--gray-300);
 }
 
 main img {
-    height: 35rem;
-    width: 100%;
-    object-fit: cover;
-    opacity: 0.8;
+  height: 35rem;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.8;
 }
 
 .banner {
-    font-family: 'Staatliches';
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    height: 60%;
+  font-family: 'Staatliches';
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  height: 60%;
 }
 
 .main-title {
-    position: absolute;
-    top: 5rem;
-    text-align: center;
+  position: absolute;
+  top: 5rem;
+  text-align: center;
 }
 
 .main-title .welcome {
-    font-weight: 900;
-    font-size: 128px;
+  font-weight: 900;
+  font-size: 128px;
 }
 
 .main-title .rest {
-    font-size: 64px;
+  font-size: 64px;
 }
 
 .info-tag-row {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    bottom: -3rem;
-    width: 100%;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: -3rem;
+  width: 100%;
+  justify-content: space-around;
 }
 
 .info-tag {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: center;
-    font-size: var(--font-2xl);
-    text-align: center;
-    padding: 1rem;
-    width: 10rem;
-    border-radius: 1rem;
-    background-color: var(--brand-900);
-    z-index: 200;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  font-size: var(--font-2xl);
+  text-align: center;
+  padding: 1rem;
+  width: 10rem;
+  border-radius: 1rem;
+  background-color: var(--brand-900);
+  z-index: 200;
 }
 
 .info-tag .number {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .divider {
-    width: 100%;
-    overflow: hidden;
+  width: 100%;
+  overflow: hidden;
 }
 
 .actions {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: -25rem;
-    padding-bottom: 25rem;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: -25rem;
+  padding-bottom: 25rem;
 }
 
 .home-button {
-    color: white;
-    background: var(--brand-800);
-    border-radius: 1rem;
-    outline: 2px var(--brand-600);
-    font-weight: bold;
-    font-size: var(--font-2xl);
-    width: 25rem;
-    height: 6rem;
-    padding: 0;
-    transition: all 0.1s ease-out;
+  color: white;
+  background: var(--brand-800);
+  border-radius: 1rem;
+  outline: 2px var(--brand-600);
+  font-weight: bold;
+  font-size: var(--font-2xl);
+  width: 25rem;
+  height: 6rem;
+  padding: 0;
+  transition: all 0.1s ease-out;
 }
 
 .home-button:hover {
-    font-size: var(--font-3xl);
+  font-size: var(--font-3xl);
 }
 
 .home-button:hover i {
-    font-size: 64px;
+  font-size: 64px;
 }
 
 .home-button i {
-    font-size: 48px;
-    transition: all 0.1s ease-out;
+  font-size: 48px;
+  transition: all 0.1s ease-out;
 }

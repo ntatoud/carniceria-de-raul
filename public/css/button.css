@@ -5,102 +5,102 @@
 /* -------- Default Button styling --------*/
 
 .button {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    border-radius: 6px;
-    border: 0px;
-    outline: 1px solid var(--gray-300);
-    outline-offset: -1px;
-    box-shadow: none;
-    font-weight: 500;
-    height: fit-content;
-    padding: 0.5em 1em;
-    font-size: var(--font-md);
-    background-color: white;
-    color: var(--gray-600);
-    text-decoration: none;
-    gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 0px;
+  outline: 1px solid var(--gray-300);
+  outline-offset: -1px;
+  box-shadow: none;
+  font-weight: 500;
+  height: fit-content;
+  padding: 0.5em 1em;
+  font-size: var(--font-md);
+  background-color: white;
+  color: var(--gray-600);
+  text-decoration: none;
+  gap: 1rem;
 }
 .button:focus {
-    box-shadow: 0 0 4px var(--brand-300);
+  box-shadow: 0 0 4px var(--brand-300);
 }
 .button a {
-    color: var(--gray-600);
-    text-decoration: none;
+  color: var(--gray-600);
+  text-decoration: none;
 }
 
 /* -------- Button sizes -------- */
 .button-xs {
-    font-size: var(--font-xs);
+  font-size: var(--font-xs);
 }
 
 .button-sm {
-    font-size: var(--font-sm);
+  font-size: var(--font-sm);
 }
 
 .button-lg {
-    font-size: var(--font-lg);
+  font-size: var(--font-lg);
 }
 
 /* -------- Button color variants -------- */
 
 /* Primary */
 .button-primary {
-    outline: 0px;
-    background-color: var(--brand-600);
-    color: white;
+  outline: 0px;
+  background-color: var(--brand-600);
+  color: white;
 }
 
 .button-primary * {
-    color: white;
+  color: white;
 }
 
 /* Secondary */
 .button-secondary {
-    color: var(--brand-600);
+  color: var(--brand-600);
 }
 
 .button-secondary i {
-    color: var(--brand-600);
+  color: var(--brand-600);
 }
 
 /* Link */
 .button-link {
-    outline: 0px;
-    background-color: transparent;
-    color: var(--brand-600);
+  outline: 0px;
+  background-color: transparent;
+  color: var(--brand-600);
 }
 
 .button-link i {
-    color: var(--brand-600);
+  color: var(--brand-600);
 }
 
 .button-link a {
-    color: var(--brand-600);
-    text-decoration: none;
+  color: var(--brand-600);
+  text-decoration: none;
 }
 
 /* Link-Neutral */
 .button-link-neutral {
-    background-color: transparent;
-    outline: 0px;
+  background-color: transparent;
+  outline: 0px;
 }
 
 .button-link-neutral a {
-    color: var(--gray-600);
-    text-decoration: none;
+  color: var(--gray-600);
+  text-decoration: none;
 }
 
 /* Disabled */
 .button:disabled {
-    border: 1px solid var(--gray-300);
+  border: 1px solid var(--gray-300);
 }
 .button:disabled,
 .button:disabled * {
-    background-color: var(--gray-50);
-    color: var(--gray-400);
-    cursor: not-allowed;
+  background-color: var(--gray-50);
+  color: var(--gray-400);
+  cursor: not-allowed;
 }

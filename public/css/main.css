@@ -3,77 +3,77 @@
 @import url(https://fonts.googleapis.com/css?family=Inter);
 html,
 body {
-    height: max-content;
+  height: max-content;
 }
 body * {
-    margin: 0;
+  margin: 0;
 }
 
 body *::selection {
-    background-color: var(--brand-400);
+  background-color: var(--brand-400);
 }
 
 body {
-    font-family: 'Inter';
-    display: flex;
-    flex-direction: column;
-    background-color: var(--gray-100);
-    overflow-y: scroll;
-    overflow-x: hidden;
+  font-family: 'Inter';
+  display: flex;
+  flex-direction: column;
+  background-color: var(--gray-100);
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 header {
-    height: 7rem;
+  height: 7rem;
 }
 
 main {
-    width: 100%;
-    height: max-content;
+  width: 100%;
+  height: max-content;
 }
 
 .form {
-    width: 80vw;
-    background: white;
-    gap: 24px;
-    padding: 24px;
-    border-radius: 8px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  width: 80vw;
+  background: white;
+  gap: 24px;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .form h2 {
-    font-weight: bold;
-    font-size: var(--font-xl);
+  font-weight: bold;
+  font-size: var(--font-xl);
 }
 
 .form button {
-    justify-self: flex-end;
+  justify-self: flex-end;
 }
 
 .login-form,
 .reset-password-form {
-    width: 40%;
+  width: 40%;
 }
 
 .signup-form {
-    width: 460px;
+  width: 460px;
 }
 
 @media screen and (max-width: 768px) {
-    header {
-        position: fixed;
-        width: 100%;
-        z-index: 3;
-    }
-    .login-form,
-    .reset-password-form {
-        width: 100%;
-    }
+  header {
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+  }
+  .login-form,
+  .reset-password-form {
+    width: 100%;
+  }
 
-    .signup-form {
-        width: 460px;
-    }
+  .signup-form {
+    width: 460px;
+  }
 }
 
 .hide {
-    visibility: hidden;
+  visibility: hidden;
 }

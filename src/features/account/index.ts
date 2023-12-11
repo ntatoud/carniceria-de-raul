@@ -9,7 +9,7 @@ router.use(urlencoded({ extended: true }));
 router.use('/profile', loggedOnlyRoute, profile);
 router.use('/password', loggedOnlyRoute, password);
 router.use('/', loggedOnlyRoute, (req: Request, res: Response) => {
-    res.redirect('/account/profile');
+  res.redirect('/account/profile');
 });
 
 export default router;

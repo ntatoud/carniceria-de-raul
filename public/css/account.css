@@ -1,44 +1,44 @@
 @import 'colors.css';
 
 main {
-    justify-content: start;
-    padding-left: 20%;
-    padding-right: 20%;
+  justify-content: start;
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
 data {
-    width: 40rem;
-    padding-top: 2rem;
-    gap: 2rem;
+  width: 40rem;
+  padding-top: 2rem;
+  gap: 2rem;
 }
 
 .account-menu-nav {
-    width: 15rem;
-    margin: 4rem 1rem;
+  width: 15rem;
+  margin: 4rem 1rem;
 }
 
 .profile-title {
-    font-size: var(--font-2xl);
-    font-weight: bold;
+  font-size: var(--font-2xl);
+  font-weight: bold;
 }
 .account-form {
-    width: 100%;
-    gap: 3rem;
+  width: 100%;
+  gap: 3rem;
 }
 
 .account-form > * > * {
-    padding: 0.25rem 0;
+  padding: 0.25rem 0;
 }
 
 button[type='submit'] {
-    padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem;
 }
 @media screen and (max-width: 768px) {
-    main {
-        flex-direction: column;
-    }
+  main {
+    flex-direction: column;
+  }
 
-    .account-form {
-        width: 100%;
-    }
+  .account-form {
+    width: 100%;
+  }
 }

@@ -1,73 +1,73 @@
 .topbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 2rem;
 }
 
 .topbar {
-    background-color: var(--gray-800);
-    height: 4rem;
+  background-color: var(--gray-800);
+  height: 4rem;
 }
 .navbar-brand {
-    font-size: var(--font-3xl);
+  font-size: var(--font-3xl);
 }
 .topbar,
 .navbar-brand,
 .topbar-actions a {
-    color: white;
+  color: white;
 }
 
 .topbar-actions {
-    gap: 1.5rem;
-    position: relative;
+  gap: 1.5rem;
+  position: relative;
 }
 .navbar-brand:hover {
-    color: var(--gray-300);
+  color: var(--gray-300);
 }
 
 .account-menu .dropdown-toggle::after {
-    display: none;
+  display: none;
 }
 .account-menu .dropdown-item,
 .cart-menu .dropdown-item {
-    display: flex;
-    color: var(--gray-900);
-    height: 3rem;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  color: var(--gray-900);
+  height: 3rem;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .cart-button:hover .cart-dropdown {
-    position: relative;
-    display: block;
-    visibility: visible;
+  position: relative;
+  display: block;
+  visibility: visible;
 }
 
 .account-menu .dropdown-item:hover {
-    background: var(--gray-200);
+  background: var(--gray-200);
 }
 
 .cart-button.used::after {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    content: '1';
-    top: 0;
-    right: 0.25rem;
-    width: 1.3rem;
-    height: 1.3rem;
-    border-radius: 1rem;
-    color: white;
-    background-color: red;
-    font-size: var(--font-sm);
-    padding-right: 0.05rem;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  content: '1';
+  top: 0;
+  right: 0.25rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 1rem;
+  color: white;
+  background-color: red;
+  font-size: var(--font-sm);
+  padding-right: 0.05rem;
 }
 
 @media screen and (max-width: 768px) {
-    .topbar .navbar-nav .nav-item {
-        padding-right: 1rem;
-    }
+  .topbar .navbar-nav .nav-item {
+    padding-right: 1rem;
+  }
 }

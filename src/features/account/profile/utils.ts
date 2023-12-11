@@ -5,13 +5,13 @@ import { Request, Response } from 'express';
 import { QueryError } from 'mysql2';
 
 export const accountUpdate = (
-    req: Request,
-    res: Response,
-    user: Partial<User>
+  req: Request,
+  res: Response,
+  user: Partial<User>
 ) => {
-    const connection = databaseConnect();
-    const updateQuery =
-        'UPDATE users SET \
+  const connection = databaseConnect();
+  const updateQuery =
+    'UPDATE users SET \
     name = ?,\
     surname = ?,\
     email = ?,\
@@ -21,25 +21,25 @@ export const accountUpdate = (
     postalCode = ?, \
     country = ? \
     WHERE userId = ?;';
-    const queryParams = [
-        user.name,
-        user.surname,
-        user.email,
-        user.phone,
-        user.address,
-        user.city,
-        user.postalCode,
-        user.country,
-        req.session.user?.userId,
-    ];
-    req.session.user = user;
+  const queryParams = [
+    user.name,
+    user.surname,
+    user.email,
+    user.phone,
+    user.address,
+    user.city,
+    user.postalCode,
+    user.country,
+    req.session.user?.userId,
+  ];
+  req.session.user = user;
 
-    connection.execute(updateQuery, queryParams, (error: QueryError | null) => {
-        if (error) throw new Error(error.message);
+  connection.execute(updateQuery, queryParams, (error: QueryError | null) => {
+    if (error) throw new Error(error.message);
 
-        req.session.toast = toastSuccess({
-            content: 'Your account has been updated successfully',
-        });
-        res.redirect('/account/profile');
+    req.session.toast = toastSuccess({
+      content: 'Your account has been updated successfully',
     });
+    res.redirect('/account/profile');
+  });
 };
