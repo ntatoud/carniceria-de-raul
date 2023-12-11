@@ -1,8 +1,9 @@
 <!-- Author : Noé TATOUD -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <%- include('../../../imports.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/css/infos.css" />
   </head>
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
@@ -10,9 +11,9 @@
       <%- include('../orderNav.ejs') %>
       <div id="billing" class="d-flex flex-column align-items-center">
         <div class="progress-bar d-flex flex-row">
-          <span class="current">✓ Dirección de facturación > </span
-          ><span class="pending"> Contacto > </span>
-          <span class="pending"> Recogida </span>
+          <span class="current bi bi-check"> Dirección de facturación</span
+          ><span class="pending bi bi-chevron-right"> Contacto </span>
+          <span class="pending bi bi-chevron-right"> Recogida </span>
         </div>
 
         <form class="form">
