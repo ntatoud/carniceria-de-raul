@@ -1,20 +1,24 @@
-import { ProcedureCallPacket, ResultSetHeader, RowDataPacket } from "mysql2";
-
+import { Session, SessionData } from "express-session";
 export type User = {
-  id: number;
+  userId: number;
   email: string;
   password: string;
   salt: string;
   authorities: Authorities;
   name?: string;
   surname?: string;
+  phone?: string;
+
   address?: string;
+  city?: string;
+  postalCode?: string;
+  country: string;
+
   creationDate?: Date;
-  phoneNumber?: string;
 };
 
 export type Product = {
-  id: number;
+  productId: number;
   name: string;
   price: number;
   stock: number;
@@ -27,7 +31,7 @@ export type Product = {
 };
 
 export type Order = {
-  id: number;
+  orderId: number;
   userId: number;
   orderDate: Date;
   recoveryDate: Date;
@@ -36,17 +40,13 @@ export type Order = {
 };
 
 export type Category = {
-  id: number;
+  categoryId: number;
   name: string;
 };
 
 export enum Authorities {
-  ROLE_ADMIN,
-  ROLE_USER,
+  "ROLE_ADMIN",
+  "ROLE_USER",
 }
 
-export type QueryResult =
-  | RowDataPacket[]
-  | ResultSetHeader[]
-  | RowDataPacket[][]
-  | ProcedureCallPacket;
+export type UserSession = Session & Partial<SessionData>;

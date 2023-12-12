@@ -2,14 +2,15 @@ import { Request, Response, Router } from "express";
 import cart from "./cart";
 import infos from "./infos";
 import payment from "./payment";
+import { loggedOnlyRoute } from "../../middlewares/logged";
 
 const router = Router();
 
-router.use("/cart", cart);
-router.use("/infos", infos);
-router.use("/payment", payment);
+router.use("/cart", loggedOnlyRoute, cart);
+router.use("/infos", loggedOnlyRoute, infos);
+router.use("/payment", loggedOnlyRoute, payment);
 
-router.use("/", (req: Request, res: Response) => {
+router.use("/", loggedOnlyRoute, (req: Request, res: Response) => {
   res.redirect("/order/cart");
 });
 

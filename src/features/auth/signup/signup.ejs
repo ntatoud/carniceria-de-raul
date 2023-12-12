@@ -42,70 +42,17 @@
             />
           </div>
         </div>
-        <%- include('./auth/email-password-form.ejs') %>
+        <%- include('./auth/email-password-form.ejs', {type: "signup"}) %>
         <button type="submit" class="button button-primary" disabled>
           Create Account
         </button>
       </form>
     </main>
+    <script src="/components/form.js"></script>
+
     <script>
-      $("input#email").focusout((event) => {
-        const email = $(event.target).val();
-        $.post("/auth/signup/checkEmail", { email }, (data, status, xhr) => {
-          if (status === "error") {
-            alert("error" + xhr.status + " " + xhr.statusText);
-          } else {
-            if (data === "NOK") {
-              $(".email.error").addClass("show");
-              $("input#email").addClass("error");
-              $("button[type='submit']").attr("disabled", "disabled");
-            }
-          }
-        });
-      });
-
-      $("input#email").focusin((event) => {
-        $(".email.error").removeClass("show");
-        $("input#email").removeClass("error");
-      });
-
-      $("input#password").keyup((event) => {
-        const password = $(event.target).val();
-        $.post(
-          "/auth/signup/checkPassword",
-          { password },
-          (data, status, xhr) => {
-            if (status === "error") {
-              alert("error" + xhr.status + " " + xhr.statusText);
-            } else {
-              if (data !== "OK") {
-                $(".password.error").addClass("show");
-                $("input#password").addClass("error");
-                $(".password.error ul").html(
-                  data.map((problem) => {
-                    return `<li> ${problem}</li>`;
-                  })
-                );
-                $("button[type='submit']").attr("disabled", "disabled");
-              } else {
-                $(".password.error").removeClass("show");
-                $("input#password").removeClass("error");
-              }
-            }
-          }
-        );
-      });
-
-      $("input").keyup((event) => {
-        if (
-          !$(".error").hasClass("show") &&
-          $("input#name").val() &&
-          $("input#surname").val() &&
-          $("input#email").val() &&
-          $("input#password").val()
-        ) {
-          $("button[type='submit']").removeAttr("disabled");
-        }
+      $("input").on("keydown", () => {
+        canSignUp();
       });
     </script>
   </body>

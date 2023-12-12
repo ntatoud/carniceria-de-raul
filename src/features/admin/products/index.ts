@@ -21,7 +21,11 @@ router.post("/create", (req: Request, res: Response) => {
 });
 
 router.use("/create", (req: Request, res: Response) => {
-  res.render("productCreate.ejs", { product: undefined });
+  res.render("productCreate.ejs", {
+    product: undefined,
+    isLogged: req.session.isLogged,
+    account: req.session.user,
+  });
 });
 
 router.post("/update/:id", (req: Request, res: Response) => {
@@ -29,11 +33,11 @@ router.post("/update/:id", (req: Request, res: Response) => {
 });
 
 router.use("/update/:id", (req: Request, res: Response) => {
-  getProductToUpdate(res, req.params.id);
+  getProductToUpdate(req, res, req.params.id);
 });
 
 router.use("/", (req: Request, res: Response) => {
-  getProductList(res);
+  getProductList(req, res);
 });
 
 export default router;

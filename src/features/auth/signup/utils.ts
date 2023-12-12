@@ -2,7 +2,7 @@ import { databaseConnect } from "../../../database";
 import { User } from "@/features/types";
 import { generateSaltHashedPassword } from "../util";
 import { QueryError, RowDataPacket } from "mysql2";
-import { Response } from "express";
+import { Request, Response } from "express";
 
 export const isStrongPassword = (
   password: string
@@ -59,7 +59,11 @@ export const checkEmailTaken = (res: Response, email: string) => {
   );
 };
 
-export const registerIfPossible = (res: Response, credentials: User) => {
+export const registerIfPossible = (
+  req: Request,
+  res: Response,
+  credentials: User
+) => {
   const { name, surname, email, password } = credentials;
 
   const connection = databaseConnect();
@@ -83,12 +87,15 @@ export const registerIfPossible = (res: Response, credentials: User) => {
             state: true,
             message: "An account already exists with this email.",
           },
+          isLogged: req.session.isLogged,
         });
       else if (!isStrongPassword(password).isStrong)
         res.render("signup.ejs", {
           error: {
             state: true,
             message: "Your password is too weak",
+            isLogged: req.session.isLogged,
+            account: req.session.user,
           },
         });
       else {
@@ -102,7 +109,7 @@ export const registerIfPossible = (res: Response, credentials: User) => {
                 error: { state: true, message: error.message },
               });
 
-            res.status(200).render("login.ejs", { error: {}, signed: true });
+            res.status(200).redirect("/auth/login");
 
             connection.end();
           }

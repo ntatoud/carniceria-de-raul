@@ -24,6 +24,7 @@
   background-color: transparent;
   border: 0px;
   height: 100%;
+  padding: 0 0.5rem;
 }
 
 /* CSS for the password input */
@@ -149,4 +150,10 @@ span.error.show {
   font-weight: bold;
   gap: 1rem;
   margin-bottom: -1rem;
+}
+
+.form-group:has(*:required) label:after {
+  content: "*";
+  color: red;
+  padding-left: 0.25rem;
 }

@@ -4,7 +4,7 @@ export const databaseFill = (): void => {
   const connection = databaseConnect();
 
   connection.query(
-    `INSERT INTO users (email, name, surname, password, salt, address, authorities, creation_date, phone_number)
+    `INSERT INTO users (email, name, surname, password, salt, address, authorities, creationDate, phone)
       VALUES
       ('john.doe@example.com', 'John', 'Doe', 'hashed_password_1', 123456789, '123 Main St', 'ROLE_USER', '2022-01-01', '123-456-7890'),
       ('jane.smith@example.com', 'Jane', 'Smith', 'hashed_password_2', 123456789, '456 Oak St', 'ROLE_ADMIN', '2022-01-02', '987-654-3210'),
@@ -35,7 +35,7 @@ export const databaseFill = (): void => {
   /* TERNERA */
   connection.query(
     `
-    INSERT INTO products (name, price, unit, stock, sale, sale_price, best, image, description)
+    INSERT INTO products (name, price, unit, stock, sale, salePrice, best, image, description)
     VALUES
         ('CHULETÓN DE TERNERA', 22.99, '€/kg', 0, false, NULL, false, '.', 'Product Description'),
         ('LOMO ALTO DE TERNERA', 23.99, '€/kg', 100, false, NULL, false, '.', 'Product Description'),
@@ -69,7 +69,7 @@ export const databaseFill = (): void => {
   );
 
   connection.query(
-    `INSERT INTO product_categories (product_id, category_id)
+    `INSERT INTO product_categories (productId, categoryId)
       VALUES
       (1, 1),
       (2, 1),
@@ -106,7 +106,7 @@ export const databaseFill = (): void => {
   /* CERDO */
   connection.query(
     `
-    INSERT INTO products (name, price, unit, stock, sale, sale_price, best, image, description)
+    INSERT INTO products (name, price, unit, stock, sale, salePrice, best, image, description)
     VALUES
         ('COSTILLARES DE CERDO', 7.99, '€/kg', 100, false, NULL, false, '.', 'Product Description'),
         ('COSTILLAS TIRAS ', 12.99, '€/kg', 100, true, 10.99, false, '.', 'Product Description'),
@@ -137,7 +137,7 @@ export const databaseFill = (): void => {
   );
 
   connection.query(
-    `INSERT INTO product_categories (product_id, category_id)
+    `INSERT INTO product_categories (productId, categoryId)
       VALUES
       (23, 2),
       (24, 2),
@@ -171,7 +171,7 @@ export const databaseFill = (): void => {
   /* POLLO */
   connection.query(
     `
-    INSERT INTO products (name, price, unit, stock, sale, sale_price, best, image, description)
+    INSERT INTO products (name, price, unit, stock, sale, salePrice, best, image, description)
     VALUES
         ('POLLO ENTERO', 4.50, '€/kg', 0, false, NULL, false, '.', 'Product Description'),
         ('POLLO AMARILLO', 5.99, '€/kg', 100, true, 4.99, false, '.', 'Product Description'),
@@ -198,7 +198,7 @@ export const databaseFill = (): void => {
     }
   );
   connection.query(
-    `INSERT INTO product_categories (product_id, category_id)
+    `INSERT INTO product_categories (productId, categoryId)
       VALUES
       (42, 3),
       (43, 3),
@@ -230,7 +230,7 @@ export const databaseFill = (): void => {
   /* ELABORADOS */
   connection.query(
     `
-    INSERT INTO products (name, price, unit, stock, sale, sale_price, best, image, description)
+    INSERT INTO products (name, price, unit, stock, sale, salePrice, best, image, description)
     VALUES
         ('VINO PARA COCINAR ', 5.00, '€/kg', 0, false, NULL, true, '.', 'Product Description'),
         ('CALLOS ROGUSA 500GR', 5.00, '€/kg', 100, false, NULL, false, '.', 'Product Description'),
@@ -274,7 +274,7 @@ export const databaseFill = (): void => {
     }
   );
   connection.query(
-    `INSERT INTO product_categories (product_id, category_id)
+    `INSERT INTO product_categories (productId, categoryId)
       VALUES
       (58, 4),
       (59, 4),
@@ -322,7 +322,7 @@ export const databaseFill = (): void => {
 
   connection.query(
     `
-    INSERT INTO orders (user_id, order_date, recovery_date, total_price, comment)
+    INSERT INTO orders (userId, orderDate, recoveryDate, totalPrice, comment)
     VALUES
         (1, '2022-01-05', '2022-01-10', 59.98, 'Order comment for User 1'),
         (2, '2022-01-08', '2022-01-15', 79.98, 'Order comment for User 2'),
@@ -337,7 +337,7 @@ export const databaseFill = (): void => {
 
   connection.query(
     `
-    INSERT INTO products_orders (order_id, product_id, quantite)
+    INSERT INTO products_orders (orderId, productId, quantite)
     VALUES
         (1, 1, 2),
         (1, 2, 1),

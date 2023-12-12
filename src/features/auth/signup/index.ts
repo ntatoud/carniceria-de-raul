@@ -16,11 +16,15 @@ router.post("/checkPassword", (req, res) => {
 });
 
 router.post("/", (req: Request, res: Response, next: NextFunction) => {
-  registerIfPossible(res, req.body);
+  registerIfPossible(req, res, req.body);
 });
 
 router.use("/", (req: Request, res: Response) => {
-  res.render("signup.ejs", { error: {} });
+  res.render("signup.ejs", {
+    error: {},
+    isLogged: req.session.isLogged,
+    account: req.session.user,
+  });
 });
 
 export default router;
