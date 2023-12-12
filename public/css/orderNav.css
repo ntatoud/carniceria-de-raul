@@ -1,28 +1,29 @@
 .order-nav {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding: 0;
-  justify-content: center;
-  padding: 2em;
+  display: grid;
+  grid-template-columns: repeat(5, 4rem);
+  margin: 2rem;
 }
 
-.order-nav li {
-  list-style: none;
-  width: 10%;
+.order-nav > .cart {
+  grid-column: 1;
 }
 
+.order-nav > .infos {
+  grid-column: 3;
+}
+
+.order-nav > .payment {
+  grid-column: 5;
+}
 .order-nav a {
+  grid-row: 1;
   display: flex;
   font-weight: bold;
   text-decoration: none;
   flex-direction: column;
   align-items: center;
   width: 100%;
-}
-
-.order-nav a p {
-  margin-top: -0.75em;
+  color: var(--gray-400);
 }
 
 .order-nav .spacer {
@@ -32,46 +33,35 @@
   align-items: center;
   justify-content: center;
   margin-top: 1.5rem;
-  margin-left: -2.5rem;
-  margin-right: -2.5rem;
 }
 
 .order-nav .spacer * {
   content: " ";
-  width: 2rem;
+  width: 1.5rem;
   height: 0.25rem;
+  background: var(--gray-400);
 }
 .spacer .start {
   border-top-left-radius: 25px;
-  /* border-bottom-left-radius: 40%; */
 }
 
 .spacer .end {
   border-bottom-right-radius: 25px;
-  /* border-top-right-radius: 30%; */
 }
 
 /* Done styles */
 
-.order-nav li.done > * {
+.order-nav a.completed > * {
   color: green;
 }
-.order-nav .spacer .done {
+.order-nav .spacer .completed {
   background: green;
 }
 
 /* In Progress styles */
-.order-nav li.current > * {
+.order-nav a.current > * {
   color: var(--blue-600);
 }
 .order-nav .spacer .current {
   background: var(--blue-600);
-}
-
-/* ToDo styles */
-.order-nav li.todo > * {
-  color: var(--gray-400);
-}
-.order-nav .spacer .todo {
-  background: var(--gray-400);
 }
