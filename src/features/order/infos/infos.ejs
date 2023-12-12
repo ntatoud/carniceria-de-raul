@@ -12,8 +12,9 @@
       <%- include('../orderNav.ejs') %>
       <div class="progress-bar d-flex flex-row">
         <span class="billing current bi bi-check">
-          Dirección de facturación</span
-        ><span class="contact pending bi bi-chevron-right"> Contacto </span>
+          Dirección de facturación
+        </span>
+        <span class="contact pending bi bi-chevron-right"> Contacto </span>
         <span class="recovery pending bi bi-chevron-right"> Recogida </span>
       </div>
 
@@ -24,12 +25,10 @@
       >
         <div class="form-step billing">
           <div class="form">
-            <h1><b>Dirección de facturación</b></h1>
+            <h2>Dirección de facturación</h2>
             <div class="row">
               <div class="form-group col-md-5">
-                <label for="field3"
-                  ><b>Ciudad <span style="color: red">*</span></b></label
-                >
+                <label for="field3">Ciudad</label>
                 <input
                   class="form-control"
                   type="text"
@@ -38,9 +37,7 @@
                 />
               </div>
               <div class="form-group col-md-3">
-                <label for="field4"
-                  ><b>Código postal <span style="color: red">*</span></b></label
-                >
+                <label for="field4">Código postal</label>
                 <input
                   class="form-control"
                   type="text"
@@ -49,9 +46,7 @@
                 />
               </div>
               <div class="form-group col-md-4">
-                <label for="field1"
-                  ><b>País <span style="color: red">*</span></b></label
-                >
+                <label for="field1">País</label>
                 <input
                   class="form-control"
                   type="text"
@@ -61,9 +56,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="field5"
-                ><b>Dirección 1 <span style="color: red">*</span></b></label
-              >
+              <label for="field5">Dirección 1</label>
               <input
                 class="form-control"
                 type="text"
@@ -86,34 +79,19 @@
 
         <div class="form-step contact" style="display: none">
           <div class="form">
-            <h1><b>Contacto</b></h1>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="phone"
-                  ><b>Teléfono: <span style="color: red">*</span></b></label
-                ><br />
-                <input
-                  class="form-control"
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                /><br />
-              </div>
+            <h2>Contacto</h2>
+            <div class="form-group">
+              <label for="phone">Teléfono</label>
+              <input class="form-control" type="tel" id="phone" name="phone" />
             </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="email"
-                  ><b
-                    >Correo Electrónico: <span style="color: red">*</span></b
-                  ></label
-                ><br />
-                <input
-                  class="form-control"
-                  type="email"
-                  id="email"
-                  name="email"
-                /><br />
-              </div>
+            <div class="form-group">
+              <label for="email">Correo Electrónico</label>
+              <input
+                class="form-control"
+                type="email"
+                id="email"
+                name="email"
+              />
             </div>
           </div>
 
@@ -123,7 +101,7 @@
               class="button button-secondary prev"
               onclick="changeView('contact', 'billing', 'back')"
             >
-              <-Dirección de facturación
+              <- Dirección de facturación
             </button>
             <b>2/3</b>
             <button
@@ -131,44 +109,32 @@
               class="button button-secondary next"
               onclick="changeView('contact', 'recovery', 'next')"
             >
-              Recogida->
+              Recogida ->
             </button>
           </span>
         </div>
 
         <div class="form-step recovery" style="display: none">
           <div class="form">
-            <h1><b>Recogida</b></h1>
-            <div class="row">
+            <h2>Recogida</h2>
+            <div class="form-group row">
               <div class="form-group col-md-4">
-                <label for="day"
-                  ><b
-                    >Fecha de recogida: <span style="color: red">*</span></b
-                  ></label
-                ><br />
-                <input
-                  class="form-control"
-                  type="date"
-                  id="day"
-                  name="day"
-                /><br />
+                <label for="day">Fecha de recogida</label>
+                <input class="form-control" type="date" id="day" name="day" />
               </div>
               <div class="form-group col-md-4">
-                <label for="time"
-                  ><b>Hora: <span style="color: red">*</span></b></label
-                ><br />
+                <label for="time">Hora</label>
                 <input
                   class="form-control"
                   type="time"
                   id="time"
                   name="time"
                   value="DD/MM/YYYY"
-                /><br />
+                />
               </div>
             </div>
             <div class="form-group">
-              <label for="comment"><b>Comentarios:</b></label
-              ><br />
+              <label for="comment">Comentarios</label>
               <textarea
                 class="form-control form-text-area"
                 id="comment"
@@ -184,7 +150,7 @@
               class="button button-secondary prev"
               onclick="changeView('recovery', 'contact', 'back')"
             >
-              <-Contacto
+              <- Contacto
             </button>
             <b>3/3</b></span
           >
