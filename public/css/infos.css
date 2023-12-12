@@ -1,0 +1,67 @@
+.form-step .form {
+  width: 50rem;
+}
+
+.form {
+  gap: 1.5rem;
+}
+
+.form-nav {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(3, 33%);
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.form-nav > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-nav button {
+  width: fit-content;
+}
+
+.form-nav button.next {
+  justify-self: end;
+  width: fit-content;
+}
+
+.form-nav button.prev {
+  justify-self: start;
+  width: fit-content;
+}
+
+.form-nav p {
+  text-align: center;
+  width: 100%;
+  grid-column: 2;
+}
+
+.progress-bar {
+  display: flex;
+  justify-content: start;
+  width: 50rem;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.progress-bar span {
+  font-weight: bold;
+  border-style: solid;
+  border-width: 0 0 2px 0;
+  padding: 0.5rem 1rem;
+  color: black;
+  border-color: black;
+}
+
+.progress-bar .current {
+  color: blue;
+  border-color: blue;
+}
+
+.progress-bar .completed {
+  color: green;
+  border-color: green;
+}
