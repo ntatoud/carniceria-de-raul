@@ -4,6 +4,7 @@
   <head>
     <%- include('../../../imports.ejs') %>
     <link rel="stylesheet" type="text/css" href="/css/infos.css" />
+    <link rel="stylesheet" type="text/css" href="/css/actionbar.css" />
   </head>
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
@@ -12,227 +13,207 @@
       <div class="progress-bar d-flex flex-row">
         <span class="billing current bi bi-check">
           Dirección de facturación</span
-        ><span class="contacto pending bi bi-chevron-right"> Contacto </span>
-        <span class="recogida pending bi bi-chevron-right"> Recogida </span>
-      </div>
-      <div id="billing" class="d-flex flex-column align-items-center">
-        <form class="form">
-          <h1><b>Dirección de facturación</b></h1>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="field1"
-                ><b>País <span style="color: red">*</span></b></label
-              >
-              <input
-                class="form-control"
-                type="text"
-                id="field1"
-                name="field1"
-              />
-            </div>
-            <div class="form-group">
-              <label for="field2"
-                ><b>Región <span style="color: red">*</span></b></label
-              >
-              <input
-                class="form-control"
-                type="text"
-                id="field2"
-                name="field2"
-              />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="field3"
-                ><b>Ciudad <span style="color: red">*</span></b></label
-              >
-              <input
-                class="form-control"
-                type="text"
-                id="field3"
-                name="field3"
-              />
-            </div>
-            <div class="form-group">
-              <label for="field4"
-                ><b>Código postal <span style="color: red">*</span></b></label
-              >
-              <input
-                class="form-control"
-                type="text"
-                id="field4"
-                name="field4"
-              />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="field5"
-              ><b>Dirección 1 <span style="color: red">*</span></b></label
-            >
-            <input class="form-control" type="text" id="field5" name="field5" />
-          </div>
-          <div class="form-group">
-            <label for="field6"><b>Dirección 2</b></label>
-            <input class="form-control" type="text" id="field6" name="field6" />
-          </div>
-        </form>
-        <b>1/3</b
-        ><span class="form-nav">
-          <button
-            type="button"
-            class="button button-secondary"
-            onclick="changeView('contact')"
-          >
-            Contacto->
-          </button>
-        </span>
-        <div class="space-below"></div>
-        <div class="button-container5">
-          <a href="/order/cart" class="button button-primary"> <- Carrito </a>
-        </div>
+        ><span class="contact pending bi bi-chevron-right"> Contacto </span>
+        <span class="recovery pending bi bi-chevron-right"> Recogida </span>
       </div>
 
-      <div id="contact" class="d-none">
-        <form class="form">
-          <h1><b>Contacto</b></h1>
-          <div class="form-row">
+      <form
+        class="d-flex flex-column align-items-center"
+        action="/order/infos"
+        method="POST"
+      >
+        <div class="form-step billing">
+          <div class="form">
+            <h1><b>Dirección de facturación</b></h1>
+            <div class="row">
+              <div class="form-group col-md-5">
+                <label for="field3"
+                  ><b>Ciudad <span style="color: red">*</span></b></label
+                >
+                <input
+                  class="form-control"
+                  type="text"
+                  id="field3"
+                  name="field3"
+                />
+              </div>
+              <div class="form-group col-md-3">
+                <label for="field4"
+                  ><b>Código postal <span style="color: red">*</span></b></label
+                >
+                <input
+                  class="form-control"
+                  type="text"
+                  id="field4"
+                  name="field4"
+                />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="field1"
+                  ><b>País <span style="color: red">*</span></b></label
+                >
+                <input
+                  class="form-control"
+                  type="text"
+                  id="field1"
+                  name="field1"
+                />
+              </div>
+            </div>
             <div class="form-group">
-              <label for="phone"
-                ><b>Teléfono: <span style="color: red">*</span></b></label
-              ><br />
+              <label for="field5"
+                ><b>Dirección 1 <span style="color: red">*</span></b></label
+              >
               <input
                 class="form-control"
-                type="tel"
-                id="phone"
-                name="phone"
-              /><br />
+                type="text"
+                id="field5"
+                name="field5"
+              />
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email"
-                ><b
-                  >Correo Electrónico: <span style="color: red">*</span></b
-                ></label
-              ><br />
-              <input
-                class="form-control"
-                type="email"
-                id="email"
-                name="email"
-              /><br />
-            </div>
-          </div>
-        </form>
-        <b>2/3</b>
-        <div
-          style="
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 80%;
-          "
-        >
-          <span class="form-nav2">
+          <span class="form-nav">
+            <b>1/3</b>
             <button
               type="button"
-              class="button button-secondary"
-              onclick="changeView('billing')"
+              class="button button-secondary next"
+              onclick="changeView('billing', 'contact', 'next')"
             >
-              <-Dirección de facturación
-            </button> </span
-          ><span class="form-nav"
-            ><button
-              type="button"
-              class="button button-secondary"
-              onclick="changeView('recovery')"
-            >
-              Recogida->
-            </button></span
-          >
+              Contacto ->
+            </button>
+          </span>
         </div>
-        <div class="space-below"></div>
-        <div class="button-container5">
-          <a href="/order/cart" class="button button-primary"> <- Carrito </a>
-        </div>
-      </div>
 
-      <div id="recovery" class="d-none">
-        <form class="form">
-          <h1><b>Recogida</b></h1>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="day"
-                ><b
-                  >Fecha de recogida: <span style="color: red">*</span></b
-                ></label
-              ><br />
-              <input
-                class="form-control"
-                type="date"
-                id="day"
-                name="day"
-              /><br />
+        <div class="form-step contact" style="display: none">
+          <div class="form">
+            <h1><b>Contacto</b></h1>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone"
+                  ><b>Teléfono: <span style="color: red">*</span></b></label
+                ><br />
+                <input
+                  class="form-control"
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                /><br />
+              </div>
             </div>
-            <div class="form-group">
-              <label for="time"
-                ><b>Hora: <span style="color: red">*</span></b></label
-              ><br />
-              <input
-                class="form-control"
-                type="time"
-                id="time"
-                name="time"
-              /><br />
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email"
+                  ><b
+                    >Correo Electrónico: <span style="color: red">*</span></b
+                  ></label
+                ><br />
+                <input
+                  class="form-control"
+                  type="email"
+                  id="email"
+                  name="email"
+                /><br />
+              </div>
             </div>
           </div>
-          <div class="form-row">
+
+          <span class="form-nav">
+            <button
+              type="button"
+              class="button button-secondary prev"
+              onclick="changeView('contact', 'billing', 'back')"
+            >
+              <-Dirección de facturación
+            </button>
+            <b>2/3</b>
+            <button
+              type="button"
+              class="button button-secondary next"
+              onclick="changeView('contact', 'recovery', 'next')"
+            >
+              Recogida->
+            </button>
+          </span>
+        </div>
+
+        <div class="form-step recovery" style="display: none">
+          <div class="form">
+            <h1><b>Recogida</b></h1>
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label for="day"
+                  ><b
+                    >Fecha de recogida: <span style="color: red">*</span></b
+                  ></label
+                ><br />
+                <input
+                  class="form-control"
+                  type="date"
+                  id="day"
+                  name="day"
+                /><br />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="time"
+                  ><b>Hora: <span style="color: red">*</span></b></label
+                ><br />
+                <input
+                  class="form-control"
+                  type="time"
+                  id="time"
+                  name="time"
+                  value="DD/MM/YYYY"
+                /><br />
+              </div>
+            </div>
             <div class="form-group">
               <label for="comment"><b>Comentarios:</b></label
               ><br />
               <textarea
-                class="form-control2"
+                class="form-control form-text-area"
                 id="comment"
                 name="comment"
               ></textarea
               ><br />
             </div>
           </div>
-        </form>
-        <b>3/3</b>
-        <span class="form-nav2">
-          <button
-            type="button"
-            class="button button-secondary"
-            onclick="changeView('contact')"
-          >
-            <-Contacto
-          </button></span
-        >
 
-        <div class="button-container3">
-          <a href="/order/cart" class="button button-secondary"> <- Carrito </a>
-          <a href="/order/payment" class="button button-primary">
-            Confirmar compra ✓
-          </a>
+          <span class="form-nav">
+            <button
+              type="button"
+              class="button button-secondary prev"
+              onclick="changeView('recovery', 'contact', 'back')"
+            >
+              <-Contacto
+            </button>
+            <b>3/3</b></span
+          >
         </div>
-      </div>
+        <%- include('./layout/actionbar.ejs', {leftButtonTitle: "<- Carrito", rightButtonTitle:"Confirmar compra ✓"}) %>
+       
+      </form>
 
       <script>
-        function changeView(viewId) {
-          var views = ["billing", "contact", "recovery"];
-          for (var i = 0; i < views.length; i++) {
-            document
-              .getElementById(views[i])
-              .classList.remove("d-flex", "flex-column", "align-items-center");
-            document.getElementById(views[i]).classList.add("d-none");
+        const changeView = (fromView, toView, direction) => {
+          const progressBarPrevious = $(`.progress-bar .${fromView}`);
+          const progressBarCurrent = $(`.progress-bar .${toView}`);
+          progressBarPrevious.removeClass("current");
+          progressBarCurrent.addClass("current");
+          if (direction === "next") {
+            progressBarPrevious.addClass("completed");
+          } else {
+            progressBarCurrent.removeClass("completed");
           }
-          document.getElementById(viewId).classList.remove("d-none");
-          document
-            .getElementById(viewId)
-            .classList.add("d-flex", "flex-column", "align-items-center");
-        }
+          if (toView === "recovery") {
+            $('button[type="submit"]').show();
+          } else {
+            $('button[type="submit"]').hide();
+          }
+          $(`.form-step.${fromView}`).hide();
+          $(`.form-step.${toView}`).show();
+        };
+
+        $('button[type="submit"]').hide();
       </script>
     </main>
   </body>

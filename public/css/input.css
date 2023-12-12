@@ -14,12 +14,9 @@
   height: 40px;
 }
 
-.form-control2 {
-  background-color: var(--gray-50);
-  border-radius: 6px;
-  border: 1px solid var(--gray-200);
-  height: 120px;
-  width: 1180px;
+.form-text-area {
+  height: 80px;
+  width: 100%;
 }
 
 .input-group .input-group-text,
