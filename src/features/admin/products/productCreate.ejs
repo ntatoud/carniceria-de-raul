@@ -1,5 +1,5 @@
 <!-- Author : Noé TATOUD -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <%- include('../../imports.ejs') %>
@@ -19,7 +19,7 @@
         <div class="form-container">
           <%- include('./admin/products/productForm.ejs')%>
         </div>
-        <%- include('./layout/actionbar.ejs', {data: product})%>
+        <%- include('./layout/actionbar.ejs', {leftButtonTitle: "Cancel", rightButtonTitle:"Create Product"})%>
       </form>
     </main>
   </body>
