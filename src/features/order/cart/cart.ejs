@@ -7,11 +7,20 @@
   </head>
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
-    <main>
+    <main class="d-flex flex-column align-items-center">
+
       <%- include('../orderNav.ejs') %>
-      <div class="">
-        <a href="/order/infos" class="button button-primary">Purchase -></a>
-      </div>
+      <div class="products">
+        <% products.map((product) => {%>
+          <div class="row">
+            <%= product.name %>
+            <%= product.price %>
+            <%= product.quantity %>
+          </div>
+          <% })%>
+        </div>
+      <a href="/order/infos" class="button button-primary">Purchase -></a>
+      
     </main>
   </body>
 </html>

@@ -1,6 +1,6 @@
 import { toastDispatch, toastSuccess } from '../../../components/toast';
 import { databaseConnect } from '../../../database';
-import { Product, UserSession } from '@/features/types';
+import { UserSession } from '@/features/types';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 

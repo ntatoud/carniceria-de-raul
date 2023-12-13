@@ -1,4 +1,4 @@
-import { Order, Product } from '@/features/types';
+import { Order } from '@/features/types';
 import { databaseConnect } from '../../../database';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';

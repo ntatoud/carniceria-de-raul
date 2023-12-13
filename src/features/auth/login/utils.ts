@@ -9,7 +9,7 @@ export const createSession = (
   userData: Account
 ) => {
   const getCartQuery =
-    'SELECT p.name, p.price\
+    'SELECT p.name, p.price, ucp.quantity\
   FROM users_cart_products ucp\
   JOIN products p ON ucp.productId = p.productId\
   WHERE ucp.userId = ?;';
@@ -22,6 +22,7 @@ export const createSession = (
       if (error) throw new Error(error.message);
       console.log(results);
       session.user = { ...userData };
+      session.cart = results as Cart;
       session.isLogged = true;
       session.toast = toastSuccess({ content: 'You are now connected' });
       res.status(200).redirect('/');

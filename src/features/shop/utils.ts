@@ -1,6 +1,6 @@
 import { QueryError } from 'mysql2';
 import { databaseConnect } from '../../database';
-import { Category, Product } from '../types';
+import { Category } from '../types';
 import { Request, Response } from 'express';
 
 export const getAllProductsWithCategory = (
