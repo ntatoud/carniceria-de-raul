@@ -1,339 +1,229 @@
 <!-- Author : Noé TATOUD -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <%- include('../../../imports.ejs') %>
-    <style>
-      .view {
-        display: none;
-      }
-      .active {
-        display: block;
-      }
-      .progress-bar {
-        display: flex;
-        list-style-type: none;
-        padding: 0;
-        margin-bottom: 20px;
-      }
-      .progress-bar span {
-        margin-right: 5px;
-        font-weight: bold;
-      }
-      .progress-bar .current {
-        color: blue;
-      }
-      .progress-bar .completed {
-        color: green;
-      }
-      .progress-bar .pending {
-        color: black;
-      }
-
-      form {
-        width: 40%;
-        height: 65%;
-        padding: 20px;
-        background-color: #ffffff83;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        margin: auto;
-      }
-      h1 {
-        text-align: left;
-        margin-bottom: 20px;
-        font-size: 1.2em;
-      }
-      .form-row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-      }
-      .form-group {
-        flex: 1;
-        margin-right: 10px;
-      }
-      .form-group:last-child {
-        margin-right: 0;
-      }
-      .form-group label {
-        display: block;
-        margin-bottom: 10px;
-      }
-      .form-group input {
-        width: 100%;
-        padding: 10px;
-        box-sizing: border-box;
-      }
-      .buttonWhite {
-        display: block;
-        width: 150px;
-        height: 40px;
-        margin: 10px;
-        background-color: white;
-        color: blue;
-        text-align: center;
-        border-radius: 8px;
-        text-decoration: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        right: 0;
-      }
-      .buttonWhite2 {
-        display: block;
-        width: 150px;
-        height: 40px;
-        margin: 10px;
-        background-color: white;
-        color: blue;
-        text-align: center;
-        border-radius: 8px;
-        text-decoration: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-      }
-      .buttonWhite3 {
-        display: block;
-        width: 300px;
-        height: 40px;
-        margin: 10px;
-        background-color: white;
-        color: blue;
-        text-align: center;
-        border-radius: 8px;
-        text-decoration: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        left: 0;
-      }
-      .buttonBlue2 {
-        display: block;
-        width: 200px;
-        height: 40px;
-        margin: 10px;
-        background-color: rgb(50, 71, 226);
-        color: white;
-        text-align: center;
-        border-radius: 8px;
-        text-decoration: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        right: 0;
-      }
-      .button-container {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        width: 100%;
-        height: 50px;
-        position: relative;
-        bottom: 0;
-        background-color: white;
-        padding-left: 690px;
-      }
-      .button-container2 {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        width: 100%;
-        height: 50px;
-        position: fixed;
-        bottom: 0;
-        background-color: white;
-        padding-left: 690px;
-      }
-      .button-container3 {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 70px;
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        background-color: white;
-      }
-      .space-below {
-        margin-bottom: 50px;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/css/orderNav.css" />
+    <link rel="stylesheet" type="text/css" href="/css/infos.css" />
+    <link rel="stylesheet" type="text/css" href="/css/actionbar.css" />
   </head>
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
-    <main>
+    <main class="d-flex flex-column align-items-center">
       <%- include('../orderNav.ejs') %>
-      <div id="billing" class="view active">
-        <div class="progress-bar">
-          <span class="current"
-            >✓ Dirección de facturación >
-            <span class="pending">
-              Contacto > <span class="pending"> Recogida </span></span
-            ></span
-          >
-          <div class="current">
-            -----------------------------<span class="pending"
-              >-------------<span class="pending">----------</span></span
-            >
-          </div>
-        </div>
-
-        <form>
-          <h1>Dirección de facturación</h1>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="field1">País</label>
-              <input type="text" id="field1" name="field1" />
-            </div>
-            <div class="form-group">
-              <label for="field2">Región</label>
-              <input type="text" id="field2" name="field2" />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="field3">Ciudad</label>
-              <input type="text" id="field3" name="field3" />
-            </div>
-            <div class="form-group">
-              <label for="field4">Código postal</label>
-              <input type="text" id="field4" name="field4" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="field5">Dirección 1</label>
-            <input type="text" id="field5" name="field5" />
-          </div>
-          <div class="form-group">
-            <label for="field6">Dirección 2</label>
-            <input type="text" id="field6" name="field6" />
-          </div>
-        </form>
-        <button
-          type="button"
-          class="buttonWhite"
-          onclick="changeView('contact')"
-        >
-          Contacto->
-        </button>
-        <div class="space-below"></div>
-        <div class="button-container">
-          <a href="/order/cart" class="buttonWhite2"> <- Carrito </a>
-        </div>
+      <div class="progress-bar d-flex flex-row">
+        <span class="billing current bi bi-check">
+          Dirección de facturación
+        </span>
+        <span class="contact pending bi bi-chevron-right"> Contacto </span>
+        <span class="recovery pending bi bi-chevron-right"> Recogida </span>
       </div>
 
-      <div id="contact" class="view">
-        <div class="progress-bar">
-          <span class="completed"
-            >✓ Dirección de facturación >
-            <span class="current">
-              Contacto > <span class="pending"> Recogida </span></span
-            ></span
-          >
-          <div class="completed">
-            -----------------------------<span class="current"
-              >-------------<span class="pending">----------</span></span
+      <form
+        class="d-flex flex-column align-items-center"
+        action="/order/infos"
+        method="POST"
+      >
+        <div class="form-step billing">
+          <div class="form">
+            <h2>Dirección de facturación</h2>
+            <div class="row">
+              <div class="form-group col-md-5">
+                <label for="city">Ciudad</label>
+                <input
+                  class="form-control required"
+                  type="text"
+                  id="city"
+                  name="city"
+                  required
+                />
+              </div>
+              <div class="form-group col-md-3">
+                <label for="postalCode">Código postal</label>
+                <input
+                  class="form-control required"
+                  type="text"
+                  id="postalCode"
+                  name="postalCode"
+                  required
+                />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="country">País</label>
+                <input
+                  class="form-control required"
+                  type="text"
+                  id="country"
+                  name="country"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="address">Dirección</label>
+              <input
+                class="form-control required"
+                type="text"
+                id="address"
+                name="address"
+                required
+              />
+            </div>
+          </div>
+          <span class="form-nav">
+            <p>1/3</p>
+            <button
+              type="button"
+              class="button button-secondary next"
+              onclick="changeView('billing', 'contact', 'next')"
             >
-          </div>
+              Contacto ->
+            </button>
+          </span>
         </div>
-        <form>
-          <h1>Contacto</h1>
-          <div class="form-row">
+
+        <div class="form-step contact" style="display: none">
+          <div class="form">
+            <h2>Contacto</h2>
             <div class="form-group">
-              <label for="phone">Teléfono:</label><br />
-              <input type="tel" id="phone" name="phone" /><br />
+              <label for="phone">Teléfono</label>
+              <div class="input-group">
+                <input
+                  class="form-control"
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  aria-describedby="phoneHelp"
+                />
+                <div class="input-group-append">
+                  <div class="input-group-text bi bi-telephone"></div>
+                </div>
+              </div>
+              <small id="phoneHelp" class="form-text text-muted"
+                >Para que podamos avisar en caso de algún problema.</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="email">Correo Electrónico</label>
+              <input
+                class="form-control"
+                type="email"
+                id="email"
+                name="email"
+                aria-describedby="emailHelp"
+              />
+              <small id="emailHelp" class="form-text text-muted"
+                >Si es diferente del correo electrónico de la cuenta.</small
+              >
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email">Correo Electrónico:</label><br />
-              <input type="email" id="email" name="email" /><br />
-            </div>
-          </div>
-        </form>
 
-        <button
-          type="button"
-          class="buttonWhite3"
-          onclick="changeView('billing')"
-        >
-          <-Dirección de facturación
-        </button>
-        <button
-          type="button"
-          class="buttonWhite"
-          onclick="changeView('recovery')"
-        >
-          Recogida->
-        </button>
-        <div class="space-below"></div>
-        <div class="button-container">
-          <a href="/order/cart" class="buttonWhite2"> <- Carrito </a>
-        </div>
-      </div>
-
-      <div id="recovery" class="view">
-        <div class="progress-bar">
-          <span class="completed"
-            >✓ Dirección de facturación ✓
-            <span class="completed">
-              Contacto > <span class="current"> Recogida </span></span
-            ></span
-          >
-          <div class="completed">
-            -----------------------------<span class="completed"
-              >-------------<span class="current">----------</span></span
+          <span class="form-nav">
+            <button
+              type="button"
+              class="button button-secondary prev"
+              onclick="changeView('contact', 'billing', 'back')"
             >
-          </div>
+              <- Dirección de facturación
+            </button>
+            <p>2/3</p>
+            <button
+              type="button"
+              class="button button-secondary next"
+              onclick="changeView('contact', 'recovery', 'next')"
+              onsubmit="showRequiredFields(event)"
+            >
+              Recogida ->
+            </button>
+          </span>
         </div>
-        <form>
-          <h1>Recogida</h1>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="day">Fecha de recogida:</label><br />
-              <input type="date" id="day" name="day" /><br />
-            </div>
-            <div class="form-group">
-              <label for="time">Hora:</label><br />
-              <input type="time" id="time" name="time" /><br />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="comment">Comentarios:</label><br />
-              <textarea id="comment" name="comment"></textarea><br />
-            </div>
-          </div>
-        </form>
 
-        <button
-          type="button"
-          class="buttonWhite3"
-          onclick="changeView('contact')"
-        >
-          Back
-        </button>
-        <div class="space-below"></div>
-        <div class="button-container3">
-          <a href="/order/cart" class="buttonWhite3"> <- Carrito </a>
-          <a href="/order/payment" class="buttonBlue2"> Confirmar compra ✓ </a>
+        <div class="form-step recovery" style="display: none">
+          <div class="form">
+            <h2>Recogida</h2>
+            <div class="form-group row">
+              <div class="form-group col-md-4">
+                <label for="recoveryDay">Fecha de recogida</label>
+                <input
+                  class="form-control required"
+                  type="date"
+                  id="recoveryDay"
+                  name="recoveryDay"
+                />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="recoveryTime">Hora</label>
+                <input
+                  class="form-control required"
+                  type="time"
+                  id="recoveryTime"
+                  name="recoveryTime"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="comment">Comentarios</label>
+              <textarea
+                class="form-control form-text-area"
+                id="comment"
+                name="comment"
+              ></textarea
+              ><br />
+            </div>
+          </div>
+
+          <span class="form-nav">
+            <button
+              type="button"
+              class="button button-secondary prev"
+              onclick="changeView('recovery', 'contact', 'back')"
+            >
+              <- Contacto
+            </button>
+            <p>3/3</p></span
+          >
         </div>
-      </div>
+        <%- include('./layout/actionbar.ejs', {leftButtonTitle: "<- Carrito", rightButtonTitle:"Confirmar compra"}) %>
+      </form>
 
       <script>
-        function changeView(viewId) {
-          var views = document.getElementsByClassName("view");
-          for (var i = 0; i < views.length; i++) {
-            views[i].classList.remove("active");
+        const changeView = (fromView, toView, direction) => {
+          const progressBarPrevious = $(`.progress-bar .${fromView}`);
+          const progressBarCurrent = $(`.progress-bar .${toView}`);
+          const previousStep = $(`.form-step.${fromView}`);
+          const currentStep = $(`.form-step.${toView}`);
+          // i.e. if at least one required form is not filled
+          if (
+            $(`.form-step.${fromView} .required`).filter(
+              (_, input) => !$(input).val()
+            ).length &&
+            direction === "next"
+          )
+            return;
+          progressBarPrevious.removeClass("current");
+          progressBarCurrent.addClass("current");
+          if (direction === "next") {
+            progressBarPrevious.addClass("completed");
+          } else {
+            progressBarCurrent.removeClass("completed");
           }
-          document.getElementById(viewId).classList.add("active");
-        }
+          if (toView === "recovery") {
+            $("button.submit").show();
+          } else {
+            $("button.submit").hide();
+          }
+          previousStep.hide();
+          previousStep.find(".required").removeAttr("required");
+          currentStep.show();
+          currentStep.find(".required").attr("required", true);
+        };
+        $(window).keydown(function(event){
+          if(event.keyCode == 13) {
+              event.preventDefault();
+              return false;
+    }
+  });
+        $("button.submit").hide();
       </script>
     </main>
   </body>
