@@ -1,5 +1,5 @@
-import mysql from "mysql2";
-import { databaseCredentials } from "./index";
+import mysql from 'mysql2';
+import { databaseCredentials } from './index';
 
 export const databaseCreate = (): void => {
   // Create a connection to MySQL server
@@ -17,7 +17,7 @@ export const databaseCreate = (): void => {
       if (error) {
         throw new Error(error.message);
       }
-      console.log("Database created successfully");
+      console.log('Database created successfully');
     }
   );
 
@@ -87,7 +87,7 @@ export const databaseCreate = (): void => {
       `,
     (error: Error) => {
       if (error) throw new Error(error.message);
-      console.log("Tables created successfully");
+      console.log('Tables created successfully');
     }
   );
   // Close the connection

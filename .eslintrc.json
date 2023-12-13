@@ -1,0 +1,20 @@
+{
+  "extends": ["plugin:@typescript-eslint/recommended"],
+  "ignorePatterns": ["**/frontend/*.ts", "**/components/**.ts"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": "",
+      "rules": {
+        "import/no-anonymous-default-export": "off"
+      }
+    }
+  ]
+}

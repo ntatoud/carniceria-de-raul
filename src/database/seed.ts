@@ -1,4 +1,4 @@
-import { databaseConnect } from ".";
+import { databaseConnect } from '.';
 
 export const databaseFill = (): void => {
   const connection = databaseConnect();

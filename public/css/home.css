@@ -12,7 +12,7 @@ main img {
 }
 
 .banner {
-  font-family: "Staatliches";
+  font-family: 'Staatliches';
   position: relative;
   display: flex;
   flex-direction: column;

@@ -1,13 +1,17 @@
-import { NextFunction, Request, Response } from "express";
+import { toastError } from '../components/toast';
+import { NextFunction, Request, Response } from 'express';
 
 export const adminOnlyRoute = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  if (req.session.isLogged && req.session.user?.authorities === "ROLE_ADMIN") {
+  if (req.session.isLogged && req.session.user?.authorities === 'ROLE_ADMIN') {
     next();
   } else {
-    res.redirect("/");
+    req.session.toast = toastError({
+      content: 'Access Forbidden ',
+    });
+    res.redirect('/');
   }
 };

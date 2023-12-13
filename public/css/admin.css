@@ -52,8 +52,8 @@ table {
   align-items: center;
 }
 
-.table-row a {
-  content: " ";
+.table-row .link-box {
+  content: ' ';
   top: 0;
   left: 0;
   position: absolute;

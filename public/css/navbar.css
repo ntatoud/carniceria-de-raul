@@ -36,7 +36,7 @@
   left: 50%;
   bottom: 0.6rem;
   transform: translate(-50%, 0);
-  content: " ";
+  content: ' ';
   width: 0.2em;
   height: 0.15em;
   background: var(--gray-300);

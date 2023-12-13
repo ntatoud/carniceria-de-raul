@@ -1,9 +1,9 @@
 const activeNav = () => {
-  $("menu a")
+  $('menu a')
     .filter(
-      (_, navItem) => $(navItem).attr("href") === window.location.pathname
+      (_, navItem) => $(navItem).attr('href') === window.location.pathname
     )
-    .addClass("active");
+    .addClass('active');
 };
 
 activeNav();

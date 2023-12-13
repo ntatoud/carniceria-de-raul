@@ -1,7 +1,7 @@
-import { databaseConnect } from "../../../database";
-import { Order } from "@/features/types";
-import { Request, Response } from "express";
-import { QueryError, RowDataPacket } from "mysql2";
+import { Order, Product } from '@/features/types';
+import { databaseConnect } from '../../../database';
+import { Request, Response } from 'express';
+import { QueryError, RowDataPacket } from 'mysql2';
 
 export const getOrderFromId = (req: Request, res: Response, id: string) => {
   const getOrderAndProduct = `SELECT \
@@ -27,7 +27,7 @@ export const getOrderFromId = (req: Request, res: Response, id: string) => {
     FROM \
     orders o \
     JOIN products_orders po ON o.orderId = po.orderId \
-    JOIN products p ON po.productId = p.productIdd \
+    JOIN products p ON po.productId = p.productId \
     JOIN product_categories pc ON p.productId = pc.productId \
     JOIN categories c ON pc.categoryId = c.categoryId \
     WHERE \
@@ -38,13 +38,12 @@ export const getOrderFromId = (req: Request, res: Response, id: string) => {
   connection.query(
     getOrderAndProduct,
     [id],
-    (error: QueryError | null, results: any) => {
+    (error: QueryError | null, results: RowDataPacket[]) => {
       if (error) {
         throw new Error(error.message);
       } else {
-        console.log(results);
-        res.render("orderDetails.ejs", {
-          orderProducts: results,
+        res.render('orderDetails.ejs', {
+          orderProducts: results as (Partial<Product> & Partial<Order>)[],
           isLogged: req.session.isLogged,
           account: req.session.user,
         });
@@ -57,7 +56,7 @@ export const getOrderList = (req: Request, res: Response) => {
   const connection = databaseConnect();
 
   const getOrderQuery =
-    "SELECT \
+    'SELECT \
     o.orderId, \
     o.userId, \
     u.email, \
@@ -68,15 +67,14 @@ export const getOrderList = (req: Request, res: Response) => {
     o.totalPrice \
     FROM \
     orders o \
-    JOIN users u ON o.userId = u.userId;";
+    JOIN users u ON o.userId = u.userId;';
   connection.query(
     getOrderQuery,
     (error: QueryError, results: RowDataPacket[]) => {
       if (error) {
         throw new Error(error.message);
       } else {
-        console.log(results);
-        res.render("orders.ejs", {
+        res.render('orders.ejs', {
           orders: results,
           isLogged: req.session.isLogged,
           account: req.session.user,
@@ -92,6 +90,6 @@ export const orderDelete = (res: Response, userId: string) => {
   connection.query(deleteQuery, [userId], (error: QueryError | null) => {
     if (error) throw new Error(error.message);
 
-    res.status(200).send("OK");
+    res.status(200).send('OK');
   });
 };

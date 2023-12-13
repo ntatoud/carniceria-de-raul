@@ -1,5 +1,5 @@
-import { Authorities } from "@/features/types";
-import { NextFunction, Request, Response } from "express";
+import { toastError } from '../components/toast';
+import { NextFunction, Request, Response } from 'express';
 
 export const loggedOnlyRoute = (
   req: Request,
@@ -9,6 +9,7 @@ export const loggedOnlyRoute = (
   if (req.session.isLogged) {
     next();
   } else {
-    res.redirect("/");
+    req.session.toast = toastError({ content: 'You must be connected' });
+    res.redirect('/');
   }
 };

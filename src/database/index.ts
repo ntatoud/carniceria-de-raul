@@ -1,5 +1,5 @@
-import mysql, { Connection } from "mysql2";
-import dotenv from "dotenv";
+import mysql, { Connection } from 'mysql2';
+import dotenv from 'dotenv';
 dotenv.config();
 
 export const databaseCredentials = {

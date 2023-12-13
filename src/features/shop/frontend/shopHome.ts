@@ -14,18 +14,18 @@ const setScroll = () => {
 
 const switchTab = (event: MouseEvent) => {
   const tab = event.target!;
-  const tabId = $(tab).attr("id");
-  const otherTab = $(`button#${tabId === "ofertas" ? "mejores" : "ofertas"}`);
-  const otherTabId = $(otherTab).attr("id");
+  const tabId = $(tab).attr('id');
+  const otherTab = $(`button#${tabId === 'ofertas' ? 'mejores' : 'ofertas'}`);
+  const otherTabId = $(otherTab).attr('id');
 
   // Display the products related to the tab that has been clicked and activate the tab
-  $(tab).addClass("active");
+  $(tab).addClass('active');
   $(`.shop-products-container.${tabId}`).show();
-  $(`.shop-products-container.${tabId}`).removeClass("hide");
+  $(`.shop-products-container.${tabId}`).removeClass('hide');
 
   // Remove the products related to the other tab and desactivate the tab
-  $(otherTab).removeClass("active");
-  $(`.shop-products-container.${otherTabId}`).addClass("hide");
+  $(otherTab).removeClass('active');
+  $(`.shop-products-container.${otherTabId}`).addClass('hide');
   $(`.shop-products-container.${otherTabId}`).hide();
 
   // Reset the scroll for the new tab

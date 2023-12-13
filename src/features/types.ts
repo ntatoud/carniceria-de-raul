@@ -1,4 +1,4 @@
-import { Session, SessionData } from "express-session";
+import { Session, SessionData } from 'express-session';
 export type User = {
   userId: number;
   email: string;
@@ -22,7 +22,7 @@ export type Product = {
   name: string;
   price: number;
   stock: number;
-  sale: Boolean;
+  sale: boolean;
   salePrice?: number;
   best: boolean;
   image: string;
@@ -45,8 +45,8 @@ export type Category = {
 };
 
 export enum Authorities {
-  "ROLE_ADMIN",
-  "ROLE_USER",
+  'ROLE_ADMIN',
+  'ROLE_USER',
 }
 
 export type UserSession = Session & Partial<SessionData>;

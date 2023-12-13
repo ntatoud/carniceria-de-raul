@@ -9,18 +9,6 @@
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
     <%- include('./layout/mainbar.ejs', {title: "Orders", backLink: ""}) %>
-    <div class="toast show">
-      <div class="toast-header">
-        Toast Header
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="toast"
-        ></button>
-      </div>
-      <div class="toast-body">Some text inside the toast body</div>
-    </div>
-    <button id="toastbtn">toast</button>
     <main class="d-flex flex-row">
       <div class="order-container d-flex flex-column">
         <%orderProducts.map((product) => {%>
@@ -37,17 +25,31 @@
           <b>Total: </b> <%=orderProducts[0].totalPrice%>
         </div>
       </div>
+      <!-- -->
+      <div class="toast show">
+        <div class="toast-header">
+          Toast Header
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+          ></button>
+        </div>
+        <div class="toast-body">Some text inside the toast body</div>
+      </div>
+      <button id="toastbtn">toast</button>
+      <!-- -->
     </main>
     <script src="/features/admin/users/frontend/utils.js"></script>
     <script src="/features/layout/frontend/utils.js"></script>
     <script>
-      document.getElementById("toastbtn").onclick = function () {
-        var toastElList = [].slice.call(document.querySelectorAll(".toast"));
-        var toastList = toastElList.map(function (toastEl) {
-          return new bootstrap.Toast(toastEl);
-        });
-        toastList.forEach((toast) => toast.show());
-      };
+      // document.getElementById("toastbtn").onclick = function () {
+      //   var toastElList = [].slice.call(document.querySelectorAll(".toast"));
+      //   var toastList = toastElList.map(function (toastEl) {
+      //     return new bootstrap.Toast(toastEl);
+      //   });
+      //   toastList.forEach((toast) => toast.show());
+      // };
     </script>
   </body>
 </html>
