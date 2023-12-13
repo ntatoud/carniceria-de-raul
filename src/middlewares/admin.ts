@@ -10,7 +10,7 @@ export const adminOnlyRoute = (
     next();
   } else {
     req.session.toast = toastError({
-      content: 'Access Forbidden | Administrador only',
+      content: 'Access Forbidden ',
     });
     res.redirect('/');
   }

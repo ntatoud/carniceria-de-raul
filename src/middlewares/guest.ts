@@ -9,7 +9,7 @@ export const guestOnlyRoute = (
   if (!req.session.isLogged) {
     next();
   } else {
-    req.session.toast = toastError({ content: 'Access Forbidden' });
+    req.session.toast = toastError({ content: 'You are already connected' });
     res.redirect('/');
   }
 };

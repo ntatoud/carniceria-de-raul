@@ -9,7 +9,7 @@ export const loggedOnlyRoute = (
   if (req.session.isLogged) {
     next();
   } else {
-    req.session.toast = toastError({ content: 'Access Forbidden' });
+    req.session.toast = toastError({ content: 'You must be connected' });
     res.redirect('/');
   }
 };
