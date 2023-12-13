@@ -1,15 +1,20 @@
+import { generateSaltHashedPassword } from '../features/auth/util';
 import { databaseConnect } from '.';
+import { QueryError } from 'mysql2';
 
 export const databaseFill = (): void => {
   const connection = databaseConnect();
-
-  connection.query(
-    `INSERT INTO users (email, name, surname, password, salt, address, authorities, creationDate, phone)
+  const { salt: saltAdmin, hashPwd: pwdAdmin } =
+    generateSaltHashedPassword('admin');
+  const { salt: saltUser, hashPwd: pwdUser } =
+    generateSaltHashedPassword('user');
+  connection.execute(
+    `INSERT INTO users (email, name, surname, password, salt, address, authorities, phone)
       VALUES
-      ('john.doe@example.com', 'John', 'Doe', 'hashed_password_1', 123456789, '123 Main St', 'ROLE_USER', '2022-01-01', '123-456-7890'),
-      ('jane.smith@example.com', 'Jane', 'Smith', 'hashed_password_2', 123456789, '456 Oak St', 'ROLE_ADMIN', '2022-01-02', '987-654-3210'),
-      ('alice.jones@example.com', 'Alice', 'Jones', 'hashed_password_3', 123456789, '789 Maple St', 'ROLE_USER', '2022-01-03', '555-123-4567');`,
-    (error: Error) => {
+      ('admin@admin.com', 'admin', 'admin', ?, ?, '123 Main St', 'ROLE_ADMIN','123-456-7890'),
+      ('user@user.com', 'user', 'user', ?, ?, '456 Oak St', 'ROLE_USER', '987-654-3210');`,
+    [pwdAdmin, saltAdmin, pwdUser, saltUser],
+    (error: QueryError | null) => {
       if (error) {
         throw new Error(error.message);
       }
@@ -322,11 +327,27 @@ export const databaseFill = (): void => {
 
   connection.query(
     `
+    INSERT INTO users_cart_products (userId, ProductId, quantity)
+    VALUES
+        (1, 1, 2),
+        (1, 2, 1),
+        (1, 4, 1),
+        (2, 3, 2),
+        (2, 5, 3);`,
+    (error: Error) => {
+      if (error) {
+        throw new Error(error.message);
+      }
+      console.log("🛒 👉 Table 'users_carts_products' seeded successfully");
+    }
+  );
+
+  connection.query(
+    `
     INSERT INTO orders (userId, orderDate, recoveryDate, totalPrice, comment)
     VALUES
         (1, '2022-01-05', '2022-01-10', 59.98, 'Order comment for User 1'),
-        (2, '2022-01-08', '2022-01-15', 79.98, 'Order comment for User 2'),
-        (3, '2022-01-10', '2022-01-18', 89.97, 'Order comment for User 3');`,
+        (2, '2022-01-08', '2022-01-15', 79.98, 'Order comment for User 2');`,
     (error: Error) => {
       if (error) {
         throw new Error(error.message);
@@ -337,12 +358,11 @@ export const databaseFill = (): void => {
 
   connection.query(
     `
-    INSERT INTO products_orders (orderId, productId, quantite)
+    INSERT INTO products_orders (orderId, productId, quantity)
     VALUES
         (1, 1, 2),
         (1, 2, 1),
-        (2, 2, 3),
-        (3, 3, 1);`,
+        (2, 2, 3);`,
     (error: Error) => {
       if (error) {
         throw new Error(error.message);

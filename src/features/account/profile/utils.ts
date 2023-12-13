@@ -4,11 +4,7 @@ import { User } from '@/features/types';
 import { Request, Response } from 'express';
 import { QueryError } from 'mysql2';
 
-export const accountUpdate = (
-  req: Request,
-  res: Response,
-  user: Partial<User>
-) => {
+export const accountUpdate = (req: Request, res: Response, user: User) => {
   const connection = databaseConnect();
   const updateQuery =
     'UPDATE users SET \

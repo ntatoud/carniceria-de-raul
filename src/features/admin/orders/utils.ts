@@ -7,7 +7,7 @@ export const getOrderFromId = (req: Request, res: Response, id: string) => {
   const getOrderAndProduct = `SELECT \
     o.orderId, \
     o.userId, \
-    po.quantite, \
+    po.quantity, \
     o.orderDate, \
     o.recoveryDate, \
     o.totalPrice, \

@@ -4,7 +4,7 @@ import { databaseConnect } from '../../../database';
 import { QueryError, RowDataPacket } from 'mysql2/promise';
 import { User } from '@/features/types';
 import { createSession } from './utils';
-import { toastDispatch } from '../../../components/toast';
+import { toastDispatch, toastError } from '../../../components/toast';
 
 const router = Router();
 
@@ -30,33 +30,19 @@ router.post('/', (req: Request, res: Response) => {
 
       if (result.length) {
         const userData = (result as User[])[0];
-
         if (isPasswordCorrect(password, userData)) {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { salt, password, ...safeUser } = userData;
 
           // Passwords match, login successful, we create the session
-          createSession(req.session, safeUser);
-          res.status(200).redirect('/');
+          createSession(res, req.session, safeUser);
         } else {
-          res.status(401).render('login.ejs', {
-            error: {
-              state: true,
-              message: 'Invalid Credentials',
-            },
-            isLogged: req.session.isLogged,
-            account: req.session.user,
-          });
+          req.session.toast = toastError({ content: 'Invalid Credentials' });
+          res.status(401).redirect('/auth');
         }
       } else {
-        res.status(401).render('login.ejs', {
-          error: {
-            state: true,
-            message: 'Invalid Credentials',
-          },
-          isLogged: req.session.isLogged,
-          account: req.session.user,
-        });
+        req.session.toast = toastError({ content: 'Invalid Credentials' });
+        res.status(401).redirect('/auth');
       }
     }
   );
