@@ -29,7 +29,7 @@
           </tr>
           <tbody class="table-body">
             <% users.map((user)=> { %>
-            <tr class="table-row">
+            <tr class="table-row" id="<%= user.userId %>">
               <td
                 class="table-cell name"
                 data-toggle="tooltip"
@@ -53,7 +53,7 @@
                   class="dropdown-menu dropdown-menu-end"
                 >
                   <a
-                    href="/admin/users/update/<%= user.userId%>"
+                    href="/admin/users/<%= user.userId%>"
                     class="dropdown-item"
                     type="button"
                   >
@@ -61,7 +61,7 @@
                   </a>
                   <button
                     id="<%=user.userId%>"
-                    onclick="deleteUser(event)"
+                    onclick="userDelete(event)"
                     class="dropdown-item"
                     type="button"
                   >
@@ -71,7 +71,8 @@
               </td>
             </tr>
             <%}) %>
-          </tbody>
+          </tbody >
+          <tfoot class="table-footer"></tfoot>
         </table>
       </data>
     </main>

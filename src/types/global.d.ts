@@ -47,7 +47,7 @@ declare global {
     interface Session {
       isLogged?: boolean;
       isPasswordUpdated?: boolean;
-      toast: Toast;
+      toast: Toast | string;
     }
   }
 }

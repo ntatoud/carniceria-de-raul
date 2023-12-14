@@ -15,6 +15,7 @@
         action="/admin/users/create"
         method="post"
         role="form"
+        onsubmit="userCreate(event)"
       >
         <div class="form-container">
           <%- include('./admin/users/userForm.ejs')%>
@@ -22,5 +23,7 @@
         <%- include('./layout/actionbar.ejs', {leftButtonTitle: "Cancel", rightButtonTitle:"Create User"})%>
       </form>
     </main>
+    <script src="/features/admin/users/frontend/utils.js"></script>
+
   </body>
 </html>

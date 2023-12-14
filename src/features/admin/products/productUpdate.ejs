@@ -11,9 +11,11 @@
     <main class="d-flex flex-column align-items-center">
       <form
         class="user-form"
-        action="/admin/products/update/<%=product.productId%>"
+        action="/admin/products/<%=product.productId%>"
         method="post"
         role="form"
+        id="<%=product.productId%>"
+        onsubmit="productUpdate(event)"
       >
         <div class="form-container">
           <%- include('./admin/products/productForm.ejs')%>
@@ -35,5 +37,7 @@
         }
       };
     </script>
+    <script src="/features/admin/products/frontend/utils.js"></script>
+
   </body>
 </html>

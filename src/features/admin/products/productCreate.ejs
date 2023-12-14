@@ -15,6 +15,7 @@
         action="/admin/products/create"
         method="post"
         role="form"
+        onsubmit="productCreate(event)"
       >
         <div class="form-container">
           <%- include('./admin/products/productForm.ejs')%>
@@ -22,5 +23,7 @@
         <%- include('./layout/actionbar.ejs', {leftButtonTitle: "Cancel", rightButtonTitle:"Create Product"})%>
       </form>
     </main>
+    <script src="/features/admin/products/frontend/utils.js"></script>
+
   </body>
 </html>

@@ -10,25 +10,25 @@ const router = Router();
 
 router.use(urlencoded({ extended: true }));
 
-router.post('/delete/:id', (req: Request, res: Response) => {
-  const userId = req.params.id;
+router.delete('/', (req: Request, res: Response) => {
+  const userId = req.body.id;
   if (!userId) {
     res.status(204).send('NOK');
   } else {
-    userDelete(res, userId, req.session);
+    userDelete(res, userId);
   }
 });
 
 router.post('/create', (req: Request, res: Response) => {
-  userCreate(res, req.body, req.session);
+  userCreate(res, req.body);
 });
 
-router.post('/update/:id', (req: Request, res: Response) => {
+router.put('/:id', (req: Request, res: Response) => {
   const userId = req.params.id;
   if (!userId) {
     res.status(204).send('NOK');
   } else {
-    userUpdate(res, req.body, userId, req.session);
+    userUpdate(res, req.body, userId);
   }
 });
 
@@ -40,7 +40,7 @@ router.use('/create', (req: Request, res: Response) => {
   });
 });
 
-router.use('/update/:id', (req: Request, res: Response) => {
+router.use('/:id', (req: Request, res: Response) => {
   const userId = req.params.id;
   if (!userId) {
     res.status(204).send('NOK');

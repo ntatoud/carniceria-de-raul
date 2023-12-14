@@ -1,14 +1,9 @@
-import { toastDispatch, toastSuccess } from '../../../components/toast';
+import { toastDispatch } from '../../../components/toast';
 import { databaseConnect } from '../../../database';
-import { UserSession } from '@/features/types';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 
-export const productCreate = (
-  res: Response,
-  product: Partial<Product>,
-  session: UserSession
-) => {
+export const productCreate = (res: Response, product: Partial<Product>) => {
   const connection = databaseConnect();
   const queryParams = [
     product.name,
@@ -29,21 +24,13 @@ export const productCreate = (
       if (error) {
         throw new Error(error.message);
       } else {
-        session.toast = toastSuccess({
-          content: 'Product created successfully',
-        });
-        res.redirect(302, '/admin/products');
+        res.sendStatus(200);
       }
     }
   );
 };
 
-export const productUpdate = (
-  res: Response,
-  product: Product,
-  id: string,
-  session: UserSession
-) => {
+export const productUpdate = (res: Response, product: Product, id: string) => {
   const connection = databaseConnect();
   const queryParams = [
     product.name,
@@ -64,10 +51,7 @@ export const productUpdate = (
     (error: QueryError | null) => {
       if (error) throw new Error(error.message);
       else {
-        session.toast = toastSuccess({
-          content: 'Product updated successfully',
-        });
-        res.redirect('/admin/products');
+        res.sendStatus(200);
       }
     }
   );
@@ -101,19 +85,12 @@ export const getProductToUpdate = (
   );
 };
 
-export const productDelete = (
-  session: UserSession,
-  res: Response,
-  productId: string
-) => {
+export const productDelete = (res: Response, productId: string) => {
   const connection = databaseConnect();
   const deleteQuery = `DELETE FROM products WHERE productId = ?;`;
   connection.query(deleteQuery, [productId], (error: QueryError | null) => {
     if (error) throw new Error(error.message);
 
-    session.toast = toastSuccess({
-      content: 'Product deleted successfully',
-    });
     res.status(200).send('OK');
   });
 };

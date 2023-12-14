@@ -1,15 +1,11 @@
 import { generateSaltHashedPassword } from '../../auth/util';
 import { databaseConnect } from '../../../database';
-import { User, UserSession } from '@/features/types';
+import { User } from '@/features/types';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
-import { toastDispatch, toastSuccess } from '../../../components/toast';
+import { toastDispatch } from '../../../components/toast';
 
-export const userCreate = (
-  res: Response,
-  user: Partial<User>,
-  session: UserSession
-) => {
+export const userCreate = (res: Response, user: Partial<User>) => {
   const connection = databaseConnect();
   const { salt, hashPwd } = generateSaltHashedPassword('admin');
   const queryParams = [
@@ -27,20 +23,12 @@ export const userCreate = (
     if (error) {
       throw new Error(error.message);
     } else {
-      session.toast = toastSuccess({
-        content: 'User created succesfully',
-      });
       res.redirect(302, '/admin/users');
     }
   });
 };
 
-export const userUpdate = (
-  res: Response,
-  user: Partial<User>,
-  id: string,
-  session: UserSession
-) => {
+export const userUpdate = (res: Response, user: Partial<User>, id: string) => {
   const connection = databaseConnect();
   const queryParams = [
     user.email,
@@ -54,10 +42,7 @@ export const userUpdate = (
   connection.query(updateUserQuery, queryParams, (error: QueryError | null) => {
     if (error) throw new Error(error.message);
     else {
-      session.toast = toastSuccess({
-        content: 'User updated Successfully',
-      });
-      res.redirect('/admin/users');
+      res.sendStatus(200);
     }
   });
 };
@@ -105,17 +90,12 @@ export const getUserList = (req: Request, res: Response) => {
   );
 };
 
-export const userDelete = (
-  res: Response,
-  userId: string,
-  session: UserSession
-) => {
+export const userDelete = (res: Response, userId: string) => {
   const connection = databaseConnect();
   const deleteQuery = `DELETE FROM users WHERE userId = ?;`;
   connection.query(deleteQuery, [userId], (error: QueryError | null) => {
     if (error) throw new Error(error.message);
 
-    session.toast = toastSuccess({ content: 'User delete Successfully' });
     res.status(200).send('OK');
   });
 };

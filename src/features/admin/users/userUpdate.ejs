@@ -11,9 +11,11 @@
     <main class="d-flex flex-column align-items-center">
       <form
         class="user-form"
-        action="/admin/users/update/<%=user.userId%>"
+        action="/admin/users/<%=user.userId%>"
         method="post"
         role="form"
+        id="<%=user.userId%>"
+        onsubmit="userUpdate(event)"
       >
         <div class="form-container">
           <%- include('./admin/users/userForm.ejs')%>
@@ -21,5 +23,8 @@
         <%- include('./layout/actionbar.ejs', {leftButtonTitle: "Cancel", rightButtonTitle:"Update User"})%>
       </form>
     </main>
+    <div class="toast-container"></div>
+    <script src="/features/admin/users/frontend/utils.js"></script>
+
   </body>
 </html>
