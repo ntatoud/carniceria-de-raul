@@ -9,7 +9,7 @@ export const createSession = (
   userData: Account
 ) => {
   const getCartQuery =
-    'SELECT p.name, p.price, ucp.quantity\
+    'SELECT p.productId, p.name, p.price, p.unit, ucp.totalQuantity, ucp.weight\
   FROM users_cart_products ucp\
   JOIN products p ON ucp.productId = p.productId\
   WHERE ucp.userId = ?;';
@@ -20,7 +20,6 @@ export const createSession = (
     [userData.userId],
     (error: QueryError | null, results: RowDataPacket[]) => {
       if (error) throw new Error(error.message);
-      console.log(results);
       session.user = { ...userData };
       session.cart = results as Cart;
       session.isLogged = true;

@@ -24,9 +24,9 @@ declare type Product = {
   description: string;
   category: string;
 };
-declare type CartProduct = {
-  product: Partial<Product>;
-  quantity: number;
+declare type CartProduct = Partial<Product> & {
+  totalQuantity: number;
+  weight: number;
 };
 
 declare type Cart = CartProduct[];

@@ -67,10 +67,11 @@ export const databaseCreate = (): void => {
       );
 
       CREATE TABLE IF NOT EXISTS users_cart_products (
-        userId INT,
-        productId INT,
-        quantity INT,
-        PRIMARY KEY (userId, productId),
+        userId INT NOT NULL,
+        productId INT NOT NULL,
+        totalQuantity INT NOT NULL,
+        weight INT NOT NULL,
+        PRIMARY KEY (weight, userId, productId),
         FOREIGN KEY (userId) REFERENCES users(userId),
         FOREIGN KEY (productId) REFERENCES products(productId)
         );

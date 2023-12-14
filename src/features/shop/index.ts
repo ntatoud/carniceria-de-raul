@@ -6,7 +6,7 @@ import {
 } from './utils';
 const router = Router();
 
-router.use('/:category/:productId', (req: Request, res: Response) => {
+router.get('/:category/:productId', (req: Request, res: Response) => {
   const currentCategory = req.params.category ?? '';
   const productId = req.params.productId ?? 0;
 

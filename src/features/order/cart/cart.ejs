@@ -7,20 +7,37 @@
   </head>
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
+    <%- include('../../../components/toast/toast.ejs')%>
     <main class="d-flex flex-column align-items-center">
 
       <%- include('../orderNav.ejs') %>
-      <div class="products">
+      <div class="product-list">
         <% products.map((product) => {%>
-          <div class="row">
+          <div class="product-row row justify-content-between" id="<%=product.productId%>-<%=product.weight%>">
             <%= product.name %>
-            <%= product.price %>
-            <%= product.quantity %>
+            <%= product.price %><%=product.unit%>
+            <%if(product.unit==="€/kg") {%>
+            <%= product.weight %>g
+            <%}%>
+            /
+            <%= product.totalQuantity %>
+            /
+            <%= (product.totalQuantity*product.price*(product.weight ?? 1)/1000).toFixed(2) %>
+              <button 
+                type="button" 
+                id="<%=product.productId%>-<%=product.weight%>"
+                class="button button-primary col-md-2"
+                onclick="deleteCartProduct(event)"
+                >
+                  Delete
+              </button>
           </div>
           <% })%>
         </div>
-      <a href="/order/infos" class="button button-primary">Purchase -></a>
-      
+      <a href="/order/infos"  class="button button-primary">Purchase -></a>
+      <div class="toast-container"></div>
     </main>
+    <script src="/features/order/cart/frontend/utils.js"></script>
+
   </body>
 </html>

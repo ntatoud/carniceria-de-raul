@@ -327,13 +327,13 @@ export const databaseFill = (): void => {
 
   connection.query(
     `
-    INSERT INTO users_cart_products (userId, ProductId, quantity)
+    INSERT INTO users_cart_products (userId, ProductId, totalQuantity, weight)
     VALUES
-        (1, 1, 2),
-        (1, 2, 1),
-        (1, 4, 1),
-        (2, 3, 2),
-        (2, 5, 3);`,
+        (1, 1, 2, 100),
+        (1, 2, 1, 200),
+        (1, 4, 1, 300),
+        (2, 3, 2, 200),
+        (2, 5, 3, 300);`,
     (error: Error) => {
       if (error) {
         throw new Error(error.message);

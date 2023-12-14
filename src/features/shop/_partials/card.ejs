@@ -43,7 +43,16 @@
       <% } else {%><%=product.price%> <%=product.unit%><% }%>
     </div>
     <!-- Product Form -->
-    <form class="product-form"><%- include('./productForm.ejs') %></form>
+    <form 
+      action="/order/cart"
+      class="product-form"
+      method="post"
+      id="<%=product.productId%>"
+      role="form"
+      onsubmit="submitForm(event)"
+    >
+      <%- include('./productForm.ejs') %>
+    </form>
   </div>
   <!-- CARD FOOTER -->
   <div class="product-footer">

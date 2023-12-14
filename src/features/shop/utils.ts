@@ -2,6 +2,7 @@ import { QueryError } from 'mysql2';
 import { databaseConnect } from '../../database';
 import { Category } from '../types';
 import { Request, Response } from 'express';
+import { toastDispatch, toastEmpty } from '../../components/toast';
 
 export const getAllProductsWithCategory = (
   req: Request,
@@ -30,8 +31,8 @@ export const getAllProductsWithCategory = (
               currentCategory: '',
               isLogged: req.session.isLogged,
               account: req.session.user,
+              toast: toastEmpty(),
             });
-          console.log(productResults);
           const products: Product[] = productResults.map((product: Product) => {
             const { category, ...rest } = product;
             return {
@@ -46,6 +47,7 @@ export const getAllProductsWithCategory = (
             currentCategory: '',
             isLogged: req.session.isLogged,
             account: req.session.user,
+            toast: toastDispatch(req),
           });
           connection.end();
         }
@@ -104,6 +106,7 @@ export const renderCategoryPage = ({
               currentCategory: currentCategory,
               isLogged: req.session.isLogged,
               account: req.session.user,
+              toast: toastDispatch(req),
             });
 
           const products: Product[] = productResults.map((product) => {
@@ -120,6 +123,7 @@ export const renderCategoryPage = ({
             currentCategory: currentCategory,
             isLogged: req.session.isLogged,
             account: req.session.user,
+            toast: toastDispatch(req),
           });
 
           connection.end();
