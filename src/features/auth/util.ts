@@ -16,7 +16,8 @@ const xorStringWith32ByteKey = (
   // XOR the input buffer with the key buffer
   const xorResult = Buffer.alloc(inputBuffer.length);
   for (let i = 0; i < inputBuffer.length; i++) {
-    xorResult[i] = inputBuffer[i] ^ keyBuffer[i % keyBuffer.length];
+    xorResult[i] =
+      (inputBuffer[i] ?? 0) ^ (keyBuffer[i % keyBuffer.length] ?? 0);
   }
 
   // Convert the result to a hexadecimal string

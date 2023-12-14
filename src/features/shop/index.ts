@@ -7,10 +7,14 @@ import {
 const router = Router();
 
 router.get('/:category/:productId', (req: Request, res: Response) => {
-  const currentCategory = req.params.category ?? '';
-  const productId = req.params.productId ?? 0;
+  const currentCategory = req.params.category;
+  const productId = req.params.productId;
 
-  renderProductPage({ req, res, currentCategory, productId });
+  if (!productId || !currentCategory) {
+    res.status(204).send('NOK');
+  } else {
+    renderProductPage({ req, res, currentCategory, productId });
+  }
 });
 
 router.get('/:category', (req: Request, res: Response) => {
@@ -19,14 +23,18 @@ router.get('/:category', (req: Request, res: Response) => {
   const isSortedByPrice = req.url.includes('price=on');
   const isSortedByName = req.url.includes('name=on');
 
-  renderCategoryPage({
-    req,
-    res,
-    currentCategory,
-    isOnlyOffers,
-    isSortedByPrice,
-    isSortedByName,
-  });
+  if (!currentCategory) {
+    res.status(204).send('NOK');
+  } else {
+    renderCategoryPage({
+      req,
+      res,
+      currentCategory,
+      isOnlyOffers,
+      isSortedByPrice,
+      isSortedByName,
+    });
+  }
 });
 
 router.use('/', (req: Request, res: Response) => {

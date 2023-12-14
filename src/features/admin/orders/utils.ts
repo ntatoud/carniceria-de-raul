@@ -84,10 +84,10 @@ export const getOrderList = (req: Request, res: Response) => {
   );
 };
 
-export const orderDelete = (res: Response, userId: string) => {
+export const orderDelete = (res: Response, order: string) => {
   const connection = databaseConnect();
   const deleteQuery = `DELETE FROM users WHERE userId = ?;`;
-  connection.query(deleteQuery, [userId], (error: QueryError | null) => {
+  connection.query(deleteQuery, [order], (error: QueryError | null) => {
     if (error) throw new Error(error.message);
 
     res.status(200).send('OK');

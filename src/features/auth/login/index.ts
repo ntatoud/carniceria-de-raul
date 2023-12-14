@@ -30,7 +30,7 @@ router.post('/', (req: Request, res: Response) => {
 
       if (result.length) {
         const userData = (result as User[])[0];
-        if (isPasswordCorrect(password, userData)) {
+        if (userData && isPasswordCorrect(password, userData)) {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { salt, password, ...safeUser } = userData;
 

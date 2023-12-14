@@ -12,7 +12,11 @@ router.use(urlencoded({ extended: true }));
 
 router.post('/delete/:id', (req: Request, res: Response) => {
   const userId = req.params.id;
-  userDelete(res, userId, req.session);
+  if (!userId) {
+    res.status(204).send('NOK');
+  } else {
+    userDelete(res, userId, req.session);
+  }
 });
 
 router.post('/create', (req: Request, res: Response) => {
@@ -20,7 +24,12 @@ router.post('/create', (req: Request, res: Response) => {
 });
 
 router.post('/update/:id', (req: Request, res: Response) => {
-  userUpdate(res, req.body, req.params.id, req.session);
+  const userId = req.params.id;
+  if (!userId) {
+    res.status(204).send('NOK');
+  } else {
+    userUpdate(res, req.body, userId, req.session);
+  }
 });
 
 router.use('/create', (req: Request, res: Response) => {
@@ -32,7 +41,12 @@ router.use('/create', (req: Request, res: Response) => {
 });
 
 router.use('/update/:id', (req: Request, res: Response) => {
-  getUserToUpdate(req, res, req.params.id);
+  const userId = req.params.id;
+  if (!userId) {
+    res.status(204).send('NOK');
+  } else {
+    getUserToUpdate(req, res, userId);
+  }
 });
 
 router.use('/', (req: Request, res: Response) => {

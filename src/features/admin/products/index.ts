@@ -13,7 +13,11 @@ router.use(urlencoded({ extended: true }));
 
 router.post('/delete/:id', (req: Request, res: Response) => {
   const productId = req.params.id;
-  productDelete(req.session, res, productId);
+  if (!productId) {
+    res.status(204).send('NOK');
+  } else {
+    productDelete(req.session, res, productId);
+  }
 });
 
 router.post('/create', (req: Request, res: Response) => {
@@ -29,11 +33,23 @@ router.use('/create', (req: Request, res: Response) => {
 });
 
 router.post('/update/:id', (req: Request, res: Response) => {
-  productUpdate(res, req.body, req.params.id, req.session);
+  const productId = req.params.id;
+
+  if (!productId) {
+    res.status(204).send('NOK');
+  } else {
+    productUpdate(res, req.body, productId, req.session);
+  }
 });
 
 router.use('/update/:id', (req: Request, res: Response) => {
-  getProductToUpdate(req, res, req.params.id);
+  const productId = req.params.id;
+
+  if (!productId) {
+    res.status(204).send('NOK');
+  } else {
+    getProductToUpdate(req, res, productId);
+  }
 });
 
 router.use('/', (req: Request, res: Response) => {
