@@ -27,6 +27,7 @@ router.use('/', (req: Request, res: Response) => {
     isLogged: req.session.isLogged,
     account: req.session.user,
     toast: toastDispatch(req),
+    cart: req.session.cart,
   });
 });
 

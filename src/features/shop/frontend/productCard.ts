@@ -16,6 +16,8 @@ const updateValue = (event: MouseEvent) => {
 
   // Update the state of the decrease button
   updateState(+quantityInput.val()!, $(`.product-card#${id} .button-minus`));
+
+  return quantityInput.val();
 };
 
 $(`.product-card.disabled button, .product-card.disabled select`).prop(

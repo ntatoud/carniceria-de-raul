@@ -1,44 +1,58 @@
 <nav class="navbar topbar navbar-expand-lg">
-  <a class="navbar-brand" href="/">Carniceria de Raul</a>
+  <a
+      class="navbar-brand"
+      href="/"
+  >Carniceria de Raul</a>
 
   <div class="topbar-actions d-flex">
     <div class="account-menu dropdown show">
       <a
-        class="dropdown-toggle"
-        type="button"
-        id="accountMenu"
-        data-bs-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-        ><i class="bi bi-person h2"></i
-      ></a>
+          class="dropdown-toggle"
+          type="button"
+          id="accountMenu"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+      ><i class="bi bi-person h2"></i></a>
       <div
-        class="account-dropdown dropdown-menu dropdown-menu-end"
-        aria-labelledby="accountMenu"
+          class="account-dropdown dropdown-menu dropdown-menu-end"
+          aria-labelledby="accountMenu"
       >
         <% if(!isLogged) {%>
         <h6 class="dropdown-header">You are not connected!</h6>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="/auth/login"
-          ><i class="bi bi-box-arrow-in-right"></i>Login</a
-        >
-        <a class="dropdown-item" href="/auth/signup"
-          ><i class="bi bi-person-lines-fill"></i>Signup</a
-        >
+        <a
+            class="dropdown-item"
+            href="/auth/login"
+        ><i class="bi bi-box-arrow-in-right"></i>Login</a>
+        <a
+            class="dropdown-item"
+            href="/auth/signup"
+        ><i class="bi bi-person-lines-fill"></i>Signup</a>
         <%} else {%>
         <h6 class="dropdown-header"><%=account.email%></h6>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="/account"
-          ><i class="bi bi-person"></i>My account</a
-        >
-        <a class="dropdown-item" href="/auth/logout"
-          ><i class="bi bi-box-arrow-left"></i>Logout</a
-        >
+        <a
+            class="dropdown-item"
+            href="/account"
+        ><i class="bi bi-person"></i>My account</a>
+        <a
+            class="dropdown-item"
+            href="/auth/logout"
+        ><i class="bi bi-box-arrow-left"></i>Logout</a>
         <% } %>
       </div>
     </div>
-    <a class="cart-button used" href="/order/cart"
-      ><i class="bi bi-cart h2"></i
-    ></a>
+    <a
+        class="cart-button"
+        href="/order/cart"
+    ><i class="bi bi-cart h2">
+      </i>
+      <%if(cart){%>
+      <div class="nb-products">
+        <%=cart?.length%>
+      </div>
+      <%}%>
+    </a>
   </div>
 </nav>

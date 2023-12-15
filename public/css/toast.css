@@ -21,6 +21,10 @@
   transition: all 0.3s ease;
 }
 
+.toast:hover {
+  opacity: 0.7;
+}
+
 .toast-icon {
   padding: 0.5rem 0.5rem;
   font-size: var(--font-md);

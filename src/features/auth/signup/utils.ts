@@ -89,6 +89,7 @@ export const registerIfPossible = (
             message: 'An account already exists with this email.',
           },
           isLogged: session.isLogged,
+          cart: session.cart,
         });
       else if (!isStrongPassword(password).isStrong)
         res.render('signup.ejs', {
@@ -97,6 +98,7 @@ export const registerIfPossible = (
             message: 'Your password is too weak',
             isLogged: session.isLogged,
             account: session.user,
+            cart: session.cart,
           },
         });
       else {

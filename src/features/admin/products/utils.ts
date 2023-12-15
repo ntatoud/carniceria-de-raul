@@ -80,6 +80,7 @@ export const getProductToUpdate = (
         product: product,
         isLogged: req.session.isLogged,
         account: req.session.user,
+        cart: req.session.cart,
       });
     }
   );
@@ -113,6 +114,7 @@ export const getProductList = (
         isLogged: req.session.isLogged,
         account: req.session.user,
         toast: toastDispatch(req),
+        cart: req.session.cart,
       });
     }
   );

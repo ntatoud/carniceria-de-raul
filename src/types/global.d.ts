@@ -21,11 +21,14 @@ declare type Product = {
   salePrice?: number;
   best: boolean;
   image: string;
+  unit: '€/kg' | '€/unidad';
   description: string;
   category: string;
 };
-declare type CartProduct = Partial<Product> & {
+declare type CartProduct = Product & {
   totalQuantity: number;
+  totalPrice: number;
+  totalSalePrice?: number;
   weight: number;
 };
 

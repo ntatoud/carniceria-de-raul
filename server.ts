@@ -77,12 +77,13 @@ app.use('/contact', contact);
 app.use('/account', account); // Has subroutes
 
 app.use('/', (req: Request, res: Response) => {
-  const { isLogged, user } = req.session;
+  const { isLogged, user, cart } = req.session;
 
   res.render('index.ejs', {
     isLogged: isLogged,
     account: user,
     toast: toastDispatch(req),
+    cart: cart,
   });
 });
 

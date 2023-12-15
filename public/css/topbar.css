@@ -49,12 +49,11 @@
   background: var(--gray-200);
 }
 
-.cart-button.used::after {
+.cart-button .nb-products {
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  content: '1';
   top: 0;
   right: 0.25rem;
   width: 1.3rem;

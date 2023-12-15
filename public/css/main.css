@@ -60,6 +60,10 @@ main {
   width: 460px;
 }
 
+.section-title {
+  font-size: var(--font-2xl);
+  font-weight: bold;
+}
 @media screen and (max-width: 768px) {
   header {
     position: fixed;

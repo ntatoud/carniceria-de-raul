@@ -46,6 +46,7 @@ export const getOrderFromId = (req: Request, res: Response, id: string) => {
           orderProducts: results as (Partial<Product> & Partial<Order>)[],
           isLogged: req.session.isLogged,
           account: req.session.user,
+          cart: req.session.cart,
         });
       }
     }
@@ -78,6 +79,7 @@ export const getOrderList = (req: Request, res: Response) => {
           orders: results,
           isLogged: req.session.isLogged,
           account: req.session.user,
+          cart: req.session.cart,
         });
       }
     }

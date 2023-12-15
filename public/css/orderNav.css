@@ -60,8 +60,8 @@
 
 /* In Progress styles */
 .order-nav a.current > * {
-  color: var(--blue-600);
+  color: var(--brand-600);
 }
 .order-nav .spacer .current {
-  background: var(--blue-600);
+  background: var(--brand-600);
 }

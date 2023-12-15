@@ -37,6 +37,7 @@ router.use('/create', (req: Request, res: Response) => {
     user: undefined,
     isLogged: req.session.isLogged,
     account: req.session.user,
+    cart: req.session.cart,
   });
 });
 
