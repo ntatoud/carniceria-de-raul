@@ -1,5 +1,9 @@
 import { Router, urlencoded, Request, Response } from 'express';
-import { checkEmailTaken, isStrongPassword, registerIfPossible } from './utils';
+import {
+  checkEmailTaken,
+  isStrongPassword,
+  registerIfPossible,
+} from './utils.js';
 
 const router = Router();
 

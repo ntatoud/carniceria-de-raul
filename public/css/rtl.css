@@ -1,0 +1,6 @@
+html[dir='rtl'] .bi-chevron-right,
+html[dir='rtl'] .bi-chevron-left,
+html[dir='rtl'] .bi-arrow-right,
+html[dir='rtl'] .bi-arrow-left {
+  transform: rotate(180deg);
+}

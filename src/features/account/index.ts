@@ -1,7 +1,7 @@
 import { Router, urlencoded, Request, Response } from 'express';
-import profile from './profile';
-import password from './password';
-import { loggedOnlyRoute } from '../../middlewares/logged';
+import profile from './profile/index.js';
+import password from './password/index.js';
+import { loggedOnlyRoute } from '@/middlewares/logged.js';
 const router = Router();
 
 router.use(urlencoded({ extended: true }));

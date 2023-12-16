@@ -1,25 +1,27 @@
 <!-- Author : Noé TATOUD -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('../../imports.ejs') %>
-  </head>
-  <body>
-    <header><%- include('./layout/layout.ejs') %></header>
-    <main class="d-flex flex-column align-items-center">
-      <%- include('./auth/auth-tab.ejs') %>
-      <form
+
+<head>
+  <%- include('../../imports.ejs') %>
+</head>
+
+<body>
+  <header><%- include('./layout/layout.ejs') %></header>
+  <main class="d-flex flex-column align-items-center">
+    <%- include('./auth/auth-tab.ejs') %>
+    <form
         class="form signup-form d-grid"
         action="/auth/signup"
         method="post"
         role="form"
-      >
-        <h2>Sign Up</h2>
-        <%if(error.state) {%>
-        <span class="credential-error bi bi-exclamation-triangle">
-          <%=error.message%>
-        </span>
-        <%}%>
+    >
+      <h2>Sign Up</h2>
+      <%if(error.state) {%>
+      <span class="credential-error bi bi-exclamation-triangle">
+        <%=error.message%>
+      </span>
+      <%}%>
         <div class="d-flex flex-row gap-3">
           <div class="form-group">
             <label for="name">Name</label>
@@ -43,17 +45,24 @@
           </div>
         </div>
         <%- include('./auth/email-password-form.ejs', {type: "signup"}) %>
-        <button type="submit" class="button button-primary" disabled>
-          Create Account
-        </button>
-      </form>
-    </main>
-    <script src="/components/form.js"></script>
+      <button
+          type="submit"
+          class="button button-primary"
+          disabled
+      >
+        Create Account
+      </button>
+    </form>
+  </main>
+  <script src="/components/form.js"></script>
 
-    <script>
-      $("input").on("keydown", () => {
-        canSignUp();
-      });
-    </script>
-  </body>
+  <script>
+    $("input").on("keydown", () => {
+      canSignUp();
+    });
+  </script>
+  <%-include('../scripts.ejs')%>
+
+</body>
+
 </html>

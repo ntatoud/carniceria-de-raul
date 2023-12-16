@@ -10,7 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
     "esModuleInterop": true,
-    "module": "CommonJS",
+    "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "baseUrl": ".",

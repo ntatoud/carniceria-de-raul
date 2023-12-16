@@ -3,7 +3,7 @@ import {
   getAllProductsWithCategory,
   renderCategoryPage,
   renderProductPage,
-} from './utils';
+} from './utils.js';
 const router = Router();
 
 router.get('/:category/:productId', (req: Request, res: Response) => {

@@ -1,32 +1,40 @@
 <!-- Author : Noé TATOUD -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('../../../imports.ejs') %>
-    <link rel="stylesheet" type="text/css" href="/css/admin.css" />
-  </head>
 
-  <body>
-    <header><%- include('./layout/layout.ejs') %></header>
-    <%- include('./layout/mainbar.ejs', {title: "Orders", backLink: ""}) %>
-    <main class="d-flex flex-row">
-      <div class="order-container d-flex flex-column">
-        <%orderProducts.map((product) => {%>
-        <div class="product-row d-flex">
-          <div><%=product.productName%></div>
-          <div>
-            <%=product.quantity%> x <%=product.productPrice%> =
-            <%=product.quantity*product.productPrice%>
-          </div>
-          <div></div>
+<head>
+  <%- include('../../../imports.ejs') %>
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/admin.css"
+  />
+</head>
+
+<body>
+  <header><%- include('./layout/layout.ejs') %></header>
+  <%- include('./layout/mainbar.ejs', {title: "Orders", backLink: ""}) %>
+  <main class="d-flex flex-row">
+    <div class="order-container d-flex flex-column">
+      <%orderProducts.map((product) => {%>
+      <div class="product-row d-flex">
+        <div><%=product.productName%></div>
+        <div>
+          <%=product.quantity%> x <%=product.productPrice%> =
+          <%=product.quantity*product.productPrice%>
         </div>
-        <%})%>
-        <div class="order-summary d-flex">
-          <b>Total: </b> <%=orderProducts[0].totalPrice%>
-        </div>
+        <div></div>
       </div>
-    </main>
-    <script src="/features/admin/users/frontend/utils.js"></script>
-    <script src="/features/layout/frontend/utils.js"></script>
-  </body>
+      <%})%>
+      <div class="order-summary d-flex">
+        <b>Total: </b> <%=orderProducts[0].totalPrice%>
+      </div>
+    </div>
+  </main>
+  <script src="/features/admin/users/frontend/utils.js"></script>
+  <script src="/features/layout/frontend/utils.js"></script>
+  <%-include('../scripts.ejs')%>
+
+</body>
+
 </html>

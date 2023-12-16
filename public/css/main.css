@@ -1,6 +1,7 @@
 @import 'colors.css';
 @import 'styles.css';
 @import url(https://fonts.googleapis.com/css?family=Inter);
+
 html,
 body {
   height: max-content;

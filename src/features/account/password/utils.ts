@@ -1,9 +1,12 @@
-import { generateSaltHashedPassword, isPasswordCorrect } from '../../auth/util';
-import { databaseConnect } from '../../../database';
+import {
+  generateSaltHashedPassword,
+  isPasswordCorrect,
+} from '@/features/auth/util.js';
+import { databaseConnect } from '@/database/index.js';
 import { Request, Response } from 'express';
 import { Connection, QueryError, RowDataPacket } from 'mysql2';
-import { User } from '@/features/types';
-import { toastError, toastSuccess } from '../../../components/toast';
+import { User } from '@/features/types.js';
+import { toastError, toastSuccess } from '@/components/toast/index.js';
 
 export const passwordUpdateIfOldPasswordCorrect = (
   req: Request,

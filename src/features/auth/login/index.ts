@@ -1,10 +1,10 @@
 import { Router, urlencoded, Request, Response } from 'express';
-import { isPasswordCorrect } from '../util';
-import { databaseConnect } from '../../../database';
+import { isPasswordCorrect } from '@/features/auth/util.js';
+import { databaseConnect } from '@/database/index.js';
 import { QueryError, RowDataPacket } from 'mysql2/promise';
-import { User } from '@/features/types';
-import { createSession } from './utils';
-import { toastDispatch, toastError } from '../../../components/toast';
+import { User } from '@/features/types.js';
+import { createSession } from './utils.js';
+import { toastDispatch, toastError } from '@/components/toast/index.js';
 
 const router = Router();
 

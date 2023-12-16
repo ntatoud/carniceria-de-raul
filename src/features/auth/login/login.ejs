@@ -1,33 +1,42 @@
 <!-- Author : Noé TATOUD -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('../../imports.ejs') %>
-  </head>
-  <body>
-    <header><%- include('./layout/layout.ejs') %></header>
-    <%- include('../components/toast/toast.ejs') %>
-    <main class="d-flex flex-column align-items-center">
-      <%- include('./auth/auth-tab.ejs') %>
-      <form
+
+<head>
+  <%- include('../../imports.ejs') %>
+</head>
+
+<body>
+  <header><%- include('./layout/layout.ejs') %></header>
+  <%- include('../components/toast/toast.ejs') %>
+  <main class="d-flex flex-column align-items-center">
+    <%- include('./auth/auth-tab.ejs') %>
+    <form
         class="form login-form d-grid"
         action="/auth/login"
         method="post"
         role="form"
-      >
-        <h2>Login</h2>
-        <%if(error.state) {%>
-        <span class="credential-error"> <%=error.message%> </span>
-        <%}%> <%- include('./auth/email-password-form.ejs', {type: "login"}) %>
-        <div
-          class="d-flex flex-row gap-3 align-items-center justify-content-between"
-        >
-            <a class="button button-sm button-link-neutral" href="/auth/reset">Forgot Password ?</a>
-          <button type="submit" class="button button-primary">Log In</button>
-        </div>
-      </form>
-      <div id="existingResultDiv"></div>
-    </main>
-    <script src="/components/form.js"></script>
-  </body>
+    >
+      <h2>Login</h2>
+      <%if(error.state) {%>
+      <span class="credential-error"> <%=error.message%> </span>
+      <%}%> <%- include('./auth/email-password-form.ejs', {type: "login"}) %>
+      <div class="d-flex flex-row gap-3 align-items-center justify-content-between">
+        <a
+            class="button button-sm button-link-neutral"
+            href="/auth/reset"
+        >Forgot Password ?</a>
+        <button
+            type="submit"
+            class="button button-primary"
+        >Log In</button>
+      </div>
+    </form>
+    <div id="existingResultDiv"></div>
+  </main>
+  <script src="/components/form.js"></script>
+  <%-include('../scripts.ejs')%>
+
+</body>
+
 </html>

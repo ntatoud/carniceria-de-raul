@@ -123,8 +123,9 @@
 
 
             </div>
-            <% })}%>
+
           </div>
+          <% })%>
           <div class="cart-price">
             <p>Precio Total :</p>
             <div class="total-price">
@@ -138,18 +139,20 @@
               <%}%>
             </div>
           </div>
+              <%}%>
     </data>
     <%if(cart.length) {%>
-              <div class="button-container d-flex flex-row gap-3 align-items-center justify-content-end">
-                <a
-                    href="/order/infos"
-                    class="button button-primary"
-                >Purchase -></a>
-                <%}%>
+    <div class="button-container d-flex flex-row gap-3 align-items-center justify-content-end">
+      <a
+          href="/order/infos"
+          class="button button-primary"
+      >Purchase -></a>
+      <%}%>
   </main>
   <div class="toast-container"></div>
 
   <script src="/features/order/cart/frontend/utils.js"></script>
+  <%-include('../scripts.ejs')%>
 
 </body>
 

@@ -5,7 +5,7 @@ import {
   getUserToUpdate,
   userCreate,
   userUpdate,
-} from './utils';
+} from './utils.js';
 const router = Router();
 
 router.use(urlencoded({ extended: true }));

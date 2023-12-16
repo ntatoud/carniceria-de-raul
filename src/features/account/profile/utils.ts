@@ -1,6 +1,6 @@
-import { toastSuccess } from '../../../components/toast';
-import { databaseConnect } from '../../../database';
-import { User } from '@/features/types';
+import { toastSuccess } from '@/components/toast/index.js';
+import { databaseConnect } from '@/database/index.js';
+import { User } from '@/features/types.js';
 import { Request, Response } from 'express';
 import { QueryError } from 'mysql2';
 

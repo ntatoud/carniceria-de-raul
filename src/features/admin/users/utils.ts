@@ -1,9 +1,9 @@
-import { generateSaltHashedPassword } from '../../auth/util';
-import { databaseConnect } from '../../../database';
-import { User } from '@/features/types';
+import { generateSaltHashedPassword } from '@/features/auth/util.js';
+import { databaseConnect } from '@/database/index.js';
+import { User } from '@/features/types.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
-import { toastDispatch } from '../../../components/toast';
+import { toastDispatch } from '@/components/toast/index.js';
 
 export const userCreate = (res: Response, user: Partial<User>) => {
   const connection = databaseConnect();

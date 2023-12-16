@@ -1,14 +1,17 @@
 <div class="left-menu d-flex flex-column">
-  <div class="left-menu-toggle" onclick="toggleLeftMenu(event)">
+  <div
+      class="left-menu-toggle"
+      onclick="toggleLeftMenu(event)"
+  >
     <i class="bi bi-list h3"></i>
   </div>
   <div class="left-menu-categories">
-    <div class="left-menu-title"><i class="bi bi-play h2"></i>Categories</div>
+    <div class="left-menu-title">Categories</div>
     <% categories.map((category) => {%>
     <a
-      id="<%=category.id%>"
-      class="left-menu-item justify-content-between"
-      href="/shop/<%=category.name.toLowerCase()%>"
+        id="<%=category.id%>"
+        class="left-menu-item justify-content-between"
+        href="/shop/<%=category.name.toLowerCase()%>"
     >
       <%= category.name %>
       <i class="bi bi-arrow-right"></i>
@@ -20,50 +23,65 @@
     <div class="left-menu-title">
       <i class="bi bi-filter-left h3"></i>Filters
     </div>
-    <form action="/shop/<%=currentCategory%>" method="get">
+    <form
+        action="/shop/<%=currentCategory%>"
+        method="get"
+    >
       <div class="left-menu-item">
         <div class="form-check form-switch">
           <i class="bi bi-percent"></i>
           <input
-            id="filterOffers"
-            name="ofertas"
-            class="form-check-input"
-            type="checkbox"
-            role="switch"
+              id="filterOffers"
+              name="ofertas"
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
           />
-          <label class="form-check-label" for="filterOffers"> Offers </label>
+          <label
+              class="form-check-label"
+              for="filterOffers"
+          > Offers </label>
         </div>
       </div>
       <div class="left-menu-item">
         <div class="form-check form-switch">
           <i class="bi bi-sort-alpha-up"></i>
           <input
-            id="filterName"
-            name="name"
-            class="form-check-input"
-            type="checkbox"
-            role="switch"
-            onclick="turnOtherSwitchOff(event)"
+              id="filterName"
+              name="name"
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              onclick="turnOtherSwitchOff(event)"
           />
-          <label class="form-check-label" for="filterName">Name </label>
+          <label
+              class="form-check-label"
+              for="filterName"
+          >Name </label>
         </div>
       </div>
       <div class="left-menu-item">
         <div class="form-check form-switch">
           <i class="bi bi-sort-numeric-up"></i>
           <input
-            id="filterPrice"
-            name="price"
-            class="form-check-input"
-            type="checkbox"
-            role="switch"
-            onclick="turnOtherSwitchOff(event)"
+              id="filterPrice"
+              name="price"
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              onclick="turnOtherSwitchOff(event)"
           />
-          <label class="form-check-label" for="filterPrice">Price </label>
+          <label
+              class="form-check-label"
+              for="filterPrice"
+          >Price </label>
         </div>
       </div>
       <div class="left-menu-item">
-        <button class="button button-secondary button-sm" type="submit">
+        <button
+            class="button button-secondary button-sm"
+            type="submit"
+        >
           Apply
         </button>
       </div>

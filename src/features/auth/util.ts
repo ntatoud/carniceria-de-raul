@@ -1,5 +1,5 @@
 import * as crypto from 'crypto';
-import { User } from '../types';
+import { User } from '@/features/types.js';
 
 const generate32ByteSalt = (): string => {
   const saltBytes = crypto.randomBytes(32); // 32 bytes for the salt

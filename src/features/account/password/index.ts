@@ -1,7 +1,7 @@
 import { Router, urlencoded, Request, Response } from 'express';
-import { isStrongPassword } from '../../auth/signup/utils';
-import { passwordUpdateIfOldPasswordCorrect } from './utils';
-import { toastDispatch } from '../../../components/toast';
+import { isStrongPassword } from '@/features/auth/signup/utils.js';
+import { passwordUpdateIfOldPasswordCorrect } from './utils.js';
+import { toastDispatch } from '@/components/toast/index.js';
 
 const router = Router();
 

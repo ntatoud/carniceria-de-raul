@@ -1,12 +1,12 @@
 import { Response } from 'express';
-import { toastSuccess } from '../../../components/toast';
-import { UserSession } from '@/features/types';
-import { databaseConnect } from '../../../database';
+import { toastSuccess } from '@/components/toast/index.js';
+import { UserSession } from '@/features/types.js';
+import { databaseConnect } from '@/database/index.js';
 import { QueryError, RowDataPacket } from 'mysql2';
 import {
   getCartQuery,
   setCartProductsTotalPrices,
-} from '../../order/cart/utils';
+} from '@/features/order/cart/utils.js';
 export const createSession = (
   res: Response,
   session: UserSession,

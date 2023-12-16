@@ -1,5 +1,5 @@
 import { Request, Response, Router, urlencoded } from 'express';
-import { cartProductDelete, cartProductUpdate, renderCart } from './utils';
+import { cartProductDelete, cartProductUpdate, renderCart } from './utils.js';
 
 const router = Router();
 

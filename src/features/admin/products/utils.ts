@@ -1,5 +1,5 @@
-import { toastDispatch } from '../../../components/toast';
-import { databaseConnect } from '../../../database';
+import { toastDispatch } from '@/components/toast/index.js';
+import { databaseConnect } from '@/database/index.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 

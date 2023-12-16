@@ -1,8 +1,8 @@
 import { Router, urlencoded, Request, Response } from 'express';
-import products from './products';
-import users from './users';
-import orders from './orders';
-import { adminOnlyRoute } from '../../middlewares/admin';
+import products from './products/index.js';
+import users from './users/index.js';
+import orders from './orders/index.js';
+import { adminOnlyRoute } from '@/middlewares/admin.js';
 const router = Router();
 
 router.use(urlencoded({ extended: true }));

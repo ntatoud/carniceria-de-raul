@@ -5,6 +5,39 @@
   >Carniceria de Raul</a>
 
   <div class="topbar-actions d-flex">
+    <div class="dropdown lang">
+      <button
+          class="button button-link-neutral dropdown-toggle"
+          type="button"
+          id="dropdownLang"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+      >
+
+      </button>
+      <div
+          class="dropdown-menu"
+          aria-labelledby="dropdownLang"
+      >
+        <button
+            class="button button-link-neutral"
+            onclick="changeLanguage('fr')"
+        >🇫🇷 Français</button>
+        <button
+            class="button button-link-neutral"
+            onclick="changeLanguage('en')"
+        >🇬🇧 English</button>
+        <button
+            class="button button-link-neutral"
+            onclick="changeLanguage('ar')"
+        >🇲🇦 مغربي</button>
+        <button
+            class="button button-link-neutral"
+            onclick="changeLanguage('es')"
+        >🇪🇸 Español</button>
+      </div>
+    </div>
     <div class="account-menu dropdown show">
       <a
           class="dropdown-toggle"

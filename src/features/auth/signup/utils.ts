@@ -1,9 +1,9 @@
-import { databaseConnect } from '../../../database';
-import { User, UserSession } from '@/features/types';
-import { generateSaltHashedPassword } from '../util';
+import { databaseConnect } from '@/database/index.js';
+import { User, UserSession } from '@/features/types.js';
+import { generateSaltHashedPassword } from '@/features/auth/util.js';
 import { QueryError, RowDataPacket } from 'mysql2';
 import { Response } from 'express';
-import { toastSuccess } from '../../../components/toast';
+import { toastSuccess } from '@/components/toast/index.js';
 
 export const isStrongPassword = (
   password: string

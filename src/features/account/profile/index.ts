@@ -1,6 +1,6 @@
 import { Router, Response, Request } from 'express';
-import { accountUpdate } from './utils';
-import { toastDispatch } from '../../../components/toast';
+import { accountUpdate } from './utils.js';
+import { toastDispatch } from '@/components/toast/index.js';
 
 const router = Router();
 

@@ -1,5 +1,5 @@
-import { Order } from '@/features/types';
-import { databaseConnect } from '../../../database';
+import { Order } from '@/features/types.js';
+import { databaseConnect } from '@/database/index.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 

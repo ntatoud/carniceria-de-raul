@@ -1,5 +1,5 @@
 import mysql from 'mysql2';
-import { databaseCredentials } from './index';
+import { databaseCredentials } from './index.js';
 
 export const databaseCreate = (): void => {
   // Create a connection to MySQL server

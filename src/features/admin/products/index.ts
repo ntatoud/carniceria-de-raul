@@ -5,7 +5,7 @@ import {
   productCreate,
   productDelete,
   productUpdate,
-} from './utils';
+} from './utils.js';
 
 const router = Router();
 

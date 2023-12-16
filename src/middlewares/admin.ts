@@ -1,4 +1,4 @@
-import { toastError } from '../components/toast';
+import { toastError } from '@/components/toast/index.js';
 import { NextFunction, Request, Response } from 'express';
 
 export const adminOnlyRoute = (

@@ -1,4 +1,4 @@
-import { generateSaltHashedPassword } from '../features/auth/util';
+import { generateSaltHashedPassword } from '@/features/auth/util.js';
 import { databaseConnect } from '.';
 import { QueryError } from 'mysql2';
 

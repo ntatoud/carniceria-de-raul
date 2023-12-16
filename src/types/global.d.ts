@@ -34,23 +34,9 @@ declare type CartProduct = Product & {
 
 declare type Cart = CartProduct[];
 
-declare global {
-  declare type Toast = {
-    isVisible: boolean;
-    title: string;
-    content: string;
-    type: string;
-  };
-
-  declare module 'express-session' {
-    interface SessionData {
-      user: Account;
-      cart: Cart;
-    }
-    interface Session {
-      isLogged?: boolean;
-      isPasswordUpdated?: boolean;
-      toast: Toast | string;
-    }
-  }
-}
+declare type Toast = {
+  isVisible: boolean;
+  title: string;
+  content: string;
+  type: string;
+};

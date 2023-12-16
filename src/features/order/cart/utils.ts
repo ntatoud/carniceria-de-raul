@@ -1,5 +1,5 @@
-import { databaseConnect } from '../../../database';
-import { UserSession } from '@/features/types';
+import { databaseConnect } from '@/database/index.js';
+import { UserSession } from '@/features/types.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 import { Connection } from 'mysql2/typings/mysql/lib/Connection';

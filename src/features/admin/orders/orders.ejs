@@ -1,83 +1,104 @@
 <!-- Author : Noé TATOUD -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('../../../imports.ejs') %>
-    <link rel="stylesheet" type="text/css" href="/css/admin.css" />
-    <link rel="stylesheet" type="text/css" href="/css/menuNav.css" />
-  </head>
 
-  <body>
-    <header><%- include('./layout/layout.ejs') %></header>
-    <main class="d-flex flex-row">
-      <%- include('./admin/adminNav.ejs') %>
+<head>
+  <%- include('../../../imports.ejs') %>
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/admin.css"
+  />
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/menuNav.css"
+  />
+</head>
 
-      <data>
-        <div class="data-top">
-          <h1 class="">Orders</h1>
-        </div>
-        <table class="orders-table">
-          <thead class="table-head">
-            <th class="table-cell name">Client</th>
-            <th class="table-cell id">Id</th>
-            <th class="table-cell date">Order Date</th>
-            <th class="table-cell date">Recovery Date</th>
-            <th class="table-cell price">Total price</th>
-            <th class="table-cell status">Status</th>
-            <th class="table-cell actions"></th>
-          </thead>
+<body>
+  <header><%- include('./layout/layout.ejs') %></header>
+  <main class="d-flex flex-row">
+    <%- include('./admin/adminNav.ejs') %>
 
-          <tbody class="table-body">
-            <% orders.map((order)=> { %>
-            <tr class="table-row" id="<%=order.orderId%>">
-              <td
+    <data>
+      <div class="data-top">
+        <h1 class="">Orders</h1>
+      </div>
+      <table class="orders-table">
+        <thead class="table-head">
+          <th class="table-cell name">Client</th>
+          <th class="table-cell id">Id</th>
+          <th class="table-cell date">Order Date</th>
+          <th class="table-cell date">Recovery Date</th>
+          <th class="table-cell price">Total price</th>
+          <th class="table-cell status">Status</th>
+          <th class="table-cell actions"></th>
+        </thead>
+
+        <tbody class="table-body">
+          <% orders.map((order)=> { %>
+          <tr
+              class="table-row"
+              id="<%=order.orderId%>"
+          >
+            <td
                 class="table-cell name"
                 data-toggle="tooltip"
                 title="<%= order.name%> <%=order.surname%>"
-              >
-                <b><%= order.name%> <%=order.surname%></b>
-                <p class="email"><%= order.email%></p>
-                <a class="link-box" href="/admin/orders/<%=order.orderId%>"></a>
-              </td>
-              <td class="table-cell id"><%= order.orderId %></td>
-              <td class="table-cell date">
-                <%= String(order.orderDate.getDate()).padStart(2,
+            >
+              <b><%= order.name%> <%=order.surname%></b>
+              <p class="email"><%= order.email%></p>
+              <a
+                  class="link-box"
+                  href="/admin/orders/<%=order.orderId%>"
+              ></a>
+            </td>
+            <td class="table-cell id"><%= order.orderId %></td>
+            <td class="table-cell date">
+              <%= String(order.orderDate.getDate()).padStart(2,
                 '0')+"/"+String(order.orderDate.getMonth() + 1).padStart(2,'0')
                 +"/"+order.orderDate.getFullYear()%>
-              </td>
-              <td class="table-cell date">
-                <%= String(order.recoveryDate.getDate()).padStart(2,
+            </td>
+            <td class="table-cell date">
+              <%= String(order.recoveryDate.getDate()).padStart(2,
                 '0')+"/"+String(order.recoveryDate.getMonth() +
                 1).padStart(2,'0') +"/"+order.recoveryDate.getFullYear()%>
-              </td>
+            </td>
 
-              <td class="table-cell price"><%= order.totalPrice %></td>
-              <th class="table-cell status">Done</th>
-              <td class="table-cell actions dropdown">
-                <button
+            <td class="table-cell price"><%= order.totalPrice %></td>
+            <th class="table-cell status">Done</th>
+            <td class="table-cell actions dropdown">
+              <button
                   id="actions-button-<%= order.orderId %>"
                   class="button menu-button button-link-neutral bi bi-three-dots-vertical"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
-                ></button>
-                <div
+              ></button>
+              <div
                   id="actions-<%= order.orderId %>"
                   class="dropdown-menu dropdown-menu-end"
+              >
+                <button
+                    class="dropdown-item"
+                    type="button"
                 >
-                  <button class="dropdown-item" type="button">
-                    <i class="bi bi-arrow-repeat"></i> Change Status
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <%}) %>
-          </tbody>
-        
+                  <i class="bi bi-arrow-repeat"></i> Change Status
+                </button>
+              </div>
+            </td>
+          </tr>
+          <%}) %>
+        </tbody>
+
         <tfoot class="table-footer"></tfoot>
-        </table>
-      </data>
-    </main>
-    <script src="/features/layout/frontend/utils.js"></script>
-  </body>
+      </table>
+    </data>
+  </main>
+  <script src="/features/layout/frontend/utils.js"></script>
+  <%-include('../scripts.ejs')%>
+
+</body>
+
 </html>

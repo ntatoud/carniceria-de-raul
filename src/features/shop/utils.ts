@@ -1,8 +1,8 @@
 import { QueryError } from 'mysql2';
-import { databaseConnect } from '../../database';
-import { Category } from '../types';
+import { databaseConnect } from '@/database/index.js';
+import { Category } from '@/features/types.js';
 import { Request, Response } from 'express';
-import { toastDispatch, toastEmpty } from '../../components/toast';
+import { toastDispatch, toastEmpty } from '@/components/toast/index.js';
 
 export const getAllProductsWithCategory = (
   req: Request,
