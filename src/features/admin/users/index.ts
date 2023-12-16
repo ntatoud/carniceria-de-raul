@@ -5,22 +5,31 @@ import {
   getUserToUpdate,
   userCreate,
   userUpdate,
-} from './utils';
+} from './utils.js';
 const router = Router();
 
 router.use(urlencoded({ extended: true }));
 
-router.post('/delete/:id', (req: Request, res: Response) => {
-  const userId = req.params.id;
-  userDelete(res, userId, req.session);
+router.delete('/', (req: Request, res: Response) => {
+  const userId = req.body.id;
+  if (!userId) {
+    res.status(204).send('NOK');
+  } else {
+    userDelete(res, userId);
+  }
 });
 
 router.post('/create', (req: Request, res: Response) => {
-  userCreate(res, req.body, req.session);
+  userCreate(res, req.body);
 });
 
-router.post('/update/:id', (req: Request, res: Response) => {
-  userUpdate(res, req.body, req.params.id, req.session);
+router.put('/:id', (req: Request, res: Response) => {
+  const userId = req.params.id;
+  if (!userId) {
+    res.status(204).send('NOK');
+  } else {
+    userUpdate(res, req.body, userId);
+  }
 });
 
 router.use('/create', (req: Request, res: Response) => {
@@ -28,11 +37,17 @@ router.use('/create', (req: Request, res: Response) => {
     user: undefined,
     isLogged: req.session.isLogged,
     account: req.session.user,
+    cart: req.session.cart,
   });
 });
 
-router.use('/update/:id', (req: Request, res: Response) => {
-  getUserToUpdate(req, res, req.params.id);
+router.use('/:id', (req: Request, res: Response) => {
+  const userId = req.params.id;
+  if (!userId) {
+    res.status(204).send('NOK');
+  } else {
+    getUserToUpdate(req, res, userId);
+  }
 });
 
 router.use('/', (req: Request, res: Response) => {

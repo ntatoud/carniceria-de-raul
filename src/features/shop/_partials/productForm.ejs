@@ -1,17 +1,17 @@
-<div class="form-group field-select <% if(product.unit === 0) { %>hide<% }%>">
-  <p>Agotado:</p>
+<div class="form-group field-select <% if(product.unit === "€/unidad") { %>hide<% }%>">
+  <p>Peso:</p>
   <div class="input-group">
     <select
       name="weight"
       class="form-select"
       aria-label="Default select example"
     >
-      <option value="100g" selected>100g</option>
-      <option value="200g">200g</option>
-      <option value="300g">300g</option>
-      <option value="400g">400g</option>
-      <option value="500g">400g</option>
-      <option value="600g">400g</option>
+      <option value="100" selected>100g</option>
+      <option value="200">200g</option>
+      <option value="300">300g</option>
+      <option value="400">400g</option>
+      <option value="500">500g</option>
+      <option value="600">600g</option>
     </select>
   </div>
 </div>
@@ -36,7 +36,16 @@
       </button>
     </div>
   </div>
-  <button class="button button-primary cart-add button-md" type="submit">
+  <button 
+    class="button button-primary cart-add button-md" 
+    type="submit"
+    id="<%=product.productId%>"
+    <%if(!isLogged) {%>
+    onclick="notLoggedAction(event)"
+    data-bs-toggle="modal"
+    data-bs-target="#notConnectedModal"
+    <%}%>
+    >
     <i class="bi bi-cart-plus"></i>Añadir
   </button>
 </div>

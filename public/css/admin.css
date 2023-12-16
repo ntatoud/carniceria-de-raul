@@ -43,6 +43,11 @@ table {
   color: var(--gray-800);
 }
 
+.table-footer {
+  height: 1rem;
+  background-color: var(--gray-50);
+}
+
 .table-row {
   position: relative;
   height: 5rem;

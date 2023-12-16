@@ -1,17 +1,26 @@
 {
   "compilerOptions": {
-    "target": "es2022",
-    "module": "CommonJS",
-    "outDir": "./dist",
-    "rootDir": ".",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "target": "es2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
     "strict": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     },
-    "skipLibCheck": true,
-    "incremental": true
-  }
+    "incremental": true,
+    "typeRoots": ["node_modules/@types", "src/types"],
+    "noUncheckedIndexedAccess": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
 }

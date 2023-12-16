@@ -45,5 +45,5 @@ export const toastError = ({
 export const toastDispatch = (req: Request): Toast => {
   const toast = req.session.toast;
   req.session.toast = toastEmpty();
-  return toast;
+  return toast as Toast;
 };

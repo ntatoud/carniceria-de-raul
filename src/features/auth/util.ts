@@ -1,5 +1,5 @@
 import * as crypto from 'crypto';
-import { User } from '../types';
+import { User } from '@/features/types.js';
 
 const generate32ByteSalt = (): string => {
   const saltBytes = crypto.randomBytes(32); // 32 bytes for the salt
@@ -16,7 +16,8 @@ const xorStringWith32ByteKey = (
   // XOR the input buffer with the key buffer
   const xorResult = Buffer.alloc(inputBuffer.length);
   for (let i = 0; i < inputBuffer.length; i++) {
-    xorResult[i] = inputBuffer[i] ^ keyBuffer[i % keyBuffer.length];
+    xorResult[i] =
+      (inputBuffer[i] ?? 0) ^ (keyBuffer[i % keyBuffer.length] ?? 0);
   }
 
   // Convert the result to a hexadecimal string

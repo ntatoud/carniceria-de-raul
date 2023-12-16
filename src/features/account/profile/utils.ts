@@ -1,14 +1,10 @@
-import { toastSuccess } from '../../../components/toast';
-import { databaseConnect } from '../../../database';
-import { User } from '@/features/types';
+import { toastSuccess } from '@/components/toast/index.js';
+import { databaseConnect } from '@/database/index.js';
+import { User } from '@/features/types.js';
 import { Request, Response } from 'express';
 import { QueryError } from 'mysql2';
 
-export const accountUpdate = (
-  req: Request,
-  res: Response,
-  user: Partial<User>
-) => {
+export const accountUpdate = (req: Request, res: Response, user: User) => {
   const connection = databaseConnect();
   const updateQuery =
     'UPDATE users SET \

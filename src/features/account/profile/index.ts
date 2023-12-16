@@ -1,6 +1,6 @@
 import { Router, Response, Request } from 'express';
-import { accountUpdate } from './utils';
-import { toastDispatch } from '../../../components/toast';
+import { accountUpdate } from './utils.js';
+import { toastDispatch } from '@/components/toast/index.js';
 
 const router = Router();
 
@@ -14,6 +14,7 @@ router.use('/', (req: Request, res: Response) => {
     isLogged: req.session.isLogged,
     account: req.session.user,
     toast: toastDispatch(req),
+    cart: req.session.cart,
   });
 });
 

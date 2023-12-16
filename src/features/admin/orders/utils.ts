@@ -1,5 +1,5 @@
-import { Order, Product } from '@/features/types';
-import { databaseConnect } from '../../../database';
+import { Order } from '@/features/types.js';
+import { databaseConnect } from '@/database/index.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 
@@ -7,7 +7,7 @@ export const getOrderFromId = (req: Request, res: Response, id: string) => {
   const getOrderAndProduct = `SELECT \
     o.orderId, \
     o.userId, \
-    po.quantite, \
+    po.quantity, \
     o.orderDate, \
     o.recoveryDate, \
     o.totalPrice, \
@@ -46,6 +46,7 @@ export const getOrderFromId = (req: Request, res: Response, id: string) => {
           orderProducts: results as (Partial<Product> & Partial<Order>)[],
           isLogged: req.session.isLogged,
           account: req.session.user,
+          cart: req.session.cart,
         });
       }
     }
@@ -78,16 +79,17 @@ export const getOrderList = (req: Request, res: Response) => {
           orders: results,
           isLogged: req.session.isLogged,
           account: req.session.user,
+          cart: req.session.cart,
         });
       }
     }
   );
 };
 
-export const orderDelete = (res: Response, userId: string) => {
+export const orderDelete = (res: Response, order: string) => {
   const connection = databaseConnect();
   const deleteQuery = `DELETE FROM users WHERE userId = ?;`;
-  connection.query(deleteQuery, [userId], (error: QueryError | null) => {
+  connection.query(deleteQuery, [order], (error: QueryError | null) => {
     if (error) throw new Error(error.message);
 
     res.status(200).send('OK');

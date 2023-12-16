@@ -1,8 +1,8 @@
 import { Request, Response, Router } from 'express';
-import cart from './cart';
-import infos from './infos';
-import payment from './payment';
-import { loggedOnlyRoute } from '../../middlewares/logged';
+import cart from './cart/index.js';
+import infos from './infos/index.js';
+import payment from './payment/index.js';
+import { loggedOnlyRoute } from '@/middlewares/logged.js';
 
 const router = Router();
 

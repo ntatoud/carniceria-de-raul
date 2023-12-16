@@ -1,21 +1,20 @@
-import express, {
-  Express,
-  Request,
-  Response,
-  static as staticSrc,
-} from 'express';
-import bodyParser from 'body-parser';
-import session from 'express-session';
-import auth from './src/features/auth';
-import admin from './src/features/admin';
-import order from './src/features/order';
-import shop from './src/features/shop';
-import about from './src/features/about';
-import contact from './src/features/contact';
-import account from './src/features/account';
-import { toastDispatch } from './src/components/toast';
+import express, { Request, Response, static as staticSrc } from 'express';
+import i18next from '@/lib/i18n/config.js';
+import i18nextMiddleware from 'i18next-http-middleware';
+import session from '@/lib/session/config.js';
 
-const app: Express = express();
+import bodyParser from 'body-parser';
+import auth from '@/features/auth/index.js';
+import admin from '@/features/admin/index.js';
+import order from '@/features/order/index.js';
+import shop from '@/features/shop/index.js';
+import about from '@/features/about/index.js';
+import contact from '@/features/contact/index.js';
+import account from '@/features/account/index.js';
+import { toastDispatch } from '@/components/toast/index.js';
+import { AVAILABLE_LANGUAGES } from '@/lib/i18n/constants.js';
+
+export const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
@@ -25,21 +24,15 @@ app.use(
   })
 );
 
+app.use(session);
+app.use(i18nextMiddleware.handle(i18next));
+
 app.use(staticSrc('public'));
 app.use(staticSrc('dist/src'));
 app.use(staticSrc('node_modules/bootstrap/dist/'));
 app.use(staticSrc('node_modules/@popperjs/core/dist/umd'));
 app.use(staticSrc('node_modules/jquery/dist/'));
 app.use(staticSrc('node_modules/bootstrap-icons/font'));
-
-app.use(
-  session({
-    secret: 'email', //used to sign the session ID cookie
-    name: 'login', // (optional) name of the session cookie
-    resave: true, // forces the session to be saved back to the session store
-    saveUninitialized: true, // forces a session an uninitialized session to be saved to the store
-  })
-);
 
 app.set('view engine', 'ejs');
 
@@ -76,13 +69,23 @@ app.use('/about', about);
 app.use('/contact', contact);
 app.use('/account', account); // Has subroutes
 
-app.use('/', (req: Request, res: Response) => {
-  const { isLogged, user } = req.session;
+app.post('/lang', (req: Request, res: Response) => {
+  const langKey = req.body.langKey;
+  i18next.changeLanguage(langKey);
+  const language = AVAILABLE_LANGUAGES.find(({ key }) => key === langKey);
+
+  res.status(200).send(language);
+});
+
+app.get('/', (req: Request, res: Response) => {
+  const { isLogged, user, cart } = req.session;
 
   res.render('index.ejs', {
     isLogged: isLogged,
     account: user,
     toast: toastDispatch(req),
+    cart: cart,
+    t: i18next.t,
   });
 });
 

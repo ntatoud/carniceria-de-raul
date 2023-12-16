@@ -1,5 +1,5 @@
 import mysql from 'mysql2';
-import { databaseCredentials } from './index';
+import { databaseCredentials } from './index.js';
 
 export const databaseCreate = (): void => {
   // Create a connection to MySQL server
@@ -66,6 +66,16 @@ export const databaseCreate = (): void => {
         FOREIGN KEY (categoryId) REFERENCES categories(categoryId)
       );
 
+      CREATE TABLE IF NOT EXISTS users_cart_products (
+        userId INT NOT NULL,
+        productId INT NOT NULL,
+        totalQuantity INT NOT NULL,
+        weight INT NOT NULL,
+        PRIMARY KEY (weight, userId, productId),
+        FOREIGN KEY (userId) REFERENCES users(userId),
+        FOREIGN KEY (productId) REFERENCES products(productId)
+        );
+
       CREATE TABLE IF NOT EXISTS orders (
         orderId INT AUTO_INCREMENT PRIMARY KEY,
         userId INT NOT NULL,
@@ -79,7 +89,7 @@ export const databaseCreate = (): void => {
       CREATE TABLE IF NOT EXISTS products_orders (
         orderId INT,
         productId INT,
-        quantite INT,
+        quantity INT,
         PRIMARY KEY (orderId, productId),
         FOREIGN KEY (orderId) REFERENCES orders(orderId),
         FOREIGN KEY (productId) REFERENCES products(productId)

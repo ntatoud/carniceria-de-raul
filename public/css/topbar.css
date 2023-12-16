@@ -27,7 +27,7 @@
   color: var(--gray-300);
 }
 
-.account-menu .dropdown-toggle::after {
+.dropdown-toggle::after {
   display: none;
 }
 .account-menu .dropdown-item,
@@ -39,22 +39,19 @@
   gap: 0.5rem;
 }
 
-.cart-button:hover .cart-dropdown {
+.cart-button {
   position: relative;
-  display: block;
-  visibility: visible;
 }
 
 .account-menu .dropdown-item:hover {
   background: var(--gray-200);
 }
 
-.cart-button.used::after {
+.cart-button .nb-products {
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  content: '1';
   top: 0;
   right: 0.25rem;
   width: 1.3rem;

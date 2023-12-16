@@ -1,55 +1,40 @@
 <!-- Author : Noé TATOUD -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('../../../imports.ejs') %>
-    <link rel="stylesheet" type="text/css" href="/css/admin.css" />
-  </head>
 
-  <body>
-    <header><%- include('./layout/layout.ejs') %></header>
-    <%- include('./layout/mainbar.ejs', {title: "Orders", backLink: ""}) %>
-    <main class="d-flex flex-row">
-      <div class="order-container d-flex flex-column">
-        <%orderProducts.map((product) => {%>
-        <div class="product-row d-flex">
-          <div><%=product.productName%></div>
-          <div>
-            <%=product.quantite%> x <%=product.productPrice%> =
-            <%=product.quantite*product.productPrice%>
-          </div>
-          <div></div>
+<head>
+  <%- include('../../../imports.ejs') %>
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/admin.css"
+  />
+</head>
+
+<body>
+  <header><%- include('./layout/layout.ejs') %></header>
+  <%- include('./layout/mainbar.ejs', {title: "Orders", backLink: ""}) %>
+  <main class="d-flex flex-row">
+    <div class="order-container d-flex flex-column">
+      <%orderProducts.map((product) => {%>
+      <div class="product-row d-flex">
+        <div><%=product.productName%></div>
+        <div>
+          <%=product.quantity%> x <%=product.productPrice%> =
+          <%=product.quantity*product.productPrice%>
         </div>
-        <%})%>
-        <div class="order-summary d-flex">
-          <b>Total: </b> <%=orderProducts[0].totalPrice%>
-        </div>
+        <div></div>
       </div>
-      <!-- -->
-      <div class="toast show">
-        <div class="toast-header">
-          Toast Header
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="toast"
-          ></button>
-        </div>
-        <div class="toast-body">Some text inside the toast body</div>
+      <%})%>
+      <div class="order-summary d-flex">
+        <b>Total: </b> <%=orderProducts[0].totalPrice%>
       </div>
-      <button id="toastbtn">toast</button>
-      <!-- -->
-    </main>
-    <script src="/features/admin/users/frontend/utils.js"></script>
-    <script src="/features/layout/frontend/utils.js"></script>
-    <script>
-      // document.getElementById("toastbtn").onclick = function () {
-      //   var toastElList = [].slice.call(document.querySelectorAll(".toast"));
-      //   var toastList = toastElList.map(function (toastEl) {
-      //     return new bootstrap.Toast(toastEl);
-      //   });
-      //   toastList.forEach((toast) => toast.show());
-      // };
-    </script>
-  </body>
+    </div>
+  </main>
+  <script src="/features/admin/users/frontend/utils.js"></script>
+  <script src="/features/layout/frontend/utils.js"></script>
+  <%-include('../scripts.ejs')%>
+
+</body>
+
 </html>

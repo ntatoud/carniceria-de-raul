@@ -8,6 +8,7 @@ router.use('/', (req: Request, res: Response) => {
   res.render('payment.ejs', {
     isLogged: req.session.isLogged,
     account: req.session.user,
+    cart: req.session.cart,
   });
 });
 

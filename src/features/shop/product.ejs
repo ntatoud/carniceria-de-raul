@@ -40,13 +40,21 @@
             <div class="product-desc"><%=product.description%></div>
           </div>
           <div class="card-footer">
-            <form class="product-form">
+            <form 
+              action="/order/cart"
+              class="product-form"
+              method="post"
+              id="<%=product.productId%>"
+              role="form"
+              onsubmit="cartProductAdd(event)"
+              >
               <%- include('./_partials/productForm.ejs')%>
             </form>
           </div>
         </div>
       </div>
     </main>
+    <div class="toast-container"></div>
     <script>
       $(".button-quantity .button").on("click", (event) => {
         const add = $(event.currentTarget).hasClass("button-plus");
@@ -70,5 +78,9 @@
         }
       });
     </script>
+    <script src="/features/order/cart/frontend/utils.js"></script>
+  <script src="/features/shop/frontend/productCard.js"></script>
+
+
   </body>
 </html>

@@ -231,6 +231,9 @@
   padding: 0;
 }
 
+.product-card .hide {
+  visibility: hidden;
+}
 @media screen and (max-width: 768px) {
   .shop-home {
     margin-top: 7rem;

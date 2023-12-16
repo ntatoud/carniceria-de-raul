@@ -1,25 +1,42 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <%- include('../../imports.ejs') %>
 
-    <link rel="stylesheet" type="text/css" href="/css/admin.css" />
-    <link rel="stylesheet" type="text/css" href="/css/actionbar.css" />
-  </head>
-  <body>
-    <header><%- include('./layout/layout.ejs') %></header>
-    <main class="d-flex flex-column align-items-center">
-      <form
+<head>
+  <%- include('../../imports.ejs') %>
+
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/admin.css"
+  />
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/actionbar.css"
+  />
+</head>
+
+<body>
+  <header><%- include('./layout/layout.ejs') %></header>
+  <main class="d-flex flex-column align-items-center">
+    <form
         class="user-form"
-        action="/admin/users/update/<%=user.userId%>"
+        action="/admin/users/<%=user.userId%>"
         method="post"
         role="form"
-      >
-        <div class="form-container">
-          <%- include('./admin/users/userForm.ejs')%>
-        </div>
-        <%- include('./layout/actionbar.ejs', {leftButtonTitle: "Cancel", rightButtonTitle:"Update User"})%>
-      </form>
-    </main>
-  </body>
+        id="<%=user.userId%>"
+        onsubmit="userUpdate(event)"
+    >
+      <div class="form-container">
+        <%- include('./admin/users/userForm.ejs')%>
+      </div>
+      <%- include('./layout/actionbar.ejs', {leftButtonTitle: "Cancel", rightButtonTitle:"Update User"})%>
+    </form>
+  </main>
+  <div class="toast-container"></div>
+  <script src="/features/admin/users/frontend/utils.js"></script>
+  <%-include('../scripts.ejs')%>
+
+</body>
+
 </html>

@@ -1,0 +1,178 @@
+data {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 60rem;
+}
+
+/* Empty cart style */
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 20rem;
+  font-size: var(--font-xl);
+  justify-content: center;
+  align-items: center;
+  color: var(--gray-600);
+  gap: 2rem;
+}
+
+.empty-cart p {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-lg);
+  gap: 0.2rem;
+}
+
+.empty-cart .button {
+  font-size: var(--font-lg);
+  margin: 0;
+  padding: 0;
+}
+
+/* Cart header */
+.product-list .header {
+  display: flex;
+  width: 100%;
+  font-size: var(--font-lg);
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--gray-800);
+}
+
+.product-list .header .product {
+  width: 30rem;
+}
+
+.product-list .header .price-quantity {
+  width: 19rem;
+}
+
+.product-list .header .total-price {
+  width: 10rem;
+}
+
+/* Cart product row */
+.product-list,
+.product-list *,
+.product-row,
+.product-row * {
+  transition: all 0.1s ease;
+  -webkit-transition: all 0.1s ease;
+  -o-transition: all 0.1s ease;
+  -moz-transition: all 0.1s ease;
+}
+
+.product-row {
+  display: flex;
+  position: relative;
+  width: 100%;
+  background-color: white;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  gap: 1rem;
+  align-items: center;
+}
+
+.product-cell {
+  display: flex;
+  width: 10rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-cell.image img {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.product-cell.product-infos {
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  width: 15rem;
+  height: 10rem;
+}
+
+.product-cell.product-infos .name {
+  color: var(--brand-600);
+  font-size: var(--font-lg);
+}
+.product-cell.price {
+  width: 5rem;
+}
+
+.product-cell.update {
+  width: fit-content;
+}
+
+.button-quantity input {
+  width: 4rem;
+  height: 4rem;
+  font-size: var(--font-xl);
+}
+
+.button-quantity .buttons {
+  height: 4rem;
+  padding: 0;
+}
+
+.button-quantity .buttons .button {
+  height: 2rem;
+}
+
+.button-quantity .buttons i {
+  font-size: var(--font-lg);
+}
+
+.product-cell.total-price {
+  display: flex;
+  flex-direction: column;
+  width: 18rem;
+  font-size: var(--font-lg);
+}
+
+.total-price:has(> .sale-price) .normal-price {
+  text-decoration: line-through;
+  font-size: var(--font-);
+}
+
+.total-price .sale-price {
+  color: var(--brand-700);
+}
+
+.product-cell.actions {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  top: 2rem;
+  right: 0.5rem;
+  gap: 1rem;
+}
+
+.product-cell.actions .button {
+  font-size: var(--font-lg);
+  padding: 0.1rem 0.1rem;
+}
+
+.product-cell.actions .button.bi-trash {
+  color: var(--brand-700);
+}
+.button-container {
+  width: 60rem;
+  margin: 2rem;
+}
+
+.cart-price {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  font-size: var(--font-2xl);
+  font-weight: bolder;
+  gap: 2rem;
+}

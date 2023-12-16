@@ -5,19 +5,32 @@ import {
   productCreate,
   productDelete,
   productUpdate,
-} from './utils';
+} from './utils.js';
 
 const router = Router();
 
 router.use(urlencoded({ extended: true }));
 
-router.post('/delete/:id', (req: Request, res: Response) => {
-  const productId = req.params.id;
-  productDelete(req.session, res, productId);
+router.delete('/', (req: Request, res: Response) => {
+  const productId = req.body.id;
+  if (!productId) {
+    res.status(204).send('NOK');
+  } else {
+    productDelete(res, productId);
+  }
 });
 
 router.post('/create', (req: Request, res: Response) => {
-  productCreate(res, req.body, req.session);
+  productCreate(res, req.body);
+});
+
+router.put('/:id', (req: Request, res: Response) => {
+  const productId = req.params.id;
+  if (!productId) {
+    res.status(204).send('NOK');
+  } else {
+    productUpdate(res, req.body, productId);
+  }
 });
 
 router.use('/create', (req: Request, res: Response) => {
@@ -25,15 +38,18 @@ router.use('/create', (req: Request, res: Response) => {
     product: undefined,
     isLogged: req.session.isLogged,
     account: req.session.user,
+    cart: req.session.cart,
   });
 });
 
-router.post('/update/:id', (req: Request, res: Response) => {
-  productUpdate(res, req.body, req.params.id, req.session);
-});
+router.use('/:id', (req: Request, res: Response) => {
+  const productId = req.params.id;
 
-router.use('/update/:id', (req: Request, res: Response) => {
-  getProductToUpdate(req, res, req.params.id);
+  if (!productId) {
+    res.status(204).send('NOK');
+  } else {
+    getProductToUpdate(req, res, productId);
+  }
 });
 
 router.use('/', (req: Request, res: Response) => {

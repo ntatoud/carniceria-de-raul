@@ -2,10 +2,6 @@
   width: 50rem;
 }
 
-.form {
-  gap: 1.5rem;
-}
-
 .form-nav {
   display: grid;
   position: relative;

@@ -1,7 +1,8 @@
 import { QueryError } from 'mysql2';
-import { databaseConnect } from '../../database';
-import { Category, Product } from '../types';
+import { databaseConnect } from '@/database/index.js';
+import { Category } from '@/features/types.js';
 import { Request, Response } from 'express';
+import { toastDispatch, toastEmpty } from '@/components/toast/index.js';
 
 export const getAllProductsWithCategory = (
   req: Request,
@@ -30,8 +31,9 @@ export const getAllProductsWithCategory = (
               currentCategory: '',
               isLogged: req.session.isLogged,
               account: req.session.user,
+              toast: toastEmpty(),
+              cart: req.session.cart,
             });
-          console.log(productResults);
           const products: Product[] = productResults.map((product: Product) => {
             const { category, ...rest } = product;
             return {
@@ -46,6 +48,8 @@ export const getAllProductsWithCategory = (
             currentCategory: '',
             isLogged: req.session.isLogged,
             account: req.session.user,
+            toast: toastDispatch(req),
+            cart: req.session.cart,
           });
           connection.end();
         }
@@ -104,6 +108,8 @@ export const renderCategoryPage = ({
               currentCategory: currentCategory,
               isLogged: req.session.isLogged,
               account: req.session.user,
+              toast: toastDispatch(req),
+              cart: req.session.cart,
             });
 
           const products: Product[] = productResults.map((product) => {
@@ -120,6 +126,8 @@ export const renderCategoryPage = ({
             currentCategory: currentCategory,
             isLogged: req.session.isLogged,
             account: req.session.user,
+            toast: toastDispatch(req),
+            cart: req.session.cart,
           });
 
           connection.end();
@@ -153,6 +161,7 @@ export const renderProductPage = ({
         currentCategory: currentCategory,
         isLogged: req.session.isLogged,
         account: req.session.user,
+        cart: req.session.cart,
       });
     }
   );
