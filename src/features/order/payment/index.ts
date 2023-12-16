@@ -1,3 +1,4 @@
+import { toastDispatch } from '@/components/toast/index.js';
 import { Request, Response, Router, urlencoded } from 'express';
 
 const router = Router();
@@ -9,6 +10,7 @@ router.use('/', (req: Request, res: Response) => {
     isLogged: req.session.isLogged,
     account: req.session.user,
     cart: req.session.cart,
+    toast: toastDispatch(req),
   });
 });
 

@@ -79,8 +79,9 @@ export const databaseCreate = (): void => {
       CREATE TABLE IF NOT EXISTS orders (
         orderId INT AUTO_INCREMENT PRIMARY KEY,
         userId INT NOT NULL,
-        orderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        recoveryDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        email VARCHAR(100),
+        recoveryDay VARCHAR(10) NOT NULL,
+        recoveryTime VARCHAR(5) NOT NULL,
         totalPrice DECIMAL(10, 2),
         comment VARCHAR(2048),
         FOREIGN KEY (userId) REFERENCES users(userId)

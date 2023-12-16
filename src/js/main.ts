@@ -18,11 +18,17 @@ const changeLanguage = (langKey: string) => {
 };
 
 const language = JSON.parse(localStorage.getItem('lang') ?? '{}');
-document.documentElement.lang = language?.key;
-document.documentElement.dir = language?.dir ?? 'ltr';
-document.documentElement.style.fontSize = `${
-  (language?.fontScale ?? 1) * 100
-}%`;
+if (language) {
+  document.documentElement.lang = language?.key;
+  document.documentElement.dir = language?.dir ?? 'ltr';
+  document.documentElement.style.fontSize = `${
+    (language?.fontScale ?? 1) * 100
+  }%`;
+} else {
+  document.documentElement.lang = 'es';
+  document.documentElement.dir = 'ltr';
+  document.documentElement.style.fontSize = '100%';
+}
 
 const LANGUAGE_TABLE = [
   { id: 'fr', name: 'Français', flag: '🇫🇷' },
@@ -31,5 +37,9 @@ const LANGUAGE_TABLE = [
   { id: 'en', name: 'English', flag: '🇬🇧' },
 ];
 
-const lang = LANGUAGE_TABLE.find((el) => el.id === language.key);
+const lang = LANGUAGE_TABLE.find((el) => el.id === language.key) ?? {
+  flag: '🇪🇸',
+  name: 'Español',
+};
+
 $('.dropdown.lang .dropdown-toggle').html(`${lang?.flag} ${lang?.name}`);
