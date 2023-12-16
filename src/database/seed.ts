@@ -1,5 +1,5 @@
 import { generateSaltHashedPassword } from '@/features/auth/util.js';
-import { databaseConnect } from '.';
+import { databaseConnect } from './index.js';
 import { QueryError } from 'mysql2';
 
 export const databaseFill = (): void => {
@@ -344,10 +344,11 @@ export const databaseFill = (): void => {
 
   connection.query(
     `
-    INSERT INTO orders (userId, orderDate, recoveryDate, totalPrice, comment)
+    INSERT INTO orders (userId, recoveryDay, recoveryTime, totalPrice, comment)
     VALUES
-        (1, '2022-01-05', '2022-01-10', 59.98, 'Order comment for User 1'),
-        (2, '2022-01-08', '2022-01-15', 79.98, 'Order comment for User 2');`,
+        (1, '2022-01-05', '16:10', 59.98, 'Order comment for User 1'),
+        (2, '2022-01-08', '18:10', 79.98, 'Order comment for User 2');`,
+
     (error: Error) => {
       if (error) {
         throw new Error(error.message);

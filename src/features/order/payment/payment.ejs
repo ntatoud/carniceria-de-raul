@@ -1,21 +1,15 @@
 <!-- Author : Noé TATOUD -->
 <!doctype html>
 <html lang="en">
+  <head>
+    <%- include('../../../imports.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/css/orderNav.css" />
+  </head>
 
-<head>
-  <%- include('../../../imports.ejs') %>
-  <link
-      rel="stylesheet"
-      type="text/css"
-      href="/css/orderNav.css"
-  />
-</head>
-
-<body>
-  <header><%- include('./layout/layout.ejs') %></header>
-  <main>payment <%- include('../orderNav.ejs') %></main>
-  <%-include('../scripts.ejs')%>
-
-</body>
-
+  <body>
+    <header><%- include('./layout/layout.ejs') %></header>
+    <%- include('../../../components/toast/toast.ejs')%>
+    <main>payment <%- include('../orderNav.ejs') %></main>
+    <%-include('../scripts.ejs')%>
+  </body>
 </html>
