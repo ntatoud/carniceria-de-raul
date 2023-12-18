@@ -56,6 +56,8 @@ export const checkEmailTaken = (res: Response, email: string) => {
       } else {
         res.status(200).send('OK');
       }
+
+      connection.end();
     }
   );
 };
