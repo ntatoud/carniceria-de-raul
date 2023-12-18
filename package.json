@@ -9,9 +9,9 @@
     "db:seed": "node dist/src/database/seed.js",
     "pretty": "prettier -w .",
     "lint": "eslint --ext .ts .",
-    "build": "tsc && tsc-alias",
+    "build": "npx tsc && tsc-alias",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/server.js"
+    "start": "npm run build && node dist/server.js"
   },
   "author": "Noé TATOUD",
   "license": "ISC",
