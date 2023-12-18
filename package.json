@@ -5,13 +5,11 @@
   "main": "dist/server.js",
   "type": "module",
   "scripts": {
-    "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist",
     "db:create": "node dist/src/database/create.js",
     "db:seed": "node dist/src/database/seed.js",
     "pretty": "prettier -w .",
     "lint": "eslint --ext .ts .",
-    "build": "rimraf dist && tsc && tsc-alias",
+    "build": "tsc && tsc-alias",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build && node dist/server.js"
   },
@@ -50,10 +48,5 @@
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "eslint": "^8.55.0",
     "prettier": "^3.1.1"
-  },
-  "pre-commit": [
-    "ts.check",
-    "build",
-    "add-build"
-  ]
+  }
 }
