@@ -11,7 +11,7 @@
     "lint": "eslint --ext .ts .",
     "build": "npx tsc && tsc-alias",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run build && node dist/server.js"
+    "start": "node dist/server.js"
   },
   "author": "Noé TATOUD",
   "license": "ISC",
