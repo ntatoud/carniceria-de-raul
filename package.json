@@ -5,11 +5,13 @@
   "main": "dist/server.js",
   "type": "module",
   "scripts": {
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
     "db:create": "node dist/src/database/create.js",
     "db:seed": "node dist/src/database/seed.js",
     "pretty": "prettier -w .",
     "lint": "eslint --ext .ts .",
-    "build": "tsc && tsc-alias",
+    "build": "rimraf dist && tsc && tsc-alias",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build && node dist/server.js"
   },
@@ -33,6 +35,8 @@
     "jquery": "^3.7.1",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.6.4",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.8",
     "typescript": "^5.2.2"
@@ -46,5 +50,10 @@
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "eslint": "^8.55.0",
     "prettier": "^3.1.1"
-  }
+  },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ]
 }
