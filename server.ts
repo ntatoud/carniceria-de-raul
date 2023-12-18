@@ -14,8 +14,12 @@ import account from '@/features/account/index.js';
 import { toastDispatch } from '@/components/toast/index.js';
 import { AVAILABLE_LANGUAGES } from '@/lib/i18n/constants.js';
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 export const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 app.use(bodyParser.json());
 app.use(
