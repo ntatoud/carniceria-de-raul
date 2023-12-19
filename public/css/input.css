@@ -75,13 +75,12 @@
 }
 
 .button-quantity input::-webkit-inner-spin-button {
-  position: absolute;
-  width: 0;
-  visibility: hidden;
-  opacity: 0;
+  -webkit-appearance: none;
 }
 
 .button-quantity input {
+  -moz-appearance: textfield;
+
   display: flex;
   flex-direction: row;
   border: none;

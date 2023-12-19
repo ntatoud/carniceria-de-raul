@@ -49,7 +49,7 @@
   font-size: var(--font-3xl);
 }
 
-.product-carousel .button:hover {
+.product-carousel > .button:hover {
   background: var(--gray-200);
 }
 /* ---------- PRODUCT CARD ---------- */
@@ -272,7 +272,7 @@
     visibility: hidden;
   }
 
-  .product-carousel .button {
+  .product-carousel > .button {
     width: 0;
     visibility: hidden;
     padding: 0;
