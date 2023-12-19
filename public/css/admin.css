@@ -68,6 +68,7 @@ table {
 }
 
 .table-cell {
+  position: relative;
   padding: 1rem;
   text-align: center;
 }
@@ -112,21 +113,22 @@ table {
   max-width: 15rem;
 }
 
-.price {
+.products-table .price,
+.products-table .category {
   min-width: 8rem;
+  text-align: left;
 }
 
-.salePrice {
+.products-table .salePrice {
   color: var(--brand-600);
 }
+
 /* Order Specific styles */
 
-.orders-table .status {
-  text-align: end;
-}
 .orders-table .name {
   width: 15rem;
 }
+
 .order-container {
   width: 100%;
   align-items: center;
@@ -160,4 +162,65 @@ table {
 .user-form .authorities-form-group {
   display: flex;
   flex-direction: row;
+}
+
+.tag {
+  position: absolute;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--gray-100);
+  color: var(--gray-800);
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  top: 50%;
+}
+
+.tag-center {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tag-right {
+  right: 0;
+  transform: translate(-0.5rem, -50%);
+}
+
+.tag-left {
+  left: 0;
+  transform: translate(1rem, -50%);
+}
+
+.tag-top-left {
+  top: 0.4rem;
+  left: 0;
+  transform: translateX(1rem);
+}
+
+.tag-bottom-left {
+  bottom: 0.4rem;
+  left: 0;
+  transform: translateX(1rem);
+}
+
+.tag-blue {
+  background-color: var(--blue-600);
+  color: white;
+}
+
+.tag-warning {
+  background-color: var(--orange-200);
+  color: var(--orange-900);
+}
+
+.tag-green {
+  background-color: var(--green-200);
+  color: var(--green-900);
+}
+
+.tag-error {
+  background-color: var(--brand-200);
+  color: var(--brand-900);
+}
+
+.tag-award {
+  border-radius: 0.4rem;
 }

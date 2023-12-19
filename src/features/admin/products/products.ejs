@@ -32,12 +32,10 @@
       <table class="products-table">
         <tr class="table-head">
           <th class="table-cell name">Name</th>
-          <th class="table-cell id">Id</th>
+          <th class="table-cell id">ID</th>
           <th class="table-cell price">Price</th>
-          <th class="table-cell best">Best Seller</th>
           <th class="table-cell category">Category</th>
           <th class="table-cell stock">Stock</th>
-          <th class="table-cell status">Status</th>
           <th class="table-cell actions dropdown"></th>
         </tr>
         <tbody class="table-body">
@@ -51,31 +49,56 @@
                 data-toggle="tooltip"
                 title="<%= product.name[0] + product.name.slice(1).toLowerCase()%> "
             >
-              <b><%= product.name[0] +
-                  product.name.slice(1).toLowerCase()%></b>
+              <%if(product.best){%><i
+                  class="tag-award tag-error bi bi-award p-sm-1"
+                  data-toggle="tooltip"
+                  title="This product is one of the favorites"
+              ></i><%}%>
+              <%if(product.sale){%><i
+                  class="tag-award tag-warning bi bi-percent p-sm-1"
+                  data-toggle="tooltip"
+                  title="This product is on sale"
+              ></i><%}%>
+              <b>
+                <%= product.name[0] +
+                  product.name.slice(1).toLowerCase()%>
+              </b>
             </td>
-            <td class="table-cell id"><%= product.productId%></td>
+            <td class="table-cell id">
+              <div class="tag tag-center">
+                <%= product.productId%>
+              </div>
+            </td>
             <td class="table-cell price">
-              <p><%= product.price%> <%= product.unit%></p>
               <%if(product.sale) {%>
-              <p class="salePrice">
+              <p class="tag tag-top-left"><%= product.price%> <%= product.unit%></p>
+              <p class="salePrice tag tag-bottom-left tag-warning">
                 <%= product.salePrice%> <%= product.unit%>
               </p>
+              <%}else {%>
+              <p class="tag tag-left"><%= product.price%> <%= product.unit%></p>
               <%}%>
               </td>
-              <td class="table-cell best"><%= product.best%>
+            <td class="table-cell category">
+              <div class="tag tag-left tag-blue">Category</div>
             </td>
+            <td class="table-cell stock"><%if(product.stock === 0){%>
+              <div class="tag tag-error tag-center">EMPTY</div>
+              <%} else if(product.stock < 25){%>
+              <div class="tag tag-warning tag-center">LOW</div>
 
-            <td class="table-cell category">CATEGORY</td>
-            <td class="table-cell status"><%= product.sale%></td>
-            <td class="table-cell stock"><%= product.stock%></td>
+              <%}else {%>
+              <div class="tag tag-green tag-center">AVAILABLE</div>
+
+              <%}%>
+            </td>
             <td class="table-cell actions dropdown">
               <button
                   id="actions-button-<%= product.productId %>"
-                  class="button menu-button button-link-neutral bi bi-three-dots-vertical"
-                  data-bs-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
+              class="button menu-button button-link-neutral bi bi-three-dots-vertical"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
               ></button>
               <div
                   id="actions-<%= product.productId %>"

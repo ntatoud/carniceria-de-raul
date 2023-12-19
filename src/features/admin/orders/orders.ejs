@@ -28,7 +28,7 @@
       <table class="orders-table">
         <thead class="table-head">
           <th class="table-cell name">Client</th>
-          <th class="table-cell id">Id</th>
+          <th class="table-cell id">ID</th>
           <th class="table-cell date">Order Date</th>
           <th class="table-cell date">Recovery Date</th>
           <th class="table-cell price">Total price</th>
@@ -54,7 +54,11 @@
                   href="/admin/orders/<%=order.orderId%>"
               ></a>
             </td>
-            <td class="table-cell id"><%= order.orderId %></td>
+            <td class="table-cell id">
+              <div class="tag tag-center">
+                <%= order.orderId %>
+              </div>
+            </td>
             <td class="table-cell date">
               <%= String(order.orderDate?.getDate()).padStart(2,
                 '0')+"/"+String(order.orderDate?.getMonth() + 1).padStart(2,'0')
@@ -67,14 +71,20 @@
             </td>
 
             <td class="table-cell price"><%= order.totalPrice %></td>
-            <th class="table-cell status">Done</th>
+            <th class="table-cell status">
+              <%if(order?.status === "DONE"){%>
+              <div class="tag tag-center tag-green">Done</div>
+              <%}else{%>
+              <div class="tag tag-center tag-warning">Todo</div>
+              <%}%>
+            </th>
             <td class="table-cell actions dropdown">
               <button
                   id="actions-button-<%= order.orderId %>"
-                  class="button menu-button button-link-neutral bi bi-three-dots-vertical"
-                  data-bs-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
+              class="button menu-button button-link-neutral bi bi-three-dots-vertical"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
               ></button>
               <div
                   id="actions-<%= order.orderId %>"
@@ -87,7 +97,7 @@
                   <i class="bi bi-arrow-repeat"></i> Change Status
                 </button>
               </div>
-            </td>
+              </td>
           </tr>
           <%}) %>
         </tbody>

@@ -30,7 +30,10 @@
             class="button button-primary"
         >Add User</a>
       </div>
-      <table class="users-table">
+      <table
+          align="center"
+          class="users-table"
+      >
         <tr class="table-head">
           <th class="table-cell name">Name/Email</th>
           <th class="table-cell id">ID</th>
@@ -51,8 +54,16 @@
               <b><%= user.name%> <%=user.surname%></b>
               <p class="email"><%= user.email%></p>
             </td>
-            <td class="table-cell id tag"><%= user.userId%></td>
-            <td class="table-cell auth tag"><%= user.authorities%></td>
+            <td class="table-cell id">
+              <div class="tag tag-center">
+                <%= user.userId%>
+              </div>
+            </td>
+            <td class="table-cell auth">
+              <div class="tag tag-right">
+                <%= user.authorities%>
+              </div>
+            </td>
             <td class="table-cell actions dropdown">
               <button
                   id="actions-button-<%= user.userId %>"
