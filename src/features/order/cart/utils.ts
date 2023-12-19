@@ -1,4 +1,8 @@
-import { databaseConnect, databaseDisconnect } from '@/database/index.js';
+import {
+  databaseConnect,
+  databaseDisconnect,
+  databaseError,
+} from '@/database/index.js';
 import { UserSession } from '@/features/types.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
@@ -68,7 +72,7 @@ export const cartProductDelete = (
     deleteQuery,
     [session.user?.userId, +productId, +weight],
     (error: QueryError | null) => {
-      if (error) console.error(error.message);
+      if (error) databaseError(error);
 
       sendNewCart(connection, session, res);
     }
@@ -101,7 +105,7 @@ export const cartProductUpdate = (
     addToCartQuery,
     [userId, productId, newTotalQuantity, weight],
     (error: QueryError | null) => {
-      if (error) console.error(error.message);
+      if (error) databaseError(error);
 
       sendNewCart(connection, session, res, currentProduct);
     }
@@ -120,7 +124,7 @@ const sendNewCart = (
     getNewCartQuery,
     [session.user?.userId],
     (error: QueryError | null, results: RowDataPacket[]) => {
-      if (error) console.error(error.message);
+      if (error) databaseError(error);
       session.cart = results as Cart;
       setCartProductsTotalPrices(session.cart);
       if (currentProduct) {

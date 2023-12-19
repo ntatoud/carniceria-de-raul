@@ -4,7 +4,6 @@ import login from './login/index.js';
 import reset from './reset/index.js';
 import { guestOnlyRoute } from '@/middlewares/guest.js';
 import { loggedOnlyRoute } from '@/middlewares/logged.js';
-
 const router = Router();
 router.use(urlencoded({ extended: true }));
 
@@ -14,7 +13,7 @@ router.use('/signup', guestOnlyRoute, signup);
 
 router.use('/logout', loggedOnlyRoute, (req: Request, res: Response) => {
   req.session.destroy((error: ErrorEvent) => {
-    if (error) console.error(error.message);
+    if (error) console.error(error);
 
     res.redirect('/');
   });

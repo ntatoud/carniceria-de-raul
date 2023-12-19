@@ -1,5 +1,9 @@
 import { QueryError } from 'mysql2';
-import { databaseConnect, databaseDisconnect } from '@/database/index.js';
+import {
+  databaseConnect,
+  databaseDisconnect,
+  databaseError,
+} from '@/database/index.js';
 import { Category } from '@/features/types.js';
 import { Request, Response } from 'express';
 import { toastDispatch, toastEmpty } from '@/components/toast/index.js';
@@ -156,7 +160,7 @@ export const renderProductPage = ({
   connection.query(
     `SELECT * from products WHERE productId = ${productId};`,
     (error: QueryError, results: Partial<Product>[]) => {
-      if (error) console.error(error.message);
+      if (error) databaseError(error);
       res.render('product.ejs', {
         product: results[0],
         currentCategory: currentCategory,

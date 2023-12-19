@@ -21,9 +21,12 @@ export const databaseConnect = (endpoint?: string): Connection => {
 export const databaseDisconnect = (connection: Connection, endpoint?: string) =>
   connection.end((error: QueryError | null) => {
     if (error) {
-      console.error(error.message);
+      databaseError(error);
     }
     if (process.env.LOG_DETAILS === 'verbose') {
       console.log(endpoint ? `Disconnected from ${endpoint}` : 'Disconnected');
     }
   });
+
+export const databaseError = (error: QueryError, endpoint?: string) =>
+  console.error(endpoint ? `${error.message} at ${endpoint}` : error.message);

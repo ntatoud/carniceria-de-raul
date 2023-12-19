@@ -1,5 +1,9 @@
 import { Order } from '@/features/types.js';
-import { databaseConnect, databaseDisconnect } from '@/database/index.js';
+import {
+  databaseConnect,
+  databaseDisconnect,
+  databaseError,
+} from '@/database/index.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 
@@ -40,7 +44,7 @@ export const getOrderFromId = (req: Request, res: Response, id: string) => {
     [id],
     (error: QueryError | null, results: RowDataPacket[]) => {
       if (error) {
-        console.error(error.message);
+        databaseError(error);
       } else {
         res.render('orderDetails.ejs', {
           orderProducts: results as (Partial<Product> & Partial<Order>)[],
@@ -73,9 +77,9 @@ export const getOrderList = (req: Request, res: Response) => {
     JOIN users u ON o.userId = u.userId;';
   connection.query(
     getOrderQuery,
-    (error: QueryError, results: RowDataPacket[]) => {
+    (error: QueryError | null, results: RowDataPacket[]) => {
       if (error) {
-        console.error(error.message);
+        databaseError(error);
       } else {
         res.render('orders.ejs', {
           orders: results,
@@ -93,7 +97,7 @@ export const orderDelete = (res: Response, order: string) => {
   const connection = databaseConnect();
   const deleteQuery = `DELETE FROM users WHERE userId = ?;`;
   connection.query(deleteQuery, [order], (error: QueryError | null) => {
-    if (error) console.error(error.message);
+    if (error) databaseError(error);
 
     res.status(200).send('OK');
 

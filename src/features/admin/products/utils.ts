@@ -1,5 +1,9 @@
 import { toastDispatch } from '@/components/toast/index.js';
-import { databaseConnect, databaseDisconnect } from '@/database/index.js';
+import {
+  databaseConnect,
+  databaseDisconnect,
+  databaseError,
+} from '@/database/index.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 
@@ -22,7 +26,7 @@ export const productCreate = (res: Response, product: Partial<Product>) => {
     queryParams,
     (error: QueryError | null) => {
       if (error) {
-        console.error(error.message);
+        databaseError(error);
       } else {
         res.sendStatus(200);
       }
@@ -51,7 +55,7 @@ export const productUpdate = (res: Response, product: Product, id: string) => {
     updateProductQuery,
     queryParams,
     (error: QueryError | null) => {
-      if (error) console.error(error.message);
+      if (error) databaseError(error);
       else {
         res.sendStatus(200);
       }
@@ -76,7 +80,7 @@ export const getProductToUpdate = (
     getProductQuery,
     [productId],
     (error: QueryError | null, result: RowDataPacket[]) => {
-      if (error) console.error(error.message);
+      if (error) databaseError(error);
 
       const product = result[0] as Product;
 
@@ -96,7 +100,7 @@ export const productDelete = (res: Response, productId: string) => {
   const connection = databaseConnect();
   const deleteQuery = `DELETE FROM products WHERE productId = ?;`;
   connection.query(deleteQuery, [productId], (error: QueryError | null) => {
-    if (error) console.error(error.message);
+    if (error) databaseError(error);
 
     res.status(200).send('OK');
 
@@ -115,7 +119,7 @@ export const getProductList = (
   connection.query(
     getProductsQuery,
     (error: QueryError | null, results: RowDataPacket[]) => {
-      if (error) console.error(error.message);
+      if (error) databaseError(error);
 
       res.render('products.ejs', {
         products: results as Product[],

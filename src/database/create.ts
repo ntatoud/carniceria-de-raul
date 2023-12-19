@@ -1,5 +1,9 @@
 import mysql, { QueryError } from 'mysql2';
-import { databaseCredentials, databaseDisconnect } from './index.js';
+import {
+  databaseCredentials,
+  databaseDisconnect,
+  databaseError,
+} from './index.js';
 
 export const databaseCreate = (): void => {
   // Create a connection to MySQL server
@@ -13,9 +17,9 @@ export const databaseCreate = (): void => {
           CREATE DATABASE IF NOT EXISTS ${process.env.DATABASE_NAME};
           USE ${process.env.DATABASE_NAME};
       `,
-    (error: Error) => {
+    (error: QueryError | null) => {
       if (error) {
-        console.error(error.message);
+        databaseError(error);
       }
       console.log('Database created successfully');
     }
@@ -96,8 +100,8 @@ export const databaseCreate = (): void => {
         FOREIGN KEY (productId) REFERENCES products(productId)
        );
       `,
-    (error: Error) => {
-      if (error) console.error(error.message);
+    (error: QueryError | null) => {
+      if (error) databaseError(error);
       console.log('Tables created successfully');
     }
   );

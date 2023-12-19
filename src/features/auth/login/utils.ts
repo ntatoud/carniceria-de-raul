@@ -1,7 +1,11 @@
 import { Response } from 'express';
 import { toastSuccess } from '@/components/toast/index.js';
 import { UserSession } from '@/features/types.js';
-import { databaseConnect, databaseDisconnect } from '@/database/index.js';
+import {
+  databaseConnect,
+  databaseDisconnect,
+  databaseError,
+} from '@/database/index.js';
 import { QueryError, RowDataPacket } from 'mysql2';
 import {
   getCartQuery,
@@ -19,7 +23,7 @@ export const createSession = (
     getUserCartQuery,
     [userData.userId],
     (error: QueryError | null, results: RowDataPacket[]) => {
-      if (error) console.error(error.message);
+      if (error) databaseError(error);
       session.user = { ...userData };
       session.cart = results as Cart;
       setCartProductsTotalPrices(session.cart);
