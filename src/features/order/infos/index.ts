@@ -1,5 +1,4 @@
 import { Router, Request, Response, urlencoded } from 'express';
-import { databaseConnect } from '@/database/index.js';
 import { saveOrder } from './utils.js';
 
 const router = Router();
@@ -11,7 +10,7 @@ router.post('/', (req: Request, res: Response) => {
 
   const userId = req.session.user?.userId;
   if (!userId) {
-    res.status(401).send('User not authenticated.');
+    res.status(401).send('User not found.');
   } else {
     saveOrder(req.session, res, orderDetails, userId);
   }

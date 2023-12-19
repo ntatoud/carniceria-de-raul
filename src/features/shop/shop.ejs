@@ -21,6 +21,17 @@
 <body>
   <header><%- include('./layout/layout.ejs') %></header>
   <main class="d-flex flex-row">
+    <div class='preloader'>
+      <div
+          class='spinner-border'
+          role='status'
+      >
+        <span class='sr-only'></span>
+      </div>
+    </div>
+
+
+
     <%- include('./shop/leftMenu.ejs', {currentCategory: currentCategory})%>
     <!-- \ -->
     <%if(!currentCategory) {%>
