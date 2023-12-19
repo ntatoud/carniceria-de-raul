@@ -15,7 +15,7 @@ export const productCreate = (res: Response, product: Partial<Product>) => {
     product.stock,
     product.sale,
     product.salePrice ?? null,
-    product.image ?? '',
+    product.image,
     product.description,
   ];
   const createProductQuery =
