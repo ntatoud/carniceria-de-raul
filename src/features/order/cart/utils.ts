@@ -1,4 +1,4 @@
-import { databaseConnect } from '@/database/index.js';
+import { databaseConnect, databaseDisconnect } from '@/database/index.js';
 import { UserSession } from '@/features/types.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
@@ -68,7 +68,7 @@ export const cartProductDelete = (
     deleteQuery,
     [session.user?.userId, +productId, +weight],
     (error: QueryError | null) => {
-      if (error) throw new Error(error.message);
+      if (error) console.error(error.message);
 
       sendNewCart(connection, session, res);
     }
@@ -101,7 +101,7 @@ export const cartProductUpdate = (
     addToCartQuery,
     [userId, productId, newTotalQuantity, weight],
     (error: QueryError | null) => {
-      if (error) throw new Error(error.message);
+      if (error) console.error(error.message);
 
       sendNewCart(connection, session, res, currentProduct);
     }
@@ -120,7 +120,7 @@ const sendNewCart = (
     getNewCartQuery,
     [session.user?.userId],
     (error: QueryError | null, results: RowDataPacket[]) => {
-      if (error) throw new Error(error.message);
+      if (error) console.error(error.message);
       session.cart = results as Cart;
       setCartProductsTotalPrices(session.cart);
       if (currentProduct) {
@@ -139,7 +139,7 @@ const sendNewCart = (
         });
       }
 
-      connection.end();
+      databaseDisconnect(connection);
     }
   );
 };

@@ -1,5 +1,5 @@
 import { generateSaltHashedPassword } from '@/features/auth/util.js';
-import { databaseConnect } from './index.js';
+import { databaseConnect, databaseDisconnect } from './index.js';
 import { QueryError } from 'mysql2';
 
 export const databaseFill = (): void => {
@@ -16,7 +16,7 @@ export const databaseFill = (): void => {
     [pwdAdmin, saltAdmin, pwdUser, saltUser],
     (error: QueryError | null) => {
       if (error) {
-        throw new Error(error.message);
+        console.error(error.message);
       }
       console.log("👤 👉 Table 'users' seeded successfully");
     }
@@ -31,7 +31,7 @@ export const databaseFill = (): void => {
       ('Elaborado');`,
     (error: Error) => {
       if (error) {
-        throw new Error(error.message);
+        console.error(error.message);
       }
       console.log("👤 👉 Table 'categories' seeded successfully");
     }
@@ -67,7 +67,7 @@ export const databaseFill = (): void => {
         `,
     (error: Error) => {
       if (error) {
-        throw new Error(error.message);
+        console.error(error.message);
       }
       console.log("📦 👉 Table 'products' seeded with Ternera successfully");
     }
@@ -100,7 +100,7 @@ export const databaseFill = (): void => {
       (22, 1);`,
     (error: Error) => {
       if (error) {
-        throw new Error(error.message);
+        console.error(error.message);
       }
       console.log(
         "👤 👉 Table 'product_categories' seeded with Ternera successfully"
@@ -135,7 +135,7 @@ export const databaseFill = (): void => {
         `,
     (error: Error) => {
       if (error) {
-        throw new Error(error.message);
+        console.error(error.message);
       }
       console.log("📦 👉 Table 'products' seeded with Cerdo successfully");
     }
@@ -165,7 +165,7 @@ export const databaseFill = (): void => {
       (41, 2);`,
     (error: Error) => {
       if (error) {
-        throw new Error(error.message);
+        console.error(error.message);
       }
       console.log(
         "👤 👉 Table 'product_categories' seeded with Cerdo successfully"
@@ -197,7 +197,7 @@ export const databaseFill = (): void => {
         `,
     (error: Error) => {
       if (error) {
-        throw new Error(error.message);
+        console.error(error.message);
       }
       console.log("📦 👉 Table 'products' seeded with Pollo successfully");
     }
@@ -224,7 +224,7 @@ export const databaseFill = (): void => {
     `,
     (error: Error) => {
       if (error) {
-        throw new Error(error.message);
+        console.error(error.message);
       }
       console.log(
         "👤 👉 Table 'product_categories' seeded with Pollo successfully"
@@ -273,7 +273,7 @@ export const databaseFill = (): void => {
         `,
     (error: Error) => {
       if (error) {
-        throw new Error(error.message);
+        console.error(error.message);
       }
       console.log("📦 👉 Table 'products' seeded with Elaborados successfully");
     }
@@ -317,7 +317,7 @@ export const databaseFill = (): void => {
         `,
     (error: Error) => {
       if (error) {
-        throw new Error(error.message);
+        console.error(error.message);
       }
       console.log(
         "👤 👉 Table 'product_categories' seeded with Elaborados successfully"
@@ -336,7 +336,7 @@ export const databaseFill = (): void => {
         (2, 5, 3, 300);`,
     (error: Error) => {
       if (error) {
-        throw new Error(error.message);
+        console.error(error.message);
       }
       console.log("🛒 👉 Table 'users_carts_products' seeded successfully");
     }
@@ -344,14 +344,14 @@ export const databaseFill = (): void => {
 
   connection.query(
     `
-    INSERT INTO orders (userId, recoveryDay, recoveryTime, totalPrice, comment)
+    INSERT INTO orders (userId, recoveryDate, totalPrice, comment)
     VALUES
-        (1, '2022-01-05', '16:10', 59.98, 'Order comment for User 1'),
-        (2, '2022-01-08', '18:10', 79.98, 'Order comment for User 2');`,
+        (1 ,'2023-12-22' ,59.98 ,'Order comment for User 1'),
+        (2 ,'2023-12-22' ,79.98, 'Order comment for User 2');`,
 
     (error: Error) => {
       if (error) {
-        throw new Error(error.message);
+        console.error(error.message);
       }
       console.log("🛒 👉 Table 'orders' seeded successfully");
     }
@@ -366,13 +366,13 @@ export const databaseFill = (): void => {
         (2, 2, 3);`,
     (error: Error) => {
       if (error) {
-        throw new Error(error.message);
+        console.error(error.message);
       }
       console.log("📦🛒 👉 Table 'products_orders' seeded successfully");
     }
   );
 
-  connection.end();
+  databaseDisconnect(connection);
 };
 
 databaseFill();

@@ -1,5 +1,5 @@
-import mysql from 'mysql2';
-import { databaseCredentials } from './index.js';
+import mysql, { QueryError } from 'mysql2';
+import { databaseCredentials, databaseDisconnect } from './index.js';
 
 export const databaseCreate = (): void => {
   // Create a connection to MySQL server
@@ -15,7 +15,7 @@ export const databaseCreate = (): void => {
       `,
     (error: Error) => {
       if (error) {
-        throw new Error(error.message);
+        console.error(error.message);
       }
       console.log('Database created successfully');
     }
@@ -80,8 +80,8 @@ export const databaseCreate = (): void => {
         orderId INT AUTO_INCREMENT PRIMARY KEY,
         userId INT NOT NULL,
         email VARCHAR(100),
-        recoveryDay VARCHAR(10) NOT NULL,
-        recoveryTime VARCHAR(5) NOT NULL,
+        orderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        recoveryDate TIMESTAMP,
         totalPrice DECIMAL(10, 2),
         comment VARCHAR(2048),
         FOREIGN KEY (userId) REFERENCES users(userId)
@@ -97,12 +97,12 @@ export const databaseCreate = (): void => {
        );
       `,
     (error: Error) => {
-      if (error) throw new Error(error.message);
+      if (error) console.error(error.message);
       console.log('Tables created successfully');
     }
   );
   // Close the connection
-  connection.end();
+  databaseDisconnect(connection);
 };
 
 databaseCreate();

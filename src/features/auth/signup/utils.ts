@@ -1,4 +1,4 @@
-import { databaseConnect } from '@/database/index.js';
+import { databaseConnect, databaseDisconnect } from '@/database/index.js';
 import { User, UserSession } from '@/features/types.js';
 import { generateSaltHashedPassword } from '@/features/auth/util.js';
 import { QueryError, RowDataPacket } from 'mysql2';
@@ -57,7 +57,7 @@ export const checkEmailTaken = (res: Response, email: string) => {
         res.status(200).send('OK');
       }
 
-      connection.end();
+      databaseDisconnect(connection);
     }
   );
 };
@@ -119,7 +119,7 @@ export const registerIfPossible = (
             });
             res.status(200).redirect('/auth/login');
 
-            connection.end();
+            databaseDisconnect(connection);
           }
         );
       }

@@ -14,7 +14,7 @@ router.use('/signup', guestOnlyRoute, signup);
 
 router.use('/logout', loggedOnlyRoute, (req: Request, res: Response) => {
   req.session.destroy((error: ErrorEvent) => {
-    if (error) throw new Error(error.message);
+    if (error) console.error(error.message);
 
     res.redirect('/');
   });

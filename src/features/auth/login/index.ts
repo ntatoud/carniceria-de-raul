@@ -1,6 +1,6 @@
 import { Router, urlencoded, Request, Response } from 'express';
 import { isPasswordCorrect } from '@/features/auth/util.js';
-import { databaseConnect } from '@/database/index.js';
+import { databaseConnect, databaseDisconnect } from '@/database/index.js';
 import { QueryError, RowDataPacket } from 'mysql2/promise';
 import { User } from '@/features/types.js';
 import { createSession } from './utils.js';
@@ -44,10 +44,10 @@ router.post('/', (req: Request, res: Response) => {
         req.session.toast = toastError({ content: 'Invalid Credentials' });
         res.status(401).redirect('/auth');
       }
+
+      databaseDisconnect(connection);
     }
   );
-
-  connection.end();
 });
 
 router.use('/', (req: Request, res: Response) => {

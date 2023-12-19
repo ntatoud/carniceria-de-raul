@@ -1,82 +1,19 @@
 import { Router, Request, Response, urlencoded } from 'express';
 import { databaseConnect } from '@/database/index.js';
-import { toastSuccess } from '@/components/toast/index.js';
-import { cartTotalPrice } from '../cart/utils.js';
+import { saveOrder } from './utils.js';
 
 const router = Router();
 
 router.use(urlencoded({ extended: true }));
 
 router.post('/', (req: Request, res: Response) => {
-  try {
-    const {
-      city,
-      postalCode,
-      country,
-      address,
-      phone,
-      recoveryDay,
-      recoveryTime,
-      comment,
-      email,
-    } = req.body;
+  const orderDetails = req.body;
 
-    const userId = req.session.user?.userId;
-    if (userId === undefined) {
-      return res.status(401).send('User not authenticated.');
-    }
-
-    const connection = databaseConnect();
-
-    const updateUserQuery = `
-      UPDATE users
-      SET city = ?,
-          postalCode = ?,
-          country = ?,
-          address = ?,
-          phone = ?
-      WHERE userId = ?;`;
-
-    connection.query(
-      updateUserQuery,
-      [city, postalCode, country, address, phone, userId],
-      (error) => {
-        if (error) {
-          console.error('Error:', error);
-          return res.status(500).send('Error updating user data.');
-        }
-
-        const updateOrderQuery = `
-          INSERT INTO orders (userId, recoveryDay, recoveryTime, comment, email, totalPrice)
-          VALUES (?, ?, ?, ?, ?, ?);`;
-
-        connection.query(
-          updateOrderQuery,
-          [
-            userId,
-            recoveryDay,
-            recoveryTime,
-            comment,
-            email,
-            cartTotalPrice(req.session.cart, true),
-          ],
-          (err) => {
-            connection.end();
-
-            if (err) {
-              console.error('Error:', err);
-              return res.status(500).send('Error updating order data.');
-            }
-
-            req.session.toast = toastSuccess({ content: 'Success' });
-            res.status(200).redirect('/order/payment');
-          }
-        );
-      }
-    );
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).send('Error updating data.');
+  const userId = req.session.user?.userId;
+  if (!userId) {
+    res.status(401).send('User not authenticated.');
+  } else {
+    saveOrder(req.session, res, orderDetails, userId);
   }
 });
 

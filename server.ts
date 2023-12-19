@@ -100,4 +100,11 @@ app.get('*', (req: Request, res: Response) => {
 
 app.listen(port, () => {
   console.log(`Now listening on port ${port}`);
+  console.log(
+    `Logs are currently in mode ${
+      process.env.LOG_DETAILS === 'quiet'
+        ? "'quiet'. Set LOG_DETAILS to 'verbose' to display full log details."
+        : 'verbose'
+    }`
+  );
 });

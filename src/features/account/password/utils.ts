@@ -2,7 +2,7 @@ import {
   generateSaltHashedPassword,
   isPasswordCorrect,
 } from '@/features/auth/util.js';
-import { databaseConnect } from '@/database/index.js';
+import { databaseConnect, databaseDisconnect } from '@/database/index.js';
 import { Request, Response } from 'express';
 import { Connection, QueryError, RowDataPacket } from 'mysql2';
 import { User } from '@/features/types.js';
@@ -24,7 +24,7 @@ export const passwordUpdateIfOldPasswordCorrect = (
     selectQuery,
     selectQueryParams,
     (error: QueryError | null, result: RowDataPacket[]) => {
-      if (error) throw new Error(error.message);
+      if (error) console.error(error.message);
 
       if (isPasswordCorrect(userPasswordData.oldPassword, result[0] as User)) {
         passwordUpdate(req, res, connection, userPasswordData.newPassword);
@@ -32,6 +32,8 @@ export const passwordUpdateIfOldPasswordCorrect = (
         req.session.toast = toastError({ content: 'Wrong password' });
         res.redirect('/account/password');
       }
+
+      databaseDisconnect(connection);
     }
   );
 };
@@ -52,12 +54,13 @@ const passwordUpdate = (
   const queryParams = [salt, hashPwd, req.session.user?.userId];
 
   connection.execute(updateQuery, queryParams, (error: QueryError | null) => {
-    if (error) throw new Error(error.message);
+    if (error) console.error(error.message);
 
     req.session.toast = toastSuccess({
       content: 'Password updated succesfully',
     });
     res.redirect('/account/profile');
-    connection.end();
+
+    databaseDisconnect(connection);
   });
 };
