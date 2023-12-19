@@ -1,5 +1,9 @@
 import { QueryError } from 'mysql2';
-import { databaseConnect } from '@/database/index.js';
+import {
+  databaseConnect,
+  databaseDisconnect,
+  databaseError,
+} from '@/database/index.js';
 import { Category } from '@/features/types.js';
 import { Request, Response } from 'express';
 import { toastDispatch, toastEmpty } from '@/components/toast/index.js';
@@ -51,7 +55,8 @@ export const getAllProductsWithCategory = (
             toast: toastDispatch(req),
             cart: req.session.cart,
           });
-          connection.end();
+
+          databaseDisconnect(connection);
         }
       );
     }
@@ -130,7 +135,7 @@ export const renderCategoryPage = ({
             cart: req.session.cart,
           });
 
-          connection.end();
+          databaseDisconnect(connection);
         }
       );
     }
@@ -155,7 +160,7 @@ export const renderProductPage = ({
   connection.query(
     `SELECT * from products WHERE productId = ${productId};`,
     (error: QueryError, results: Partial<Product>[]) => {
-      if (error) throw new Error(error.message);
+      if (error) databaseError(error);
       res.render('product.ejs', {
         product: results[0],
         currentCategory: currentCategory,
@@ -163,6 +168,8 @@ export const renderProductPage = ({
         account: req.session.user,
         cart: req.session.cart,
       });
+
+      databaseDisconnect(connection);
     }
   );
 };

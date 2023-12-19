@@ -1,5 +1,9 @@
 import { toastSuccess } from '@/components/toast/index.js';
-import { databaseConnect } from '@/database/index.js';
+import {
+  databaseConnect,
+  databaseDisconnect,
+  databaseError,
+} from '@/database/index.js';
 import { User } from '@/features/types.js';
 import { Request, Response } from 'express';
 import { QueryError } from 'mysql2';
@@ -31,11 +35,13 @@ export const accountUpdate = (req: Request, res: Response, user: User) => {
   req.session.user = user;
 
   connection.execute(updateQuery, queryParams, (error: QueryError | null) => {
-    if (error) throw new Error(error.message);
+    if (error) databaseError(error);
 
     req.session.toast = toastSuccess({
       content: 'Your account has been updated successfully',
     });
     res.redirect('/account/profile');
+
+    databaseDisconnect(connection);
   });
 };

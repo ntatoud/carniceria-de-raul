@@ -1,5 +1,9 @@
 import { generateSaltHashedPassword } from '@/features/auth/util.js';
-import { databaseConnect } from '@/database/index.js';
+import {
+  databaseConnect,
+  databaseDisconnect,
+  databaseError,
+} from '@/database/index.js';
 import { User } from '@/features/types.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
@@ -21,10 +25,12 @@ export const userCreate = (res: Response, user: Partial<User>) => {
 
   connection.query(createUserQuery, queryParams, (error: QueryError | null) => {
     if (error) {
-      throw new Error(error.message);
+      databaseError(error);
     } else {
       res.redirect(302, '/admin/users');
     }
+
+    databaseDisconnect(connection);
   });
 };
 
@@ -40,10 +46,12 @@ export const userUpdate = (res: Response, user: Partial<User>, id: string) => {
   const updateUserQuery =
     'UPDATE users SET email = ?, authorities = ?, name = ?, surname = ? WHERE userId = ?;';
   connection.query(updateUserQuery, queryParams, (error: QueryError | null) => {
-    if (error) throw new Error(error.message);
+    if (error) databaseError(error);
     else {
       res.sendStatus(200);
     }
+
+    databaseDisconnect(connection);
   });
 };
 
@@ -58,7 +66,7 @@ export const getUserToUpdate = (req: Request, res: Response, id: string) => {
     [id],
     (error: QueryError | null, result: RowDataPacket[]) => {
       if (error) {
-        throw new Error(error.message);
+        databaseError(error);
       } else {
         res.render('userUpdate.ejs', {
           user: result[0] as Partial<User>,
@@ -67,6 +75,8 @@ export const getUserToUpdate = (req: Request, res: Response, id: string) => {
           cart: req.session.cart,
         });
       }
+
+      databaseDisconnect(connection);
     }
   );
 };
@@ -78,7 +88,7 @@ export const getUserList = (req: Request, res: Response) => {
     (error: QueryError, results: Partial<User>[]) => {
       if (error) {
         res.send('404');
-        throw new Error(error.message);
+        databaseError(error);
       }
 
       res.render('users.ejs', {
@@ -88,6 +98,8 @@ export const getUserList = (req: Request, res: Response) => {
         toast: toastDispatch(req),
         cart: req.session.cart,
       });
+
+      databaseDisconnect(connection);
     }
   );
 };
@@ -96,8 +108,10 @@ export const userDelete = (res: Response, userId: string) => {
   const connection = databaseConnect();
   const deleteQuery = `DELETE FROM users WHERE userId = ?;`;
   connection.query(deleteQuery, [userId], (error: QueryError | null) => {
-    if (error) throw new Error(error.message);
+    if (error) databaseError(error);
 
     res.status(200).send('OK');
+
+    databaseDisconnect(connection);
   });
 };

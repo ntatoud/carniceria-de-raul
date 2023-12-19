@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import multer, { diskStorage } from 'multer';
-import { databaseConnect } from '.';
+import { databaseConnect, databaseDisconnect } from '.';
 import { QueryError } from 'mysql2';
 
 const storage = diskStorage({
@@ -31,10 +31,12 @@ export const storeImageInDb = (path: string, res: Response) => {
     (error: QueryError) => {
       if (error) {
         console.error('Error inserting image into database:', error);
-        connection.end();
+
         res.status(500).send('Internal Server Error');
       }
       res.status(200).send('OK');
+
+      databaseDisconnect(connection);
     }
   );
 };

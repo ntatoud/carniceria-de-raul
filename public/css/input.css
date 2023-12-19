@@ -75,10 +75,7 @@
 }
 
 .button-quantity input::-webkit-inner-spin-button {
-  position: absolute;
-  width: 0;
-  visibility: hidden;
-  opacity: 0;
+  -webkit-appearance: none;
 }
 
 .button-quantity input {
@@ -86,6 +83,9 @@
   flex-direction: row;
   border: none;
   text-align: center;
+
+  /* For firefox  */
+  -moz-appearance: textfield;
 }
 
 .button-quantity .buttons {

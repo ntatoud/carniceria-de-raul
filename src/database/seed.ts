@@ -1,5 +1,5 @@
 import { generateSaltHashedPassword } from '@/features/auth/util.js';
-import { databaseConnect } from './index.js';
+import { databaseConnect, databaseDisconnect, databaseError } from './index.js';
 import { QueryError } from 'mysql2';
 
 export const databaseFill = (): void => {
@@ -16,7 +16,7 @@ export const databaseFill = (): void => {
     [pwdAdmin, saltAdmin, pwdUser, saltUser],
     (error: QueryError | null) => {
       if (error) {
-        throw new Error(error.message);
+        databaseError(error);
       }
       console.log("👤 👉 Table 'users' seeded successfully");
     }
@@ -29,9 +29,9 @@ export const databaseFill = (): void => {
       ('Cerdo'),
       ('Pollo'),
       ('Elaborado');`,
-    (error: Error) => {
+    (error: QueryError | null) => {
       if (error) {
-        throw new Error(error.message);
+        databaseError(error);
       }
       console.log("👤 👉 Table 'categories' seeded successfully");
     }
@@ -65,9 +65,9 @@ export const databaseFill = (): void => {
         ('FILETE DE CONTRA ', 14.99, '€/kg', 100, false, NULL, false, '.', 'Product Description'),
         ('PEZ DE TERNERA', 13.99, '€/kg', 100, false, NULL, false, '.', 'Product Description');
         `,
-    (error: Error) => {
+    (error: QueryError | null) => {
       if (error) {
-        throw new Error(error.message);
+        databaseError(error);
       }
       console.log("📦 👉 Table 'products' seeded with Ternera successfully");
     }
@@ -98,9 +98,9 @@ export const databaseFill = (): void => {
       (20, 1),
       (21, 1),
       (22, 1);`,
-    (error: Error) => {
+    (error: QueryError | null) => {
       if (error) {
-        throw new Error(error.message);
+        databaseError(error);
       }
       console.log(
         "👤 👉 Table 'product_categories' seeded with Ternera successfully"
@@ -133,9 +133,9 @@ export const databaseFill = (): void => {
         ('TOCINO FRESCO BAJ0', 5.99, '€/kg', 0, false, NULL, true, '.', 'Product Description'),
         ('TOCINO FRESCO ALTO IBÉRICO', 5.99, '€/kg', 0, false, NULL, false, '.', 'Product Description');
         `,
-    (error: Error) => {
+    (error: QueryError | null) => {
       if (error) {
-        throw new Error(error.message);
+        databaseError(error);
       }
       console.log("📦 👉 Table 'products' seeded with Cerdo successfully");
     }
@@ -163,9 +163,9 @@ export const databaseFill = (): void => {
       (39, 2),
       (40, 2),
       (41, 2);`,
-    (error: Error) => {
+    (error: QueryError | null) => {
       if (error) {
-        throw new Error(error.message);
+        databaseError(error);
       }
       console.log(
         "👤 👉 Table 'product_categories' seeded with Cerdo successfully"
@@ -195,9 +195,9 @@ export const databaseFill = (): void => {
         ('HUEVOS MORENOS', 1.30, '€/unidad', 100, false, NULL, false, '.', 'Product Description'),
         ('HUEVOS BLANCOS', 1.30, '€/unidad', 100, false, NULL, false, '.', 'Product Description');
         `,
-    (error: Error) => {
+    (error: QueryError | null) => {
       if (error) {
-        throw new Error(error.message);
+        databaseError(error);
       }
       console.log("📦 👉 Table 'products' seeded with Pollo successfully");
     }
@@ -222,9 +222,9 @@ export const databaseFill = (): void => {
       (56, 3),
       (57, 3);
     `,
-    (error: Error) => {
+    (error: QueryError | null) => {
       if (error) {
-        throw new Error(error.message);
+        databaseError(error);
       }
       console.log(
         "👤 👉 Table 'product_categories' seeded with Pollo successfully"
@@ -271,9 +271,9 @@ export const databaseFill = (): void => {
         ('CALDO DE POLLO', 4.99, '€/kg', 100, false, NULL, true, '.', 'Product Description'),
         ('CALDO DE JAMÓN', 4.99, '€/kg', 100, false, NULL, false, '.', 'Product Description');
         `,
-    (error: Error) => {
+    (error: QueryError | null) => {
       if (error) {
-        throw new Error(error.message);
+        databaseError(error);
       }
       console.log("📦 👉 Table 'products' seeded with Elaborados successfully");
     }
@@ -315,9 +315,9 @@ export const databaseFill = (): void => {
       (89, 4),
       (90, 4);
         `,
-    (error: Error) => {
+    (error: QueryError | null) => {
       if (error) {
-        throw new Error(error.message);
+        databaseError(error);
       }
       console.log(
         "👤 👉 Table 'product_categories' seeded with Elaborados successfully"
@@ -334,9 +334,9 @@ export const databaseFill = (): void => {
         (1, 4, 1, 300),
         (2, 3, 2, 200),
         (2, 5, 3, 300);`,
-    (error: Error) => {
+    (error: QueryError | null) => {
       if (error) {
-        throw new Error(error.message);
+        databaseError(error);
       }
       console.log("🛒 👉 Table 'users_carts_products' seeded successfully");
     }
@@ -344,14 +344,14 @@ export const databaseFill = (): void => {
 
   connection.query(
     `
-    INSERT INTO orders (userId, recoveryDay, recoveryTime, totalPrice, comment)
+    INSERT INTO orders (userId, recoveryDate, totalPrice, comment)
     VALUES
-        (1, '2022-01-05', '16:10', 59.98, 'Order comment for User 1'),
-        (2, '2022-01-08', '18:10', 79.98, 'Order comment for User 2');`,
+        (1 ,'2023-12-22' ,59.98 ,'Order comment for User 1'),
+        (2 ,'2023-12-22' ,79.98, 'Order comment for User 2');`,
 
-    (error: Error) => {
+    (error: QueryError | null) => {
       if (error) {
-        throw new Error(error.message);
+        databaseError(error);
       }
       console.log("🛒 👉 Table 'orders' seeded successfully");
     }
@@ -364,15 +364,15 @@ export const databaseFill = (): void => {
         (1, 1, 2),
         (1, 2, 1),
         (2, 2, 3);`,
-    (error: Error) => {
+    (error: QueryError | null) => {
       if (error) {
-        throw new Error(error.message);
+        databaseError(error);
       }
       console.log("📦🛒 👉 Table 'products_orders' seeded successfully");
     }
   );
 
-  connection.end();
+  databaseDisconnect(connection);
 };
 
 databaseFill();
