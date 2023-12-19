@@ -37,6 +37,7 @@
         class="d-flex flex-column align-items-center"
         action="/order/infos"
         method="POST"
+        onsubmit="infosPost(event)"
         novalidate
     >
       <div class="form-step billing">
@@ -212,7 +213,7 @@
       </div>
       <%- include('./layout/actionbar.ejs', {leftButtonTitle: "<- Carrito", rightButtonTitle:"Confirmar compra"}) %>
     </form>
-
+    <div class="toast-container"></div>
     <script>
       const changeView = (fromView, toView, direction) => {
         const progressBarPrevious = $(`.progress-bar .${fromView}`);
@@ -255,6 +256,34 @@
   </main>
   <%-include('../scripts.ejs')%>
 
+  <script>
+    const infosPost = async (event) => {
+      event.preventDefault()
+      const form = $(event.currentTarget)[0];
+      const formData = new FormData(form);
+      const formDataObject = Array.from(formData.entries()).reduce(
+        (acc, [key, value]) => {
+          acc[key] = value;
+          return acc;
+        }, {})
+
+      $.ajax({
+        url: "/order/infos",
+        type: "post",
+        data: formDataObject,
+        success: (res) => {
+          localStorage.setItem('toast', 'update');
+          location.href = '/order/payment'
+        },
+        error: (xhr) => {
+          toastError(xhr.status + xhr.statusText)
+          hideLoading()
+
+        }
+      })
+
+    }
+  </script>
 </body>
 
 </html>

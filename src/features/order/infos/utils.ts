@@ -59,10 +59,10 @@ export const saveOrder = (
               console.error('Error:', err);
               res.status(500).send('Error updating order data.');
             }
-
+            localStorage.setItem('toast', 'update');
             session.toast = toastSuccess({ content: 'Success' });
 
-            res.status(200).redirect('/order/payment');
+            res.send(200);
 
             databaseDisconnect(connection);
           }

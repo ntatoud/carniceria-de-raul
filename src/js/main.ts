@@ -42,4 +42,20 @@ const lang = LANGUAGE_TABLE.find((el) => el.id === language.key) ?? {
   name: 'Español',
 };
 
+$('form').on('submit', (event) => {
+  $(event.target!).find(` button[type="submit"]`).prepend(
+    "\
+    <div class='spinner-border spinner-border-sm text-light' role='status'>\
+      <span class='sr-only'></span>\
+    </div>"
+  );
+});
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const hideLoading = () => {
+  $(` button[type="submit"] .spinner-border`).remove();
+};
+
 $('.dropdown.lang .dropdown-toggle').html(`${lang?.flag} ${lang?.name}`);
+
+$('.preloader').remove();

@@ -51,6 +51,7 @@ const cartProductAdd = async (event: SubmitEvent) => {
     data: { productId, ...formDataObject },
     success: (res) => {
       $('.cart-button .nb-products').html(res.newCartSize);
+      hideLoading();
       toastSuccess('Product added to cart');
     },
   });

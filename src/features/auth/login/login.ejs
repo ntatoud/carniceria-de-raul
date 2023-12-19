@@ -16,6 +16,7 @@
         action="/auth/login"
         method="post"
         role="form"
+        onsubmit="showLoading()"
     >
       <h2>Login</h2>
       <%if(error.state) {%>
@@ -38,5 +39,6 @@
   <%-include('../scripts.ejs')%>
 
 </body>
+
 
 </html>
