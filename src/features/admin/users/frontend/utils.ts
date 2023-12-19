@@ -18,17 +18,10 @@ const userUpdate = async (event: SubmitEvent) => {
   const form = $(event.currentTarget!);
   const userId = form.attr('id');
   const formData = new FormData(form[0] as HTMLFormElement);
-  const formDataObject = Array.from(formData.entries()).reduce(
-    (acc: { [key: string]: FormDataEntryValue }, [key, value]) => {
-      acc[key] = value;
-      return acc;
-    },
-    {}
-  );
   $.ajax({
     url: `/admin/users/${userId}`,
     type: 'PUT',
-    data: { ...formDataObject },
+    data: formData,
     success: () => {
       localStorage.setItem('toast', 'update');
       location.href = '/admin/users';
@@ -40,17 +33,10 @@ const userCreate = async (event: SubmitEvent) => {
   event.preventDefault();
   const form = $(event.currentTarget!);
   const formData = new FormData(form[0] as HTMLFormElement);
-  const formDataObject = Array.from(formData.entries()).reduce(
-    (acc: { [key: string]: FormDataEntryValue }, [key, value]) => {
-      acc[key] = value;
-      return acc;
-    },
-    {}
-  );
   $.ajax({
     url: `/admin/users/create`,
     type: 'POST',
-    data: { ...formDataObject },
+    data: formData,
     success: (res) => {
       localStorage.setItem('toast', 'updated');
       location.href = '/admin/users';
@@ -58,10 +44,10 @@ const userCreate = async (event: SubmitEvent) => {
   });
 };
 
-const toast = localStorage.getItem('toast');
-if (toast === 'update') {
+const toastUser = localStorage.getItem('toast');
+if (toastUser === 'update') {
   toastSuccess('User updated successfully');
-} else if (toast === 'create') {
+} else if (toastUser === 'create') {
   toastSuccess('User created successfully');
 }
 localStorage.clear();

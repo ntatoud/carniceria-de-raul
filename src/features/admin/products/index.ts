@@ -6,6 +6,7 @@ import {
   productDelete,
   productUpdate,
 } from './utils.js';
+import { upload } from '@/lib/multer/config.js';
 
 const router = Router();
 
@@ -20,16 +21,22 @@ router.delete('/', (req: Request, res: Response) => {
   }
 });
 
-router.post('/create', (req: Request, res: Response) => {
-  productCreate(res, req.body);
-});
+router.post(
+  '/create',
+  upload.single('image'),
+  (req: Request, res: Response) => {
+    const product = { image: req.file?.filename ?? '', ...req.body };
 
-router.put('/:id', (req: Request, res: Response) => {
+    productCreate(res, product);
+  }
+);
+
+router.put('/:id', upload.single('image'), (req: Request, res: Response) => {
   const productId = req.params.id;
   if (!productId) {
     res.status(204).send('NOK');
   } else {
-    productUpdate(res, req.body, productId);
+    productUpdate(res, { image: req.file?.filename, ...req.body }, productId);
   }
 });
 

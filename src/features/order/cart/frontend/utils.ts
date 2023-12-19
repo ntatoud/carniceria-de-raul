@@ -38,17 +38,11 @@ const cartProductAdd = async (event: SubmitEvent) => {
   const form = $(event.currentTarget!);
   const productId = form.attr('id');
   const formData = new FormData(form[0] as HTMLFormElement);
-  const formDataObject = Array.from(formData.entries()).reduce(
-    (acc: { [key: string]: FormDataEntryValue }, [key, value]) => {
-      acc[key] = value;
-      return acc;
-    },
-    {}
-  );
+  formData.append('productId', productId ?? '');
   $.ajax({
     url: '/order/cart',
     type: 'PUT',
-    data: { productId, ...formDataObject },
+    data: formData,
     success: (res) => {
       $('.cart-button .nb-products').html(res.newCartSize);
       toastSuccess('Product added to cart');

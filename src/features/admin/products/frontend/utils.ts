@@ -17,17 +17,14 @@ const productUpdate = async (event: SubmitEvent) => {
   const form = $(event.currentTarget!);
   const productId = form.attr('id');
   const formData = new FormData(form[0] as HTMLFormElement);
-  const formDataObject = Array.from(formData.entries()).reduce(
-    (acc: { [key: string]: FormDataEntryValue }, [key, value]) => {
-      acc[key] = value;
-      return acc;
-    },
-    {}
-  );
+  formData.append('productId', productId ?? '');
   $.ajax({
     url: `/admin/products/${productId}`,
     type: 'PUT',
-    data: { productId, ...formDataObject },
+    data: formData,
+    processData: false,
+    contentType: false,
+    enctype: 'multipart/form-data',
     success: () => {
       localStorage.setItem('toast', 'update');
       location.href = '/admin/products';
@@ -39,29 +36,25 @@ const productCreate = async (event: SubmitEvent) => {
   event.preventDefault();
   const form = $(event.currentTarget!);
   const formData = new FormData(form[0] as HTMLFormElement);
-  const formDataObject = Array.from(formData.entries()).reduce(
-    (acc: { [key: string]: FormDataEntryValue }, [key, value]) => {
-      acc[key] = value;
-      return acc;
-    },
-    {}
-  );
   $.ajax({
-    url: `/admin/products/create`,
+    url: `/admin/products/create  `,
     type: 'POST',
-    data: { ...formDataObject },
+    data: formData,
+    processData: false,
+    contentType: false,
+    enctype: 'multipart/form-data',
     success: (res) => {
       localStorage.setItem('toast', 'update');
-      location.href = '/admin/users';
+      location.href = '/admin/products';
     },
   });
 };
 
-$(document).on('load', (event) => {
-  const toast = localStorage.getItem('toast');
-  if (toast === 'update') {
-    toastSuccess('Product updated successfully');
-  } else if (toast === 'create') {
-    toastSuccess('Product created successfully');
-  }
-});
+const toastProduct = localStorage.getItem('toast');
+if (toastProduct === 'update') {
+  toastSuccess('Product updated successfully');
+} else if (toastProduct === 'create') {
+  toastSuccess('Product created successfully');
+}
+
+localStorage.clear();
