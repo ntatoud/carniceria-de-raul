@@ -7,17 +7,17 @@
   <link
       rel="stylesheet"
       type="text/css"
-      href="/css/orderNav.css"
+      href="/css/layout/orderNav.css"
   />
   <link
       rel="stylesheet"
       type="text/css"
-      href="/css/infos.css"
+      href="/css/order/infos.css"
   />
   <link
       rel="stylesheet"
       type="text/css"
-      href="/css/actionbar.css"
+      href="/css//layout/actionbar.css"
   />
 </head>
 
@@ -256,33 +256,7 @@
   </main>
   <%-include('../scripts.ejs')%>
 
-  <script>
-    const infosPost = async (event) => {
-      event.preventDefault()
-      const form = $(event.currentTarget)[0];
-      const formData = new FormData(form);
-      const formDataObject = Array.from(formData.entries()).reduce(
-        (acc, [key, value]) => {
-          acc[key] = value;
-          return acc;
-        }, {})
-
-      $.ajax({
-        url: "/order/infos",
-        type: "post",
-        data: formDataObject,
-        success: (res) => {
-          localStorage.setItem('toast', 'update');
-          location.href = '/order/payment'
-        },
-        error: (xhr) => {
-          toastError(xhr.status + xhr.statusText)
-          hideLoading()
-
-        }
-      })
-
-    }
+  <script src="/features/order/infos/frontend/utils.js"></script>
   </script>
 </body>
 

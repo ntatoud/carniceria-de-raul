@@ -1,6 +1,7 @@
 import { generateSaltHashedPassword } from '@/features/auth/util.js';
 import { databaseConnect, databaseDisconnect, databaseError } from './index.js';
 import { QueryError } from 'mysql2';
+import { explicitLog } from '@/functions/index.js';
 
 export const databaseFill = (): void => {
   const connection = databaseConnect();
@@ -18,7 +19,7 @@ export const databaseFill = (): void => {
       if (error) {
         databaseError(error);
       }
-      console.log("👤 👉 Table 'users' seeded successfully");
+      explicitLog("👤 👉 Table 'users' seeded successfully");
     }
   );
 
@@ -33,7 +34,7 @@ export const databaseFill = (): void => {
       if (error) {
         databaseError(error);
       }
-      console.log("👤 👉 Table 'categories' seeded successfully");
+      explicitLog("👤 👉 Table 'categories' seeded successfully");
     }
   );
 
@@ -69,7 +70,7 @@ export const databaseFill = (): void => {
       if (error) {
         databaseError(error);
       }
-      console.log("📦 👉 Table 'products' seeded with Ternera successfully");
+      explicitLog("📦 👉 Table 'products' seeded with Ternera successfully");
     }
   );
 
@@ -102,7 +103,7 @@ export const databaseFill = (): void => {
       if (error) {
         databaseError(error);
       }
-      console.log(
+      explicitLog(
         "👤 👉 Table 'product_categories' seeded with Ternera successfully"
       );
     }
@@ -137,7 +138,7 @@ export const databaseFill = (): void => {
       if (error) {
         databaseError(error);
       }
-      console.log("📦 👉 Table 'products' seeded with Cerdo successfully");
+      explicitLog("📦 👉 Table 'products' seeded with Cerdo successfully");
     }
   );
 
@@ -167,7 +168,7 @@ export const databaseFill = (): void => {
       if (error) {
         databaseError(error);
       }
-      console.log(
+      explicitLog(
         "👤 👉 Table 'product_categories' seeded with Cerdo successfully"
       );
     }
@@ -199,7 +200,7 @@ export const databaseFill = (): void => {
       if (error) {
         databaseError(error);
       }
-      console.log("📦 👉 Table 'products' seeded with Pollo successfully");
+      explicitLog("📦 👉 Table 'products' seeded with Pollo successfully");
     }
   );
   connection.query(
@@ -226,7 +227,7 @@ export const databaseFill = (): void => {
       if (error) {
         databaseError(error);
       }
-      console.log(
+      explicitLog(
         "👤 👉 Table 'product_categories' seeded with Pollo successfully"
       );
     }
@@ -275,7 +276,7 @@ export const databaseFill = (): void => {
       if (error) {
         databaseError(error);
       }
-      console.log("📦 👉 Table 'products' seeded with Elaborados successfully");
+      explicitLog("📦 👉 Table 'products' seeded with Elaborados successfully");
     }
   );
   connection.query(
@@ -319,7 +320,7 @@ export const databaseFill = (): void => {
       if (error) {
         databaseError(error);
       }
-      console.log(
+      explicitLog(
         "👤 👉 Table 'product_categories' seeded with Elaborados successfully"
       );
     }
@@ -338,22 +339,22 @@ export const databaseFill = (): void => {
       if (error) {
         databaseError(error);
       }
-      console.log("🛒 👉 Table 'users_carts_products' seeded successfully");
+      explicitLog("🛒 👉 Table 'users_carts_products' seeded successfully");
     }
   );
 
   connection.query(
     `
-    INSERT INTO orders (userId, recoveryDate, totalPrice, comment)
+    INSERT INTO orders (userId, recoveryDate, totalPrice, comment, isDone)
     VALUES
-        (1 ,'2023-12-22' ,59.98 ,'Order comment for User 1'),
-        (2 ,'2023-12-22' ,79.98, 'Order comment for User 2');`,
+        (1 ,'2023-12-22' ,59.98 ,'Order comment for User 1', false),
+        (2 ,'2023-12-22' ,79.98, 'Order comment for User 2', true);`,
 
     (error: QueryError | null) => {
       if (error) {
         databaseError(error);
       }
-      console.log("🛒 👉 Table 'orders' seeded successfully");
+      explicitLog("🛒 👉 Table 'orders' seeded successfully");
     }
   );
 
@@ -368,7 +369,7 @@ export const databaseFill = (): void => {
       if (error) {
         databaseError(error);
       }
-      console.log("📦🛒 👉 Table 'products_orders' seeded successfully");
+      explicitLog("📦🛒 👉 Table 'products_orders' seeded successfully");
     }
   );
 

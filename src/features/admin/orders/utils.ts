@@ -1,4 +1,4 @@
-import { Order } from '@/features/types.js';
+import { Order, User } from '@/features/types.js';
 import {
   databaseConnect,
   databaseDisconnect,
@@ -6,6 +6,7 @@ import {
 } from '@/database/index.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
+import { formatDate } from '@/lib/date/utils.js';
 
 export const getOrderFromId = (req: Request, res: Response, id: string) => {
   const getOrderAndProduct = `SELECT \
@@ -71,7 +72,8 @@ export const getOrderList = (req: Request, res: Response) => {
     u.surname, \
     o.orderDate, \
     o.recoveryDate, \
-    o.totalPrice \
+    o.totalPrice, \
+    o.isDone\
     FROM \
     orders o \
     JOIN users u ON o.userId = u.userId;';
@@ -81,8 +83,15 @@ export const getOrderList = (req: Request, res: Response) => {
       if (error) {
         databaseError(error);
       } else {
+        const orders = sortByRecoveryDate(
+          results as (Order & Partial<User>)[]
+        ).map((order) => {
+          order.orderDate = formatDate(order.orderDate);
+          order.recoveryDate = formatDate(order.recoveryDate);
+          return order;
+        });
         res.render('orders.ejs', {
-          orders: results,
+          orders: orders,
           isLogged: req.session.isLogged,
           account: req.session.user,
           cart: req.session.cart,
@@ -102,5 +111,46 @@ export const orderDelete = (res: Response, order: string) => {
     res.status(200).send('OK');
 
     databaseDisconnect(connection);
+  });
+};
+
+export const orderStatusUpdate = (
+  res: Response,
+  orderId: string,
+  isDone: string
+) => {
+  const orderStatusUpdateQuery =
+    'UPDATE orders SET \
+      isDone = ?\
+      WHERE orderId = ?;';
+
+  const connection = databaseConnect(`PUT /admin/orders/${orderId}`);
+  connection.execute(
+    orderStatusUpdateQuery,
+    [+isDone, orderId],
+    (error: QueryError | null) => {
+      if (error) {
+        databaseError(error, `PUT /admin/orders/${orderId}`);
+        res.sendStatus(400);
+      } else {
+        res.status(200).send(isDone);
+      }
+
+      databaseDisconnect(connection, `PUT /admin/orders/${orderId}`);
+    }
+  );
+};
+export const sortByRecoveryDate = (orders: (Order & Partial<User>)[]) => {
+  return orders?.sort((orderA, orderB) => {
+    return (
+      (typeof orderA.recoveryDate === 'string'
+        ? new Date(orderA.recoveryDate)
+        : orderA.recoveryDate
+      ).getTime() -
+      (typeof orderB.recoveryDate === 'string'
+        ? new Date(orderB.recoveryDate)
+        : orderB.recoveryDate
+      ).getTime()
+    );
   });
 };

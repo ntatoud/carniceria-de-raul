@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const changeLanguage = (langKey: string) => {
+const changeLanguage = (langKey: string, preventReload?: boolean) => {
   $.ajax({
     url: '/lang',
     type: 'POST',
@@ -11,37 +11,33 @@ const changeLanguage = (langKey: string) => {
         (res?.fontScale ?? 1) * 100
       }%`;
       localStorage.setItem('lang', JSON.stringify(res));
-
       location.reload();
     },
   });
 };
 
-const language = JSON.parse(localStorage.getItem('lang') ?? '{}');
-if (language) {
-  document.documentElement.lang = language?.key;
-  document.documentElement.dir = language?.dir ?? 'ltr';
-  document.documentElement.style.fontSize = `${
-    (language?.fontScale ?? 1) * 100
-  }%`;
-} else {
-  document.documentElement.lang = 'es';
-  document.documentElement.dir = 'ltr';
-  document.documentElement.style.fontSize = '100%';
+const languageItem = localStorage.getItem('lang');
+
+const language = languageItem ? JSON.parse(languageItem) : { key: 'es' };
+if (!languageItem) {
+  localStorage.setItem('lang', JSON.stringify(language));
 }
 
 const LANGUAGE_TABLE = [
+  { id: 'es', name: 'Español', flag: '🇪🇸' },
   { id: 'fr', name: 'Français', flag: '🇫🇷' },
   { id: 'ar', name: 'مغربي', flag: '🇲🇦' },
-  { id: 'es', name: 'Español', flag: '🇪🇸' },
   { id: 'en', name: 'English', flag: '🇬🇧' },
 ];
 
-const lang = LANGUAGE_TABLE.find((el) => el.id === language.key) ?? {
-  flag: '🇪🇸',
-  name: 'Español',
-};
+const langDisplay =
+  LANGUAGE_TABLE.find((el) => el.id === language?.key) ?? LANGUAGE_TABLE[0];
 
+$('.dropdown.lang .dropdown-toggle').html(
+  `${langDisplay?.flag} ${langDisplay?.name}`
+);
+
+// FORM
 $('form').on('submit', (event) => {
   $(event.target!).find(` button[type="submit"]`).prepend(
     "\
@@ -56,6 +52,15 @@ const hideLoading = () => {
   $(` button[type="submit"] .spinner-border`).remove();
 };
 
-$('.dropdown.lang .dropdown-toggle').html(`${lang?.flag} ${lang?.name}`);
-
 $('.preloader').remove();
+
+document.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    $('header').attr(
+      'style',
+      'position:fixed; top:0; width: 100%; z-index: 100'
+    );
+  } else {
+    $('header').removeAttr('style');
+  }
+});

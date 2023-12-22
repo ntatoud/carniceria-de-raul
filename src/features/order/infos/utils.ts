@@ -1,8 +1,12 @@
-import { databaseConnect, databaseDisconnect } from '@/database/index.js';
+import {
+  databaseConnect,
+  databaseDisconnect,
+  databaseError,
+} from '@/database/index.js';
 import { Order, User, UserSession } from '@/features/types.js';
 import { Response } from 'express';
 import { cartTotalPrice } from '../cart/utils.js';
-import { toastSuccess } from '@/components/toast/index.js';
+import { QueryError } from 'mysql2';
 
 export const saveOrder = (
   session: UserSession,
@@ -36,9 +40,9 @@ export const saveOrder = (
   connection.query(
     updateUserQuery,
     [city, postalCode, country, address, phone, userId],
-    (error) => {
+    (error: QueryError | null) => {
       if (error) {
-        console.error('Error:', error);
+        databaseError(error, 'POST /order/infos on users');
         res.status(500).send('Error updating user data.');
       } else {
         const updateOrderQuery = `
@@ -50,19 +54,16 @@ export const saveOrder = (
           [
             userId,
             recoveryDate,
-            comment,
+            comment ?? 'No comments',
             email,
             cartTotalPrice(session.cart, true),
           ],
-          (err) => {
-            if (err) {
-              console.error('Error:', err);
+          (error: QueryError | null) => {
+            if (error) {
+              databaseError(error, 'POST /order/infos on orders');
               res.status(500).send('Error updating order data.');
             }
-            localStorage.setItem('toast', 'update');
-            session.toast = toastSuccess({ content: 'Success' });
-
-            res.send(200);
+            res.sendStatus(200);
 
             databaseDisconnect(connection);
           }

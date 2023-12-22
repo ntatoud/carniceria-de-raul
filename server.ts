@@ -15,6 +15,7 @@ import { toastDispatch } from '@/components/toast/index.js';
 import { AVAILABLE_LANGUAGES } from '@/lib/i18n/constants.js';
 
 import dotenv from 'dotenv';
+import { explicitLog } from '@/functions/index.js';
 
 dotenv.config();
 
@@ -99,8 +100,8 @@ app.get('*', (req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
-  console.log(`Now listening on port ${port}`);
-  console.log(
+  explicitLog(`Now listening on port ${port}`);
+  explicitLog(
     `Logs are currently in mode ${
       process.env.LOG_DETAILS === 'quiet'
         ? "'quiet'. Set LOG_DETAILS to 'verbose' to display full log details."

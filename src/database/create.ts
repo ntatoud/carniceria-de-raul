@@ -4,6 +4,7 @@ import {
   databaseDisconnect,
   databaseError,
 } from './index.js';
+import { explicitLog } from '@/functions/index.js';
 
 export const databaseCreate = (): void => {
   // Create a connection to MySQL server
@@ -21,7 +22,7 @@ export const databaseCreate = (): void => {
       if (error) {
         databaseError(error);
       }
-      console.log('Database created successfully');
+      explicitLog('Database created successfully');
     }
   );
 
@@ -88,6 +89,7 @@ export const databaseCreate = (): void => {
         recoveryDate TIMESTAMP,
         totalPrice DECIMAL(10, 2),
         comment VARCHAR(2048),
+        isDone Boolean,
         FOREIGN KEY (userId) REFERENCES users(userId)
         );
           
@@ -102,7 +104,7 @@ export const databaseCreate = (): void => {
       `,
     (error: QueryError | null) => {
       if (error) databaseError(error);
-      console.log('Tables created successfully');
+      explicitLog('Tables created successfully');
     }
   );
   // Close the connection

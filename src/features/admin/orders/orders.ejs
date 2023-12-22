@@ -12,13 +12,13 @@
   <link
       rel="stylesheet"
       type="text/css"
-      href="/css/menuNav.css"
+      href="/css/layout/menuNav.css"
   />
 </head>
 
 <body>
   <header><%- include('./layout/layout.ejs') %></header>
-  <main class="d-flex flex-row">
+  <main>
     <%- include('./admin/adminNav.ejs') %>
 
     <data>
@@ -27,12 +27,13 @@
       </div>
       <table class="orders-table">
         <thead class="table-head">
+          <th class="table-cell status"></th>
+
           <th class="table-cell name">Client</th>
           <th class="table-cell id">ID</th>
           <th class="table-cell date">Order Date</th>
-          <th class="table-cell date">Recovery Date</th>
-          <th class="table-cell price">Total price</th>
-          <th class="table-cell status">Status</th>
+          <th class="table-cell  recovery">Recovery</th>
+          <th class="table-cell price">Price</th>
           <th class="table-cell actions"></th>
         </thead>
 
@@ -42,11 +43,18 @@
               class="table-row"
               id="<%=order.orderId%>"
           >
+            <td class="table-cell status">
+              <%if(order?.isDone){%>
+              <i class="tag-status tag-green bi-check p-sm-1"></i>
+              <%}else{%>
+              <i class="tag-status tag-warning  bi bi-clock p-sm-1"></i>
+              <%}%>
+          </td>
             <td
                 class="table-cell name"
                 data-toggle="tooltip"
                 title="<%= order.name%> <%=order.surname%>"
-            >
+              >
               <b><%= order.name%> <%=order.surname%></b>
               <p class="email"><%= order.email%></p>
               <a
@@ -60,31 +68,20 @@
               </div>
             </td>
             <td class="table-cell date">
-              <%= String(order.orderDate?.getDate()).padStart(2,
-                '0')+"/"+String(order.orderDate?.getMonth() + 1).padStart(2,'0')
-                +"/"+order.orderDate?.getFullYear()%>
+              <%= order.orderDate%>
             </td>
-            <td class="table-cell date">
-              <%= String(order.recoveryDate?.getDate()).padStart(2,
-                '0')+"/"+String(order.recoveryDate?.getMonth() +
-                1).padStart(2,'0') +"/"+order.recoveryDate?.getFullYear()%>
+            <td class="table-cell date recovery">
+              <%= order.recoveryDate%>
             </td>
 
-            <td class="table-cell price"><%= order.totalPrice %></td>
-            <th class="table-cell status">
-              <%if(order?.status === "DONE"){%>
-              <div class="tag tag-center tag-green">Done</div>
-              <%}else{%>
-              <div class="tag tag-center tag-warning">Todo</div>
-              <%}%>
-            </th>
+            <td class="table-cell price"><b><%= order.totalPrice %>€</b></td>
             <td class="table-cell actions dropdown">
               <button
                   id="actions-button-<%= order.orderId %>"
-              class="button menu-button button-link-neutral bi bi-three-dots-vertical"
-              data-bs-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+                  class="button menu-button button-link-neutral bi bi-three-dots-vertical"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
               ></button>
               <div
                   id="actions-<%= order.orderId %>"
@@ -93,11 +90,24 @@
                 <button
                     class="dropdown-item"
                     type="button"
+                    id="<%= order.orderId %>-<%=order.isDone%>"
+                    onclick="changeStatus(event)"
+                    role="button"
                 >
                   <i class="bi bi-arrow-repeat"></i> Change Status
                 </button>
+                <button
+                    class="dropdown-item text-danger"
+                    type="button"
+                    id="<%=order.orderId%>_<%=order.orderId%>"
+                    data-bs-toggle="modal"
+                    data-bs-target=".modal-delete-confirm"
+                    onclick="populateModal(event)"
+                >
+                  <i class="bi bi-trash"></i> Delete
+                </button>
               </div>
-              </td>
+            </td>
           </tr>
           <%}) %>
         </tbody>
@@ -105,10 +115,36 @@
         <tfoot class="table-footer"></tfoot>
       </table>
     </data>
+    <%- include('../../../components/modal/modalDeleteConfirm.ejs', {itemType: 'order'}) %>
+
   </main>
   <script src="/features/layout/frontend/utils.js"></script>
-  <%-include('../scripts.ejs')%>
+  <script src="/features/admin/orders/frontend/utils.js"></script>
 
+  <%-include('../scripts.ejs')%>
+  <script>
+    const changeStatus = (event) => {
+      const [orderId, isDoneStr] = $(event.currentTarget).attr("id").split("-");
+      const isDone = isDoneStr === "1" ? "0" : "1";
+
+      $.ajax({
+        url: `/admin/orders/${orderId}`,
+        type: "PUT",
+        data: {
+          isDone: isDone
+        },
+        success: (res) => {
+          toastSuccess("Status changed correctly")
+          $('.orders-table .status').html(`
+            <i class="tag-status ${+isDone ? 'tag-green bi-check' : 'tag-warning  bi bi-clock'} p-sm-1"></i>`)
+        },
+        error: (xhr) => {
+          toastError(xhr.status + xhr.statusText);
+          hideLoading();
+        },
+      })
+    }
+  </script>
 </body>
 
 </html>

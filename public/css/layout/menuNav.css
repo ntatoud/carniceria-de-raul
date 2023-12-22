@@ -4,11 +4,14 @@ menu {
   align-items: start;
   justify-content: center;
   padding: 1rem;
-  margin: 4rem;
+  margin: 4rem 0 4rem 4rem;
   font-size: var(--font-lg);
   border-radius: 0.5rem;
 }
 
+menu.mobile {
+  display: none;
+}
 menu a {
   display: flex;
   width: 100%;
@@ -31,4 +34,27 @@ menu a.active {
 menu a.active i {
   color: var(--brand-600);
   font-size: var(--font-2xl);
+}
+
+@media screen and (max-width: 768px) {
+  menu {
+    display: none;
+    margin: 0;
+    margin-top: 10rem;
+    width: 95%;
+    justify-content: end;
+  }
+
+  menu.mobile {
+    display: inherit;
+  }
+
+  menu.mobile .dropdown-toggle {
+    width: 45%;
+    height: 3rem;
+  }
+
+  menu.mobile a {
+    padding-left: 1rem;
+  }
 }

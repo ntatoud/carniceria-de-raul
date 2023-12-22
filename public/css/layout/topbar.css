@@ -63,6 +63,10 @@
   padding-right: 0.05rem;
 }
 
+#dropdownLang {
+  color: white;
+}
+
 @media screen and (max-width: 768px) {
   .topbar .navbar-nav .nav-item {
     padding-right: 1rem;

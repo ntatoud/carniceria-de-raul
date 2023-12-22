@@ -9,12 +9,12 @@
   <link
       rel="stylesheet"
       type="text/css"
-      href="/css/shop.css"
+      href="/css/shop/shop.css"
   />
   <link
       rel="stylesheet"
       type="text/css"
-      href="/css/leftMenu.css"
+      href="/css/shop/leftMenu.css"
   />
 </head>
 
@@ -109,32 +109,13 @@
     </div>
     <%}%>
     </main>
-    <!-- Modal -->
-<div class="modal fade" id="notConnectedModal" tabindex="-1" role="dialog" aria-labelledby="notConnectedModal" aria-hidden="true"nnnnnnnpm s>
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="notConnectedModal">You are not connected</h5>
-        <button type="button" class="button button-link-neutral" data-bs-dismiss="modal" aria-label="Close">
-          <i class="bi bi-x h2"></i>
-        </button>
-      </div>
-      <div class="modal-body">
-        If you want to add an item to your cart, you must be connected 
-      </div>
-      <div class="modal-footer">
-        <button class="button button-link-neutral" data-bs-dismiss="modal"> <- No thanks</button>
-        <a href="/auth" class="button button-primary">Connect</a>
-      </div>
-    </div>
-  </div>
-</div>
-  <div class="toast-container"></div>
+   <%- include('../../components/modal/modalLogin.ejs')%>
+    <div class="toast-container"></div>
     <script src="/features/shop/frontend/shopHome.js"></script>
-  <script src="/features/shop/frontend/leftMenu.js"></script>
-  <script src="/features/shop/frontend/productCard.js"></script>
-  <script src="/features/order/cart/frontend/utils.js"></script>
-  <%-include('../scripts.ejs')%>
+    <script src="/features/shop/frontend/leftMenu.js"></script>
+    <script src="/features/shop/frontend/productCard.js"></script>
+    <script src="/features/order/cart/frontend/utils.js"></script>
+    <%-include('../scripts.ejs')%>
 </body>
 
 
