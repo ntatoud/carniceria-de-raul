@@ -2,7 +2,7 @@ import express, { Request, Response, static as staticSrc } from 'express';
 import i18next from '@/lib/i18n/config.js';
 import i18nextMiddleware from 'i18next-http-middleware';
 import session from '@/lib/session/config.js';
-
+import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import auth from '@/features/auth/index.js';
 import admin from '@/features/admin/index.js';
@@ -23,6 +23,7 @@ export const app = express();
 const port = process.env.PORT;
 
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -78,12 +79,24 @@ app.post('/lang', (req: Request, res: Response) => {
   const langKey = req.body.langKey;
   i18next.changeLanguage(langKey);
   const language = AVAILABLE_LANGUAGES.find(({ key }) => key === langKey);
-
   res.status(200).send(language);
+});
+
+app.post('/cookies', (req: Request, res: Response) => {
+  const allowCookies = req.body.areAllowed;
+  if (allowCookies === 'true') {
+    res.cookie('cart', 'testtesttesttesttest', {
+      expires: new Date(Date.now() + 90000),
+      httpOnly: true,
+    });
+  }
+  res.send('Cookies are now allowed');
 });
 
 app.get('/', (req: Request, res: Response) => {
   const { isLogged, user, cart } = req.session;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { login, ...cookies } = req.cookies;
 
   res.render('index.ejs', {
     isLogged: isLogged,
@@ -91,6 +104,7 @@ app.get('/', (req: Request, res: Response) => {
     toast: toastDispatch(req),
     cart: cart,
     t: i18next.t,
+    showCookies: !isLogged && !Object.keys(cookies).length,
   });
 });
 

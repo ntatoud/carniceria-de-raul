@@ -51,12 +51,10 @@ export const productCreate = (res: Response, product: Partial<Product>) => {
                   } else if (resultCategory.length) {
                     const categoryId = resultCategory[0]?.categoryId;
                     const productCategoriesInsert = `INSERT INTO product_categories (productId, categoryId) VALUES (?, ?);`;
-                    console.log(productId, categoryId);
                     connection.execute(
                       productCategoriesInsert,
                       [+productId, +categoryId],
-                      (error: QueryError | null, results, fields) => {
-                        console.log(fields);
+                      (error: QueryError | null) => {
                         if (error) {
                           databaseError(error);
                           res.sendStatus(500);

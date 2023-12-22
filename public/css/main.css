@@ -1,10 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Inter);
 @import './styles/colors.css';
 @import './styles/styles.css';
-@import './components/button.css';
-@import './components/toast.css';
-@import './components/tag.css';
-@import './components/input.css';
+@import './components/index.css';
 
 html,
 body {
