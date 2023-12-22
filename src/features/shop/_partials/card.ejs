@@ -1,9 +1,13 @@
 <div
-  id="<%=product.productId%>"
-  class="product-card<% if(product.stock === 0) { %> disabled<% }%>"
+    id="<%=product.productId%>"
+    class="product-card<% if(product.stock === 0) { %> disabled<% }%>"
 >
   <!-- CARD HEADER -->
-  <div class="product-header" data-toggle="tooltip" title="<%=product.name%>">
+  <div
+      class="product-header"
+      data-toggle="tooltip"
+      title="<%=product.name%>"
+  >
     <% if(product.sale) { %>
     <!-- Sale tag -->
     <div class="sale-tag">
@@ -12,9 +16,9 @@
     <% }%> <% if(product.best) { %>
     <!-- Best tag -->
     <div
-      class="best-tag bi bi-award"
-      data-toggle="tooltip"
-      title="This product is one of the client's favorite !"
+        class="best-tag bi bi-award"
+        data-toggle="tooltip"
+        title="This product is one of the client's favorite !"
     ></div>
     <% }%>
     <!-- Out of order tag -->
@@ -23,8 +27,8 @@
     <% }%>
     <a href="/shop/<%=product.category%>/<%=product.productId%>">
       <img
-        src="/assets/images/products/<%=product.category%>.jpg"
-        alt="product-image"
+          src="/assets/images/products/<%=product.category%>.webp"
+          alt="product-image"
       />
     </a>
     <div class="product-name">
@@ -43,13 +47,13 @@
       <% } else {%><%=product.price%> <%=product.unit%><% }%>
     </div>
     <!-- Product Form -->
-    <form 
-      action="/order/cart"
-      class="product-form"
-      method="post"
-      id="<%=product.productId%>"
-      role="form"
-      onsubmit="cartProductAdd(event)"
+    <form
+        action="/order/cart"
+        class="product-form"
+        method="post"
+        id="<%=product.productId%>"
+        role="form"
+        onsubmit="cartProductAdd(event)"
     >
       <%- include('./productForm.ejs') %>
     </form>
