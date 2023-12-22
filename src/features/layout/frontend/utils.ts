@@ -7,3 +7,7 @@ const activeNav = () => {
 };
 
 activeNav();
+
+$('.mobile .dropdown-toggle').prepend(
+  $(`.mobile .dropdown-menu  a[href="${location.pathname}"]`!)
+);

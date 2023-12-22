@@ -16,7 +16,9 @@ const productUpdate = async (event: SubmitEvent) => {
   event.preventDefault();
   const form = $(event.currentTarget!);
   const productId = form.attr('id');
+
   const formData = new FormData(form[0] as HTMLFormElement);
+
   formData.append('productId', productId ?? '');
   $.ajax({
     url: `/admin/products/${productId}`,
@@ -44,7 +46,7 @@ const productCreate = async (event: SubmitEvent) => {
     contentType: false,
     enctype: 'multipart/form-data',
     success: (res) => {
-      localStorage.setItem('toast', 'update');
+      localStorage.setItem('toast', 'create');
       location.href = '/admin/products';
     },
   });

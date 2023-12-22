@@ -8,10 +8,11 @@ export type User = Account & {
 export type Order = {
   orderId: number;
   userId: number;
-  orderDate: Date;
-  recoveryDate: Date;
+  orderDate: Date | string;
+  recoveryDate: Date | string;
   totalPrice?: number;
   comment?: string;
+  isDone: boolean;
 };
 
 export type Category = {

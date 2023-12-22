@@ -1,5 +1,6 @@
 import mysql, { Connection, QueryError } from 'mysql2';
 import dotenv from 'dotenv';
+import { explicitLog } from '@/functions/index.js';
 dotenv.config();
 
 export const databaseCredentials = {
@@ -10,7 +11,7 @@ export const databaseCredentials = {
 
 export const databaseConnect = (endpoint?: string): Connection => {
   if (process.env.LOG_DETAILS === 'verbose') {
-    console.log(endpoint ? `Connected to ${endpoint}` : 'Connected');
+    explicitLog(endpoint ? `Connected to ${endpoint}` : 'Connected');
   }
   return mysql.createConnection({
     database: process.env.DATABASE_NAME,
@@ -24,7 +25,7 @@ export const databaseDisconnect = (connection: Connection, endpoint?: string) =>
       databaseError(error);
     }
     if (process.env.LOG_DETAILS === 'verbose') {
-      console.log(endpoint ? `Disconnected from ${endpoint}` : 'Disconnected');
+      explicitLog(endpoint ? `Disconnected from ${endpoint}` : 'Disconnected');
     }
   });
 

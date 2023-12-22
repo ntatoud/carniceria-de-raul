@@ -1,12 +1,27 @@
 import { Router, urlencoded, Request, Response } from 'express';
-import { getOrderFromId, getOrderList, orderDelete } from './utils.js';
+import {
+  getOrderFromId,
+  getOrderList,
+  orderDelete,
+  orderStatusUpdate,
+} from './utils.js';
 
 const router = Router();
 
 router.use(urlencoded({ extended: true }));
 
-router.post('/delete/:id', (req: Request, res: Response) => {
+router.put('/:id', (req: Request, res: Response) => {
   const orderId = req.params.id;
+  const isDone = req.body.isDone;
+  if (!orderId || !isDone) {
+    res.status(204).send('NOK');
+  } else {
+    orderStatusUpdate(res, orderId, isDone);
+  }
+});
+
+router.delete('/', (req: Request, res: Response) => {
+  const orderId = req.body.id;
   if (!orderId) {
     res.status(204).send('NOK');
   } else {

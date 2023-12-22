@@ -13,7 +13,7 @@
 
 <body>
   <header><%- include('./layout/layout.ejs') %></header>
-  <%- include('./layout/mainbar.ejs', {title: "Orders", backLink: ""}) %>
+  <%- include('./layout/mainbar.ejs', {title: "Orders", backLink: "/admin/orders"}) %>
   <main class="d-flex flex-row">
     <div class="order-container d-flex flex-column">
       <%orderProducts.map((product) => {%>

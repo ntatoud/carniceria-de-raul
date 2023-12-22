@@ -26,7 +26,6 @@ router.post(
   upload.single('image'),
   (req: Request, res: Response) => {
     const product = { image: req.file?.filename ?? '', ...req.body };
-
     productCreate(res, product);
   }
 );

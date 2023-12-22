@@ -15,9 +15,10 @@ export const productCreate = (res: Response, product: Partial<Product>) => {
     product.stock,
     product.sale,
     product.salePrice ?? null,
-    product.image,
+    product.image ?? '',
     product.description,
   ];
+
   const createProductQuery =
     'INSERT INTO products (name, price, stock, sale, salePrice, image, description) VALUES (?, ?, ?, ?, ?, ?, ?);';
 
@@ -28,10 +29,51 @@ export const productCreate = (res: Response, product: Partial<Product>) => {
       if (error) {
         databaseError(error);
       } else {
-        res.sendStatus(200);
-      }
+        const getProductId = `SELECT productId FROM products WHERE name= ?;`;
+        connection.execute(
+          getProductId,
+          [product.name],
+          (error: QueryError | null, resultProduct: RowDataPacket[]) => {
+            if (error) {
+              databaseError(error);
+              res.status(404).send('Could not find product');
+            } else if (resultProduct.length) {
+              const productId = resultProduct[0]?.productId;
+              const getCategoryId = `SELECT categoryId FROM categories WHERE name= ?`;
+              connection.execute(
+                getCategoryId,
+                [product.category ?? 'Pollo'],
+                (error: QueryError | null, resultCategory: RowDataPacket[]) => {
+                  if (error) {
+                    databaseError(error);
+                    res.status(404).send('Could not find category');
+                    res.sendStatus(404);
+                  } else if (resultCategory.length) {
+                    const categoryId = resultCategory[0]?.categoryId;
+                    const productCategoriesInsert = `INSERT INTO product_categories (productId, categoryId) VALUES (?, ?);`;
+                    console.log(productId, categoryId);
+                    connection.execute(
+                      productCategoriesInsert,
+                      [+productId, +categoryId],
+                      (error: QueryError | null, results, fields) => {
+                        console.log(fields);
+                        if (error) {
+                          databaseError(error);
+                          res.sendStatus(500);
+                        } else {
+                          res.sendStatus(200);
+                        }
 
-      databaseDisconnect(connection);
+                        databaseDisconnect(connection);
+                      }
+                    );
+                  }
+                }
+              );
+            }
+          }
+        );
+      }
     }
   );
 };
@@ -114,7 +156,10 @@ export const getProductList = (
   // category?: string
 ) => {
   const connection = databaseConnect();
-  const getProductsQuery = 'SELECT * from products;';
+  const getProductsQuery =
+    'SELECT p.*, c.name as category FROM products p \
+  JOIN product_categories pc ON p.productId = pc.productId\
+  JOIN categories c ON c.categoryId = pc.categoryId;';
 
   connection.query(
     getProductsQuery,

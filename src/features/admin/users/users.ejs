@@ -12,25 +12,32 @@
   <link
       rel="stylesheet"
       type="text/css"
-      href="/css/menuNav.css"
+      href="/css/layout/menuNav.css"
   />
 </head>
 
 <body>
   <header><%- include('./layout/layout.ejs') %></header>
   <%-include('../components/toast/toast.ejs')%>
-  <main class="d-flex flex-row">
+  <main class="d-flex">
     <%- include('./admin/adminNav.ejs') %>
 
     <data>
       <div class="data-top">
         <h1 class="">Users</h1>
+
         <a
             href="/admin/users/create"
-            class="button button-primary"
-        >Add User</a>
+            class="button button-primary create"
+        >
+          <i class="bi bi-plus-lg"></i>
+          <p>Create User</p>
+        </a>
       </div>
-      <table class="users-table">
+      <table
+          align="center"
+          class="users-table"
+      >
         <tr class="table-head">
           <th class="table-cell name">Name/Email</th>
           <th class="table-cell id">ID</th>
@@ -51,8 +58,16 @@
               <b><%= user.name%> <%=user.surname%></b>
               <p class="email"><%= user.email%></p>
             </td>
-            <td class="table-cell id tag"><%= user.userId%></td>
-            <td class="table-cell auth tag"><%= user.authorities%></td>
+            <td class="table-cell id">
+              <div class="tag tag-center">
+                <%= user.userId%>
+              </div>
+            </td>
+            <td class="table-cell auth">
+              <div class="tag tag-right">
+                <%= user.authorities%>
+              </div>
+            </td>
             <td class="table-cell actions dropdown">
               <button
                   id="actions-button-<%= user.userId %>"
@@ -73,10 +88,12 @@
                   <i class="bi bi-pencil"></i> Edit
                 </a>
                 <button
-                    id="<%=user.userId%>"
-                    onclick="userDelete(event)"
-                    class="dropdown-item"
+                    class="dropdown-item text-danger"
                     type="button"
+                    id="<%=user.userId%>_<%=user.email%>"
+                    data-bs-toggle="modal"
+                    data-bs-target=".modal-delete-confirm"
+                    onclick="populateModal(event)"
                 >
                   <i class="bi bi-trash"></i> Delete
                 </button>
@@ -88,9 +105,12 @@
         <tfoot class="table-footer"></tfoot>
       </table>
     </data>
+    <%- include('../../../components/modal/modalDeleteConfirm.ejs', {itemType: 'user'}) %>
+
   </main>
   <script src="/features/admin/users/frontend/utils.js"></script>
   <script src="/features/layout/frontend/utils.js"></script>
+
   <%-include('../scripts.ejs')%>
 
 </body>
