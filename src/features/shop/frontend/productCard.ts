@@ -25,6 +25,18 @@ $(`.product-card.disabled button, .product-card.disabled select`).prop(
   $('.product-card').hasClass('disabled')
 );
 
-const notLoggedAction = (event: MouseEvent) => {
-  event.preventDefault();
+const cookiesAssertAllowed = (event: MouseEvent) => {
+  const areCookiesAllowed = !$(event.currentTarget!).hasClass(
+    'cookies-redirect'
+  );
+  if (!areCookiesAllowed) {
+    event.preventDefault();
+    if (!$('main').find('.offcanvas').length) {
+      cookieBannerShow();
+    }
+    $('.offcanvas').attr('style', 'transform: scale(1.2);');
+    setTimeout(() => {
+      $('.offcanvas').removeAttr('style');
+    }, 200);
+  }
 };

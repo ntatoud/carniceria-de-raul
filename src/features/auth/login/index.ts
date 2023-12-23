@@ -35,7 +35,7 @@ router.post('/', (req: Request, res: Response) => {
           const { salt, password, ...safeUser } = userData;
 
           // Passwords match, login successful, we create the session
-          createSession(res, req.session, safeUser);
+          createSession(req, res, safeUser);
         } else {
           req.session.toast = toastError({ content: 'Invalid Credentials' });
           res.status(401).redirect('/auth');
@@ -56,7 +56,7 @@ router.use('/', (req: Request, res: Response) => {
     error: {},
     isLogged: req.session.isLogged,
     account: req.session.user,
-    cart: req.session.cart,
+    cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
   });
 });
 

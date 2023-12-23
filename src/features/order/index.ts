@@ -6,7 +6,7 @@ import { loggedOnlyRoute } from '@/middlewares/logged.js';
 
 const router = Router();
 
-router.use('/cart', loggedOnlyRoute, cart);
+router.use('/cart', cart);
 router.use('/infos', loggedOnlyRoute, infos);
 router.use('/payment', loggedOnlyRoute, payment);
 

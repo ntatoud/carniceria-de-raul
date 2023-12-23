@@ -6,7 +6,7 @@ router.use('/', (req: Request, res: Response) => {
   res.render('contact.ejs', {
     isLogged: req.session.isLogged,
     account: req.session.user,
-    cart: req.session.cart,
+    cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
   });
 });
 

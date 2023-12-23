@@ -9,7 +9,7 @@ router.put('/', (req: Request, res: Response) => {
   const quantityToAdd = +req.body.quantity;
   const weight = +req.body.weight;
   const productId = +req.body.productId;
-  cartProductUpdate(req.session, productId, weight, quantityToAdd, res);
+  cartProductUpdate(req, res, productId, weight, quantityToAdd);
 });
 
 router.delete('/', (req: Request, res: Response) => {
@@ -17,7 +17,7 @@ router.delete('/', (req: Request, res: Response) => {
   if (!productId || !weight) {
     res.status(204).send('NOK');
   } else {
-    cartProductDelete(req.session, +productId, +weight, res);
+    cartProductDelete(req, res, +productId, +weight);
   }
 });
 

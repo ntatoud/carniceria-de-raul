@@ -36,7 +36,7 @@ export const getAllProductsWithCategory = (
               isLogged: req.session.isLogged,
               account: req.session.user,
               toast: toastEmpty(),
-              cart: req.session.cart,
+              cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
             });
           const products: Product[] = productResults.map((product: Product) => {
             const { category, ...rest } = product;
@@ -53,7 +53,7 @@ export const getAllProductsWithCategory = (
             isLogged: req.session.isLogged,
             account: req.session.user,
             toast: toastDispatch(req),
-            cart: req.session.cart,
+            cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
           });
 
           databaseDisconnect(connection);
@@ -114,7 +114,7 @@ export const renderCategoryPage = ({
               isLogged: req.session.isLogged,
               account: req.session.user,
               toast: toastDispatch(req),
-              cart: req.session.cart,
+              cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
             });
 
           const products: Product[] = productResults.map((product) => {
@@ -132,7 +132,7 @@ export const renderCategoryPage = ({
             isLogged: req.session.isLogged,
             account: req.session.user,
             toast: toastDispatch(req),
-            cart: req.session.cart,
+            cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
           });
 
           databaseDisconnect(connection);
@@ -166,7 +166,7 @@ export const renderProductPage = ({
         currentCategory: currentCategory,
         isLogged: req.session.isLogged,
         account: req.session.user,
-        cart: req.session.cart,
+        cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
       });
 
       databaseDisconnect(connection);

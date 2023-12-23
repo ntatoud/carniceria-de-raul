@@ -16,6 +16,34 @@ const changeLanguage = (langKey: string, preventReload?: boolean) => {
   });
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const setCookies = (mode: boolean) => {
+  $.ajax({
+    url: '/cookies',
+    type: 'post',
+    data: { areAllowed: mode },
+    success: (res) => {
+      cookieBannerHide();
+      if (res.areCookiesAllowed) {
+        $('.product-form button[type="submit"]').removeClass(
+          'cookies-redirect'
+        );
+      }
+    },
+    error: () => {},
+  });
+};
+
+$.ajax({
+  url: '/cookies',
+  type: 'get',
+  success: (res) => {
+    if (!res.areCookiesAllowed && res.areCookiesAllowed === undefined) {
+      cookieBannerShow();
+      $('.product-form button[type="submit"]').addClass('cookies-redirect');
+    }
+  },
+});
 const languageItem = localStorage.getItem('lang');
 
 const language = languageItem ? JSON.parse(languageItem) : { key: 'es' };

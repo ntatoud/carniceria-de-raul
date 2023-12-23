@@ -20,7 +20,7 @@ router.post('/checkPassword', (req, res) => {
 });
 
 router.post('/', (req: Request, res: Response) => {
-  registerIfPossible(req.session, res, req.body);
+  registerIfPossible(req, res, req.body);
 });
 
 router.use('/', (req: Request, res: Response) => {
@@ -28,7 +28,7 @@ router.use('/', (req: Request, res: Response) => {
     error: {},
     isLogged: req.session.isLogged,
     account: req.session.user,
-    cart: req.session.cart,
+    cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
   });
 });
 

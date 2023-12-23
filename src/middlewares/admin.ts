@@ -9,10 +9,10 @@ export const adminOnlyRoute = (
   if (req.session.isLogged && req.session.user?.authorities === 'ROLE_ADMIN') {
     next();
   } else {
-    // req.session.toast = toastError({
-    //   content: 'Access Forbidden ',
-    // });
-    // res.redirect('/');
+    req.session.toast = toastError({
+      content: 'Access Forbidden ',
+    });
+    res.redirect('/');
     next();
   }
 };
