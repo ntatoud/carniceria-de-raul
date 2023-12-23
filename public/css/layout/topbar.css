@@ -67,8 +67,55 @@
   color: white;
 }
 
+.navbar-brand-icon {
+  height: 3rem;
+  width: 3rem;
+}
+
 @media screen and (max-width: 768px) {
-  .topbar .navbar-nav .nav-item {
-    padding-right: 1rem;
+  .navbar-brand:not(.mobile) {
+    display: none;
+  }
+
+  .cart-button,
+  .account-menu {
+    display: flex;
+    align-items: center;
+  }
+
+  .topbar .lang > .button {
+    padding: 0.5rem 0;
+  }
+
+  .cart-button .h2 {
+    margin: 0;
+  }
+
+  .navbar-brand.mobile {
+    position: absolute;
+    display: flex;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .topbar {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    top: 0;
+    padding: 0 1rem;
+    flex-wrap: nowrap;
+  }
+
+  .topbar-actions {
+    width: 100%;
+  }
+
+  .topbar-actions .lang {
+    margin-right: auto;
+  }
+
+  .topbar-actions i.h2 {
+    font-size: xx-large;
   }
 }

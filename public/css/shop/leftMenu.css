@@ -105,7 +105,7 @@
   .left-menu {
     position: fixed;
     right: 0;
-    top: 7rem;
+    top: 4rem;
     z-index: 2;
     font-size: var(--font-sm);
     width: 100vw;

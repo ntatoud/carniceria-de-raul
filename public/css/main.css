@@ -26,12 +26,15 @@ body {
 
 header {
   height: 7rem;
-  transition: 2s;
 }
 
 main {
   width: 100%;
   height: max-content;
+}
+
+.mobile {
+  display: none;
 }
 
 .form {
@@ -68,10 +71,34 @@ main {
   font-weight: bold;
 }
 @media screen and (max-width: 768px) {
+  body,
+  header {
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  main {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100%;
+    margin-top: 4rem;
+    margin-bottom: 4.5rem;
+  }
   header {
     position: fixed;
-    width: 100%;
-    z-index: 3;
+    visibility: hidden;
+    z-index: 10;
+  }
+
+  .mobile {
+    display: flex;
+  }
+
+  .topbar,
+  .menu-navbar {
+    visibility: visible;
   }
   .login-form,
   .reset-password-form {
