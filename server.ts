@@ -82,29 +82,40 @@ app.post('/lang', (req: Request, res: Response) => {
   res.status(200).send(language);
 });
 
+app.get('/cookies', (req: Request, res: Response) => {
+  if (req.cookies.cart !== undefined) {
+    req.areCookiesAllowed = true;
+  }
+  res.status(200).send({ areCookiesAllowed: req.areCookiesAllowed });
+});
+
 app.post('/cookies', (req: Request, res: Response) => {
   const allowCookies = req.body.areAllowed;
   if (allowCookies === 'true') {
-    res.cookie('cart', 'testtesttesttesttest', {
+    req.areCookiesAllowed = true;
+    res.cookie('cart', [] as Cart, {
       expires: new Date(Date.now() + 90000),
       httpOnly: true,
     });
+
+    res.send({ areCookiesAllowed: true });
+  } else {
+    req.areCookiesAllowed = false;
+
+    res.send({ areCookiesAllowed: false });
   }
-  res.send('Cookies are now allowed');
 });
 
 app.get('/', (req: Request, res: Response) => {
   const { isLogged, user, cart } = req.session;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { login, ...cookies } = req.cookies;
 
   res.render('index.ejs', {
     isLogged: isLogged,
     account: user,
     toast: toastDispatch(req),
-    cart: cart,
+    cart: isLogged ? cart : req.cookies.cart,
     t: i18next.t,
-    showCookies: !isLogged && !Object.keys(cookies).length,
   });
 });
 

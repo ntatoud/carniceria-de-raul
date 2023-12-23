@@ -50,9 +50,14 @@ const cartProductAdd = async (event: SubmitEvent) => {
     type: 'PUT',
     data: { productId, ...formDataObject },
     success: (res) => {
-      $('.cart-button .nb-products').html(res.newCartSize);
+      if (+res.newCartSize !== 0) {
+        $('.cart-button .nb-products').html(res.newCartSize);
+        hideLoading();
+        toastSuccess('Product added to cart');
+      }
+    },
+    error: () => {
       hideLoading();
-      toastSuccess('Product added to cart');
     },
   });
 };
@@ -143,3 +148,7 @@ const updateCartProductValue = (button: JQuery<HTMLButtonElement>) => {
 };
 const singleProducts = $('.product-row').has('.quantity[value=1]');
 singleProducts.find('.minus-button').hide();
+
+const notLoggedAction = (event: MouseEvent) => {
+  event.preventDefault();
+};

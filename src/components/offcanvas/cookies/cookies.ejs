@@ -1,4 +1,4 @@
-<%if(showCookies){%><div
+<div
     class="offcanvas offcanvas-bottom show h-auto"
     tabindex="-1"
     id="offcanvasBottom"
@@ -15,11 +15,11 @@
     >
     <p>
       This website uses cookies to enhance your browsing experience and provide essential functionality,
-      specifically for managing your shopping cart when you are not logged in.
-      By continuing to use this website, you consent to the use of <a href="/about"><b>these cookies</b></a>.
+      specifically for managing your shopping cart.
+      <b>By continuing to use this website, you consent to the use of <a href="/about">these cookies</a>.</b>
     </p>
-    <div class="buttons d-flex">
 
+    <div class="buttons d-flex">
       <button
           type="button"
           class="button button-link button-lg"
@@ -37,15 +37,3 @@
     </div>
   </div>
 </div>
-<%}%>
-  <script>
-    const setCookies = (mode) => {
-      $.ajax({
-        url: '/cookies',
-        type: 'post',
-        data: { areAllowed: mode },
-        success: (res) => {},
-        error: (xhr) => {}
-      })
-    }
-  </script>

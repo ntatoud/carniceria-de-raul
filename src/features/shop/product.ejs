@@ -17,7 +17,7 @@
   <main>
     <div class="product-card">
       <img
-          src="/assets/images/products/<%=product.image ?? `${currentCategory}.webp`%>"
+          src="/assets/images/products/<%=product.image !== '' ? product.image : currentCategory+`.webp`%>"
           alt="product-image"
       />
       <div class="product-details">
@@ -86,7 +86,7 @@
   </script>
   <script src="/features/order/cart/frontend/utils.js"></script>
   <script src="/features/shop/frontend/productCard.js"></script>
-
+  <%-include('../scripts.ejs')%>
 
 </body>
 

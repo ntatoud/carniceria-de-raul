@@ -26,8 +26,7 @@
   padding: 1rem;
 }
 
-.shop-home .shop-products-container.mejores,
-.shop-home .shop-products-container.ofertas {
+.product-carousel .shop-products-container {
   flex-wrap: nowrap;
   max-width: 75vw;
   background: var(--gray-50);

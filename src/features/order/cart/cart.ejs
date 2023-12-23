@@ -24,7 +24,7 @@
     <data>
 
       <div class="section-title">Mi carrito</div>
-      <%if(!cart.length) {%>
+      <%if(!cart?.length) {%>
       <div class="empty-cart">
         Your cart is empty
         <p>
@@ -50,7 +50,7 @@
         >
           <div class="product-cell image">
             <img
-                src="/assets/images/products/<%=product.category.toLowerCase()%>.webp"
+                src="/assets/images/products/<%=product.category?.toLowerCase() ?? 'ternera'%>.webp"
                 alt="product-image"
             ></img>
           </div>
@@ -115,7 +115,7 @@
                 </button>
                 <a
                     type="button"
-                    href="/shop/<%=product.category.toLowerCase()%>/<%=product.productId%>"
+                    href="/shop/<%=product.category?.toLowerCase() ?? 'ternera'%>/<%=product.productId%>"
                     class="button button-link-neutral bi bi-pencil"
                 >
                 </a>
@@ -141,18 +141,26 @@
           </div>
               <%}%>
     </data>
-    <%if(cart.length) {%>
+    <%if(cart?.length) {%>
     <div class="button-container d-flex flex-row gap-3 align-items-center justify-content-end">
       <a
           href="/order/infos"
           class="button button-primary"
+          <%if(!isLogged) {%>
+          onclick="notLoggedAction(event)"
+          data-bs-toggle="modal"
+          data-bs-target="#notConnectedModal"
+          <%}%>
       >Purchase -></a>
+    </div>
       <%}%>
-  </main>
-  <div class="toast-container"></div>
+          </main
+      >
+        <div class="toast-container"></div>
+        <%- include('../../components/modal/modalLogin.ejs')%>
 
-  <script src="/features/order/cart/frontend/utils.js"></script>
-  <%-include('../scripts.ejs')%>
+        <script src="/features/order/cart/frontend/utils.js"></script>
+        <%-include('../scripts.ejs')%>
 
 </body>
 

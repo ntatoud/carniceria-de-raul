@@ -1,8 +1,8 @@
 import { databaseConnect, databaseDisconnect } from '@/database/index.js';
-import { User, UserSession } from '@/features/types.js';
+import { User } from '@/features/types.js';
 import { generateSaltHashedPassword } from '@/features/auth/util.js';
 import { QueryError, RowDataPacket } from 'mysql2';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { toastSuccess } from '@/components/toast/index.js';
 
 export const isStrongPassword = (
@@ -63,7 +63,7 @@ export const checkEmailTaken = (res: Response, email: string) => {
 };
 
 export const registerIfPossible = (
-  session: UserSession,
+  req: Request,
   res: Response,
   credentials: User
 ) => {
@@ -90,17 +90,17 @@ export const registerIfPossible = (
             state: true,
             message: 'An account already exists with this email.',
           },
-          isLogged: session.isLogged,
-          cart: session.cart,
+          isLogged: req.session.isLogged,
+          cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
         });
       else if (!isStrongPassword(password).isStrong)
         res.render('signup.ejs', {
           error: {
             state: true,
             message: 'Your password is too weak',
-            isLogged: session.isLogged,
-            account: session.user,
-            cart: session.cart,
+            isLogged: req.session.isLogged,
+            account: req.session.user,
+            cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
           },
         });
       else {
@@ -114,7 +114,7 @@ export const registerIfPossible = (
                 error: { state: true, message: error.message },
               });
 
-            session.toast = toastSuccess({
+            req.session.toast = toastSuccess({
               content: 'Account created successfuly',
             });
             res.status(200).redirect('/auth/login');

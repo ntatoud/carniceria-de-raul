@@ -51,7 +51,7 @@ export const getOrderFromId = (req: Request, res: Response, id: string) => {
           orderProducts: results as (Partial<Product> & Partial<Order>)[],
           isLogged: req.session.isLogged,
           account: req.session.user,
-          cart: req.session.cart,
+          cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
         });
       }
 

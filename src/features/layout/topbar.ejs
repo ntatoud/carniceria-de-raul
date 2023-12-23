@@ -81,11 +81,9 @@
         href="/order/cart"
     ><i class="bi bi-cart h2">
       </i>
-      <%if(cart){%>
       <div class="nb-products">
-        <%=cart?.length%>
+        <%=cart?.length ?? 0%>
       </div>
-      <%}%>
     </a>
   </div>
 </nav>

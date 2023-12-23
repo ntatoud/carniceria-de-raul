@@ -13,6 +13,7 @@
 
 .offcanvas.offcanvas-bottom .offcanvas-body {
   gap: 1rem;
+  text-align: center;
 }
 .offcanvas.offcanvas-bottom img {
   width: 5rem;
@@ -26,4 +27,22 @@
 
 .offcanvas.offcanvas-bottom .button-link {
   text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  .offcanvas-body {
+    overflow: visible;
+    flex-direction: column;
+  }
+
+  .offcanvas.offcanvas-bottom {
+    width: 90%;
+    align-items: center;
+    margin: 0 5%;
+  }
+
+  .offcanvas.offcanvas-bottom img {
+    opacity: 1;
+    margin-top: -4.5rem;
+  }
 }
