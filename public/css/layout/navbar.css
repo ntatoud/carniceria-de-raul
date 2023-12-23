@@ -33,6 +33,7 @@
 .menu-navbar .nav-link::after {
   border-radius: 1em;
   position: absolute;
+  display: flex;
   left: 50%;
   bottom: 0.6rem;
   transform: translate(-50%, 0);
@@ -56,5 +57,39 @@
   .menu-navbar .nav-link {
     width: 5rem;
     font-size: var(--font-sm);
+  }
+
+  .menu-navbar {
+    position: fixed;
+    width: 100%;
+    top: 100vh;
+    transform: translateY(-100%);
+    z-index: 10;
+  }
+
+  .menu-navbar,
+  .menu-navbar .navbar-container,
+  .menu-navbar .nav-item,
+  .menu-navbar .nav-link {
+    height: 4.5rem;
+  }
+
+  .menu-navbar .nav-link {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 25vw;
+  }
+
+  .menu-navbar .nav-link i {
+    font-size: var(--font-3xl);
+  }
+
+  .menu-navbar .nav-link.active {
+    font-weight: bold;
+    border-radius: 1rem;
+  }
+  .menu-navbar .nav-link::after {
+    display: none;
   }
 }

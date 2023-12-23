@@ -235,10 +235,6 @@
   visibility: hidden;
 }
 @media screen and (max-width: 768px) {
-  .shop-home {
-    margin-top: 7rem;
-    padding-top: -2rem;
-  }
   .nav-tabs {
     position: fixed;
     z-index: 1;
@@ -248,7 +244,6 @@
     align-items: center;
     flex-direction: column;
     flex-wrap: nowrap;
-    margin-top: 7rem;
   }
 
   .product-carousel {

@@ -40,9 +40,9 @@ menu a.active i {
   menu {
     display: none;
     margin: 0;
-    margin-top: 10rem;
     width: 95%;
     justify-content: end;
+    height: 5rem;
   }
 
   menu.mobile {

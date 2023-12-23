@@ -1,25 +1,32 @@
 <script src="/jquery.min.js"></script>
-<nav class="navbar menu-navbar navbar-expand sticky-top">
+<nav class="navbar menu-navbar navbar-expand">
   <div class="container-fluid navbar-container">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="/">Inicio</a>
+        <a
+            class="nav-link"
+            href="/"
+        ><i class="bi bi-house mobile"></i>Inicio</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/shop">Tienda</a>
+        <a
+            class="nav-link"
+            href="/shop"
+        ><i class="bi bi-shop mobile"></i>Tienda</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/about">Sobre mi</a>
+        <a
+            class="nav-link"
+            href="/about"
+        ><i class="bi bi-question-circle mobile"></i>Sobre mi</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/contact">Contacto</a>
+        <a
+            class="nav-link"
+            href="/contact"
+        ><i class="bi bi-telephone mobile"></i>Contacto</a>
       </li>
     </ul>
-    <%if(account?.authorities === 'ROLE_ADMIN') {%>
-    <span class="nav-item justify-self-end">
-      <a class="nav-link" href="/admin">Admin</a>
-    </span>
-    <%}%>
   </div>
 </nav>
 <!-- <script type="text/javascript" src="/features/layout/navbar.js"> -->
@@ -33,8 +40,6 @@
   const currentElement = navItems.filter((index, navItem) => {
     if (
       navItem.getAttribute("href") === currentPath ||
-      (navItem.getAttribute("href") === "/admin" &&
-        currentPath.includes("/admin/")) ||
       (navItem.getAttribute("href") === "/shop" &&
         currentPath.includes("/shop/"))
     )
