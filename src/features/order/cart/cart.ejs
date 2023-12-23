@@ -3,6 +3,9 @@
 <html lang="en">
 
 <head>
+  <!-- Title -->
+  <title>Cart - Raul's butcher shop</title>
+
   <%- include('../../../imports.ejs') %>
   <link
       rel="stylesheet"
@@ -51,7 +54,9 @@
           <div class="product-cell image">
             <img
                 src="/assets/images/products/<%=product.category?.toLowerCase() ?? 'ternera'%>.webp"
-                alt="product-image"
+                role="img"
+                alt="Image showing the product <%=product.name[0] + product.name.toLowerCase().slice(1)%>"
+                aria-label="Image showing the product <%=product.name[0] + product.name.toLowerCase().slice(1)%>"
             ></img>
           </div>
           <div class="product-cell product-infos">

@@ -7,12 +7,14 @@ const cookieBannerShow = () => {
         data-bs-scroll="true"\
         data-bs-backdrop="false"\
         tabindex="-1"\
-        aria-labelledby="offcanvasBottomLabel"\
+        aria-label="Banner to inform about the website cookie policy"\
     >\
     <div class="offcanvas-body d-flex align-items-center justify-content-between">\
         <img\
             src="/assets/images/cookie.png"\
-            alt="Cookie"\
+            role="img"\
+            alt="Illustration of a cookie"\
+            aria-label="Illustration of a cookie"\
             srcset="/assets/images/cookie.svg"\
         >\
         <p>\
@@ -23,14 +25,14 @@ const cookieBannerShow = () => {
                 type="button"\
                 class="button button-link button-lg"\
                 data-bs-dismiss="offcanvas"\
-                aria-label="Close"\
+                aria-label="Decline"\
                 onclick="setCookies(false)"\
             >Decline</button>\
             <button\
                 type="button"\
                 class="button button-primary button-lg"\
                 data-bs-dismiss="offcanvas"\
-                aria-label="Close"\
+                aria-label="Allow"\
                 onclick="setCookies(true)"\
             >Allow</button>\
         </div>\

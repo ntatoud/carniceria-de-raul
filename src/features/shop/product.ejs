@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+  <!-- Title -->
+  <title>Shop - Raul's butcher shop</title>
+
   <%- include('../../imports.ejs') %>
   <!-- Page specific styles -->
   <link
@@ -15,10 +18,15 @@
   <header><%- include('./layout/layout.ejs') %></header>
   <%- include('./layout/mainbar.ejs', {title: product?.name, backLink: ""}) %>
   <main>
-    <div class="product-card">
+    <div
+        class="product-card"
+        id="<%=product.productId%>"
+    >
       <img
           src="/assets/images/products/<%=product.image !== '' ? product.image : currentCategory+`.webp`%>"
-          alt="product-image"
+          role="img"
+          alt="Image showing the product <%=product.name[0] + product.name.toLowerCase().slice(1)%>"
+          aria-label="Image showing the product <%=product.name[0] + product.name.toLowerCase().slice(1)%>"
       />
       <div class="product-details">
         <div class="card-header">
@@ -50,7 +58,6 @@
               action="/order/cart"
               class="product-form"
               method="post"
-              id="<%=product.productId%>"
               role="form"
               onsubmit="cartProductAdd(event)"
           >
