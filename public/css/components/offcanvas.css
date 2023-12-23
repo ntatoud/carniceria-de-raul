@@ -29,7 +29,7 @@
   text-decoration: underline;
 }
 
-@media screen and (max-width: 768px) {
+@media all and (max-width: 768px) {
   .offcanvas-body {
     overflow: visible;
     flex-direction: column;

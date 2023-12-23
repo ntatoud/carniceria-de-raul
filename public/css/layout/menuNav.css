@@ -36,7 +36,7 @@ menu a.active i {
   font-size: var(--font-2xl);
 }
 
-@media screen and (max-width: 768px) {
+@media all and (max-width: 768px) {
   menu {
     display: none;
     margin: 0;

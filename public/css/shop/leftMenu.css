@@ -101,7 +101,7 @@
   width: 100%;
 }
 /* For mobile devices */
-@media screen and (max-width: 768px) {
+@media all and (max-width: 768px) {
   .left-menu {
     position: fixed;
     right: 0;

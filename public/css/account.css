@@ -33,7 +33,7 @@ data {
 button[type='submit'] {
   padding: 0.5rem 1rem;
 }
-@media screen and (max-width: 768px) {
+@media all and (max-width: 768px) {
   main {
     flex-direction: column;
   }

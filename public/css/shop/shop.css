@@ -234,7 +234,7 @@
 .product-card .hide {
   visibility: hidden;
 }
-@media screen and (max-width: 768px) {
+@media all and (max-width: 768px) {
   .nav-tabs {
     position: fixed;
     z-index: 1;

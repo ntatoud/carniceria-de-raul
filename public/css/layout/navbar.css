@@ -53,7 +53,7 @@
   background: white;
 }
 
-@media screen and (max-width: 768px) {
+@media all and (max-width: 768px) {
   .menu-navbar .nav-link {
     width: 5rem;
     font-size: var(--font-sm);
@@ -62,7 +62,7 @@
   .menu-navbar {
     position: fixed;
     width: 100%;
-    top: 100vh;
+    top: 100%;
     transform: translateY(-100%);
     z-index: 10;
   }

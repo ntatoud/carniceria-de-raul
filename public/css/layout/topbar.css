@@ -72,7 +72,7 @@
   width: 3rem;
 }
 
-@media screen and (max-width: 768px) {
+@media all and (max-width: 768px) {
   .navbar-brand:not(.mobile) {
     display: none;
   }

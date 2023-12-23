@@ -70,10 +70,10 @@ main {
   font-size: var(--font-2xl);
   font-weight: bold;
 }
-@media screen and (max-width: 768px) {
+@media all and (max-width: 768px) {
   body,
   header {
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     overflow-x: hidden;
   }
