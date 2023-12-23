@@ -36,7 +36,7 @@ const cartProductDelete = async (event: MouseEvent) => {
 const cartProductAdd = async (event: SubmitEvent) => {
   event.preventDefault();
   const form = $(event.currentTarget!);
-  const productId = form.attr('id');
+  const productId = form.parents('.product-card').attr('id');
   const formData = new FormData(form[0] as HTMLFormElement);
   const formDataObject = Array.from(formData.entries()).reduce(
     (acc: { [key: string]: FormDataEntryValue }, [key, value]) => {

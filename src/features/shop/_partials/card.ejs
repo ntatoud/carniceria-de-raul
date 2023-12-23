@@ -28,7 +28,9 @@
     <a href="/shop/<%=product.category%>/<%=product.productId%>">
       <img
           src="/assets/images/products/<%=product.category%>.webp"
-          alt="product-image"
+          role="img"
+          alt="Image showing the product <%=product.name[0] + product.name.toLowerCase().slice(1)%>"
+          aria-label="Image showing the product <%=product.name[0] + product.name.toLowerCase().slice(1)%>"
       />
     </a>
     <div class="product-name">
@@ -51,7 +53,6 @@
         action="/order/cart"
         class="product-form"
         method="post"
-        id="<%=product.productId%>"
         role="form"
         onsubmit="cartProductAdd(event)"
     >
