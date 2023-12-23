@@ -3,6 +3,8 @@
 <html lang="en">
 
 <head>
+  <!-- Title -->
+  <title>Home - Raul's butcher shop</title>
   <%- include('../imports.ejs') %>
 
   <link
@@ -17,7 +19,12 @@
   <%- include('../../../components/toast/toast.ejs')%>
   <main>
     <div class="banner">
-      <img src="/assets/images/home.webp" />
+      <img
+          src="/assets/images/home.webp"
+          role="img"
+          alt='Display of meets from the shop'
+          aria-label="Display of meets from the shop"
+      />
       <div class="main-title">
         <p class="welcome"><%=t('greetings')%></p>
         <p class="rest">En la carncieria de Raul Basquez</p>
