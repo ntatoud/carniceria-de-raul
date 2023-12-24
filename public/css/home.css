@@ -13,7 +13,9 @@ main {
   justify-content: center;
   height: calc(100vh - 7rem);
   color: var(--gray-800);
-  padding: 2rem;
+  padding: 2rem 5rem;
+  width: 100%;
+  max-width: 100vw;
 }
 
 .banner img {
@@ -35,7 +37,7 @@ main {
   gap: 1rem;
 }
 .banner-content > * {
-  width: inherit;
+  width: fit-content;
 }
 .banner-content .title .add-on {
   font-family: 'Just Another Hand';
@@ -68,7 +70,7 @@ main {
 .section {
   display: flex;
   align-items: center;
-  width: 110vw;
+  width: 110%;
   height: 40vh;
   background-color: var(--gray-900);
   transform-origin: 0 0;
@@ -78,10 +80,10 @@ main {
   font-size: var(--font-xl);
 }
 .section {
-  transform: rotate(-2deg) translateX(-8vw);
+  transform: rotate(-2deg) translateX(-8%);
 }
 .section1 > * {
-  transform: rotate(2deg) translateX(6vw);
+  transform: rotate(2deg) translateX(6%);
 }
 .section img {
   width: 40%;
@@ -123,7 +125,7 @@ main {
   margin-top: 1rem;
 }
 .section2 > * {
-  transform: rotate(2deg) translateX(14vw);
+  transform: rotate(2deg) translateX(10%);
 }
 
 .section2 .section-title {
@@ -143,6 +145,7 @@ main {
   font-size: var(--font-2xl);
   color: var(--brand-600);
 }
+
 @media all and (max-width: 768px) {
   .section img {
     display: none;
@@ -151,14 +154,15 @@ main {
     flex-direction: column-reverse;
     height: calc(100vh - 5rem);
     padding-top: 0;
+    width: 100%;
   }
 
   .banner img {
-    height: 20rem;
-  }
-
-  .banner-content {
-    width: 100%;
+    height: 15rem;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
   }
 
   .banner-content .title .add-on {
@@ -166,8 +170,8 @@ main {
     font-size: 1.25rem;
   }
   .banner-content .title .main {
-    font-size: 4rem;
-    margin-top: -1.7rem;
+    font-size: 3rem;
+    margin-top: -1.5rem;
   }
 
   .banner-content .title .rest {
@@ -182,12 +186,26 @@ main {
   }
 
   .section {
-    transform: rotate(-2deg) translateX(-4vw);
+    transform: rotate(-2deg) translateX(-4%);
   }
   .section .section-content {
     text-align: center;
     width: 90%;
     margin: 0;
-    transform: rotate(2deg) translateX(3vw);
+    transform: rotate(2deg) translateX(3%);
+  }
+}
+
+/* For landcape mode on mobile */
+@media all and (max-height: 500px) {
+  .banner {
+    height: 44rem;
+  }
+  .banner img {
+    display: none;
+  }
+
+  .section {
+    height: 25rem;
   }
 }
