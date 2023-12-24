@@ -19,86 +19,93 @@
   <%- include('../../../components/toast/toast.ejs')%>
   <main>
     <div class="banner">
+      <div class="banner-content">
+        <div class="title">
+          <p class="add-on">FRESH MEAT IN MADRID</p>
+          <p class="main you-order">You order.</p>
+          <p class="main we-prepare"><b>We prepare.</b></p>
+          <p class="main you-recover">You recover.</p>
+
+          <p class="rest">At Raul Basquez butcher shop</p>
+        </div>
+        <div class="banner-body">
+          <p>A little text description about the shop</p>
+          <a
+              href="/shop"
+              type="button"
+              role="button"
+              class="button button-primary button-lg"
+          ><i class="bi bi-shop"></i>Go shopping now<i class="bi bi-arrow-right"></i></a>
+
+        </div>
+      </div>
       <img
           src="/assets/images/home.webp"
           role="img"
           alt='Display of meets from the shop'
           aria-label="Display of meets from the shop"
       />
-      <div class="main-title">
-        <p class="welcome"><%=t('greetings')%></p>
-        <p class="rest">En la carncieria de Raul Basquez</p>
-      </div>
-      <div class="info-tag-row">
-        <div
-            class="info-tag"
-            id="1"
-        >
-          <i class="bi bi-person"></i>
-          <div class="title">Butcher since</div>
-          <div class="number">6</div>
-          <div class="info">years</div>
-        </div>
 
-        <div
-            class="info-tag"
-            id="2"
-        >
-          <i class="bi bi-person"></i>
-          <div class="title">Meat</div>
-          <div class="number">100 %</div>
-          <div class="info">from Spain</div>
-        </div>
-
-        <div
-            class="info-tag"
-            id="3"
-        >
-          <i class="bi bi-person"></i>
-          <div class="title">Find the</div>
-          <div class="number">Best Prices</div>
-          <div class="info">in Madrid</div>
-        </div>
-        <div
-            class="info-tag"
-            id="4"
-        >
-          <i class="bi bi-person"></i>
-          <div class="title">More than</div>
-          <div class="number">95%</div>
-          <div class="info">of statisfied clients</div>
-        </div>
+    </div>
+    <div class="section section1 d-flex">
+      <img
+          src="/assets/images/cows_1.jpeg"
+          alt="Illustration of cows"
+      ></img>
+      <div class="section-content">
+        <p>Selling meat in <a class="text-emphasis"><b>[NAME OF THE MARKET]</b></a> since <b class="text-emphasis">2013</b></p>
+        <table class="time-table">
+          <tr>
+            <td class="day"><b>Monday</b></td>
+            <td>9:00am - 2:00pm</td>
+          </tr>
+          <tr>
+            <td class="day"><b>Tuesday</b></td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td class="day"><b>Wednesday</b></td>
+            <td>9:00am - 2:00pm</td>
+          </tr>
+          <tr>
+            <td class="day"><b>Thursday</b></td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td class="day"><b>Friday</b></td>
+            <td>9:00am - 2:00pm</td>
+          </tr>
+          <tr>
+            <td class="day"><b>Saturday</b></td>
+            <td>9:00am - 2:00pm</td>
+          </tr>
+          <tr>
+            <td class="day"><b>Sunday</b></td>
+            <td>-</td>
+          </tr>
+        </table>
       </div>
     </div>
-    <div class="divider">
-      <svg
-          preserveAspectRatio="none"
-          viewBox="0 0 1200 120"
-          xmlns="http://www.w3.org/2000/svg"
-          style="fill: #b91c1c; width: 235%; height: 500px"
-      >
-        <path
-            d="M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z"
-            opacity=".25"
-        />
-        <path
-            d="M0 0v15.81c13 21.11 27.64 41.05 47.69 56.24C99.41 111.27 165 111 224.58 91.58c31.15-10.15 60.09-26.07 89.67-39.8 40.92-19 84.73-46 130.83-49.67 36.26-2.85 70.9 9.42 98.6 31.56 31.77 25.39 62.32 62 103.63 73 40.44 10.79 81.35-6.69 119.13-24.28s75.16-39 116.92-43.05c59.73-5.85 113.28 22.88 168.9 38.84 30.2 8.66 59 6.17 87.09-7.5 22.43-10.89 48-26.93 60.65-49.24V0z"
-            opacity=".5"
-        />
-        <path d="M0 0v5.63C149.93 59 314.09 71.32 475.83 42.57c43-7.64 84.23-20.12 127.61-26.46 59-8.63 112.48 12.24 165.56 35.4C827.93 77.22 886 95.24 951.2 90c86.53-7 172.46-45.71 248.8-84.81V0z" />
-      </svg>
-    </div>
-    <div class="actions">
-      <a
-          class="button button-lg home-button"
-          href="/shop"
-      >
-        <i class="bi bi-shop"></i>Shop</a>
-      <a
-          class="button button-lg home-button"
-          href="/about"
-      >
-        <i class="bi bi-geo"></i>Find us</a>
+    <div class="section section2 d-flex">
+      <div class="section-content">
+        <div class="section-title">An <b>easy</b> process.</div>
+        <ul>
+          <li>
+            <i class="bi bi-search"></i> <b>Shop</b> products
+          </li>
+          <li>
+            <i class="bi bi-cursor"></i> <b>Select</b> recovery date
+          </li>
+          <li>
+            <i class="bi bi-box-seam"></i> <b>Pick up</b> your order
+          </li>
+        </ul>
+      </div>
+      <img
+          src="/assets/images/display_1.jpeg"
+          alt="Illustration of meat"
+      ></img>
+
     </div>
   </main>
   <%-include('../scripts.ejs')%>

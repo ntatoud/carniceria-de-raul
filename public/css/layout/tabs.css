@@ -1,6 +1,7 @@
 .nav-tabs,
 .nav-item {
   height: fit-content;
+  z-index: 3;
 }
 
 .nav-item {
@@ -22,21 +23,21 @@
 
 .tab {
   border: none;
-  color: var(--gray-600);
+  color: var(--gray-700);
   padding: 1rem 1rem;
   background: transparent;
-  border-bottom: 1px solid var(--gray-600);
+  border-bottom: 1px solid var(--gray-700);
 }
 
 .tab.active {
   border: none;
-  color: var(--brand-600);
-  border-bottom: 1px solid var(--brand-600);
+  color: var(--brand-700);
+  border-bottom: 1px solid var(--brand-700);
   font-weight: bold;
 }
 
 .tab .tag-amount {
-  color: var(--gray-600);
+  color: var(--gray-700);
   background: var(--gray-100);
   padding: 0.2rem;
   border-radius: 0.5rem;

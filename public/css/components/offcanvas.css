@@ -9,6 +9,7 @@
   width: 80%;
   margin: 0 10%;
   font-size: var(--font-lg);
+  border: 2px solid var(--brand-700);
 }
 
 .offcanvas.offcanvas-bottom .offcanvas-body {
@@ -30,15 +31,15 @@
 }
 
 @media all and (max-width: 768px) {
-  .offcanvas-body {
-    overflow: visible;
-    flex-direction: column;
-  }
-
   .offcanvas.offcanvas-bottom {
     width: 90%;
     align-items: center;
-    margin: 0 5%;
+    margin: 5rem 5%;
+  }
+
+  .offcanvas-body {
+    overflow: visible;
+    flex-direction: column;
   }
 
   .offcanvas.offcanvas-bottom img {

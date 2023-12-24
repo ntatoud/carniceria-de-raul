@@ -18,6 +18,7 @@ body *::selection {
 
 body {
   font-family: 'Inter';
+  font-display: swap;
   display: flex;
   flex-direction: column;
   background-color: var(--gray-100);

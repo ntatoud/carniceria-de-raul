@@ -1,106 +1,193 @@
-@import url(https://fonts.googleapis.com/css?family=Staatliches);
+@import url(https://fonts.googleapis.com/css?family=Inter%20Tight);
+@import url(https://fonts.googleapis.com/css?family=Just%20Another%20Hand);
 
 main {
-  background-color: var(--gray-300);
-}
-
-main img {
-  height: 35rem;
-  width: 100%;
-  object-fit: cover;
-  opacity: 0.8;
-  filter: brightness(0.7);
+  background-color: var(--brand-100);
 }
 
 .banner {
-  font-family: 'Staatliches';
   position: relative;
   display: flex;
-  flex-direction: column;
+  font-family: 'Inter Tight';
   align-items: center;
-  color: white;
-  height: 60%;
-}
-
-.main-title {
-  position: absolute;
-  top: 5rem;
-  text-align: center;
-}
-
-.main-title .welcome {
-  font-weight: 900;
-  font-size: 128px;
-}
-
-.main-title .rest {
-  font-size: 64px;
-}
-
-.info-tag-row {
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  bottom: -3rem;
-  width: 100%;
-  justify-content: space-around;
-}
-
-.info-tag {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: center;
-  font-size: var(--font-2xl);
-  text-align: center;
-  padding: 1rem;
-  width: 10rem;
-  border-radius: 1rem;
-  background-color: var(--brand-900);
-  z-index: 200;
-}
-
-.info-tag .number {
-  font-weight: bold;
-}
-
-.divider {
-  width: 100%;
-  overflow: hidden;
-}
-
-.actions {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
   justify-content: center;
-  gap: 2rem;
-  margin-top: -25rem;
-  padding-bottom: 25rem;
+  height: calc(100vh - 7rem);
+  color: var(--gray-800);
+  padding: 2rem;
 }
 
-.home-button {
-  color: white;
-  background: var(--brand-800);
-  border-radius: 1rem;
-  outline: 2px var(--brand-600);
-  font-weight: bold;
+.banner img {
+  width: 40rem;
+  height: 40rem;
+  object-fit: cover;
+  border-radius: 2rem;
+  filter: brightness(0.8);
+}
+
+.banner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  height: 40rem;
+  width: 40rem;
+  gap: 1rem;
+}
+.banner-content > * {
+  width: inherit;
+}
+.banner-content .title .add-on {
+  font-family: 'Just Another Hand';
+  color: var(--gray-600);
+  font-size: 1.5rem;
+}
+.banner-content .title .main {
+  font-size: 6rem;
+  margin-top: -2rem;
+}
+
+.banner-content .title .rest {
+  font-size: 2.5rem;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+}
+
+.banner-content .banner-body {
+  font-size: 1.5rem;
+  color: var(--gray-600);
+}
+
+.banner-content .banner-body a {
+  width: fit-content;
+  font-size: var(--font-xl);
+  padding: 1rem 2rem;
+  margin: 2rem 0;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  width: 110vw;
+  height: 40vh;
+  background-color: var(--gray-900);
+  transform-origin: 0 0;
+
+  overflow: hidden;
+  color: var(--brand-100);
+  font-size: var(--font-xl);
+}
+.section {
+  transform: rotate(-2deg) translateX(-8vw);
+}
+.section1 > * {
+  transform: rotate(2deg) translateX(6vw);
+}
+.section img {
+  width: 40%;
+  object-fit: cover;
+  margin: 1rem;
+  height: 30rem;
+  border-radius: 0.5rem;
+  transform-origin: 0 0;
+}
+
+.section .section-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  margin: 2rem;
+  height: 30rem;
+  gap: 1rem;
+}
+
+.section .section-content .text-emphasis {
   font-size: var(--font-2xl);
-  width: 25rem;
-  height: 6rem;
-  padding: 0;
-  transition: all 0.1s ease-out;
 }
 
-.home-button:hover {
-  font-size: var(--font-3xl);
+.section .section-content a.text-emphasis {
+  color: var(--brand-600);
+}
+.section1 .section-content .time-table .day {
+  padding: 0 0.75rem;
+  text-align: left;
 }
 
-.home-button:hover i {
-  font-size: 64px;
+.section1 .section-content .time-table td:not(.day) {
+  text-align: center;
 }
 
-.home-button i {
-  font-size: 48px;
-  transition: all 0.1s ease-out;
+.section2 {
+  margin-top: 1rem;
+}
+.section2 > * {
+  transform: rotate(2deg) translateX(14vw);
+}
+
+.section2 .section-title {
+  font-size: var(--font-2xl);
+  padding: 2rem;
+  margin-top: -2rem;
+}
+.section2 ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: decimal;
+  text-align: left;
+  gap: 2rem;
+}
+
+.section2 i {
+  font-size: var(--font-2xl);
+  color: var(--brand-600);
+}
+@media all and (max-width: 768px) {
+  .section img {
+    display: none;
+  }
+  .banner {
+    flex-direction: column-reverse;
+    height: calc(100vh - 5rem);
+    padding-top: 0;
+  }
+
+  .banner img {
+    height: 20rem;
+  }
+
+  .banner-content {
+    width: 100%;
+  }
+
+  .banner-content .title .add-on {
+    padding-top: 0.5rem;
+    font-size: 1.25rem;
+  }
+  .banner-content .title .main {
+    font-size: 4rem;
+    margin-top: -1.7rem;
+  }
+
+  .banner-content .title .rest {
+    font-size: 1.5rem;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .banner-content .banner-body {
+    font-size: 1.2rem;
+    color: var(--gray-600);
+  }
+
+  .section {
+    transform: rotate(-2deg) translateX(-4vw);
+  }
+  .section .section-content {
+    text-align: center;
+    width: 90%;
+    margin: 0;
+    transform: rotate(2deg) translateX(3vw);
+  }
 }

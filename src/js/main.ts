@@ -81,14 +81,3 @@ const hideLoading = () => {
 };
 
 $('.preloader').remove();
-
-document.addEventListener('scroll', () => {
-  if (window.scrollY > 300) {
-    $('header').attr(
-      'style',
-      'position:fixed; top:0; width: 100%; z-index: 100'
-    );
-  } else {
-    $('header').removeAttr('style');
-  }
-});
