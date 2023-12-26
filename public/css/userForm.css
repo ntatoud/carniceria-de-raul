@@ -1,0 +1,17 @@
+.form-group label {
+  font-weight: bold;
+}
+
+.user-form {
+  align-items: center;
+  width: 40rem;
+  margin-top: 8rem;
+  padding: 1.5rem;
+  gap: 1.5rem;
+}
+
+.authorities-form-group {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
