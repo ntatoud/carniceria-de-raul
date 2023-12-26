@@ -1,6 +1,5 @@
 body {
   display: flex;
-  justify-content: space-between;
 }
 
 main {
@@ -184,7 +183,7 @@ table {
   gap: 0.5rem;
 }
 
-.user-form {
+/*.user-form {
   height: 100%;
   width: 100%;
   justify-content: end;
@@ -192,7 +191,7 @@ table {
   text-align: center;
   margin: 0;
   padding: 0;
-}
+}*/
 
 .user-form .authorities-form-group {
   display: flex;
