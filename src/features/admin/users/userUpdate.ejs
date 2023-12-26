@@ -1,21 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
   <%- include('../../imports.ejs') %>
-    <link rel="stylesheet" type="text/css" href="/css/userForm.css" />
     <link rel="stylesheet" type="text/css" href="/css/admin.css" />
     <link rel="stylesheet" type="text/css" href="/css/actionbar.css" />
+    <link rel="stylesheet" type="text/css" href="/css/userForm.css" />
 </head>
 
 <body>
   <header><%- include('./layout/layout.ejs') %></header>
   <main class="d-flex flex-column align-items-center">
-    <form class="user-form" action="/admin/users/update/<%=user.user_id%>" method="post" role="form">
-      <div class="form-container">
-        <%- include('./admin/users/userForm.ejs')%>
-      </div>
-      <%- include('./layout/actionbar.ejs', {data : user})%>
+    <form class="user-form form" action="/admin/users/update/<%=user.userId%>" method="post" role="form">
+      <%- include('./admin/users/userForm.ejs')%>
+        <%- include('./layout/actionbar.ejs',{data: user})%>
     </form>
   </main>
 </body>

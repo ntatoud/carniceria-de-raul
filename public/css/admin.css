@@ -63,18 +63,3 @@ a {
 .admin-menu a:hover {
   color: black; /* Couleur du texte lorsqu'on survole le lien */
 }
-
-.user-form {
-  height: 100%;
-  width: 100%;
-  justify-content: end;
-  align-items: center;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
-
-.user-form .authorities-form-group {
-  display: flex;
-  flex-direction: row;
-}
