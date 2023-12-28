@@ -4,12 +4,96 @@
   <head>
     <%- include('../../../imports.ejs') %>
     <link rel="stylesheet" type="text/css" href="/css/orderNav.css" />
+    <script src="https://js.stripe.com/v3/"></script>
+
+
   </head>
 
   <body>
     <header><%- include('./layout/layout.ejs') %></header>
     <%- include('../../../components/toast/toast.ejs')%>
-    <main>payment <%- include('../orderNav.ejs') %></main>
-    <%-include('../scripts.ejs')%>
+    <main class="d-flex flex-column align-items-center">
+      <%- include('../orderNav.ejs') %>
+      <!-- Payment Form -->
+      <form id="payment-form"
+      class="flex-column align-items-center">
+        <div class = "form-group">
+          <label for="card-number">Card Number</label>
+          <div class = "form-control required"id="card-number"></div>
+        </div>
+        <div class = "form-group">
+          <label for="card-expiry">Expiration Date</label>
+          <div class = "form-control required" id="card-expiry"></div>
+        </div>
+        <div class = "form-group">
+          <label for="card-cvc">CVC</label>
+          <div class = "form-control required" id="card-cvc"></div>
+        </div>
+        <div class = "form-group">
+          <label for="card-holder-name">Cardholder Name</label>
+          <input class = "form-control required" type="text" id="card-holder-name" required>
+        </div>
+        <button class="button button-primary button-xl mt-3 submit" type="submit">Submit Payment</button>
+      </form>
+      
+      <div id="error-message"></div>
+      
+      <script>
+        var stripe = Stripe('pk_test_51OS0DKLo0ku5dcyT0us7OYDfQDxij6p5OQE2slRwBWC8JPv3ioA7cWS78SFVPk8CPHAOYjHJAiFUcKtG4vfbMPA700ficXGIez'); //If it does not work introduce this: 'YOUR_PUBLIC_STRIPE_KEY'
+        var elements = stripe.elements();
+      
+        var style = {
+          base: {
+            fontFamily: 'Arial, sans-serif',
+            fontSize: '16px',
+          },
+        };
+      
+        var cardNumber = elements.create('cardNumber', { style: style });
+        cardNumber.mount('#card-number');
+      
+        var cardExpiry = elements.create('cardExpiry', { style: style });
+        cardExpiry.mount('#card-expiry');
+      
+        var cardCvc = elements.create('cardCvc', { style: style });
+        cardCvc.mount('#card-cvc');
+      
+        var cardHolderName = document.getElementById('card-holder-name');
+        var form = document.getElementById('payment-form');
+        var errorElement = document.getElementById('error-message');
+      
+        form.addEventListener('submit', async function(event) {
+          event.preventDefault();
+
+          stripe.createPaymentMethod({
+            type: 'card',
+            card: cardNumber,
+          }).then(async function(result) {
+            if (result.error) {
+              errorElement.textContent = result.error.message;
+            } else {
+              var paymentMethodId = result.paymentMethod.id;
+              console.log('Payment Method ID:', paymentMethodId);
+
+              try {
+                const response = await fetch('/process-payment', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({ payment_method_id: paymentMethodId, client_name: cardHolderName.value }),
+                });
+
+                const responseData = await response.json();
+                console.log(responseData); // Handle the response from the server
+              } catch (error) {
+                console.error('Error:', error);
+              }
+            }
+          });
+        });
+
+      </script>
+    </main>        
   </body>
 </html>
