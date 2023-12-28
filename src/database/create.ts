@@ -42,6 +42,7 @@ export const databaseCreate = (): void => {
         authorities ENUM('ROLE_USER', 'ROLE_ADMIN') NOT NULL,
         creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         phone VARCHAR(20)
+        token VARCHAR(255) DEFAULT NULL
         );
       
       
