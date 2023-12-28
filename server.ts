@@ -110,6 +110,7 @@ app.get('/sitemap.xml', (req: Request, res: Response) => {
   res.setHeader('Content-Type:', 'application/xml');
   res.sendFile('sitemap.xml');
 });
+
 app.get('/', (req: Request, res: Response) => {
   const { isLogged, user, cart } = req.session;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

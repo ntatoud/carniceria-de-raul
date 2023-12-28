@@ -1,3 +1,8 @@
 {
-  "greetings": "Welcome"
+  "title": {
+    "addOn": "FRESH MEET IN MADRID",
+    "youOrder": "You order.",
+    "wePrepare": "We prepare.",
+    "youRecover": "You recover"
+  }
 }

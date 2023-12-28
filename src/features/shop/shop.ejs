@@ -95,7 +95,7 @@
         ></button>
       </div>
 
-      <h2>Todos nos otros productos</h2>
+      <h2><%=t('shop:other')%></h2>
       <div class="shop-products-container">
         <% products.map((product) => {%><%- include('card.ejs', {product :
           product, currentCategory: ""})%><%}) %>

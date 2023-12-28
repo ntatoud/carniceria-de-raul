@@ -7,6 +7,7 @@ import {
 import { Category } from '@/features/types.js';
 import { Request, Response } from 'express';
 import { toastDispatch, toastEmpty } from '@/components/toast/index.js';
+import i18next from '@/lib/i18n/config.js';
 
 export const getAllProductsWithCategory = (
   req: Request,
@@ -54,6 +55,7 @@ export const getAllProductsWithCategory = (
             account: req.session.user,
             toast: toastDispatch(req),
             cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+            t: i18next.t,
           });
 
           databaseDisconnect(connection);

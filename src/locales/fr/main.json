@@ -1,3 +1,8 @@
 {
-  "greetings": "Bienvenue"
+  "title": {
+    "addOn": "VIANDE FRAICHE À MADRID",
+    "youOrder": "Vous commandez.",
+    "wePrepare": "Nous préparons.",
+    "youRecover": "Vous récuperez"
+  }
 }
