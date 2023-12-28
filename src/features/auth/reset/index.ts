@@ -1,9 +1,9 @@
 import { Router, urlencoded, Request, Response } from 'express';
 import nodemailer from 'nodemailer';
 import { v4 as uuidv4 } from 'uuid'; // Import UUID for generating unique tokens
-import { databaseConnect } from '../../../database'; // Import your database connection module
+import { databaseConnect } from '@/database/index.js'; // Import your database connection module
 import dotenv from 'dotenv';
-import { generateResetLink } from './utils';
+import { generateResetLink } from './utils.js';
 import { QueryError, RowDataPacket } from 'mysql2';
 
 dotenv.config(); // Load environment variables from .env file
