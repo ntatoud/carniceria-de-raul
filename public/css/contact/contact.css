@@ -1,0 +1,27 @@
+.contact-infos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 4rem;
+}
+
+#map * {
+  border-radius: 0.75rem;
+}
+.contact-infos div {
+  border-radius: 0.75rem;
+}
+@media screen and (max-width: 768px) {
+  main {
+    margin: 5rem;
+  }
+  .contact-infos {
+    flex-direction: column;
+  }
+
+  .contact-infos iframe {
+    height: 20rem;
+    width: 100vw;
+  }
+}
