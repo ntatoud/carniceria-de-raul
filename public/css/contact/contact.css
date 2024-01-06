@@ -1,32 +1,27 @@
-bodyContact {
-  background-color: #fee2e2;
-  font-family: Arial, sans-serif;
-}
-h1,
-h2 {
-  font-family: 'Courier New', Courier, monospace;
-}
-.containerC {
+.contact-infos {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  text-align: center;
-}
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
-  max-width: 37.5rem;
+  gap: 4rem;
 }
-.contact-info div {
-  margin-bottom: 1.25rem;
+
+#map * {
+  border-radius: 0.75rem;
 }
-@media (min-width: 37.5rem) {
-  .contact-info {
-    flex-direction: row;
+.contact-infos div {
+  border-radius: 0.75rem;
+}
+@media screen and (max-width: 768px) {
+  main {
+    margin: 5rem;
+  }
+  .contact-infos {
+    flex-direction: column;
+  }
+
+  .contact-infos iframe {
+    height: 20rem;
+    width: 100vw;
   }
 }
