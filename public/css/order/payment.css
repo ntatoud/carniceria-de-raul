@@ -1,0 +1,27 @@
+.card-element {
+  padding-top: 0.6rem;
+}
+
+.card-number {
+  width: 70%;
+}
+
+.card-expiry,
+.card-cvc {
+  width: 15%;
+}
+.card-container {
+  display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+  }
+
+  .card-number,
+  .card-expiry,
+  .card-cvc {
+    width: 100%;
+  }
+}
