@@ -35,10 +35,11 @@
     "jquery": "^3.7.1",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.6.4",
+    "nodemailer": "^6.9.7",
+    "stripe": "^14.11.0",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.8",
     "typescript": "^5.2.2",
-    "nodemailer": "^6.9.7",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
@@ -46,12 +47,12 @@
     "@types/ejs": "^3.1.5",
     "@types/express": "^4.17.20",
     "@types/express-session": "1.17.10",
+    "@types/jquery": "^3.5.25",
     "@types/multer": "^1.4.11",
+    "@types/nodemailer": "^6.4.14",
+    "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "eslint": "^8.55.0",
-    "prettier": "^3.1.1",
-    "@types/jquery": "^3.5.25",
-    "@types/nodemailer": "^6.4.14",
-    "@types/uuid": "^9.0.7"
+    "prettier": "^3.1.1"
   }
 }
