@@ -62,25 +62,28 @@ app.post('/lang', (req: Request, res: Response) => {
 });
 
 app.get('/cookies', (req: Request, res: Response) => {
-  if (req.cookies.cart !== undefined || req.session.isLogged) {
-    req.areCookiesAllowed = true;
+  if (req.cookies.cart !== undefined || req.session.isLogged)
+    res.status(200).send({
+      areCookiesAllowed: true,
+    });
+  else {
+    res.status(200).send({
+      areCookiesAllowed: req.cookies.allowed,
+    });
   }
-  res.status(200).send({ areCookiesAllowed: req.areCookiesAllowed });
 });
 
 app.post('/cookies', (req: Request, res: Response) => {
   const allowCookies = req.body.areAllowed;
   if (allowCookies === 'true') {
-    req.areCookiesAllowed = true;
+    res.cookie('allowed', true);
     res.cookie('cart', [] as Cart, {
-      expires: new Date(Date.now() + 90000),
       httpOnly: true,
     });
 
     res.send({ areCookiesAllowed: true });
   } else {
-    req.areCookiesAllowed = false;
-
+    res.cookie('allowed', false);
     res.send({ areCookiesAllowed: false });
   }
 });
