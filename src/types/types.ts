@@ -5,16 +5,6 @@ export type User = Account & {
   salt: string;
 };
 
-export type Order = {
-  orderId: number;
-  userId: number;
-  orderDate: Date | string;
-  recoveryDate: Date | string;
-  totalPrice?: number;
-  comment?: string;
-  isDone: boolean;
-};
-
 export type Category = {
   categoryId: number;
   name: string;

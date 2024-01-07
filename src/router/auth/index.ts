@@ -17,7 +17,7 @@ router.use('/logout', loggedOnlyRoute, (req: Request, res: Response) => {
   req.session.destroy((error: ErrorEvent) => {
     if (error) console.error(error);
     res.cookie('cart', [] as Cart);
-    res.redirect('/');
+    res.redirect('/auth/login');
   });
 });
 

@@ -1,14 +1,8 @@
-import {
-  databaseConnect,
-  databaseDisconnect,
-  databaseError,
-} from '@/database/index.js';
-import { Order, User, UserSession } from '@/types/types.js';
+import { User, UserSession } from '@/types/types.js';
 import { Response } from 'express';
 import { cartTotalPrice } from '@/controllers/order/cartController.js';
-import { QueryError } from 'mysql2';
 
-export const saveOrder = (
+export const addOrderToSession = (
   session: UserSession,
   res: Response,
   orderDetails: Partial<User> &
@@ -26,49 +20,23 @@ export const saveOrder = (
     comment,
     email,
   } = orderDetails;
-  const connection = databaseConnect();
-  const recoveryDate = new Date(`${recoveryDay} ${recoveryTime}`);
-  const updateUserQuery = `
-      UPDATE users
-      SET city = ?,
-          postalCode = ?,
-          country = ?,
-          address = ?,
-          phone = ?
-      WHERE userId = ?;`;
+  const recoveryDate = `${recoveryDay} ${recoveryTime}:00`;
+  if (session.user) {
+    session.user.city = city;
+    session.user.postalCode = postalCode;
+    session.user.country = country;
+    session.user.address = address;
+    session.user.phone = phone;
+  }
 
-  connection.query(
-    updateUserQuery,
-    [city, postalCode, country, address, phone, userId],
-    (error: QueryError | null) => {
-      if (error) {
-        databaseError(error, 'POST /order/infos on users');
-        res.status(500).send('Error updating user data.');
-      } else {
-        const updateOrderQuery = `
-          INSERT INTO orders (userId, recoveryDate, comment, email, totalPrice)
-          VALUES (?, ?, ?, ?, ?);`;
+  session.order = {
+    userId,
+    recoveryDate,
+    comment: comment ?? 'No comments',
+    email,
+    totalPrice: cartTotalPrice(session.cart, true),
+    isDone: false,
+  };
 
-        connection.query(
-          updateOrderQuery,
-          [
-            userId,
-            recoveryDate,
-            comment ?? 'No comments',
-            email,
-            cartTotalPrice(session.cart, true),
-          ],
-          (error: QueryError | null) => {
-            if (error) {
-              databaseError(error, 'POST /order/infos on orders');
-              res.status(500).send('Error updating order data.');
-            }
-            res.sendStatus(200);
-
-            databaseDisconnect(connection);
-          }
-        );
-      }
-    }
-  );
+  res.redirect('/order/payment');
 };

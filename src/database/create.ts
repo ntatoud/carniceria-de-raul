@@ -86,6 +86,7 @@ export const databaseCreate = (): void => {
         orderId INT,
         productId INT,
         quantity INT,
+        weight INT,
         PRIMARY KEY (orderId, productId),
         FOREIGN KEY (orderId) REFERENCES orders(orderId),
         FOREIGN KEY (productId) REFERENCES products(productId)

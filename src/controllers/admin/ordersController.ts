@@ -1,4 +1,4 @@
-import { Order, User } from '@/types/types.js';
+import { User } from '@/types/types.js';
 import {
   databaseConnect,
   databaseDisconnect,
@@ -8,28 +8,24 @@ import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 import { formatDate } from '@/lib/date/utils.js';
 
-export const getOrderFromId = (req: Request, res: Response, id: string) => {
+export const getOrderFromId = (
+  req: Request,
+  res: Response,
+  id: string,
+  onAdmin?: boolean
+) => {
   const getOrderAndProduct = `SELECT \
     o.orderId, \
     o.userId, \
     po.quantity, \
+    po.weight,
     o.orderDate, \
     o.recoveryDate, \
     o.totalPrice, \
     o.comment, \
-    pc.productId, \
-    P.category
-    p.name AS productName, \
-    p.price AS productPrice, \
-    p.unit AS productUnit, \
-    p.stock AS productStock, \
-    p.sale AS productSale, \
-    p.salePrice AS productSalePrice, \
-    p.best AS productBest, \
-    p.image AS productImage, \
-    p.description AS productDescription, \
-    c.categoryId, \
-    c.name AS categoryName \
+    p.productId,
+    p.name as productName,
+    p.price as productPrice
     FROM \
     orders o \
     JOIN products_orders po ON o.orderId = po.orderId \
@@ -51,6 +47,7 @@ export const getOrderFromId = (req: Request, res: Response, id: string) => {
           isLogged: req.session.isLogged,
           account: req.session.user,
           cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+          onAdmin,
         });
       }
 

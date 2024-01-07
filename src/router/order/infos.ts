@@ -1,5 +1,5 @@
 import { Router, Request, Response, urlencoded } from 'express';
-import { saveOrder } from '@/controllers/order/infosController.js';
+import { addOrderToSession } from '@/controllers/order/infosController.js';
 
 const router = Router();
 
@@ -12,7 +12,7 @@ router.post('/', (req: Request, res: Response) => {
   if (!userId) {
     res.status(401).send('User not found.');
   } else {
-    saveOrder(req.session, res, orderDetails, userId);
+    addOrderToSession(req.session, res, orderDetails, userId);
   }
 });
 

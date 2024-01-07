@@ -52,11 +52,11 @@ router.post('/', (req: Request, res: Response) => {
 
 router.use('/', (req: Request, res: Response) => {
   res.render('login.ejs', {
-    toast: toastDispatch(req),
     error: {},
     isLogged: req.session.isLogged,
     account: req.session.user,
     cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+    toast: toastDispatch(req),
   });
 });
 

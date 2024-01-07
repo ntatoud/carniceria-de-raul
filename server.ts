@@ -62,7 +62,7 @@ app.post('/lang', (req: Request, res: Response) => {
 });
 
 app.get('/cookies', (req: Request, res: Response) => {
-  if (req.cookies.cart !== undefined) {
+  if (req.cookies.cart !== undefined || req.session.isLogged) {
     req.areCookiesAllowed = true;
   }
   res.status(200).send({ areCookiesAllowed: req.areCookiesAllowed });

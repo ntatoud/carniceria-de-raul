@@ -85,3 +85,10 @@ const hideLoading = () => {
 };
 
 $('.preloader').remove();
+
+setTimeout(() => {
+  $(`.toast-container  .toast`).addClass('fade-out').removeClass('fade-in');
+}, 2800);
+setTimeout(() => {
+  $(`.toast-container .toast`).remove();
+}, 3000);

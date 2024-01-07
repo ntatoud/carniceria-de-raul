@@ -203,11 +203,11 @@ export const databaseFill = (): void => {
 
   connection.query(
     `
-    INSERT INTO products_orders (orderId, productId, quantity)
+    INSERT INTO products_orders (orderId, productId, quantity, weight)
     VALUES
-        (1, 1, 2),
-        (1, 2, 1),
-        (2, 2, 3);`,
+        (1, 1, 2, 100),
+        (1, 2, 1, 200),
+        (2, 2, 3, 100);`,
     (error: QueryError | null) => {
       if (error) {
         databaseError(error);

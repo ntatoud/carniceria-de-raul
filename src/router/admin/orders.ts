@@ -34,7 +34,7 @@ router.use('/:id', (req: Request, res: Response) => {
   if (!orderId) {
     res.status(204).send('NOK');
   } else {
-    getOrderFromId(req, res, orderId);
+    getOrderFromId(req, res, orderId, true);
   }
 });
 

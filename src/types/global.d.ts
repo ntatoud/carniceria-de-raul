@@ -40,3 +40,14 @@ declare type Toast = {
   content: string;
   type: string;
 };
+
+declare type Order = {
+  orderId: number;
+  userId: number;
+  orderDate: Date | string;
+  recoveryDate: Date | string;
+  email?: string;
+  totalPrice?: number;
+  comment?: string;
+  isDone: boolean;
+};

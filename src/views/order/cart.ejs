@@ -137,9 +137,10 @@
               <div class="normal-price">
                 <%=totalPrice.toFixed(2)%> €
               </div>
-              <% if(totalSalePrice) {%>
+              <% if(totalSalePrice !== totalPrice) {%>
               <div class="sale-price">
                 <%=totalSalePrice?.toFixed(2)%> €
+
               </div>
               <%}%>
             </div>

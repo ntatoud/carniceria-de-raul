@@ -20,10 +20,10 @@ const toastSuccess = (content: string) => {
     $(`.toast-container #${uniqueId}.toast`)
       .addClass('fade-out')
       .removeClass('fade-in');
-  }, 4800);
+  }, 2800);
   setTimeout(() => {
     $(`.toast-container #${uniqueId}.toast`).remove();
-  }, 5000);
+  }, 3000);
 };
 
 const toastError = (content: string) => {

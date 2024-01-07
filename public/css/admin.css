@@ -154,13 +154,6 @@ table {
 
 /* Order Specific styles */
 
-.order-container {
-  width: 100%;
-  align-items: center;
-  margin: 5rem 10rem;
-  gap: 1rem;
-}
-
 .orders-table .status {
   padding-left: 0.5rem;
   width: 0.5rem;
@@ -177,11 +170,6 @@ table {
 .orders-table .date {
   width: 20%;
 }
-.order-summary {
-  width: 100%;
-  justify-content: end;
-  gap: 0.5rem;
-}
 
 /*.user-form {
   height: 100%;
@@ -196,14 +184,6 @@ table {
 .user-form .authorities-form-group {
   display: flex;
   flex-direction: row;
-}
-
-.product-row {
-  width: 100%;
-  justify-content: space-between;
-  background: white;
-  padding: 1rem 1rem;
-  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 @media all and (max-width: 768px) {

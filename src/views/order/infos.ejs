@@ -304,8 +304,8 @@
         }
 
         const recoveryHours = +recoveryTimeInput.val().split(':')[0]
-        console.log(recoveryHours)
-        if (!((recoveryHours >= 9 && recoveryHours <= 14) || (recoveryHours >= 17 && recoveryHours <= 20))) {
+
+        if (!((recoveryHours >= 9 && recoveryHours < 14) || (recoveryHours >= 17 && recoveryHours < 20))) {
           $('.invalid-time').addClass('show')
           res = false
         }
@@ -340,7 +340,7 @@
 
         if (direction === 'next') {
           const isValid = validateFormFields(fromView)
-          console.log(isValid)
+
           if (!isValid) return
         }
         progressBarPrevious.removeClass("current");

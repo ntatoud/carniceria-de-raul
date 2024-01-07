@@ -87,7 +87,7 @@ export const getUserList = (req: Request, res: Response) => {
     'SELECT name, surname, email, userId, authorities FROM users;',
     (error: QueryError, results: Partial<User>[]) => {
       if (error) {
-        res.send('404');
+        res.sendStatus(404);
         databaseError(error);
       }
 

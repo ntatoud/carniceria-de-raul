@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Account - Raul's butcher shop</title>
+  <%-include('../../../imports.ejs')%>
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/account.css"
+  />
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/layout/menuNav.css"
+  />
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/myOrders.css"
+  />
+</head>
+
+<body>
+  <header><%- include('./layout/layout.ejs') %></header>
+  <%- include('../../../components/toast/toast.ejs')%>
+  <%-include('./layout/mainbar.ejs', {title: `Bienvenido ${accountName}`,
+      backLink:"./"})%>
+  <main class="d-flex">
+    <%- include('./account/accountNav.ejs') %>
+    <data class="d-flex flex-column align-items-start">
+      <div class="profile-title">My orders</div>
+      <div class="d-flex flex-column">
+        <%orders.map((order) => {%>
+
+        <div class="d-flex position-relative">
+          <a
+              href="/account/my-orders/<%=order.orderId%>"
+              class="position-absolute w-100 h-100"
+          ></a>
+          <div class="">
+            <%=order.recoveryDate%>
+          </div>
+          <div>
+            <%=order.totalPrice%>
+          </div>
+        </div>
+        <%})%>
+      </div>
+      <%- include('../../../components/toast/toast.ejs')%>
+    </data>
+  </main>
+  <script src="/views/layout/frontend.js"></script>
+  <%-include('../scripts.ejs')%>
+</body>
+
+</html>

@@ -70,10 +70,17 @@
               </div>
             </td>
             <td class="table-cell date">
-              <%= order.orderDate%>
+              <%= order.orderDate.split('/').map((el, index) => {
+                const intEl = index === 1 ? +el + 1 : +el
+                return intEl < 10 ? `0${intEl}` : `${intEl}`
+              }) .join('/')%>
             </td>
             <td class="table-cell date recovery">
-              <%= order.recoveryDate%>
+              <%= order.recoveryDate.split('/').map((el, index) => {
+                const intEl = index === 1 ? +el + 1 : +el
+                return intEl < 10 ? `0${intEl}` : `${intEl}`
+              }) .join('/')
+              %>
             </td>
 
             <td class="table-cell price"><b><%= order.totalPrice %>€</b></td>

@@ -1,6 +1,6 @@
 import { Request, Response, Router, urlencoded } from 'express';
 import { cartTotalPrice } from '@/controllers/order/cartController.js';
-import stripe from '@/lib/stripe/config.js';
+import { createOrderFromSession } from '@/controllers/order/paymentController.js';
 
 const router = Router();
 
@@ -10,19 +10,8 @@ router.post('/pay', async (req, res) => {
   if (!totalPrice) {
     res.sendStatus(502);
   } else {
-    const formattedPrice = Math.round(+totalPrice.toFixed(2) * 100);
-    try {
-      stripe.paymentIntents.create({
-        amount: formattedPrice,
-        currency: 'usd',
-        description: 'Charge for test@example.com',
-      });
-
-      res.send('Payment successful');
-    } catch (err) {
-      console.error(err);
-      res.status;
-    }
+    const amount = Math.round(+totalPrice.toFixed(2) * 100);
+    createOrderFromSession(req, res, amount);
   }
 });
 router.use(urlencoded({ extended: true }));
