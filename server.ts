@@ -4,18 +4,19 @@ import i18nextMiddleware from 'i18next-http-middleware';
 import session from '@/lib/session/config.js';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import auth from '@/features/auth/index.js';
-import admin from '@/features/admin/index.js';
-import order from '@/features/order/index.js';
-import shop from '@/features/shop/index.js';
-import about from '@/features/about/index.js';
-import contact from '@/features/contact/index.js';
-import account from '@/features/account/index.js';
+import auth from '@/router/auth/index.js';
+import admin from '@/router/admin/index.js';
+import order from '@/router/order/index.js';
+import shop from '@/router/shop.js';
+import about from '@/router/about.js';
+import contact from '@/router/contact.js';
+import account from '@/router/account/index.js';
 import { toastDispatch } from '@/components/toast/index.js';
 import { AVAILABLE_LANGUAGES } from '@/lib/i18n/constants.js';
 
 import dotenv from 'dotenv';
 import { explicitLog } from '@/functions/index.js';
+import { VIEW_DIRECTORIES } from '@/router/config.js';
 
 dotenv.config();
 
@@ -42,30 +43,7 @@ app.use(staticSrc('node_modules/bootstrap-icons/font'));
 
 app.set('view engine', 'ejs');
 
-app.set('views', [
-  'src/features',
-  'src/features/auth',
-  'src/features/auth/login',
-  'src/features/auth/signup',
-  'src/features/auth/reset',
-  'src/features/auth/update',
-  'src/features/admin',
-  'src/features/admin/products',
-  'src/features/admin/users',
-  'src/features/admin/orders',
-  'src/features/order',
-  'src/features/order/cart',
-  'src/features/order/infos',
-  'src/features/order/payment',
-  'src/features/shop',
-  'src/features/shop/_partials',
-  'src/features/layout',
-  'src/features/about',
-  'src/features/contact',
-  'src/features/account',
-  'src/features/account/profile',
-  'src/features/account/password',
-]);
+app.set('views', VIEW_DIRECTORIES);
 
 // Declaration of the routes from the root of the website
 app.use('/auth', auth); // Has subroutes

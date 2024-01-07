@@ -1,0 +1,172 @@
+<!-- Author : Noé TATOUD -->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Title -->
+  <title>Cart - Raul's butcher shop</title>
+
+  <%- include('../../../imports.ejs') %>
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/layout/orderNav.css"
+  />
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/order/cart.css"
+  />
+</head>
+
+<body>
+  <header><%- include('./layout/layout.ejs') %></header>
+  <main class="d-flex flex-column align-items-center">
+
+    <%- include('./orderNav.ejs') %>
+    <data>
+
+      <div class="section-title">Mi carrito</div>
+      <%if(!cart?.length) {%>
+      <div class="empty-cart">
+        Your cart is empty
+        <p>
+          <a
+              href="/shop"
+              class="button button-link"
+          >Click here</a> to keep shopping
+        </p>
+      </div>
+      <% }else {%>
+      <div class="product-list d-flex flex-column gap-2">
+        <div class="header">
+          <div class="header-cell product">Producto</div>
+          <div class="header-cell price-quantity">Precio-Cantidad</div>
+          <div class="header-cell total-price"> Precio Total</div>
+        </div>
+
+        <% cart.map((product) => {%>
+
+        <div
+            class="product-row"
+            id="<%=product.productId%>-<%=product.weight%>"
+        >
+          <div class="product-cell image">
+            <img
+                src="/assets/images/products/<%=product.category?.toLowerCase() ?? 'ternera'%>.webp"
+                role="img"
+                alt="Image showing the product <%=product.name[0] + product.name.toLowerCase().slice(1)%>"
+                aria-label="Image showing the product <%=product.name[0] + product.name.toLowerCase().slice(1)%>"
+            ></img>
+          </div>
+          <div class="product-cell product-infos">
+            <div class="name">
+              <b><%= product.name[0] + product.name.toLowerCase().slice(1) %></b>
+            </div>
+            <div class="weight">
+              <% if(product.unit==="€/kg"){%> <b>Peso: </b> <%= product.weight %>g<%} else { %> <b>Por unidad</b><%}%>
+            </div>
+          </div>
+          <div class="product-cell price"><%= product.price %> <%=product.unit%>
+            </div>
+            <div class="product-cell button-quantity update">
+              <input
+                  class="quantity"
+                  name="quantity"
+                  type="number"
+                  value="<%=product.totalQuantity%>"
+              />
+              <div class="buttons">
+                <button
+                    class="button button-link-neutral button-plus"
+                    type="button"
+                    onclick="cartProductUpdate(event)"
+                    id="<%=product.productId%>-<%=product.weight%>"
+                >
+                  <i class="bi bi-chevron-up"></i>
+                </button>
+                <button
+                    class="button button-link-neutral button-minus"
+                    type="button"
+                    onclick="cartProductUpdate(event)"
+                    id="<%=product.productId%>-<%=product.weight%>"
+                    <%if(product.totalQuantity === 1) {%>style="visibility: hidden;"
+                    disabled
+                    <%}%>
+                >
+                  <i class="bi bi-chevron-down"></i>
+                </button>
+              </div>
+            </div>
+            <div class="product-cell total-price">
+              <div class="normal-price">
+                <%= product.totalPrice.toFixed(2) %>
+                    €
+                    </div
+                >
+                  <%if(product.totalSalePrice) {%>
+                  <div class="sale-price">
+                    <%= product.totalSalePrice?.toFixed(2) %> €
+                  </div>
+                  <%}%>
+            </div>
+            <div class="product-cell actions">
+              <button
+                  type="button"
+                  id="<%=product.productId%>-<%=product.weight%>"
+                  class="button button-link-neutral bi bi-trash"
+                  onclick="cartProductDelete(event)"
+                  >
+                </button>
+                <a
+                    type="button"
+                    href="/shop/<%=product.category?.toLowerCase() ?? 'ternera'%>/<%=product.productId%>"
+                    class="button button-link-neutral bi bi-pencil"
+                >
+                </a>
+              </div>
+
+
+            </div>
+
+          </div>
+          <% })%>
+          <div class="cart-price">
+            <p>Precio Total :</p>
+            <div class="total-price">
+              <div class="normal-price">
+                <%=totalPrice.toFixed(2)%> €
+              </div>
+              <% if(totalSalePrice) {%>
+              <div class="sale-price">
+                <%=totalSalePrice?.toFixed(2)%> €
+              </div>
+              <%}%>
+            </div>
+          </div>
+              <%}%>
+    </data>
+    <%if(cart?.length) {%>
+    <div class="button-container d-flex flex-row gap-3 align-items-center justify-content-end">
+      <a
+          href="/order/infos"
+          class="button button-primary"
+          <%if(!isLogged) {%>
+          onclick="notLoggedAction(event)"
+          data-bs-toggle="modal"
+          data-bs-target="#notConnectedModal"
+          <%}%>
+      >Purchase -></a>
+    </div>
+      <%}%>
+          </main
+      >
+        <div class="toast-container"></div>
+        <%- include('../../components/modal/modalLogin.ejs')%>
+
+        <script src="/features/order/frontend/cart.js"></script>
+        <%-include('../scripts.ejs')%>
+
+</body>
+
+</html>
