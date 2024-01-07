@@ -57,7 +57,6 @@ export const createOrderFromSession = (
           (error: QueryError | null) => {
             if (error) databaseError(error, '/payment/pay');
             else {
-              console.log(order);
               connection.execute(
                 'SELECT orderId from orders WHERE userId = ? AND recoveryDate = ?',
                 [order?.userId, order?.recoveryDate],

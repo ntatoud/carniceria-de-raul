@@ -32,7 +32,6 @@ export const accountUpdate = (req: Request, res: Response, user: User) => {
     user.country ?? null,
     req.session.user?.userId,
   ];
-  console.log(queryParams);
   req.session.user = user;
 
   connection.execute(updateQuery, queryParams, (error: QueryError | null) => {
