@@ -114,11 +114,13 @@ span.error {
   display: none;
   color: var(--brand-600);
   opacity: 0;
+  gap: 0.5rem;
 }
 
 span.error.show {
-  display: block;
+  display: flex;
   opacity: 1;
+  align-items: center;
 }
 
 .credential-error {

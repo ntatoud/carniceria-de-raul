@@ -56,6 +56,7 @@
                   name="city"
                   required
               />
+              <span class="error empty bi bi-exclamation-circle">City name must be provided</span>
             </div>
             <div class="form-group col-md-3">
               <label for="postalCode">Código postal</label>
@@ -66,6 +67,7 @@
                   name="postalCode"
                   required
               />
+              <span class="error empty bi bi-exclamation-circle">Postal code must be provided</span>
             </div>
             <div class="form-group col-md-4">
               <label for="country">País</label>
@@ -76,6 +78,7 @@
                   name="country"
                   required
               />
+              <span class="error empty bi bi-exclamation-circle">Country name must be provided</span>
             </div>
           </div>
           <div class="form-group">
@@ -87,6 +90,7 @@
                 name="address"
                 required
             />
+            <span class="error empty bi bi-exclamation-circle">Address must be provided</span>
           </div>
         </div>
         <span class="form-nav">
@@ -121,6 +125,7 @@
                 <div class="input-group-text bi bi-telephone"></div>
               </div>
             </div>
+            <span class="error bi bi-exclamation-circle">Invalid phone number</span>
             <small
                 id="phoneHelp"
                 class="form-text text-muted"
@@ -135,6 +140,7 @@
                 name="email"
                 aria-describedby="emailHelp"
             />
+            <span class="error bi bi-exclamation-circle">Invalid email</span>
             <small
                 id="emailHelp"
                 class="form-text text-muted"
@@ -181,15 +187,26 @@
                   id="recoveryDay"
                   name="recoveryDay"
               />
+              <span class="error empty bi bi-exclamation-circle">Please provide a recovery date</span>
+
+              <span class="error past-date bi bi-exclamation-circle">Recovery date can't be in the past</span>
+              <span class="error invalid-date bi bi-exclamation-circle">Recovery date must be on a working day</span>
+
             </div>
             <div class="form-group col-md-4">
               <label for="recoveryTime">Hora</label>
               <input
                   class="form-control required"
                   type="time"
+                  min="9:00"
+                  step="600"
+                  max="20:00"
                   id="recoveryTime"
                   name="recoveryTime"
               />
+              <span class="error empty bi bi-exclamation-circle">Please provide a recovery time</span>
+
+              <span class="error invalid-time bi bi-exclamation-circle">Recovery time must be during opening hours (9am-2pm/5pm-8pm)</span>
             </div>
           </div>
           <div class="form-group">
@@ -214,23 +231,118 @@
             >
               <p>3/3</p></span>
       </div>
+
       <%- include('./layout/actionbar.ejs', {leftButtonTitle: "<- Carrito", rightButtonTitle:"Confirmar compra"}) %>
     </form>
     <div class="toast-container"></div>
+
     <script>
+      const validateBillingFormFields = () => {
+        const emptyInputs = $(`.billing input`).filter((_, input) => input.value === '')
+        let res = true
+        if (emptyInputs.length) {
+          emptyInputs.next('.error.empty').addClass('show')
+          res = false
+        }
+
+
+        const countryInput = $('input[name="country"]')
+        const cityInput = $('input[name="city"]')
+        const addressInput = $('input[name="address"]')
+        const postalCodeInput = $('input[name="postalCode"]')
+
+        if (countryInput.val() === '') {
+
+        }
+
+        return res
+      }
+
+      const validateContactFormFields = () => {
+        const phoneInput = $('input[name="phone"]').parent('.input-group')
+        const emailInput = $('input[name="email"]')
+
+        let res = true
+        if (phoneInput.val() !== '' && !phoneInput.val().match(/\+?[1-9]\d{1,14}/)) {
+          phoneInput.next('.error').addClass('show')
+          res = false
+        }
+        if (emailInput.val() !== '' && (!emailInput.val().includes('@') || !emailInput.val().split('@')?.pop().includes('.') || !emailInput.val().split('.')?.pop().length)) {
+          emailInput.next('.error').addClass('show')
+          res = false
+        }
+
+        return res
+      }
+      const validateRecoveryFormFields = () => {
+        const recoveryDayInput = $('input[name="recoveryDay"]')
+        const recoveryTimeInput = $('input[name="recoveryTime"]')
+
+        let res = true
+
+        if (recoveryDayInput.val() === '') {
+          recoveryDayInput.next('.error.empty').addClass('show')
+          res = false
+        }
+
+        if (+(new Date(recoveryDayInput.val()).getTime()) < +(new Date().getTime())) {
+          $('.error.past-date').addClass('show')
+
+          res = false
+        }
+
+        if (new Date(recoveryDayInput.val()).getDay() === 0) {
+          $('.error.invalid-date').addClass('show')
+
+          res = false
+        }
+
+
+        if (recoveryTimeInput.val() === '') {
+          recoveryTimeInput.next('.error.empty').addClass('show')
+          res = false
+        }
+
+        const recoveryHours = +recoveryTimeInput.val().split(':')[0]
+        console.log(recoveryHours)
+        if (!((recoveryHours >= 9 && recoveryHours <= 14) || (recoveryHours >= 17 && recoveryHours <= 20))) {
+          $('.invalid-time').addClass('show')
+          res = false
+        }
+        return res
+      }
+
+      const validateFormFields = (view) => {
+
+        if (view === 'billing')
+          return validateBillingFormFields()
+
+        if (view === 'contact')
+          return validateContactFormFields()
+
+        return true
+      }
+
+
+      $("input").on('focus', (event) => {
+        $(event.target).next('.error').removeClass('show')
+
+      })
+
+
+
       const changeView = (fromView, toView, direction) => {
         const progressBarPrevious = $(`.progress-bar .${fromView}`);
         const progressBarCurrent = $(`.progress-bar .${toView}`);
         const previousStep = $(`.form-step.${fromView}`);
         const currentStep = $(`.form-step.${toView}`);
         // i.e. if at least one required form is not filled
-        if (
-          $(`.form-step.${fromView} .required`).filter(
-            (_, input) => !$(input).val()
-          ).length &&
-          direction === "next"
-        )
-          return;
+
+        if (direction === 'next') {
+          const isValid = validateFormFields(fromView)
+          console.log(isValid)
+          if (!isValid) return
+        }
         progressBarPrevious.removeClass("current");
         progressBarCurrent.addClass("current");
         if (direction === "next") {
@@ -248,13 +360,28 @@
         currentStep.show();
         currentStep.find(".required").attr("required", true);
       };
+
+
       $(window).keydown(function(event) {
         if (event.keyCode == 13) {
-          event.preventDefault();
-          return false;
+          if ($(`.progress-bar .current`).hasClass('billing')) {
+            event.preventDefault();
+            changeView('billing', 'contact', 'next')
+          } else if ($(`.progress-bar .current`).hasClass('contact')) {
+            event.preventDefault();
+            changeView('contact', 'recovery', 'next')
+          } else {
+            if (validateRecoveryFormFields()) $('form').submit()
+          }
+
         }
       });
+
       $("button.submit").hide();
+      $("button.submit").on('click', (event) => {
+        event.preventDefault()
+        if (validateRecoveryFormFields()) $('form').submit()
+      })
     </script>
   </main>
   <%-include('../scripts.ejs')%>

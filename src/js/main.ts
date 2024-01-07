@@ -67,12 +67,16 @@ $('.dropdown.lang .dropdown-toggle').html(
 
 // FORM
 $('form').on('submit', (event) => {
-  $(event.target!).find(` button[type="submit"]`).prepend(
-    "\
-    <div class='spinner-border spinner-border-sm text-light' role='status'>\
+  const target = $(event.target!).find(` button[type="submit"]`);
+
+  if (!target.has('.spinner-border').length) {
+    target.prepend(
+      "\
+      <div class='spinner-border spinner-border-sm text-light' role='status'>\
       <span class='sr-only'></span>\
-    </div>"
-  );
+      </div>"
+    );
+  }
 });
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
