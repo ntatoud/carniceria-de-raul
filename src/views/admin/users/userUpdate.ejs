@@ -24,6 +24,8 @@
 
 <body>
   <header><%- include('./layout/layout.ejs') %></header>
+  <%- include('./layout/mainbar.ejs', {title: "Users", backLink:"/admin/users"}) ;%>
+
   <main class="d-flex flex-column align-items-center">
     <form
         class="user-form form"

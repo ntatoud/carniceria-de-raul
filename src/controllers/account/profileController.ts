@@ -25,13 +25,14 @@ export const accountUpdate = (req: Request, res: Response, user: User) => {
     user.name,
     user.surname,
     user.email,
-    user.phone,
-    user.address,
-    user.city,
-    user.postalCode,
-    user.country,
+    user.phone ?? null,
+    user.address ?? null,
+    user.city ?? null,
+    user.postalCode ?? null,
+    user.country ?? null,
     req.session.user?.userId,
   ];
+  console.log(queryParams);
   req.session.user = user;
 
   connection.execute(updateQuery, queryParams, (error: QueryError | null) => {

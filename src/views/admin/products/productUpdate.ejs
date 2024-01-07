@@ -21,16 +21,18 @@
 
 <body>
   <header><%- include('./layout/layout.ejs') %></header>
+  <%- include('./layout/mainbar.ejs', {title: "Products", backLink:"/admin/products"}) ;%>
+
   <main class="d-flex flex-column align-items-center">
     <form
-        class="user-form"
+        class="d-flex justify-content-center"
         action="/admin/products/<%=product.productId%>"
         method="post"
         role="form"
         id="<%=product.productId%>"
         onsubmit="productUpdate(event)"
     >
-      <div class="form-container">
+      <div class="form justify-content-center w-100">
         <%- include('./admin/products/productForm.ejs')%>
       </div>
       <%- include('./layout/actionbar.ejs', {leftButtonTitle: "Cancel", rightButtonTitle:"Update Product"})%>

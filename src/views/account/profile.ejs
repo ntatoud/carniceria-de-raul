@@ -89,8 +89,7 @@
                   type="tel"
                   class="form-control"
                   id="phone"
-                  value="<%=account.phone%>"
-                  required
+                  value="<%=account.phone !== 0 ? account.phone : ''%>"
               />
               <div class="input-group-append">
                 <div class="input-group-text">
@@ -110,7 +109,6 @@
                   class="form-control"
                   id="address"
                   value="<%=account.address%>"
-                  required
               />
               <div class="input-group-append">
                 <div class="input-group-text">
@@ -128,7 +126,6 @@
                   class="form-control"
                   id="city"
                   value="<%=account.city%>"
-                  required
               />
               <span
                   id="cityError"
@@ -142,8 +139,7 @@
                   type="text"
                   class="form-control"
                   id="postalCode"
-                  value="<%=account.postalCode%>"
-                  required
+                  value="<%=account.postalCode !== 0 ? account.postalCode : ''%>"
               />
             </div>
 
@@ -155,7 +151,6 @@
                   class="form-control"
                   id="country"
                   value="<%=account.country%>"
-                  required
               />
               <span
                   id="countryError"

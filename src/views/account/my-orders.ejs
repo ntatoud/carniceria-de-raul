@@ -30,7 +30,26 @@
     <%- include('./account/accountNav.ejs') %>
     <data class="d-flex flex-column align-items-start">
       <div class="profile-title">My orders</div>
-      <div class="d-flex flex-column">
+      <div class="d-flex flex-column gap-2 w-100 h-100">
+        <%if(!orders.length) {%>
+        <div class="d-flex flex-column w-100 h-100 align-items-center justify-content-center gap-3">
+          You do not have any order
+          <div class="d-flex gap-1 my-2">
+
+            <a
+                href="/shop"
+                class="button button-primary"
+            >Keep shoping</a>
+
+            <a
+                href="
+              /shop"
+                class="button button-link"
+            >Validate your cart <i class="bi bi-arrow-right"></i></a>.
+          </div>
+
+        </div>
+        <%} else {%>
         <%orders.map((order) => {%>
 
         <div class="d-flex position-relative">
@@ -45,7 +64,7 @@
             <%=order.totalPrice%>
           </div>
         </div>
-        <%})%>
+        <%})}%>
       </div>
       <%- include('../../../components/toast/toast.ejs')%>
     </data>

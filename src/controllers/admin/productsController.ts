@@ -15,13 +15,13 @@ export const productCreate = (res: Response, product: Partial<Product>) => {
     product.stock,
     product.sale,
     product.salePrice ?? null,
-    product.image ?? '',
+    product.image ?? null,
     product.description,
-    product.category,
+    product.category ?? 'Ternera',
   ];
 
   const createProductQuery =
-    'INSERT INTO products (name, price, stock, sale, salePrice, image, description, category) VALUES (?, ?, ?, ?, ?, ?, ?);';
+    'INSERT INTO products (name, price, stock, sale, salePrice, image, description, category) VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
 
   connection.query(
     createProductQuery,

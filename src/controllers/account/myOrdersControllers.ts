@@ -32,7 +32,15 @@ export const getOrdersByUserId = (
     [userId],
     (error: QueryError | null, results: RowDataPacket[]) => {
       if (error) databaseError(error);
-      if (!results?.length) res.sendStatus(402);
+      if (!results?.length)
+        res.render('my-orders.ejs', {
+          accountName: req.session.user?.name ?? 'Usuario',
+          orders: [],
+          cart: req.session.cart,
+          account: req.session.user,
+          isLogged: req.session.isLogged,
+          toast: toastDispatch(req),
+        });
       else {
         const orders = results as (Order & CartProduct[])[];
         res.render('my-orders.ejs', {

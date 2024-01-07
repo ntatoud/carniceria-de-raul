@@ -127,7 +127,7 @@
     <%- include('../../../components/modal/modalDeleteConfirm.ejs', {itemType: 'order'}) %>
 
   </main>
-  <script src="/views/layout/frontend/utils.js"></script>
+  <script src="/views/layout/frontend.js"></script>
   <script src="/views/admin/orders/frontend/utils.js"></script>
 
   <%-include('../scripts.ejs')%>
@@ -144,7 +144,7 @@
         },
         success: (res) => {
           toastSuccess("Status changed correctly")
-          $('.orders-table .status').html(`
+          $(`.orders-table #${orderId} .status`).html(`
             <i class="tag-status ${+isDone ? 'tag-green bi-check' : 'tag-warning  bi bi-clock'} p-sm-1"></i>`)
         },
         error: (xhr) => {

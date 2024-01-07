@@ -1,5 +1,7 @@
-<div class="row">
-  <div class="form-group col-md-5">
+<div class="row justify-content-center">
+  <div class="
+    form-group
+    col-9">
     <label for="name">Name</label>
     <input
         name="name"
@@ -10,7 +12,7 @@
         required
     />
   </div>
-  <div class="form-group col-md-2">
+  <div class="form-group col-3">
     <label for="stock">Stock</label>
     <input
         name="stock"
@@ -23,7 +25,7 @@
     />
   </div>
 </div>
-<div class="form-group col-md-7">
+<div class="form-group justify-content-center">
   <label for="image">Image</label>
   <input
       name="image"
@@ -33,8 +35,8 @@
       value="<%=product?.image%>"
   />
 </div>
-<div class="row align-items-center">
-  <div class="form-group col-md-3">
+<div class="row justify-content-center">
+  <div class="form-group col-md-5">
     <label for="price">Default Price</label>
     <input
         name="price"
@@ -46,7 +48,7 @@
         required
     />
   </div>
-  <div class="form-group col-md-3">
+  <div class="form-group col-md-5">
     <label for="salePrice">Sale Price</label>
     <input
         name="salePrice"
@@ -55,33 +57,62 @@
         class="form-control"
         id="salePrice"
         value="<%=product?.salePrice ?? ""%>"
-        <%if(product?.sale){%>required<%} else
-    {%>
+        <%if(product?.sale){%>required<%} else{%>
         disabled
         <%}%> />
   </div>
-  <div class="from-group col-md-1">
+  <div class="form- col-md-2">
     <label for="sale">Sale</label>
     <select
-      class="form-select col-md-1"
+      class="form-select"
       name="sale"
       id="sale"
       onclick="setIsRequired(event)"
       required
     >
-      <option value="1" <%if(!!product?.sale){%>selected<%}%>>SI</option>
-      <option value="0" <%if(!product?.sale){%>selected<%}%>>NO</option>
+    <%if(product?.sale){%>
+        <option
+        value="1"
+        selected
+    >
+    <div class="bg-warning">SI</div>
+    </option>
+    <option value="0">
+      NO
+    </option>
+    <%} else {%>
+    <option value="1">SI</option>
+    <option
+        value="0"
+        selected
+    >NO</option>
+    <%}%>
+       
     </select>
   </div>
 </div>
-
-<div class="form-group col-md-7">
+<div class="form-group">
+  <label for="category">Category</label>
+  <select
+      class="form-select col-md-1"
+      name="category"
+      id="category"
+      onclick="setIsRequired(event)"
+      required
+  >
+    <option value="Ternera" selected>Tenera</option>
+    <option value="Pollo">Pollo</option>
+    <option value="Cerdo">Cerdo</option>
+    <option value="Elaborado">Elaborado</option>
+  </select>
+</div>
+<div class="form-group">
   <label for="description">Description</label>
-  <input
-    name="description"
-    type="text"
-    id="description"
-    class="form-control"
-    value="<%=product?.description%>"
-    />
+  <textarea
+      name="description"
+      type="textarea"
+      id="description"
+      class="form-control textarea"
+      value="<%=product?.description%>"
+    ></textarea>
   </div>

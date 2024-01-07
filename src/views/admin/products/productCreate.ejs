@@ -22,15 +22,17 @@
 
 <body>
   <header><%- include('./layout/layout.ejs') %></header>
+  <%- include('./layout/mainbar.ejs', {title: "Products", backLink: "/admin/products"}) ;%>
+
   <main class="d-flex flex-column align-items-center">
     <form
-        class="user-form"
+        class="d-flex justify-content-center"
         action="/admin/products/create"
         method="post"
         role="form"
         onsubmit="productCreate(event)"
     >
-      <div class="form-container">
+      <div class="form justify-content-center w-100">
         <%- include('./admin/products/productForm.ejs')%>
       </div>
       <%- include('./layout/actionbar.ejs', {leftButtonTitle: "Cancel" , rightButtonTitle:"Create Product"})%>
@@ -38,7 +40,20 @@
   </main>
   <script src="/views/admin/products/frontend/utils.js"></script>
   <%- include('../scripts.ejs')%>
-
+  <script>
+    const setIsRequired = (event) => {
+      const isSale = +$(event.currentTarget).val();
+      if (isSale === 1) {
+        $("input[name='salePrice']")
+          .removeAttr("disabled")
+          .attr("required", true);
+      } else if (+isSale === 0) {
+        $("input[name='salePrice']")
+          .attr("disabled", "disabled")
+          .attr("required", false);
+      }
+    };
+  </script>
 
 </body>
 

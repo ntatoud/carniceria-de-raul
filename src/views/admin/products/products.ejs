@@ -57,8 +57,7 @@
               <%}%>
               data-toggle="tooltip"
               title="<%= product.name[0] + product.name.slice(1).toLowerCase()%>"
-              id="
-              <%=product.productId%>"
+              id="<%=product.productId%>"
           >
             <td
                 class="table-cell name"
@@ -151,7 +150,7 @@
   <%- include('../../../components/modal/modalDeleteConfirm.ejs', {itemType: 'product'}) %>
 
   <script src="/views/admin/products/frontend/utils.js"></script>
-  <script src="/views/layout/frontend/utils.js"></script>
+  <script src="/views/layout/frontend.js"></script>
   <%-include('../scripts.ejs')%>
 
 </body>

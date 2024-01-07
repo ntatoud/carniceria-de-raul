@@ -200,11 +200,13 @@ const cookieCartUpdate = (
           res.status(400).send('Product not found');
         } else {
           const product = results[0] as Product;
-          const cartProduct = product.sale
+          console.log((product.salePrice! * quantityToAdd * weight) / 1000);
+
+          const cartProduct = !product.sale
             ? ({
                 totalQuantity: quantityToAdd,
                 totalPrice:
-                  product.unit == '€/kg'
+                  product.unit === '€/kg'
                     ? (product.price * quantityToAdd * weight) / 1000
                     : product.price * quantityToAdd,
                 weight: weight,
@@ -213,11 +215,11 @@ const cookieCartUpdate = (
             : ({
                 totalQuantity: quantityToAdd,
                 totalPrice:
-                  product.unit == '€/kg'
+                  product.unit === '€/kg'
                     ? (product.price * quantityToAdd * weight) / 1000
                     : product.price * quantityToAdd,
                 totalSalePrice:
-                  product.unit == '€/kg'
+                  product.unit === '€/kg'
                     ? (product.salePrice! * quantityToAdd * weight) / 1000
                     : product.salePrice! * quantityToAdd,
                 weight: weight,
@@ -225,9 +227,13 @@ const cookieCartUpdate = (
               } as CartProduct);
 
           (req.cookies.cart as Cart)?.push(cartProduct);
+
+          console.log(cartProduct);
           res.cookie('cart', req.cookies.cart as Cart);
           res.status(200).send({
             newCartSize: req.cookies.cart?.length ?? '0',
+            newCartTotalPrice: cartTotalPrice(req.cookies.cart),
+            newCartTotalSalePrice: cartTotalPrice(req.cookies.cart, true),
           });
         }
       }

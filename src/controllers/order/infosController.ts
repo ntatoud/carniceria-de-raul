@@ -26,14 +26,14 @@ export const addOrderToSession = (
     session.user.postalCode = postalCode;
     session.user.country = country;
     session.user.address = address;
-    session.user.phone = phone;
+    session.user.phone = phone ?? session.user.phone;
   }
 
   session.order = {
     userId,
     recoveryDate,
     comment: comment ?? 'No comments',
-    email,
+    email: email ?? session.user?.email,
     totalPrice: cartTotalPrice(session.cart, true),
     isDone: false,
   };
