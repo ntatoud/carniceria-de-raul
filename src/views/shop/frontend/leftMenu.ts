@@ -32,3 +32,7 @@ $('.left-menu-categories .left-menu-items.active').removeClass('active');
 $(
   `.left-menu-categories .left-menu-item[href='${window.location.pathname}']`
 ).addClass('active');
+
+if (screen.width < 768) {
+  $('.left-menu').addClass('collapse');
+}
