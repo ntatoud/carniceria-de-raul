@@ -25,9 +25,9 @@
     <% if(product.stock === 0) { %>
     <div class="product-empty-tag">Agotado</div>
     <% }%>
-    <a href="/shop/<%=product.category%>/<%=product.productId%>">
+    <a href="/shop/<%=product.category.toLowerCase()%>/<%=product.productId%>">
       <img
-          src="/assets/images/products/<%=product.category%>.webp"
+          src="/assets/images/products/<%=product.category.toLowerCase()%>.webp"
           role="img"
           alt="Image showing the product <%=product.name[0] + product.name.toLowerCase().slice(1)%>"
           aria-label="Image showing the product <%=product.name[0] + product.name.toLowerCase().slice(1)%>"

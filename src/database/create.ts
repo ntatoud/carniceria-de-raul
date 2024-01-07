@@ -41,7 +41,7 @@ export const databaseCreate = (): void => {
         country VARCHAR(255),
         authorities ENUM('ROLE_USER', 'ROLE_ADMIN') NOT NULL,
         creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        phone VARCHAR(20)
+        phone VARCHAR(20),
         token VARCHAR(255) DEFAULT NULL
         );
       
@@ -49,6 +49,7 @@ export const databaseCreate = (): void => {
       CREATE TABLE IF NOT EXISTS products (
         productId INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(250) NOT NULL,
+        category ENUM('Ternera', 'Pollo', 'Cerdo', 'Elaborado'),
         price DECIMAL(10, 2) NOT NULL,
         unit ENUM("€/kg", "€/unidad"),
         stock INT NOT NULL,
@@ -58,19 +59,6 @@ export const databaseCreate = (): void => {
         image VARCHAR(255) NOT NULL,
         description VARCHAR(2048) NOT NULL
         );
-      
-      CREATE TABLE IF NOT EXISTS categories (
-          categoryId INT AUTO_INCREMENT PRIMARY KEY,
-          name VARCHAR(255) NOT NULL
-      );
-  
-      CREATE TABLE IF NOT EXISTS product_categories (
-        productId INT,
-        categoryId INT,
-        PRIMARY KEY (productId, categoryId),
-        FOREIGN KEY (productId) REFERENCES products(productId),
-        FOREIGN KEY (categoryId) REFERENCES categories(categoryId)
-      );
 
       CREATE TABLE IF NOT EXISTS users_cart_products (
         userId INT NOT NULL,

@@ -1,5 +1,19 @@
-<menu class="account-menu-nav d-flex flex-column">
+<menu class="account-menu-nav">
   <p class="dropdown-header">Account</p>
   <a href="/account/profile"><i class="bi bi-person"></i> Mi cuenta</a>
   <a href="/account/password"><i class="bi bi-lock"></i> Cambiar contraseña</a>
+</menu>
+
+
+<menu class="account-menu-nav mobile dropdown">
+  <button
+      class="button dropdown-toggle "
+      data-bs-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+  ></button>
+  <div class="dropdown-menu dropdown-menu-end">
+    <a href="/account/profile"><i class="bi bi-person"></i> Mi cuenta</a>
+    <a href="/account/password"><i class="bi bi-lock"></i> Cambiar contraseña</a>
+  </div>
 </menu>

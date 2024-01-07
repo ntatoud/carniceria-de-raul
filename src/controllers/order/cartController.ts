@@ -9,11 +9,9 @@ import { QueryError, RowDataPacket } from 'mysql2';
 import { Connection } from 'mysql2/typings/mysql/lib/Connection';
 
 export const getCartQuery =
-  'SELECT p.*, ucp.totalQuantity, ucp.weight, c.name as category\
+  'SELECT p.*, ucp.totalQuantity, ucp.weight\
     FROM users_cart_products ucp\
     JOIN products p ON ucp.productId = p.productId\
-    JOIN product_categories pc ON ucp.productId = pc.productId\
-    JOIN categories c ON pc.categoryId = c.categoryId\
     WHERE ucp.userId = ?;';
 
 export const setCartProductsTotalPrices = (cart: Cart) => {
@@ -193,10 +191,8 @@ const cookieCartUpdate = (
   if (!currentProduct()) {
     const connection = databaseConnect();
     connection.execute(
-      'SELECT p.*, c.name as category from products p\
-      JOIN product_categories pc ON pc.productId = p.productId\
-      JOIN categories c ON c.categoryId = pc.categoryId\
-      WHERE p.productId = ?;',
+      'SELECT * from products\
+      WHERE productId = ?;',
       [productId],
       (error: QueryError | null, results: RowDataPacket[]) => {
         if (error) {

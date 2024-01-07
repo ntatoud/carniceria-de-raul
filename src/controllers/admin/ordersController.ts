@@ -18,6 +18,7 @@ export const getOrderFromId = (req: Request, res: Response, id: string) => {
     o.totalPrice, \
     o.comment, \
     pc.productId, \
+    P.category
     p.name AS productName, \
     p.price AS productPrice, \
     p.unit AS productUnit, \
@@ -33,8 +34,6 @@ export const getOrderFromId = (req: Request, res: Response, id: string) => {
     orders o \
     JOIN products_orders po ON o.orderId = po.orderId \
     JOIN products p ON po.productId = p.productId \
-    JOIN product_categories pc ON p.productId = pc.productId \
-    JOIN categories c ON pc.categoryId = c.categoryId \
     WHERE \
     o.orderId = ${id};`;
 

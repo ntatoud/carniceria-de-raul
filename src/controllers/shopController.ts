@@ -4,61 +4,51 @@ import {
   databaseDisconnect,
   databaseError,
 } from '@/database/index.js';
-import { Category } from '@/types/types.js';
 import { Request, Response } from 'express';
 import { toastDispatch, toastEmpty } from '@/components/toast/index.js';
 
+export const CATEGORIES = ['Ternera', 'Pollo', 'Cerdo', 'Elaborado'];
 export const getAllProductsWithCategory = (
   req: Request,
   res: Response
   //filter?: string
 ) => {
   const connection = databaseConnect();
-  const getProductsQuery =
-    'SELECT p.*, c.name AS category FROM products p JOIN product_categories pc ON p.productId = pc.productId JOIN categories c ON pc.categoryId = c.categoryId;';
-
-  const getCategoriesQuery = `SELECT * FROM categories;`;
+  const getProductsQuery = 'SELECT * FROM products;';
 
   connection.query(
-    getCategoriesQuery,
-    (error: QueryError, categoryResults: Category[]) => {
-      if (error) res.status(404).render('404.ejs');
+    getProductsQuery,
+    (error: QueryError, productResults: Product[]) => {
+      if (error)
+        res.status(502).render('shop.ejs', {
+          error: { state: true, message: error.message },
+          categories: CATEGORIES,
+          products: undefined,
+          currentCategory: '',
+          isLogged: req.session.isLogged,
+          account: req.session.user,
+          toast: toastEmpty(),
+          cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+        });
+      const products: Product[] = productResults.map((product: Product) => {
+        const { category, ...rest } = product;
+        return {
+          category: category.toLowerCase(),
+          ...rest,
+        };
+      });
+      res.status(200).render('shop.ejs', {
+        error: { state: false, message: '' },
+        categories: CATEGORIES,
+        products: products,
+        currentCategory: '',
+        isLogged: req.session.isLogged,
+        account: req.session.user,
+        toast: toastDispatch(req),
+        cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+      });
 
-      connection.query(
-        getProductsQuery,
-        (error: QueryError, productResults: Product[]) => {
-          if (error)
-            res.status(502).render('shop.ejs', {
-              error: { state: true, message: error.message },
-              categories: categoryResults,
-              products: undefined,
-              currentCategory: '',
-              isLogged: req.session.isLogged,
-              account: req.session.user,
-              toast: toastEmpty(),
-              cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
-            });
-          const products: Product[] = productResults.map((product: Product) => {
-            const { category, ...rest } = product;
-            return {
-              category: category.toLowerCase(),
-              ...rest,
-            };
-          });
-          res.status(200).render('shop.ejs', {
-            error: { state: false, message: '' },
-            categories: categoryResults,
-            products: products,
-            currentCategory: '',
-            isLogged: req.session.isLogged,
-            account: req.session.user,
-            toast: toastDispatch(req),
-            cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
-          });
-
-          databaseDisconnect(connection);
-        }
-      );
+      databaseDisconnect(connection);
     }
   );
 };
@@ -82,16 +72,8 @@ export const renderCategoryPage = ({
 }: CategoryPageProps) => {
   const connection = databaseConnect();
 
-  const getCategoriesQuery = `SELECT * FROM categories;`;
-  connection.query(
-    getCategoriesQuery,
-    (error: QueryError, categoryResults: Category[]) => {
-      if (error) res.status(404).render('404.ejs');
-
-      const getProductsFromCategoryQuery = `SELECT products.* FROM products
-        JOIN product_categories ON products.productId = product_categories.productId
-        JOIN categories ON product_categories.categoryId = categories.categoryId
-        WHERE categories.name = "${currentCategory}"
+  const getProductsFromCategoryQuery = `SELECT products.* FROM products\
+        WHERE category = "${currentCategory}"
         ${isOnlyOffers ? 'AND products.sale = 1' : ''}
         ${
           isSortedByPrice && !isSortedByName
@@ -102,42 +84,40 @@ export const renderCategoryPage = ({
           isSortedByName && !isSortedByPrice ? 'ORDER BY products.name ASC' : ''
         };`;
 
-      connection.query(
-        getProductsFromCategoryQuery,
-        (error: QueryError, productResults: Omit<Product, 'category'>[]) => {
-          if (error)
-            res.render('shop.ejs', {
-              error: { state: false, message: error.message },
-              categories: categoryResults,
-              products: undefined,
-              currentCategory: currentCategory,
-              isLogged: req.session.isLogged,
-              account: req.session.user,
-              toast: toastDispatch(req),
-              cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
-            });
+  connection.query(
+    getProductsFromCategoryQuery,
+    (error: QueryError, productResults: Omit<Product, 'category'>[]) => {
+      if (error)
+        res.render('shop.ejs', {
+          error: { state: false, message: error.message },
+          categories: CATEGORIES,
+          products: undefined,
+          currentCategory: currentCategory,
+          isLogged: req.session.isLogged,
+          account: req.session.user,
+          toast: toastDispatch(req),
+          cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+        });
 
-          const products: Product[] = productResults.map((product) => {
-            return {
-              category: currentCategory.toLowerCase(),
-              ...product,
-            };
-          });
+      const products: Product[] = productResults.map((product) => {
+        return {
+          category: currentCategory.toLowerCase(),
+          ...product,
+        };
+      });
 
-          res.render('shop.ejs', {
-            error: { state: false, message: '' },
-            categories: categoryResults,
-            products: products,
-            currentCategory: currentCategory,
-            isLogged: req.session.isLogged,
-            account: req.session.user,
-            toast: toastDispatch(req),
-            cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
-          });
+      res.render('shop.ejs', {
+        error: { state: false, message: '' },
+        categories: CATEGORIES,
+        products: products,
+        currentCategory: currentCategory,
+        isLogged: req.session.isLogged,
+        account: req.session.user,
+        toast: toastDispatch(req),
+        cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+      });
 
-          databaseDisconnect(connection);
-        }
-      );
+      databaseDisconnect(connection);
     }
   );
 };

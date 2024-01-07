@@ -61,7 +61,7 @@
               role="form"
               onsubmit="cartProductAdd(event)"
           >
-            <%- include('./_partials/productForm.ejs')%>
+            <%- include('./productForm.ejs')%>
           </form>
         </div>
       </div>
@@ -91,8 +91,8 @@
       }
     });
   </script>
-  <script src="/features/order/cart/frontend/utils.js"></script>
-  <script src="/features/shop/frontend/productCard.js"></script>
+  <script src="/views/order/cart/frontend/utils.js"></script>
+  <script src="/views/shop/frontend/productCard.js"></script>
   <%-include('../scripts.ejs')%>
 
 </body>

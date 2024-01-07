@@ -5,16 +5,34 @@
   <!-- Title -->
   <title>Admin - Raul's butcher shop</title>
   <%- include('../../imports.ejs') %>
-    <link rel="stylesheet" type="text/css" href="/css/admin.css" />
-    <link rel="stylesheet" type="text/css" href="/css/layout/actionbar.css" />
-    <link rel="stylesheet" type="text/css" href="/css/userForm.css" />
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/admin.css"
+  />
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/layout/actionbar.css"
+  />
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/userForm.css"
+  />
 </head>
 
 <body>
   <header><%- include('./layout/layout.ejs') %></header>
   <main class="d-flex flex-column align-items-center">
-    <form class="user-form form" action="/admin/users/<%=user.userId%>" method="post" role="form" id="<%=user.userId%>"
-      onsubmit="userUpdate(event)">
+    <form
+        class="user-form form"
+        action="/admin/users/<%=user.userId%>"
+        method="post"
+        role="form"
+        id="<%=user.userId%>"
+        onsubmit="userUpdate(event)"
+    >
       <div class="form-container">
         <%- include('./admin/users/userForm.ejs')%>
       </div>
@@ -22,7 +40,7 @@
     </form>
   </main>
   <div class="toast-container"></div>
-  <script src="/features/admin/users/frontend/utils.js"></script>
+  <script src="/views/admin/users/frontend/utils.js"></script>
   <%- include('../scripts.ejs')%>
 
 </body>

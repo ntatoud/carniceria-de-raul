@@ -17,10 +17,11 @@ export const productCreate = (res: Response, product: Partial<Product>) => {
     product.salePrice ?? null,
     product.image ?? '',
     product.description,
+    product.category,
   ];
 
   const createProductQuery =
-    'INSERT INTO products (name, price, stock, sale, salePrice, image, description) VALUES (?, ?, ?, ?, ?, ?, ?);';
+    'INSERT INTO products (name, price, stock, sale, salePrice, image, description, category) VALUES (?, ?, ?, ?, ?, ?, ?);';
 
   connection.query(
     createProductQuery,
@@ -29,49 +30,9 @@ export const productCreate = (res: Response, product: Partial<Product>) => {
       if (error) {
         databaseError(error);
       } else {
-        const getProductId = `SELECT productId FROM products WHERE name= ?;`;
-        connection.execute(
-          getProductId,
-          [product.name],
-          (error: QueryError | null, resultProduct: RowDataPacket[]) => {
-            if (error) {
-              databaseError(error);
-              res.status(404).send('Could not find product');
-            } else if (resultProduct.length) {
-              const productId = resultProduct[0]?.productId;
-              const getCategoryId = `SELECT categoryId FROM categories WHERE name= ?`;
-              connection.execute(
-                getCategoryId,
-                [product.category ?? 'Pollo'],
-                (error: QueryError | null, resultCategory: RowDataPacket[]) => {
-                  if (error) {
-                    databaseError(error);
-                    res.status(404).send('Could not find category');
-                    res.sendStatus(404);
-                  } else if (resultCategory.length) {
-                    const categoryId = resultCategory[0]?.categoryId;
-                    const productCategoriesInsert = `INSERT INTO product_categories (productId, categoryId) VALUES (?, ?);`;
-                    connection.execute(
-                      productCategoriesInsert,
-                      [+productId, +categoryId],
-                      (error: QueryError | null) => {
-                        if (error) {
-                          databaseError(error);
-                          res.sendStatus(500);
-                        } else {
-                          res.sendStatus(200);
-                        }
-
-                        databaseDisconnect(connection);
-                      }
-                    );
-                  }
-                }
-              );
-            }
-          }
-        );
+        res.sendStatus(200);
       }
+      databaseDisconnect(connection);
     }
   );
 };
@@ -111,9 +72,6 @@ export const getProductToUpdate = (
   productId: string
 ) => {
   const connection = databaseConnect();
-  // To use once merged in main !
-  // const getProductQuery =
-  //   "SELECT p.product_id, p.name p.price, p.stock, p.sale, p.salerice, p.image, p.description, c.name AS category FROM products p JOIN product_category pc ON p.product_id = pc.product_id JOIN category c ON pc.category_id = c.id;";
   const getProductQuery = 'SELECT * FROM products WHERE productId = ?;';
 
   connection.query(
@@ -154,10 +112,7 @@ export const getProductList = (
   // category?: string
 ) => {
   const connection = databaseConnect();
-  const getProductsQuery =
-    'SELECT p.*, c.name as category FROM products p \
-  JOIN product_categories pc ON p.productId = pc.productId\
-  JOIN categories c ON c.categoryId = pc.categoryId;';
+  const getProductsQuery = 'SELECT * FROM products';
 
   connection.query(
     getProductsQuery,
