@@ -14,6 +14,19 @@ const canSubmitChangePassword = () => {
   });
 };
 
+const canSubmitResetPassword = () => {
+  $('input').on('keyup', () => {
+    $("button[type='submit']").prop(
+      'disabled',
+      !(
+        !$('.error').hasClass('show') &&
+        !!$('input#newPassword').val() &&
+        !!$('input#newPasswordCheck').val() &&
+        areNewPasswordsEqual()
+      )
+    );
+  });
+};
 const canSignUp = () => {
   $("button[type='submit']").prop(
     'disabled',
