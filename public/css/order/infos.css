@@ -1,5 +1,6 @@
 .form-step .form {
   width: 50rem;
+  max-width: 95%;
 }
 
 .form-nav {
@@ -39,6 +40,7 @@
   display: flex;
   justify-content: start;
   width: 50rem;
+  max-width: 95%;
   padding: 0;
   margin-bottom: 1rem;
 }
@@ -60,4 +62,14 @@
 .progress-bar .completed {
   color: green;
   border-color: green;
+}
+
+@media screen and (max-width: 768px) {
+  .form-step {
+    width: 95vw;
+  }
+
+  .progress-bar span {
+    padding: 0.5rem 0rem;
+  }
 }

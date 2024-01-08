@@ -50,7 +50,6 @@ export const getOrderFromId = (
       if (error) {
         databaseError(error);
       } else {
-        console.log(results);
         res.render('orderDetails.ejs', {
           orderProducts: results as (Partial<Product> & Partial<Order>)[],
           isLogged: req.session.isLogged,
