@@ -65,9 +65,7 @@ export const createOrderFromSession = (
                     databaseError(error);
                     res.sendStatus(400);
                   } else {
-                    console.log(result);
                     const orderId = +String(result[0]?.orderId);
-                    console.log(orderId);
                     const insertOrderProducts = `INSERT INTO products_orders (orderId, productId, quantity, weight) VALUES ${' (?, ?, ?, ?),'
                       .repeat(cart!.length)
                       .slice(0, -1)};`;

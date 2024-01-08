@@ -109,7 +109,7 @@ export const databaseFill = (): void => {
         ('FILETES DE PAVO', 11.99, 'Pollo','€/kg', 100, false, NULL, false, '', 'Product Description'),
         ('HIGADITOS DE POLLO', 4.99, 'Pollo','€/kg', 100, false, NULL, false, '', 'Product Description'),
         ('CONEJO', 9.99, 'Pollo','€/kg', 100, false, NULL, false, '', 'Product Description'),
-        ('CODORNICES ', 2, 'Pollo','€/unidad', 100, true, 1.50, false, '', 'Product Description'),
+        ('CODORNICES ', 2, 'Pollo','€/unidad', 100, false, NULL, false, '', 'Product Description'),
         ('HUEVOS CAMPEROS', 1.90, 'Pollo','€/unidad', 100, false, NULL, false, '', 'Product Description'),
         ('HUEVOS MORENOS', 1.30, 'Pollo','€/unidad', 100, false, NULL, false, '', 'Product Description'),
         ('HUEVOS BLANCOS', 1.30, 'Pollo','€/unidad', 100, false, NULL, false, '', 'Product Description');
@@ -138,7 +138,7 @@ export const databaseFill = (): void => {
         ('CHORIZO DE PINCHO DULCE ', 9.99, 'Elaborado','€/kg', 0, false, NULL, false, '', 'Product Description'),
         ('CHORIZO DE PINCHO PICANTE', 9.99, 'Elaborado','€/kg', 100, false, NULL, false, '', 'Product Description'),
         ('CHORIZO CASERO', 9.99, 'Elaborado','€/kg', 100, false, NULL, false, '', 'Product Description'),
-        ('CHISTORRA PAMPLONICA ', 2.50, 'Elaborado','€/unidad', 100, true, 2.00, false, '', 'Product Description'),
+        ('CHISTORRA PAMPLONICA ', 2.50, 'Elaborado','€/unidad', 100, false, NULL, false, '', 'Product Description'),
         ('CODILLO ASADO TELLO', 6.99, 'Elaborado','€/kg', 100, false, NULL, false, '', 'Product Description'),
         ('CODILLO SALMUERIZADO ', 7.99, 'Elaborado','€/kg', 0, false, NULL, false, '', 'Product Description'),
         ('CINTA DE LOMO ADOBADA', 9.99, 'Elaborado','€/kg', 100, true, 7.99, false, '', 'Product Description'),

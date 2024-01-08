@@ -43,25 +43,41 @@
 
             <a
                 href="
-              /shop"
+                /shop"
                 class="button button-link"
             >Validate your cart <i class="bi bi-arrow-right"></i></a>.
           </div>
 
         </div>
         <%} else {%>
-        <%orders.map((order) => {%>
+        <b>
+          <div class="d-flex w-100 h-100 justify-content-between px-4">
 
-        <div class="d-flex position-relative">
+            <p>ID</p>
+            <p>Recovery date</p>
+            <p>Price</p>
+          </div>
+        </b>
+
+        <%orders.map((order) => {%>
+        <div class="orders-container d-flex position-relative">
           <a
               href="/account/my-orders/<%=order.orderId%>"
               class="position-absolute w-100 h-100"
           ></a>
-          <div class="">
-            <%=order.recoveryDate%>
+          <div class="id">
+            <%=order.orderId%>
           </div>
           <div>
-            <%=order.totalPrice%>
+            <%= 
+        String(order.recoveryDate.getDate()).padStart(2, '0')
+        +'/'
+        +String(order.recoveryDate.getMonth()+1).padStart(2, '0')
+        +'/'
+        + order.recoveryDate.getFullYear()%>
+          </div>
+          <div>
+            <%=order.totalPrice%>€
           </div>
         </div>
         <%})}%>

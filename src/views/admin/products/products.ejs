@@ -64,6 +64,21 @@
                 data-toggle="tooltip"
                 title="<%= product.name[0] + product.name.slice(1).toLowerCase()%> "
             >
+              <%if(product.best){%><i
+                  class="
+                tag-status
+                tag-blue
+                bi
+                bi-award
+                p-sm-1"
+                  data-toggle="tooltip"
+                  title="This product is one of the favorites"
+              ></i><%}%>
+            <%if(product.sale){%><i
+                  class="tag-status tag-blue bi bi-percent p-sm-1"
+                  data-toggle="tooltip"
+                  title="This product is on sale"
+              ></i><%}%>
               <b
                   class="<%if(product.stock === 0){%>product-empty<%} else if(product.stock < 25){%>
               product-low
@@ -73,29 +88,13 @@
                 <%= product.name[0] +
                   product.name.slice(1).toLowerCase()%>
               </b>
-              <%if(product.best){%><i
-                class="
-                  tag-status
-                  tag-blue
-                  bi
-                  bi-award
-                  p-sm-1"
-                  data-toggle="tooltip"
-                  title="This product is one of the favorites"
-              ></i><%}%>
-              <%if(product.sale){%><i
-                    class="tag-status tag-blue bi bi-percent p-sm-1"
-                    data-toggle="tooltip"
-                    title="This product is on sale"
-                ></i><%}%>
             </td>
             <td class="
                   table-cell
-                  id"
-              >
-                <div class="tag tag-center">
-                  <%= product.productId%>
-                </div>
+                  id">
+              <div class="tag tag-center">
+                <%= product.productId%>
+              </div>
             </td>
             <td class="table-cell price">
               <%if(product.sale) {%>

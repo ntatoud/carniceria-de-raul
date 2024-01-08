@@ -40,6 +40,8 @@ $.ajax({
   success: (res) => {
     if (!res.areCookiesAllowed && res.areCookiesAllowed === undefined) {
       cookieBannerShow();
+    }
+    if (!res.areCookiesAllowed) {
       $('.product-form button[type="submit"]').addClass('cookies-redirect');
     }
   },

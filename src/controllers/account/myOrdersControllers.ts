@@ -12,19 +12,12 @@ export const getOrdersByUserId = (
   const getOrderAndProduct = `SELECT \
     o.orderId, \
     o.userId, \
-    po.quantity, \
-    po.weight,
     o.orderDate, \
     o.recoveryDate, \
     o.totalPrice, \
-    o.comment, \
-    p.productId,
-    p.name as productName,
-    p.price as productPrice
+    o.comment \
     FROM \
     orders o \
-    JOIN products_orders po ON o.orderId = po.orderId \
-    JOIN products p ON po.productId = p.productId \
     WHERE \
     o.userId = ?;`;
   connection.execute(

@@ -34,9 +34,18 @@ button[type='submit'] {
 @media all and (max-width: 768px) {
   main {
     flex-direction: column;
+    align-items: center;
+    padding-left: 2%;
+    padding-right: 2%;
   }
 
-  .account-form {
+  data {
+    width: 95vw;
+  }
+
+  .account-menu-nav {
+    margin: 0;
+    margin-top: 4rem;
     width: 100%;
   }
 }
