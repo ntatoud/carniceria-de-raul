@@ -12,6 +12,7 @@ export const productCreate = (res: Response, product: Partial<Product>) => {
   const queryParams = [
     product.name,
     product.price,
+    product.unit,
     product.stock,
     product.sale,
     product.salePrice ?? null,
@@ -21,7 +22,7 @@ export const productCreate = (res: Response, product: Partial<Product>) => {
   ];
 
   const createProductQuery =
-    'INSERT INTO products (name, price, stock, sale, salePrice, image, description, category) VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
+    'INSERT INTO products (name, price, unit, stock, sale, salePrice, image, description, category) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);';
 
   connection.query(
     createProductQuery,

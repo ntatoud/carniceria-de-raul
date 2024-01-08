@@ -38,15 +38,48 @@
 <div class="row justify-content-center">
   <div class="form-group col-md-5">
     <label for="price">Default Price</label>
-    <input
-        name="price"
-        type="number"
-        step="0.01"
-        class="form-control"
-        id="price"
-        value="<%=product?.price%>"
-        required
-    />
+    <div class="input-group">
+      <input
+          name="price"
+          type="number"
+          step="0.01"
+          class="form-control"
+          id="price"
+          value="<%=product?.price%>"
+          required
+      />
+      <div class="input-group-append">
+        <select
+            class="form-select"
+            name="unit"
+            id="unit"
+            required
+        >
+          <%if(product?.unit === "€/unidad"){%>
+          <option
+              value="€/unidad"
+              selected
+          >
+            <div class="bg-warning">€/unidad</div>
+          </option>
+          <option value="€/kg">
+            €/unidad
+          </option>
+          <%} else {%>
+          <option
+              value="€/kg"
+              sselect
+          >
+            <div class="bg-warning">€/kg</div>
+          </option>
+          <option value="€/unidad">
+            €/unidad
+          </option>
+          <%}%>
+       
+    </select>
+      </div>
+    </div>
   </div>
   <div class="form-group col-md-5">
     <label for="salePrice">Sale Price</label>
@@ -57,9 +90,9 @@
         class="form-control"
         id="salePrice"
         value="<%=product?.salePrice ?? ""%>"
-        <%if(product?.sale){%>required<%} else{%>
-        disabled
-        <%}%> />
+          <%if(product?.sale){%>required<%} else{%>
+          disabled
+          <%}%> />
   </div>
   <div class="form- col-md-2">
     <label for="sale">Sale</label>
@@ -71,22 +104,22 @@
       required
     >
     <%if(product?.sale){%>
-        <option
-        value="1"
-        selected
-    >
-    <div class="bg-warning">SI</div>
-    </option>
-    <option value="0">
-      NO
-    </option>
-    <%} else {%>
-    <option value="1">SI</option>
-    <option
-        value="0"
-        selected
-    >NO</option>
-    <%}%>
+          <option
+              value="1"
+              selected
+          >
+            <div class="bg-warning">SI</div>
+          </option>
+          <option value="0">
+            NO
+          </option>
+          <%} else {%>
+          <option value="1">SI</option>
+          <option
+              value="0"
+              selected
+          >NO</option>
+          <%}%>
        
     </select>
   </div>
@@ -114,5 +147,5 @@
       id="description"
       class="form-control textarea"
       value="<%=product?.description%>"
-    ></textarea>
-  </div>
+          ></textarea>
+      </div>
