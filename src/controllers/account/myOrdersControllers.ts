@@ -1,5 +1,10 @@
 import { toastDispatch } from '@/components/toast/index.js';
-import { databaseConnect, databaseError } from '@/database/index.js';
+import {
+  databaseConnect,
+  databaseDisconnect,
+  databaseError,
+} from '@/database/index.js';
+import { generateBillPDF } from '@/lib/pdfkit/config.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 
@@ -45,6 +50,52 @@ export const getOrdersByUserId = (
           toast: toastDispatch(req),
         });
       }
+    }
+  );
+};
+
+export const generateBillPDFFromOrderId = (
+  req: Request,
+  res: Response,
+  id: string
+) => {
+  const getOrderAndProduct = `SELECT \
+    o.orderId, \
+    o.userId, \
+    o.email,
+    po.quantity as totalQuantity, \
+    po.weight,
+    o.orderDate, \
+    o.recoveryDate, \
+    o.totalPrice, \
+    o.comment, \
+    p.productId,
+    p.name,
+    p.price,
+    p.sale,
+    p.salePrice,
+    p.unit
+    FROM \
+    orders o \
+    JOIN products_orders po ON o.orderId = po.orderId \
+    JOIN products p ON po.productId = p.productId \
+    JOIN users u ON o.userId = u.userId
+    WHERE \
+    o.orderId = ${id};`;
+
+  const connection = databaseConnect();
+
+  connection.query(
+    getOrderAndProduct,
+    [id],
+    (error: QueryError | null, results: RowDataPacket[]) => {
+      if (error) {
+        databaseError(error);
+      } else {
+        generateBillPDF(req, res, results as (Order & CartProduct)[]);
+      }
+
+      databaseDisconnect(connection);
     }
   );
 };

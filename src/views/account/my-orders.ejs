@@ -52,10 +52,10 @@
         <%} else {%>
         <b>
           <div class="d-flex w-100 h-100 justify-content-between px-4">
-
             <p>ID</p>
             <p>Recovery date</p>
             <p>Price</p>
+            <p>Factura</p>
           </div>
         </b>
 
@@ -79,6 +79,15 @@
           <div>
             <%=order.totalPrice%>€
           </div>
+          <a
+              class="button button-secondary"
+              type="button"
+              role="button"
+              href="/account/my-orders/pdf/<%=order.orderId%>"
+              aria-label="Download pdf bill"
+              data-bs-toggle="tooltip"
+              title="Download pdf bill"
+          ><i class="bi bi-download"></i></a>
         </div>
         <%})}%>
       </div>
