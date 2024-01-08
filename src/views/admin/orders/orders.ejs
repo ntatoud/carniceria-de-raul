@@ -31,11 +31,11 @@
         <thead class="table-head">
           <th class="table-cell status"></th>
 
-          <th class="table-cell name">Client</th>
-          <th class="table-cell id">ID</th>
-          <th class="table-cell date">Order Date</th>
-          <th class="table-cell  recovery">Recovery</th>
-          <th class="table-cell price">Price</th>
+          <th class="table-cell name"><%= t('admin.client') %></th>
+          <th class="table-cell id"><%= t('admin.id') %></th>
+          <th class="table-cell date"><%= t('admin.orderDate') %></th>
+          <th class="table-cell  recovery"><%= t('admin.recovery') %></th>
+          <th class="table-cell price"><%= t('admin.price') %></th>
           <th class="table-cell actions"></th>
         </thead>
 
@@ -103,7 +103,7 @@
                     onclick="changeStatus(event)"
                     role="button"
                 >
-                  <i class="bi bi-arrow-repeat"></i> Change Status
+                  <i class="bi bi-arrow-repeat"></i> <%= t('admin.changeStatus') %>
                 </button>
                 <button
                     class="dropdown-item text-danger"
@@ -113,7 +113,7 @@
                     data-bs-target=".modal-delete-confirm"
                     onclick="populateModal(event)"
                 >
-                  <i class="bi bi-trash"></i> Delete
+                  <i class="bi bi-trash"></i> <%= t('admin.delete') %>
                 </button>
               </div>
             </td>

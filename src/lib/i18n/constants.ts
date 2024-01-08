@@ -25,4 +25,7 @@ export const AVAILABLE_LANGUAGES: Language[] = [
   {
     key: 'es',
   },
+  {
+    key: 'it',
+  },
 ];

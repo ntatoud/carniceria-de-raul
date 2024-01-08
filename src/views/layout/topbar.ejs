@@ -7,7 +7,7 @@
         src="/assets/images/icon.webp"
         alt="Icon for mobile Topbar"
     >
-    </img><b>Carniceria de Raul</b></a>
+    </img><b><%=t('title.shopName')%></b></a>
   <a
       class="navbar-brand mobile"
       href="/"
@@ -50,6 +50,10 @@
             class="button button-link-neutral"
             onclick="changeLanguage('es')"
         >🇪🇸 Español</button>
+        <button
+            class="button button-link-neutral"
+            onclick="changeLanguage('it')"
+        >🇮🇹 Italiano</button>
       </div>
     </div>
     <div class="account-menu dropdown show">
@@ -67,33 +71,33 @@
           aria-labelledby="accountMenu"
       >
         <% if(!isLogged) {%>
-        <h6 class="dropdown-header">You are not connected!</h6>
+        <h6 class="dropdown-header"><%=t('auth.notConnected')%></h6>
         <div class="dropdown-divider"></div>
         <a
             class="dropdown-item"
             href="/auth/login"
-        ><i class="bi bi-box-arrow-in-right"></i>Login</a>
+        ><i class="bi bi-box-arrow-in-right"></i><%=t('auth.login')%></a>
         <a
             class="dropdown-item"
             href="/auth/signup"
-        ><i class="bi bi-person-lines-fill"></i>Signup</a>
+        ><i class="bi bi-person-lines-fill"></i><%=t('auth.signup')%></a>
         <%} else { %>
         <h6 class="dropdown-header"><%=account.email%></h6>
         <%if(account?.authorities === 'ROLE_ADMIN') {%>
         <a
             class="dropdown-item"
             href="/admin"
-        ><i class="bi bi-shield-shaded"></i>Admin</a>
+        ><i class="bi bi-shield-shaded"></i><%=t('auth.admin')%></a>
         <%}%>
         <div class="dropdown-divider"></div>
         <a
             class="dropdown-item"
             href="/account"
-        ><i class="bi bi-person"></i>My account</a>
+        ><i class="bi bi-person"></i><%=t('auth.myAccount')%></a>
         <a
             class="dropdown-item"
             href="/auth/logout"
-        ><i class="bi bi-box-arrow-left"></i>Logout</a>
+        ><i class="bi bi-box-arrow-left"></i><%=t('auth.logout')%></a>
         <% } %>
       </div>
     </div>

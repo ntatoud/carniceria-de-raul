@@ -26,23 +26,23 @@
     <%- include('./admin/adminNav.ejs') %>
     <data>
       <div class="data-top">
-        <h1 class="">Products</h1>
+        <h1 class=""><%= t('admin.products') %></h1>
         <a
             href="/admin/products/create"
             class="button button-primary create"
         ><i class="bi bi-plus-lg"></i>
-          <p>Create Product</p>
+          <p><%= t('admin.createProduct') %></p>
         </a>
       </div>
       <div class="d-flex w-75 justify-content-start gap-1">
-        *<p class="product-empty">Out of stock</p>/<p class="product-low">Low stock</p>/<p class="product-good">Available</p>
+        *<p class="product-empty"><%= t('admin.outOfStock') %></p>/<p class="product-low"><%= t('admin.lowStock') %></p>/<p class="product-good"><%= t('admin.available') %></p>
       </div>
       <table class="products-table">
         <tr class="table-head">
-          <th class="table-cell name">Name</th>
-          <th class="table-cell id">ID</th>
-          <th class="table-cell price">Price</th>
-          <th class="table-cell category">Category</th>
+          <th class="table-cell name"><%= t('admin.name') %></th>
+          <th class="table-cell id"><%= t('admin.id') %></th>
+          <th class="table-cell price"><%= t('admin.price') %></th>
+          <th class="table-cell category"><%= t('admin.category') %></th>
           <th class="table-cell actions dropdown"></th>
         </tr>
         <tbody class="table-body">
@@ -126,7 +126,7 @@
                     href="/admin/products/<%= product.productId%>"
                     class="dropdown-item"
                     type="button"
-                ><i class="bi bi-pencil"></i> Edit</a>
+                ><i class="bi bi-pencil"></i> <%= t('admin.edit') %></a>
                 <button
                     class="dropdown-item text-danger"
                     type="button"
@@ -135,7 +135,7 @@
                     data-bs-target=".modal-delete-confirm"
                     onclick="populateModal(event)"
                 >
-                  <i class="bi bi-trash"></i> Delete
+                  <i class="bi bi-trash"></i> <%= t('admin.delete') %>
                 </button>
               </div>
             </td>

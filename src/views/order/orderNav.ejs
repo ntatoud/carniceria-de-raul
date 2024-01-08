@@ -1,7 +1,7 @@
 <div class="order-nav">
   <a class="cart" href="/order/cart">
     <i class="state-icon bi bi-check-circle h2"></i>
-    <p>Cart</p>
+    <p><%=t('cart.cart')%></p>
   </a>
   <div class="spacer">
     <div class="start cart"></div>
@@ -9,7 +9,7 @@
   </div>
   <a class="infos" href="/order/infos">
     <i class="state-icon bi bi-clock h2"></i>
-    <p>Infos</p>
+    <p><%=t('cart.info')%></p>
   </a>
   <div class="spacer">
     <div class="start infos"></div>
@@ -17,47 +17,47 @@
   </div>
   <a class="payment" href="/order/payment">
     <i class="state-icon bi bi-x-circle h2"></i>
-    <p>Payment</p>
+    <p><%=t('cart.payment')%></p>
   </a>
 </div>
 <script>
   const activeOrderNav = () => {
-    const orderNavItems = $(".order-nav *");
-    const orderNavIcons = $(".order-nav i");
+    const orderNavItems = $('.order-nav *');
+    const orderNavIcons = $('.order-nav i');
     //Remove all the styles
-    orderNavItems.removeClass("completed").removeClass("current");
+    orderNavItems.removeClass('completed').removeClass('current');
     orderNavIcons
-      .removeClass("bi-check-circle")
-      .removeClass("bi-x-circle")
-      .removeClass("bi-clock");
+      .removeClass('bi-check-circle')
+      .removeClass('bi-x-circle')
+      .removeClass('bi-clock');
     /* --------- */
     const currentItem = $(orderNavItems).filter(
-      (_, item) => $(item).attr("href") === location.pathname
+      (_, item) => $(item).attr('href') === location.pathname
     );
 
     const currentSpacers = currentItem
       .siblings(`.spacer`)
-      .find(`.${location.pathname.split("/").pop()}`);
-    currentItem.addClass("current");
-    currentItem.find("i").addClass("bi-clock");
-    currentSpacers.addClass("current");
+      .find(`.${location.pathname.split('/').pop()}`);
+    currentItem.addClass('current');
+    currentItem.find('i').addClass('bi-clock');
+    currentSpacers.addClass('current');
     /* --------- */
-    const previousItems = currentItem.prevAll("a");
+    const previousItems = currentItem.prevAll('a');
 
     if (previousItems.length)
       previousItems.each((_, item) => {
         $(item)
           .siblings(`.spacer`)
-          .find(`.${$(item).attr("href").split("/").pop()}`)
-          .addClass("completed");
+          .find(`.${$(item).attr('href').split('/').pop()}`)
+          .addClass('completed');
       });
 
-    previousItems.addClass("completed");
-    previousItems.find("i").addClass("bi-check-circle");
+    previousItems.addClass('completed');
+    previousItems.find('i').addClass('bi-check-circle');
     /* --------- */
-    const nextItems = currentItem.nextAll("a");
+    const nextItems = currentItem.nextAll('a');
 
-    nextItems.find("i").addClass("bi-x-circle");
+    nextItems.find('i').addClass('bi-x-circle');
   };
 
   activeOrderNav();

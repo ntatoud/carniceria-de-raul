@@ -29,15 +29,15 @@
       <div class="section-title">Mi carrito</div>
       <%if(!cart?.length) {%>
       <div class="empty-cart">
-        Your cart is empty
+        <%=t('cart.emptyCart')%>
 
       </div>
       <% }else {%>
       <div class="product-list d-flex flex-column gap-2">
         <div class="header">
-          <div class="header-cell product">Producto</div>
-          <div class="header-cell price-quantity">Precio-Cantidad</div>
-          <div class="header-cell total-price"> Precio Total</div>
+          <div class="header-cell product"><%=t('cart.product')%></div>
+          <div class="header-cell price-quantity"><%=t('cart.priceQuantity')%></div>
+          <div class="header-cell total-price"> <%=t('cart.priceTotal')%></div>
         </div>
 
         <% cart.map((product) => {%>
@@ -127,7 +127,7 @@
           </div>
           <% })%>
           <div class="cart-price">
-            <p>Precio Total :</p>
+            <p><%=t('cart.priceTotal')%> :</p>
             <div class="total-price">
               <div class="normal-price">
                 <%=totalPrice.toFixed(2)%> €
@@ -152,7 +152,7 @@
           data-bs-toggle="modal"
           data-bs-target="#notConnectedModal"
           <%}%>
-      >Purchase -></a>
+      ><%=t('cart.buy')%> -></a>
     </div>
       <%}%>
           </main
