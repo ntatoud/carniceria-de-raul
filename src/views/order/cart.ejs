@@ -1,4 +1,3 @@
-<!-- Author : Noé TATOUD -->
 <!doctype html>
 <html lang="en">
 
@@ -26,7 +25,7 @@
     <%- include('./orderNav.ejs') %>
     <data>
 
-      <div class="section-title">Mi carrito</div>
+      <div class="section-title"><%=t('cart.myCart')%></div>
       <%if(!cart?.length) {%>
       <div class="empty-cart">
         <%=t('cart.emptyCart')%>
@@ -59,7 +58,7 @@
               <b><%= product.name[0] + product.name.toLowerCase().slice(1) %></b>
             </div>
             <div class="weight">
-              <% if(product.unit==="€/kg"){%> <b>Peso: </b> <%= product.weight %>g<%} else { %> <b>Por unidad</b><%}%>
+              <% if(product.unit==="€/kg"){%> <b><%=t('shop.weight')%>: </b> <%= product.weight %>g<%} else { %> <b>Por unidad</b><%}%>
             </div>
           </div>
           <div class="product-cell price <%= product.sale ? 'text-danger' : ''%>"><%= product.sale ? product.salePrice : product.price %> <%=product.unit%>
@@ -152,16 +151,18 @@
           data-bs-toggle="modal"
           data-bs-target="#notConnectedModal"
           <%}%>
-      ><%=t('cart.buy')%> -></a>
+      ><%=t('cart.buy')%>
+          </a
+      >
     </div>
-      <%}%>
+    <%}%>
           </main
       >
         <div class="toast-container"></div>
         <%- include('../../components/modal/modalLogin.ejs')%>
 
-        <script src="/views/order/frontend/cart.js"></script>
-        <%-include('../scripts.ejs')%>
+    <script src="/views/order/frontend/cart.js"></script>
+    <%-include('../scripts.ejs')%>
 
 </body>
 

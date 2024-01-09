@@ -1,4 +1,3 @@
-<!-- Author : Noé TATOUD -->
 <!doctype html>
 <html lang="en">
 
@@ -22,7 +21,7 @@
 
 <body>
   <header><%- include('./layout/layout.ejs') %></header>
-  <%- include('./layout/mainbar.ejs', {title: "Products", backLink: "/admin/products"}) ;%>
+  <%- include('./layout/mainbar.ejs', {title: t('admin.products'), backLink: "/admin/products"}) ;%>
 
   <main class="d-flex flex-column align-items-center">
     <form
@@ -35,7 +34,7 @@
       <div class="form justify-content-center w-100">
         <%- include('./admin/products/productForm.ejs')%>
       </div>
-      <%- include('./layout/actionbar.ejs', {leftButtonTitle: "Cancel" , rightButtonTitle:"Create Product"})%>
+      <%- include('./layout/actionbar.ejs', {leftButtonTitle: t('action.cancel') , rightButtonTitle:t('admin.createProduct')})%>
     </form>
   </main>
   <script src="/views/admin/products/frontend/utils.js"></script>

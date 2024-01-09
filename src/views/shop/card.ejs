@@ -23,7 +23,7 @@
     <% }%>
     <!-- Out of order tag -->
     <% if(product.stock === 0) { %>
-    <div class="product-empty-tag">Agotado</div>
+    <div class="product-empty-tag"><%=t('shop.outOfOrder')%></div>
     <% }%>
     <a href="/shop/<%=product.category.toLowerCase()%>/<%=product.productId%>">
       <img
@@ -63,7 +63,7 @@
   <div class="product-footer">
     <a href="/shop/<%=product.category%>/<%=product.productId%>">
       <i class="bi bi-chevron-down"></i>
-      Mas informaciones
+      <%=t('shop.moreInfo')%>
     </a>
   </div>
 </div>

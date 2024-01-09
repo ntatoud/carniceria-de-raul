@@ -7,6 +7,7 @@ import { UserSession } from '@/types/types.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 import { Connection } from 'mysql2/typings/mysql/lib/Connection';
+import i18next from '@/lib/i18n/config.js';
 
 export const getCartQuery =
   'SELECT p.*, ucp.totalQuantity, ucp.weight\
@@ -56,6 +57,7 @@ export const renderCart = (req: Request, res: Response) => {
       cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
       totalPrice: cartTotalPrice(req.session.cart),
       totalSalePrice: cartTotalPrice(req.session.cart, true),
+      t: i18next.t,
     });
   } else {
     res.render('cart.ejs', {
@@ -64,6 +66,7 @@ export const renderCart = (req: Request, res: Response) => {
       cart: req.cookies.cart,
       totalPrice: cartTotalPrice(req.cookies.cart),
       totalSalePrice: cartTotalPrice(req.cookies.cart, true),
+      t: i18next.t,
     });
   }
 };

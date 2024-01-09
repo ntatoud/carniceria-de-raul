@@ -1,36 +1,51 @@
 <!-- Modal -->
 <div
-  class="modal fade"
-  id="notConnectedModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="notConnectedModal"
-  aria-hidden="true"
+    class="modal fade"
+    id="notConnectedModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="notConnectedModal"
+    aria-hidden="true"
 >
-  <div class="modal-dialog" role="document">
+  <div
+      class="modal-dialog"
+      role="document"
+  >
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="notConnectedModal">
-          You are not connected
+        <h5
+            class="modal-title"
+            id="notConnectedModal"
+        >
+          No esta connectado
         </h5>
         <button
-          type="button"
-          class="button button-link-neutral"
-          data-bs-dismiss="modal"
-          aria-label="Close"
+            type="button"
+            class="button button-link-neutral"
+            data-bs-dismiss="modal"
+            aria-label="Close"
         >
           <i class="bi bi-x h2"></i>
         </button>
       </div>
       <div class="modal-body">
-        If you want to pursue with this operation, you must be connected. Your
-        current cart items will be added to your cart if you have one.
+        Si desea continuar con esta operación, debe estar conectado.
+        Los artículos del carrito actual se agregarán a su carrito si tiene uno.
       </div>
       <div class="modal-footer">
-        <button class="button button-link-neutral" data-bs-dismiss="modal">
-          <- No thanks
-        </button>
-        <a href="/auth" class="button button-primary">Connect</a>
+        <button
+            class="button button-link-neutral"
+            data-bs-dismiss="modal"
+        >
+          <-
+              No
+              Gracias
+              </button
+          >
+            <a
+                href="/auth"
+                class="button button-primary"
+            >Iniciar sesión</a>
       </div>
     </div>
   </div>

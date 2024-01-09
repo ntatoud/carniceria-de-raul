@@ -1,4 +1,3 @@
-<!-- Author : Noé TATOUD -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -108,7 +107,7 @@
               <%}%>
               </td>
             <td class="table-cell category">
-              <div class="tag tag-left tag-blue"><%=product.category.toUpperCase()%></div>
+              <div class="tag tag-left tag-blue"><%=t(`shop.categories.${product.category}`).toUpperCase()%></div>
             </td>
             <td class="table-cell actions dropdown">
               <button

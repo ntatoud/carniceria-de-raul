@@ -9,5 +9,5 @@ const populateModal = (event: MouseEvent) => {
 
   $('.modal-delete-confirm .modal-header').prepend(`<h5
     class="modal-title"
-  >You are about to delete <b>${itemName}</b></h5>`);
+  >Esta apunto de borrar <b>${itemName}</b></h5>`);
 };

@@ -2,6 +2,7 @@ import { toastDispatch } from '@/components/toast/index.js';
 import { databaseConnect, databaseError } from '@/database/index.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
+import i18next from '@/lib/i18n/config.js';
 
 export const getOrdersByUserId = (
   req: Request,
@@ -40,6 +41,7 @@ export const getOrdersByUserId = (
           account: req.session.user,
           isLogged: req.session.isLogged,
           toast: toastDispatch(req),
+          t: i18next.t,
         });
       else {
         const orders = results as (Order & CartProduct[])[];
@@ -50,6 +52,7 @@ export const getOrdersByUserId = (
           account: req.session.user,
           isLogged: req.session.isLogged,
           toast: toastDispatch(req),
+          t: i18next.t,
         });
       }
     }

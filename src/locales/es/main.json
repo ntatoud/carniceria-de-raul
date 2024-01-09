@@ -1,14 +1,32 @@
 {
   "title": {
     "addOn": "CARNE FRESCA EN MADRID",
-    "youOrder": "Ordena.",
+    "youOrder": "Pide.",
     "wePrepare": "Preparamos.",
     "youRecover": "Recupera.",
-    "headLine": "En la carnicería de Raúl Basquez",
+    "headLine": "En la carnicería de Raúl",
     "shortDesc": "Cada corte de carne proviene directamente del ganado español.",
     "shopLine": "Compre ahora",
     "findUs": "Encuéntrenos",
     "shopName": "Carnicería de Raúl"
+  },
+  "layout": {
+    "mainTitle": "Carnicería de Raúl",
+    "navbar": {
+      "home": "Inicio",
+      "about": "Sobre mi",
+      "contact": "Contacto",
+      "shop": "Tienda"
+    },
+    "accountNav": {
+      "notConnected": "No estás conectado",
+      "login": "Iniciar sesión",
+      "signup": "Registrarse",
+      "createAccount": "Crear cuenta",
+      "myAccount": "Mi cuenta",
+      "admin": "Admin",
+      "logout": "Cerrar sesión"
+    }
   },
   "home": {
     "marketName": "Merca Sanfermín",
@@ -31,18 +49,19 @@
     "an": "Un",
     "easy": "fácil",
     "process": "proceso.",
-    "shopWord": "Tienda",
-    "productsWord": "Productos",
-    "selectWord": "Seleccionar",
-    "recoveryDate": "Fecha de recuperación",
-    "pickUp": "Recoger",
-    "yourOrder": "Tu pedido",
-    "homeWord": "Inicio",
-    "aboutUs": "Sobre nosotros",
-    "contactUs": "Contáctenos"
+    "shopWord": "Busca",
+    "productsWord": "productos",
+    "selectWord": "Selecciona",
+    "recoveryDate": "fecha de recuperación",
+    "pickUp": "Recoge",
+    "yourOrder": "su pedido"
   },
-
   "info": {
+    "navbar": {
+      "myAccount": "Mi cuenta",
+      "myOrders": "Mi pedidos",
+      "changePwd": "Cambiar contraseña"
+    },
     "name": "Nombre",
     "title": "Carniceria de Raul",
     "surname": "Apellido(s)",
@@ -62,16 +81,14 @@
     "addressError": "Introduzca una dirección válida.",
     "telephoneError": "Introduzca un numero de telefono valido.",
     "countryError": "Introduzca un país válido.",
-    "myOrders": "Mi pedidos",
     "save": "Guardar",
     "phoneNotification": "Para que te podemos avisar en caso de problema",
     "emailNotification": "Si es diferente del correo asociado a la cuenta",
     "welcome": "Bienvenido"
   },
-
   "auth": {
-    "notConnected": "No estás conectado",
     "login": "Iniciar sesión",
+    "createAccount": "Crear cuenta",
     "signup": "Registrarse",
     "forgotPassword": "¿Olvidaste tu contraseña?",
     "userExists": "Esta cuenta ya existe.",
@@ -79,11 +96,7 @@
     "passwordShould": "Tu contraseña deberia:",
     "name": "Nombre",
     "surname": "Apellido(s)",
-    "createAccount": "Crear cuenta",
-    "myAccount": "Mi cuenta",
     "account": "Cuenta",
-    "admin": "Administrador",
-    "logout": "Salir",
     "profile": "Perfil",
     "changePwd": "Cambiar contraseña",
     "resetPwd": "Restablecer contraseña",
@@ -95,13 +108,9 @@
     "change": "Cambiar",
     "usedEmail": "Ingrese el correo que utilizó para registrarse",
     "goBack": "Atras",
-    "sendEmail": "Enviar Correo",
-    "errorPwd": "Password must be at least 8 characters and contain at least 1 special character and 1 capital letter"
+    "sendEmail": "Enviar Correo"
   },
-
   "shop": {
-    "categories": "Categorias",
-    "category": "Categoria",
     "filters": "Filtros",
     "offers": "Ofertas",
     "otherProducts": "Todos nuestros productos",
@@ -113,29 +122,37 @@
     "sale": "rebaja",
     "price": "Precio",
     "apply": "Aplicar",
-    "beef": "Ternera",
-    "chicken": "Pollo",
-    "pig": "Cerdo",
-    "processing": "Elaborando",
+    "categories": {
+      "title": "Categorias",
+      "category": "Categoria",
+      "Ternera": "Ternera",
+      "Cerdo": "Cerdo",
+      "Pollo": "Pollo",
+      "Elaborado": "Elaborado"
+    },
     "description": "Descripción",
     "bestSeller": "Mejor vendido",
-    "noProducts": "No hay productos"
+    "noProducts": "No hay productos",
+    "moreInfo": "Mas informaciones",
+    "addToCart": "Añadir",
+    "outOfOrder": "Agotado",
+    "available": "Disponible",
+    "onlyLeft": "Solo queda",
+    "weight": "Peso"
   },
-
   "orders": {
     "myOrders": "Mis pedidos",
     "noOrders": "No tienes pedidos",
     "keepShopping": "Seguir comprando",
     "validateCart": "Confirmar carrito"
   },
-
   "admin": {
     "orders": "Pedidos",
     "products": "Productos",
+    "administration": "Administacion",
     "name": "Nombre",
     "category": "Categoria",
     "users": "Usuarios",
-    "administration": "Administacion",
     "client": "Cliente",
     "price": "Precio",
     "id": "ID",
@@ -148,10 +165,11 @@
     "available": "Disponible",
     "edit": "Modificar",
     "createProduct": "Crear producto",
+    "updateProduct": "Actualizar producto",
     "authorities": "Permisos",
-    "createUser": "Crear usuario"
+    "createUser": "Crear usuario",
+    "updateUser": "Actualizar usuario"
   },
-
   "cart": {
     "myCart": "Mi carrito",
     "cart": "Carrito",
@@ -178,5 +196,29 @@
     "expiryDate": "Fecha de caducidad",
     "cvc": "CVC",
     "pay": "Pagar"
+  },
+  "action": {
+    "cancel": "Cancelar"
+  },
+  "toast": {
+    "success": {
+      "title": "Suceso",
+      "passwordUpdate": "Contraseña actualizada.",
+      "accountUpdate": "Contraseña actualizada.",
+      "connection": "Conexión efectuada con exito",
+      "reset": {
+        "title": "Abre su buzon",
+        "content": "Se ha enviado un correo."
+      },
+      "accountCreated": "Compte créé.",
+      "payment": "Pago efectuada con exito. Pedido creada.",
+      "statusChange": "Estado actualizada.",
+      "orderDelete": "Pedido borrado"
+    },
+    "error": {
+      "title": "Error",
+      "token": "Token no valido",
+      "passwordMatch": "Contraseñas son diferentes."
+    }
   }
 }

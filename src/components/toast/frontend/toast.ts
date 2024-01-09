@@ -7,7 +7,7 @@ const toastSuccess = (content: string) => {
                 </div>
                 <div class='toast-body'>
                     <div class='toast-title d-flex justify-content-between'>
-                        Success
+                        Suceso
                         <button type='button' class='btn-close' data-bs-dismiss='toast'></button>
                     </div>
                     <div class='toast-content'>
@@ -35,7 +35,7 @@ const toastError = (content: string) => {
                 </div>
                 <div class='toast-body'>
                     <div class='toast-title d-flex justify-content-between'>
-                        Success
+                        Error
                         <button type='button' class='btn-close' data-bs-dismiss='toast'></button>
                     </div>
                     <div class='toast-content'>

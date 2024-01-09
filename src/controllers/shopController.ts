@@ -5,6 +5,7 @@ import {
   databaseError,
 } from '@/database/index.js';
 import { Request, Response } from 'express';
+import i18next from '@/lib/i18n/config.js';
 import { toastDispatch, toastEmpty } from '@/components/toast/index.js';
 
 export const CATEGORIES = ['Ternera', 'Pollo', 'Cerdo', 'Elaborado'];
@@ -29,6 +30,7 @@ export const getAllProductsWithCategory = (
           account: req.session.user,
           toast: toastEmpty(),
           cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+          t: i18next.t,
         });
       const products: Product[] = productResults.map((product: Product) => {
         const { category, ...rest } = product;
@@ -46,6 +48,7 @@ export const getAllProductsWithCategory = (
         account: req.session.user,
         toast: toastDispatch(req),
         cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+        t: i18next.t,
       });
 
       databaseDisconnect(connection);
@@ -97,6 +100,7 @@ export const renderCategoryPage = ({
           account: req.session.user,
           toast: toastDispatch(req),
           cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+          t: i18next.t,
         });
 
       const products: Product[] = productResults.map((product) => {
@@ -115,6 +119,7 @@ export const renderCategoryPage = ({
         account: req.session.user,
         toast: toastDispatch(req),
         cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+        t: i18next.t,
       });
 
       databaseDisconnect(connection);
@@ -147,6 +152,7 @@ export const renderProductPage = ({
         isLogged: req.session.isLogged,
         account: req.session.user,
         cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+        t: i18next.t,
       });
 
       databaseDisconnect(connection);

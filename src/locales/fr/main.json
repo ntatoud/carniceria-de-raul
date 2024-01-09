@@ -2,17 +2,35 @@
   "title": {
     "addOn": "VIANDE FRAÎCHE À MADRID",
     "youOrder": "Commandez.",
-    "wePrepare": "Nous préparons.",
+    "wePrepare": "On prépare.",
     "youRecover": "Récupérez.",
-    "headLine": "Chez la boucherie de Raúl Basquez",
+    "headLine": "À la boucherie de Raúl Basquez",
     "shortDesc": "Chaque morceau de viande provient directement du bétail espagnol.",
     "shopLine": "Achetez maintenant",
     "findUs": "Trouvez-nous",
     "shopName": "Boucherie de Raúl"
   },
+  "layout": {
+    "mainTitle": "Boucherie de Raúl",
+    "navbar": {
+      "home": "Accueil",
+      "about": "À propos",
+      "contact": "Contact",
+      "shop": "Boutique"
+    },
+    "accountNav": {
+      "notConnected": "Vous n'êtes pas connecté",
+      "login": "Se connecter",
+      "signup": "S'inscrire",
+      "createAccount": "Créer un compte",
+      "myAccount": "Mon compte",
+      "admin": "Admin",
+      "logout": "Déconnexion"
+    }
+  },
   "home": {
-    "marketName": "Merca Sanfermín",
-    "sellingLine": "Vente de viande depuis",
+    "marketName": "Marché Sanfermín",
+    "sellingLine": "Vente de viande au",
     "sinceLine": "depuis 2000",
     "monday": "Lundi",
     "tuesday": "Mardi",
@@ -29,20 +47,21 @@
     "saturdayTime": "9h00 - 14h00 et 17h00 - 20h00",
     "sundayTime": "Fermé",
     "an": "Un",
-    "easy": "facile",
-    "process": "processus.",
-    "shopWord": "Boutique",
-    "productsWord": "Produits",
-    "selectWord": "Sélectionner",
-    "recoveryDate": "Date de récupération",
-    "pickUp": "Retirer",
-    "yourOrder": "Votre commande",
-    "homeWord": "Accueil",
-    "aboutUs": "À propos de nous",
-    "contactUs": "Contactez-nous"
+    "easy": "processus",
+    "process": "facile.",
+    "shopWord": "Choisi",
+    "productsWord": "des produits",
+    "selectWord": "Sélectionne",
+    "recoveryDate": "la date de récupération",
+    "pickUp": "Retire",
+    "yourOrder": "ta commande"
   },
-
   "info": {
+    "navbar": {
+      "myAccount": "Mon compte",
+      "myOrders": "Mes commandes",
+      "changePwd": "Changer le mot de passe"
+    },
     "name": "Nom",
     "title": "Boucherie de Raul",
     "surname": "Nom de famille(s)",
@@ -62,16 +81,14 @@
     "addressError": "Veuillez entrer une adresse valide.",
     "telephoneError": "Veuillez entrer un numéro de téléphone valide.",
     "countryError": "Veuillez entrer un pays valide.",
-    "myOrders": "Mes commandes",
     "save": "Enregistrer",
     "phoneNotification": "Pour vous avertir en cas de problème",
     "emailNotification": "Si elle est différente de l'e-mail associé au compte",
     "welcome": "Bienvenue"
   },
-
   "auth": {
-    "notConnected": "Vous n'êtes pas connecté",
     "login": "Se connecter",
+    "createAccount": "Créer le compte",
     "signup": "S'inscrire",
     "forgotPassword": "Mot de passe oublié?",
     "userExists": "Ce compte existe déjà.",
@@ -79,11 +96,7 @@
     "passwordShould": "Votre mot de passe devrait :",
     "name": "Nom",
     "surname": "Nom de famille(s)",
-    "createAccount": "Créer un compte",
-    "myAccount": "Mon compte",
     "account": "Compte",
-    "admin": "Administrateur",
-    "logout": "Déconnexion",
     "profile": "Profil",
     "changePwd": "Changer le mot de passe",
     "resetPwd": "Réinitialiser le mot de passe",
@@ -93,49 +106,53 @@
     "confirmPwd": "Confirmer le mot de passe",
     "notMatching": "Le mot de passe ne correspond pas",
     "change": "Changer",
-    "usedEmail": "Veuillez entrer l'e-mail que vous avez utilisé pour vous inscrire",
+    "usedEmail": "Veuillez entrer le mail que vous avez utilisé pour vous inscrire",
     "goBack": "Retour",
-    "sendEmail": "Envoyer un e-mail",
-    "errorPwd": "Le mot de passe doit contenir au moins 8 caractères et comprendre au moins 1 caractère spécial et 1 lettre majuscule"
+    "sendEmail": "Envoyer le mail"
   },
-
   "shop": {
-    "categories": "Catégories",
-    "category": "Catégorie",
     "filters": "Filtres",
-    "offers": "Offres",
+    "offers": "Promos",
     "otherProducts": "Tous nos produits",
     "name": "Nom",
     "stock": "Inventaire",
     "image": "Image",
     "defaultPrice": "Prix de base",
-    "discountedPrice": "Prix ​​remisé",
+    "discountedPrice": "Promotion",
     "sale": "Promotion",
     "price": "Prix",
     "apply": "Appliquer",
-    "beef": "Bœuf",
-    "chicken": "Poulet",
-    "pig": "Porc",
-    "processing": "En cours de traitement",
+    "categories": {
+      "title": "Catégories",
+      "category": "Catégorie",
+      "Ternera": "Boeuf",
+      "Cerdo": "Porc",
+      "Pollo": "Poulet",
+      "Elaborado": "Transformés"
+    },
     "description": "Description",
     "bestSeller": "Meilleure vente",
-    "noProducts": "Aucun produit disponible"
+    "noProducts": "Aucun produit disponible",
+    "moreInfo": "Plus d'informations",
+    "addToCart": "Ajouter",
+    "outOfOrder": "Epuisé",
+    "available": "Disponible",
+    "onlyLeft": "Plus que",
+    "weight": "Poids"
   },
-
   "orders": {
     "myOrders": "Mes commandes",
     "noOrders": "Vous n'avez pas de commandes",
     "keepShopping": "Continuer vos achats",
     "validateCart": "Valider le panier"
   },
-
   "admin": {
     "orders": "Commandes",
     "products": "Produits",
+    "administration": "Administration",
     "name": "Nom",
     "category": "Catégorie",
     "users": "Utilisateurs",
-    "administration": "Administration",
     "client": "Client",
     "price": "Prix",
     "id": "ID",
@@ -147,11 +164,12 @@
     "lowStock": "Faible stock",
     "available": "Disponible",
     "edit": "Modifier",
-    "createProduct": "Créer un produit",
+    "createProduct": "Créer produit",
+    "updateProduct": "Update produit",
     "authorities": "Autorisations",
-    "createUser": "Créer un utilisateur"
+    "createUser": "Créer utilisateur",
+    "updateUser": "Update utilisateur"
   },
-
   "cart": {
     "myCart": "Mon panier",
     "cart": "Panier",
@@ -178,5 +196,29 @@
     "expiryDate": "Date d'expiration",
     "cvc": "CVC",
     "pay": "Payer"
+  },
+  "action": {
+    "cancel": "Annuler"
+  },
+  "toast": {
+    "success": {
+      "title": "Succès",
+      "passwordUpdate": "Mot de passe mis à jour.",
+      "accountUpdate": "Compte mis à jour.",
+      "connection": "Connexion réussie",
+      "reset": {
+        "title": "Ouvrez votre boîte mail",
+        "content": "Un email vous a été envoyé"
+      },
+      "accountCreated": "Compte créé.",
+      "payment": "Payment réussi. Commande crée.",
+      "statusChange": "Statut mis à jour.",
+      "orderDelete": "Commande supprimée"
+    },
+    "error": {
+      "title": "Erreur",
+      "token": "Token invalide",
+      "passwordMatch": "Les mots de passe sont différents"
+    }
   }
 }

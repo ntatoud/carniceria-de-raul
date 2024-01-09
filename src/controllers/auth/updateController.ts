@@ -8,7 +8,7 @@ import { User } from '@/types/types.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 import { generateSaltHashedPassword } from './authController.js';
-
+import i18next from '@/lib/i18n/config.js';
 export const getUserIdFromToken = (token: string): Promise<number | null> => {
   return new Promise((resolve, reject) => {
     try {
@@ -49,7 +49,9 @@ export const getUserIdFromToken = (token: string): Promise<number | null> => {
 export const updatePassword = (req: Request, res: Response) => {
   const { newPassword, confirmPassword, token } = req.body;
   if (newPassword !== confirmPassword) {
-    req.session.toast = toastError({ content: 'Passwords do not match' });
+    req.session.toast = toastError({
+      content: i18next.t('main:toast.error.passwordMatch'),
+    });
     res.redirect('/auth/update');
   } else {
     try {
@@ -57,7 +59,9 @@ export const updatePassword = (req: Request, res: Response) => {
       getUserIdFromToken(token)
         .then((userId) => {
           if (!userId) {
-            req.session.toast = toastError({ content: 'Invalid token' });
+            req.session.toast = toastError({
+              content: i18next.t('main:toast.error.token'),
+            });
             res.redirect('/auth/update');
           } else {
             const { salt, hashPwd } = generateSaltHashedPassword(newPassword);
@@ -79,7 +83,7 @@ export const updatePassword = (req: Request, res: Response) => {
                 } else {
                   // Close the database connection
                   req.session.toast = toastSuccess({
-                    content: 'Password updated succesfully ',
+                    content: i18next.t('main:toast.success.passwordUpdate'),
                   });
                   res.redirect('/auth/login');
                   databaseDisconnect(connection);

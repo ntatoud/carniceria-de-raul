@@ -1,5 +1,6 @@
 import { toastSuccess } from '@/components/toast/index.js';
 import { databaseConnect } from '@/database/index.js';
+import i18next from '@/lib/i18n/config.js';
 import { sendResetMail } from '@/lib/nodemailer/config.js';
 import dotenv from 'dotenv';
 import { Request, Response } from 'express';
@@ -30,8 +31,8 @@ export const sendResetMailToUserEmail = (req: Request, res: Response) => {
 
         if (!result.length) {
           req.session.toast = toastSuccess({
-            title: 'Check your mail inbox',
-            content: 'If an account exists, the reset link has been sent.',
+            title: i18next.t('main:toast.success.reset.title'),
+            content: i18next.t('main:toast.success.reset.content'),
           });
           res.redirect('/auth/login');
         } else {
@@ -48,8 +49,8 @@ export const sendResetMailToUserEmail = (req: Request, res: Response) => {
 
           sendResetMail(userEmail, resetLink);
           req.session.toast = toastSuccess({
-            title: 'Check your mail inbox',
-            content: 'If an account exists, the reset link has been sent.',
+            title: i18next.t('main:toast.success.reset.title'),
+            content: i18next.t('main:toast.success.reset.content'),
           });
           res.redirect('/auth/login');
         }

@@ -6,14 +6,14 @@
     <i class="bi bi-list h3"></i>
   </div>
   <div class="left-menu-categories">
-    <div class="left-menu-title"><%= t('shop.categories') %></div>
+    <div class="left-menu-title"><%= t('shop.categories.title') %></div>
     <% categories.map((category) => {%>
     <a
         id="<%=category.id%>"
         class="left-menu-item justify-content-between"
         href="/shop/<%=category.toLowerCase()%>"
     >
-      <%= category %>
+      <%= t('shop.categories.' + category) %>
       <i class="bi bi-arrow-right"></i>
     </a>
     <% }) %>
@@ -82,7 +82,7 @@
             class="button button-secondary button-sm"
             type="submit"
         >
-        <%= t('shop.apply') %>
+          <%= t('shop.apply') %>
         </button>
       </div>
     </form>

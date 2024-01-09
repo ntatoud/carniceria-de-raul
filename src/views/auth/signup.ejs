@@ -1,4 +1,3 @@
-<!-- Author : Noé TATOUD -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,32 +27,32 @@
         <div class="d-flex flex-row gap-3">
           <div class="form-group">
             <label for="name"><%=t('auth.name')%></label>
-            <input
-              name="name"
-              type="text"
-              class="form-control"
-              id="name"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="surname"><%=t('auth.surname')%></label>
-            <input
-              name="surname"
-              type="text"
-              class="form-control"
-              id="surname"
-              required
-            />
-          </div>
-        </div>
-        <%- include('./auth/email-password-form.ejs', {type: "signup"}) %>
+      <input
+          name="name"
+          type="text"
+          class="form-control"
+          id="name"
+          required
+      />
+      </div>
+      <div class="form-group">
+        <label for="surname"><%=t('auth.surname')%></label>
+        <input
+            name="surname"
+            type="text"
+            class="form-control"
+            id="surname"
+            required
+        />
+      </div>
+      </div>
+      <%- include('./auth/email-password-form.ejs', {type: "signup"}) %>
       <button
           type="submit"
           class="button button-primary"
           disabled
       >
-      <%=t('auth.createAccount')%>
+        <%=t('auth.createAccount')%>
       </button>
     </form>
   </main>

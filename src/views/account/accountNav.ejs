@@ -1,32 +1,20 @@
 <menu class="account-menu-nav">
   <p class="dropdown-header"><%=t('auth.account')%></p>
-  <a href="/account/profile"
-    ><i class="bi bi-person"></i> <%=t('auth.myAccount')%></a
-  >
-  <a href="/account/password"
-    ><i class="bi bi-lock"></i> <%=t('auth.changePwd')%></a
-  >
-  <a href="/account/my-orders"
-    ><i class="bi bi-box"></i> <%=t('info.myOrders')%></a
-  >
+  <a href="/account/profile"><i class="bi bi-person"></i> <%=t('info.navbar.myAccount')%></a>
+  <a href="/account/password"><i class="bi bi-lock"></i> <%=t('info.navbar.changePwd')%></a>
+  <a href="/account/my-orders"><i class="bi bi-box"></i> <%=t('info.navbar.myOrders')%></a>
 </menu>
 
 <menu class="account-menu-nav mobile dropdown">
   <button
-    class="button dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="true"
-    aria-expanded="false"
+      class="button dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
   ></button>
   <div class="dropdown-menu dropdown-menu-end">
-    <a href="/account/profile"
-      ><i class="bi bi-person"></i> <%=t('auth.myAccount')%></a
-    >
-    <a href="/account/password"
-      ><i class="bi bi-lock"></i><%=t('auth.changePwd')%></a
-    >
-    <a href="/account/my-orders"
-      ><i class="bi bi-box"></i> <%=t('info.myOrders')%></a
-    >
+    <a href="/account/profile"><i class="bi bi-person"></i> <%=t('info.navbar.myAccount')%></a>
+    <a href="/account/password"><i class="bi bi-lock"></i><%=t('info.navbar.changePwd')%></a>
+    <a href="/account/my-orders"><i class="bi bi-box"></i> <%=t('info.navbar.myOrders')%></a>
   </div>
 </menu>

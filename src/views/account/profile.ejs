@@ -21,7 +21,7 @@
 <body>
   <header><%- include('./layout/layout.ejs') %></header>
   <%- include('../../../components/toast/toast.ejs')%>
-  <%-include('./layout/mainbar.ejs', {title: `Bienvenido ${accountName}`,
+  <%-include('./layout/mainbar.ejs', {title: `${t('info.welcome')} ${accountName}`,
     backLink:"./"})%>
   <main class="d-flex">
     <%- include('./account/accountNav.ejs') %>
@@ -164,7 +164,7 @@
               type="submit"
               class="button button-primary button-lg"
           >
-          <%=t('info.save')%>
+            <%=t('info.save')%>
           </button>
         </div>
       </form>
