@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config(); // Load environment variables from .env file
 import { createTransport } from 'nodemailer';
 const transporter = createTransport({
-  host: process.env.SMTP_HOST, // Outlook SMTP server
+  host: process.env.SMTP_HOST as string, // Outlook SMTP server
   port: process.env.SMTP_PORT, // Outlook SMTP port
   secure: false, // TLS requires secureConnection to be false
   auth: {
