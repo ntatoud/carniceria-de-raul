@@ -53,6 +53,8 @@ export const getOrdersByUserId = (
           t: i18next.t,
         });
       }
+
+      databaseDisconnect(connection);
     }
   );
 };

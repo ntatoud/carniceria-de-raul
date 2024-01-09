@@ -90,6 +90,7 @@ export const createOrderFromSession = (
                         else {
                           handlePayment(req, res, amount, connection);
                         }
+                        databaseDisconnect(connection);
                       }
                     );
                   }

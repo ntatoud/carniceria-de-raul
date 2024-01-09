@@ -25,12 +25,8 @@ export const getUserIdFromToken = (token: string): Promise<number | null> => {
         [token],
         (error: QueryError | null, results: RowDataPacket[]) => {
           if (error) {
-            // Close the database connection
-            connection.end();
             reject(error);
           } else {
-            // Close the database connection
-            connection.end();
             if (results.length > 0) {
               const user = results[0] as Partial<User>;
               resolve(user.userId ?? null);
@@ -38,6 +34,8 @@ export const getUserIdFromToken = (token: string): Promise<number | null> => {
               resolve(null);
             }
           }
+
+          databaseDisconnect(connection);
         }
       );
     } catch (error) {

@@ -133,6 +133,7 @@ export const cartProductUpdate = (
         if (error) databaseError(error);
 
         sendNewCart(connection, req.session, res, currentProduct);
+        databaseDisconnect(connection);
       }
     );
   } else if (req.cookies.cart) {
@@ -237,6 +238,8 @@ const cookieCartUpdate = (
             newCartTotalSalePrice: cartTotalPrice(req.cookies.cart, true),
           });
         }
+
+        databaseDisconnect(connection);
       }
     );
   } else {

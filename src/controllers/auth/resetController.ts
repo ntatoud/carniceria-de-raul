@@ -1,5 +1,5 @@
 import { toastSuccess } from '@/components/toast/index.js';
-import { databaseConnect } from '@/database/index.js';
+import { databaseConnect, databaseDisconnect } from '@/database/index.js';
 import i18next from '@/lib/i18n/config.js';
 import { sendResetMail } from '@/lib/nodemailer/config.js';
 import dotenv from 'dotenv';
@@ -54,6 +54,8 @@ export const sendResetMailToUserEmail = (req: Request, res: Response) => {
           });
           res.redirect('/auth/login');
         }
+
+        databaseDisconnect(connection);
       }
     );
   } catch (error) {
