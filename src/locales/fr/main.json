@@ -90,7 +90,7 @@
     "login": "Se connecter",
     "createAccount": "Créer le compte",
     "signup": "S'inscrire",
-    "forgotPassword": "Mot de passe oublié?",
+    "forgotPassword": "Mot de passe oublié ?",
     "userExists": "Ce compte existe déjà.",
     "password": "Mot de passe",
     "passwordShould": "Votre mot de passe devrait :",

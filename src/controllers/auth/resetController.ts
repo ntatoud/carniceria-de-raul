@@ -1,5 +1,9 @@
 import { toastSuccess } from '@/components/toast/index.js';
-import { databaseConnect, databaseDisconnect } from '@/database/index.js';
+import {
+  databaseConnect,
+  databaseDisconnect,
+  databaseError,
+} from '@/database/index.js';
 import i18next from '@/lib/i18n/config.js';
 import { sendResetMail } from '@/lib/nodemailer/config.js';
 import dotenv from 'dotenv';
@@ -43,19 +47,25 @@ export const sendResetMailToUserEmail = (req: Request, res: Response) => {
     WHERE email = ?;
   `;
 
-          connection.execute(updateTokenQuery, [resetToken, userEmail]);
+          connection.execute(
+            updateTokenQuery,
+            [resetToken, userEmail],
+            (error: QueryError | null) => {
+              if (error) databaseError(error);
 
-          const resetLink = generateResetLink(resetToken); // Pass the token to the reset link
+              const resetLink = generateResetLink(resetToken); // Pass the token to the reset link
 
-          sendResetMail(userEmail, resetLink);
-          req.session.toast = toastSuccess({
-            title: i18next.t('main:toast.success.reset.title'),
-            content: i18next.t('main:toast.success.reset.content'),
-          });
-          res.redirect('/auth/login');
+              console.log(resetLink);
+              sendResetMail(userEmail, resetLink);
+              req.session.toast = toastSuccess({
+                title: i18next.t('main:toast.success.reset.title'),
+                content: i18next.t('main:toast.success.reset.content'),
+              });
+              res.redirect('/auth/login');
+              databaseDisconnect(connection);
+            }
+          );
         }
-
-        databaseDisconnect(connection);
       }
     );
   } catch (error) {
