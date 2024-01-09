@@ -1,22 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const changeLanguage = (langKey: string, preventReload?: boolean) => {
-  $.ajax({
-    url: '/lang',
-    type: 'POST',
-    data: { langKey: langKey },
-    success: (res) => {
-      document.documentElement.lang = langKey;
-      document.documentElement.dir = res?.dir ?? 'ltr';
-      document.documentElement.style.fontSize = `${
-        (res?.fontScale ?? 1) * 100
-      }%`;
-      localStorage.setItem('lang', JSON.stringify(res));
-      location.reload();
-    },
-  });
-};
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// Cookies handling part
 const setCookies = (mode: boolean) => {
   $.ajax({
     url: '/cookies',
@@ -46,22 +29,36 @@ $.ajax({
     }
   },
 });
+
+// Language handling part
+const changeLanguage = (langKey: string) => {
+  $.ajax({
+    url: '/lang',
+    type: 'POST',
+    data: { langKey: langKey },
+    success: (res) => {
+      document.documentElement.lang = langKey;
+      localStorage.setItem('lang', JSON.stringify(langKey));
+      location.reload();
+    },
+  });
+};
 const languageItem = localStorage.getItem('lang');
 
-const language = languageItem ? JSON.parse(languageItem) : { key: 'es' };
+const langKey = languageItem ? JSON.parse(languageItem) : 'es';
+
 if (!languageItem) {
-  localStorage.setItem('lang', JSON.stringify(language));
+  localStorage.setItem('lang', JSON.stringify(langKey));
 }
 
 const LANGUAGE_TABLE = [
   { id: 'es', name: 'Español', flag: '🇪🇸' },
   { id: 'fr', name: 'Français', flag: '🇫🇷' },
-  { id: 'ar', name: 'مغربي', flag: '🇲🇦' },
   { id: 'en', name: 'English', flag: '🇬🇧' },
 ];
 
 const langDisplay =
-  LANGUAGE_TABLE.find((el) => el.id === language?.key) ?? LANGUAGE_TABLE[0];
+  LANGUAGE_TABLE.find((el) => el.id === langKey) ?? LANGUAGE_TABLE[0];
 
 $('.dropdown.lang .dropdown-toggle').html(
   `${langDisplay?.flag} ${langDisplay?.name}`
@@ -81,7 +78,6 @@ $('form').on('submit', (event) => {
   }
 });
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const hideLoading = () => {
   $(` button[type="submit"] .spinner-border`).remove();
 };

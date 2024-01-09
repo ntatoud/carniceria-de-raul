@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html>
 
 <head>
   <!-- Title -->
@@ -323,7 +323,19 @@
 
       $("input").on('focus', (event) => {
         $(event.target).next('.error').removeClass('show')
+      })
 
+      $('input[name="recoveryDay"]').on('click', (event) => {
+        $('.error.past-date').removeClass('show')
+        $('.error.invalid-date').removeClass('show')
+
+        $('.error.empty').removeClass('show')
+
+
+      })
+      $('input[name="recoveryTime"]').on('click', (event) => {
+        $('.error.empty').removeClass('show')
+        $('.error.invalid-time').removeClass('show')
       })
 
 

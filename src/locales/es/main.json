@@ -189,7 +189,7 @@
     "pickupError3": "Debe ser un día laborable",
     "time": "Hora",
     "timeError1": "Por favor, proporcione una hora de recogida",
-    "timeError2": "La hora de recogida debe estar entre las 9 a.m. - 2 p.m. y las 5 p.m. - 8 p.m.",
+    "timeError2": "La hora de recogida debe estar entre las 9h-14h o las 5h-20h",
     "comment": "Comentarios",
     "youArePaying": "Vas a Pagar",
     "cardNumber": "Numero Tarjeta",
