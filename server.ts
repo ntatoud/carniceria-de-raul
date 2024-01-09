@@ -17,6 +17,7 @@ import { AVAILABLE_LANGUAGES } from '@/lib/i18n/constants.js';
 import dotenv from 'dotenv';
 import { explicitLog } from '@/functions/index.js';
 import { VIEW_DIRECTORIES } from '@/router/config.js';
+import { handleDisconnect } from '@/database/index.js';
 
 dotenv.config();
 
@@ -111,6 +112,7 @@ app.get('*', (req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
+  handleDisconnect();
   explicitLog(`Now listening on port ${port}`);
   explicitLog(
     `Logs are currently in mode ${
