@@ -54,7 +54,7 @@ const userCreate = async (event: SubmitEvent) => {
     type: 'POST',
     data: formDataObject,
     success: (res) => {
-      localStorage.setItem('toast', 'updated');
+      localStorage.setItem('toast', 'create');
       location.href = '/admin/users';
     },
   });

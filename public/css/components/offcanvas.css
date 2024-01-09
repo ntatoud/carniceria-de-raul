@@ -1,5 +1,5 @@
 .offcanvas.offcanvas-bottom {
-  background-color: var(--gray-100);
+  background-color: var(--gray-50);
   border-radius: 0.25rem;
   color: var(--gray-700);
   bottom: 1rem;
@@ -22,12 +22,13 @@
 }
 
 .offcanvas.offcanvas-bottom p a {
-  color: var(--brand-600);
+  color: var(--brand-800);
   text-decoration: underline;
 }
 
 .offcanvas.offcanvas-bottom .button-link {
   text-decoration: underline;
+  color: var(--brand-800);
 }
 
 @media all and (max-width: 768px) {
