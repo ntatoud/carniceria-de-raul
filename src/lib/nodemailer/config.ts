@@ -6,8 +6,8 @@ const transporter = createTransport({
   port: Number(process.env.SMTP_PORT), // Outlook SMTP port
   secure: false, // TLS requires secureConnection to be false
   auth: {
-    user: 'carniceriaderaulalmeria@outlook.com', // Access email from environment variable
-    pass: 'Carniceriaderaul_1', // Access password from environment variable
+    user: process.env.EMAIL, // Access email from environment variable
+    pass: process.env.PASSWORD, // Access password from environment variable
   },
   connectionTimeout: 20000, // Timeout di 10 secondi (valore in millisecondi)
 });
