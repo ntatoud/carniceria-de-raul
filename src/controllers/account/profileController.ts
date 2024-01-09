@@ -4,6 +4,7 @@ import {
   databaseDisconnect,
   databaseError,
 } from '@/database/index.js';
+import i18next from '@/lib/i18n/config.js';
 import { User } from '@/types/types.js';
 import { Request, Response } from 'express';
 import { QueryError } from 'mysql2';
@@ -38,7 +39,7 @@ export const accountUpdate = (req: Request, res: Response, user: User) => {
     if (error) databaseError(error);
 
     req.session.toast = toastSuccess({
-      content: 'Your account has been updated successfully',
+      content: i18next.t('main:toast.success.accountUpdate'),
     });
     res.redirect('/account/profile');
 

@@ -4,6 +4,7 @@ import {
   isStrongPassword,
   registerIfPossible,
 } from '@/controllers/auth/signupController.js';
+import i18next from '@/lib/i18n/config.js';
 
 const router = Router();
 
@@ -29,6 +30,7 @@ router.use('/', (req: Request, res: Response) => {
     isLogged: req.session.isLogged,
     account: req.session.user,
     cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+    t: i18next.t,
   });
 });
 

@@ -8,7 +8,7 @@ import { User } from '@/types/types.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 import { toastDispatch } from '@/components/toast/index.js';
-
+import i18next from '@/lib/i18n/config.js';
 export const userCreate = (res: Response, user: Partial<User>) => {
   const connection = databaseConnect();
   const { salt, hashPwd } = generateSaltHashedPassword('admin');
@@ -73,6 +73,7 @@ export const getUserToUpdate = (req: Request, res: Response, id: string) => {
           isLogged: req.session.isLogged,
           account: req.session.user,
           cart: req.session.cart,
+          t: i18next.t,
         });
       }
 
@@ -97,6 +98,7 @@ export const getUserList = (req: Request, res: Response) => {
         account: req.session.user,
         toast: toastDispatch(req),
         cart: req.session.cart,
+        t: i18next.t,
       });
 
       databaseDisconnect(connection);

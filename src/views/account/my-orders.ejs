@@ -24,28 +24,28 @@
 <body>
   <header><%- include('./layout/layout.ejs') %></header>
   <%- include('../../../components/toast/toast.ejs')%>
-  <%-include('./layout/mainbar.ejs', {title: `Bienvenido ${accountName}`,
+  <%-include('./layout/mainbar.ejs', {title: `${t('info.welcome')} ${accountName}`,
       backLink:"./"})%>
   <main class="d-flex">
     <%- include('./account/accountNav.ejs') %>
     <data class="d-flex flex-column align-items-start">
-      <div class="profile-title">My orders</div>
+      <div class="profile-title"><%= t('orders.myOrders') %></div>
       <div class="d-flex flex-column gap-2 w-100 h-100">
         <%if(!orders.length) {%>
         <div class="d-flex flex-column w-100 h-100 align-items-center justify-content-center gap-3">
-          You do not have any order
+          <%= t('orders.noOrders') %>
           <div class="d-flex gap-1 my-2">
 
             <a
                 href="/shop"
                 class="button button-primary"
-            >Keep shoping</a>
+            ><%= t('orders.keepShopping') %></a>
 
             <a
                 href="
                 /shop"
                 class="button button-link"
-            >Validate your cart <i class="bi bi-arrow-right"></i></a>.
+            ><%= t('orders.validateCart') %><i class="bi bi-arrow-right"></i></a>.
           </div>
 
         </div>

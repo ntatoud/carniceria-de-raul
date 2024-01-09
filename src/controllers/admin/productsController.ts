@@ -6,6 +6,7 @@ import {
 } from '@/database/index.js';
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
+import i18next from '@/lib/i18n/config.js';
 
 export const productCreate = (res: Response, product: Partial<Product>) => {
   const connection = databaseConnect();
@@ -88,6 +89,7 @@ export const getProductToUpdate = (
         isLogged: req.session.isLogged,
         account: req.session.user,
         cart: req.session.cart,
+        t: i18next.t,
       });
 
       databaseDisconnect(connection);
@@ -125,6 +127,7 @@ export const getProductList = (
         isLogged: req.session.isLogged,
         account: req.session.user,
         toast: toastDispatch(req),
+        t: i18next.t,
         cart: req.session.cart,
       });
 

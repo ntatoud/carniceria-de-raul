@@ -53,7 +53,7 @@ const cartProductAdd = async (event: SubmitEvent) => {
       if (+res.newCartSize !== 0) {
         $('.cart-button .nb-products').html(res.newCartSize);
         hideLoading();
-        toastSuccess('Product added to cart');
+        toastSuccess('Producto añadido en el carrito');
       }
     },
     error: () => {

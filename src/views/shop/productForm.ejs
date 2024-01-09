@@ -1,5 +1,5 @@
 <div class="form-group field-select <% if(product.unit === "€/unidad") { %>hide<% }%>">
-  <p>Peso:</p>
+  <p><%=t('shop.weight')%>:</p>
   <div class="input-group">
     <select
         name="weight"
@@ -51,6 +51,6 @@
       type="submit"
       onclick="cookiesAssertAllowed(event)"
   >
-    <i class="bi bi-cart-plus"></i>Añadir
+    <i class="bi bi-cart-plus"></i><%=t('shop.addToCart')%>
   </button>
 </div>

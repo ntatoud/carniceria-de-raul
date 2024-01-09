@@ -2,6 +2,7 @@ import {
   generateSaltHashedPassword,
   isPasswordCorrect,
 } from '@/controllers/auth/authController.js';
+import i18next from '@/lib/i18n/config.js';
 import {
   databaseConnect,
   databaseDisconnect,
@@ -61,7 +62,7 @@ const passwordUpdate = (
     if (error) databaseError(error);
 
     req.session.toast = toastSuccess({
-      content: 'Password updated succesfully',
+      content: i18next.t('main:toast.success.passwordUpdate'),
     });
     res.redirect('/account/profile');
 

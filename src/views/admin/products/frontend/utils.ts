@@ -8,7 +8,7 @@ const productDelete = async (event: MouseEvent) => {
     type: 'DELETE',
     data: { id },
     success: () => {
-      toastSuccess('Product Deleted Successfully');
+      toastSuccess('Producto borrado');
       productRow.remove();
     },
   });
@@ -56,9 +56,9 @@ const productCreate = async (event: SubmitEvent) => {
 
 const toastProduct = localStorage.getItem('toast');
 if (toastProduct === 'update') {
-  toastSuccess('Product updated successfully');
+  toastSuccess('Producto actualizado');
 } else if (toastProduct === 'create') {
-  toastSuccess('Product created successfully');
+  toastSuccess('Producto creado');
 }
 
 localStorage.clear();

@@ -1,4 +1,3 @@
-<!-- Author : Noé TATOUD -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,14 +25,14 @@
 
     <data>
       <div class="data-top">
-        <h1 class="">Users</h1>
+        <h1 class=""><%= t('admin.users') %></h1>
 
         <a
             href="/admin/users/create"
             class="button button-primary create"
         >
           <i class="bi bi-plus-lg"></i>
-          <p>Create User</p>
+          <p><%= t('admin.createUser') %></p>
         </a>
       </div>
       <table
@@ -41,9 +40,9 @@
           class="users-table"
       >
         <tr class="table-head">
-          <th class="table-cell name">Name/Email</th>
-          <th class="table-cell id">ID</th>
-          <th class="table-cell auth">Authorities</th>
+          <th class="table-cell name"><%= t('admin.name') %></th>
+          <th class="table-cell id"><%= t('admin.id') %></th>
+          <th class="table-cell auth"><%= t('admin.authorities') %></th>
           <th class="table-cell actions"></th>
         </tr>
         <tbody class="table-body">
@@ -87,7 +86,7 @@
                     class="dropdown-item"
                     type="button"
                 >
-                  <i class="bi bi-pencil"></i> Edit
+                  <i class="bi bi-pencil"></i> <%= t('admin.edit') %>
                 </a>
                 <button
                     class="dropdown-item text-danger"
@@ -97,7 +96,7 @@
                     data-bs-target=".modal-delete-confirm"
                     onclick="populateModal(event)"
                 >
-                  <i class="bi bi-trash"></i> Delete
+                  <i class="bi bi-trash"></i> <%= t('admin.delete') %>
                 </button>
               </div>
             </td>

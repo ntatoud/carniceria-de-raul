@@ -6,6 +6,8 @@ import {
   userCreate,
   userUpdate,
 } from '@/controllers/admin/usersController.js';
+import i18next from '@/lib/i18n/config.js';
+
 const router = Router();
 
 router.use(urlencoded({ extended: true }));
@@ -38,6 +40,7 @@ router.use('/create', (req: Request, res: Response) => {
     isLogged: req.session.isLogged,
     account: req.session.user,
     cart: req.session.cart,
+    t: i18next.t,
   });
 });
 

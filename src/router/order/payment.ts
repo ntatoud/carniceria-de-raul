@@ -1,6 +1,7 @@
 import { Request, Response, Router, urlencoded } from 'express';
 import { cartTotalPrice } from '@/controllers/order/cartController.js';
 import { createOrderFromSession } from '@/controllers/order/paymentController.js';
+import i18next from '@/lib/i18n/config.js';
 
 const router = Router();
 
@@ -22,6 +23,7 @@ router.use('/', (req: Request, res: Response) => {
     account: req.session.user,
     cart: req.session.cart,
     cartPrice: cartTotalPrice(req.session.cart),
+    t: i18next.t,
   });
 });
 

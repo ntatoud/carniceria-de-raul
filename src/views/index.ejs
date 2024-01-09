@@ -1,4 +1,3 @@
-<!-- Author : Noé TATOUD -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,15 +20,14 @@
     <div class="banner">
       <div class="banner-content">
         <div class="title">
-          <p class="add-on">FRESH MEAT IN MADRID</p>
-          <p class="main you-order">You order.</p>
-          <p class="main we-prepare"><b>We prepare.</b></p>
-          <p class="main you-recover">You recover.</p>
-
-          <p class="rest">At Raul butcher shop</p>
+          <p class="add-on"><%= t('title.addOn') %></p>
+          <p class="main you-order"><%= t('title.youOrder') %></p>
+          <p class="main we-prepare"><b><%= t('title.wePrepare') %></b></p>
+          <p class="main you-recover"><%= t('title.youRecover') %></p>
+          <p class="rest"><%= t('title.headLine') %></p>
         </div>
         <div class="banner-body">
-          <p>Our meat is 100% from spain</p>
+          <p><%= t('title.shortDesc') %></p>
           <div class="d-flex">
 
             <a
@@ -37,13 +35,13 @@
                 type="button"
                 role="button"
                 class="button button-primary button-lg"
-            ><i class="bi bi-shop"></i>Go shopping now</a>
+            ><i class="bi bi-shop"></i><%= t('title.shopLine') %></a>
             <a
                 href="/contact"
                 type="button"
                 role="button"
                 class="button button-link-neutral"
-            >Find us<i class="bi bi-arrow-right"></i></a>
+            ><%= t('title.findUs') %><i class="bi bi-arrow-right"></i></a>
 
           </div>
         </div>
@@ -62,59 +60,59 @@
           alt="Illustration of cows"
       ></img>
       <div class="section-content">
-        <p>Selling meat in <a
+        <p><%= t('home.sellingLine') %> <a
               class="text-emphasis"
               href="https://todoestaenmadrid.com/es/shops/carniceria-y-charcuteria-merca-san-fermin-cb"
-          ><b>Merca Sanfermin</b></a> since <b class="text-emphasis">2000</b></p>
+          ><b><%=t('shop.marketName')%></b></a> <%= t('home.sinceLine') %> <b class="text-emphasis">2000</b></p>
         <table class="time-table">
           <tr>
-            <td class="day"><b>Monday</b></td>
-            <td>9am - 2pm / 5pm - 8pm</td>
+            <td class="day"><b><%= t('home.monday') %></b></td>
+            <td><%= t('home.mondayTime') %></td>
           </tr>
           <tr>
-            <td class="day"><b>Tuesday</b></td>
-            <td>9am - 2pm / 5pm - 8pm</td>
+            <td class="day"><b><%= t('home.tuesday') %></b></td>
+            <td><%= t('home.tuesdayTime') %></td>
 
           </tr>
           <tr>
-            <td class="day"><b>Wednesday</b></td>
-            <td>9am - 2pm / 5pm - 8pm</td>
+            <td class="day"><b><%= t('home.wednesday') %></b></td>
+            <td><%= t('home.wednesdayTime') %></td>
 
           </tr>
           <tr>
-            <td class="day"><b>Thursday</b></td>
-            <td>9am - 2pm / 5pm - 8pm</td>
+            <td class="day"><b><%= t('home.thursday') %></b></td>
+            <td><%= t('home.thursdayTime') %></td>
 
           </tr>
           <tr>
-            <td class="day"><b>Friday</b></td>
-            <td>9am - 2pm / 5pm - 8pm</td>
+            <td class="day"><b><%= t('home.friday') %></b></td>
+            <td><%= t('home.fridayTime') %></td>
 
           </tr>
           <tr>
-            <td class="day"><b>Saturday</b></td>
-            <td>9am - 2pm / 5pm - 8pm</td>
+            <td class="day"><b><%= t('home.saturday') %></b></td>
+            <td><%= t('home.saturdayTime') %></td>
 
           </tr>
           <tr>
-            <td class="day"><b>Sunday</b></td>
-            <td>Closed</td>
+            <td class="day"><b><%= t('home.sunday') %></b></td>
+            <td><%= t('home.sundayTime') %></td>
           </tr>
         </table>
       </div>
     </div>
     <div class="section section2 d-flex">
       <div class="section-content">
-        <div class="section-title">An <b>easy</b> process.</div>
+        <div class="section-title"><%= t('home.an') %> <b><%= t('home.easy') %></b> <%= t('home.process') %>.</div>
         <ul>
           <li>
-            <i class="bi bi-search"></i> <b>Shop</b> products
+            <i class="bi bi-search"></i> <b><%= t('home.shopWord') %></b> <%= t('home.productsWord') %>
           </li>
           <li>
-            <i class="bi bi-cursor"></i> <b>Select</b> recovery date
+            <i class="bi bi-cursor"></i> <b><%= t('home.selectWord') %></b> <%= t('home.recoveryDate') %>
           </li>
           <li>
-            <i class="bi bi-box-seam"></i> <b>Pick up</b> your order
+            <i class="bi bi-box-seam"></i> <b><%= t('home.pickUp') %></b> <%= t('home.yourOrder') %>
           </li>
         </ul>
       </div>

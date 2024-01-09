@@ -1,5 +1,7 @@
 import { Response, Request } from 'express';
 import { toastSuccess } from '@/components/toast/index.js';
+import i18next from '@/lib/i18n/config.js';
+
 import {
   databaseConnect,
   databaseDisconnect,
@@ -87,7 +89,7 @@ const createSessionFromEmptyCart = (
       setCartProductsTotalPrices(req.session.cart);
       req.session.isLogged = true;
       req.session.toast = toastSuccess({
-        content: 'You are now connected',
+        content: i18next.t('main:toast.success.connection'),
       });
       res.status(200).redirect('/');
 
