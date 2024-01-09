@@ -1,6 +1,6 @@
 {
   "title": {
-    "addOn": "Carne fresca a Madrid",
+    "addOn": "CARNE FRESCA A MADRID",
     "youOrder": "Ordini.",
     "wePrepare": "Prepariamo.",
     "youRecover": "Recuperi.",
@@ -31,7 +31,7 @@
   "home": {
     "marketName": "Mercato Sanfermín",
     "sellingLine": "Vendita di carne a",
-    "sinceLine": "dal 2000",
+    "sinceLine": "dal",
     "monday": "Lunedì",
     "tuesday": "Martedì",
     "wednesday": "Mercoledì",
@@ -90,7 +90,7 @@
     "login": "Accedi",
     "createAccount": "Crea account",
     "signup": "Registrati",
-    "forgotPassword": "Password dimenticata",
+    "forgotPassword": "Password dimenticata?",
     "userExists": "Questa email è già utilizzata",
     "password": "Password",
     "passwordShould": "La tua password dovrebbe",

@@ -1,6 +1,6 @@
 {
   "title": {
-    "addOn": "Fresh meat in madrid",
+    "addOn": "FRESH MEAT IN MADRID",
     "youOrder": "You Order.",
     "wePrepare": "We prepare.",
     "youRecover": "You recover.",
@@ -31,7 +31,7 @@
   "home": {
     "marketName": "Market Sanfermín",
     "sellingLine": "Selling meat at",
-    "sinceLine": "since 2000",
+    "sinceLine": "since",
     "monday": "Monday",
     "tuesday": "Tuesday",
     "wednesday": "Wednesday",
@@ -90,7 +90,7 @@
     "login": "Log in",
     "createAccount": "Create account",
     "signup": "Register",
-    "forgotPassword": "Forgot password",
+    "forgotPassword": "Forgot password ?",
     "userExists": "This email is already taken",
     "password": "Password",
     "passwordShould": "Your password should",
