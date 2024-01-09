@@ -7,6 +7,7 @@ import {
 import stripe from '@/lib/stripe/config.js';
 import { Request, Response } from 'express';
 import { Connection, QueryError, RowDataPacket } from 'mysql2';
+import i18next from '@/lib/i18n/config.js';
 
 export const createOrderFromSession = (
   req: Request,
@@ -131,8 +132,7 @@ const cartDelete = (req: Request, res: Response, connection: Connection) => {
         req.session.cart = []; // Empty the cart
 
         req.session.toast = toastSuccess({
-          title: 'Payment successfull',
-          content: 'Your order has been created',
+          content: i18next.t('main:toast.success.payment'),
         });
         res.redirect('/account/my-orders');
         databaseDisconnect(connection);

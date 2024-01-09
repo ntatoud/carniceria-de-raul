@@ -7,6 +7,7 @@ import {
 import { Request, Response } from 'express';
 import { QueryError, RowDataPacket } from 'mysql2';
 import { formatDate } from '@/lib/date/utils.js';
+import i18next from '@/lib/i18n/config.js';
 
 export const getOrderFromId = (
   req: Request,
@@ -56,6 +57,7 @@ export const getOrderFromId = (
           account: req.session.user,
           cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
           onAdmin,
+          t: i18next.t,
         });
       }
 
@@ -99,6 +101,7 @@ export const getOrderList = (req: Request, res: Response) => {
           isLogged: req.session.isLogged,
           account: req.session.user,
           cart: req.session.cart,
+          t: i18next.t,
         });
       }
       databaseDisconnect(connection);

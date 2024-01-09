@@ -1,4 +1,3 @@
-<!-- Author : Noé TATOUD -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +20,7 @@
         role="form"
         onsubmit="showLoading()"
     >
-      <h2>Login</h2>
+      <h2><%=t('auth.login')%></h2>
       <%if(error.state) {%>
       <span class="credential-error"> <%=error.message%> </span>
       <%}%> <%- include('./auth/email-password-form.ejs', {type: "login"}) %>
@@ -29,11 +28,11 @@
         <a
             class="button button-sm button-link-neutral"
             href="/auth/reset"
-        >Forgot Password ?</a>
+        ><%=t('auth.forgotPassword')%></a>
         <button
             type="submit"
             class="button button-primary"
-        >Log In</button>
+        ><%=t('auth.login')%></button>
       </div>
     </form>
     <div id="existingResultDiv"></div>

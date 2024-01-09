@@ -5,6 +5,7 @@ import { QueryError, RowDataPacket } from 'mysql2/promise';
 import { User } from '@/types/types.js';
 import { createSession } from '@/controllers/auth/loginController.js';
 import { toastDispatch, toastError } from '@/components/toast/index.js';
+import i18next from '@/lib/i18n/config.js';
 
 const router = Router();
 
@@ -26,6 +27,7 @@ router.post('/', (req: Request, res: Response) => {
       if (error)
         res.status(502).render('login.ejs', {
           error: { state: true, message: error.message },
+          t: i18next.t,
         });
 
       if (result.length) {
@@ -57,6 +59,7 @@ router.use('/', (req: Request, res: Response) => {
     account: req.session.user,
     cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
     toast: toastDispatch(req),
+    t: i18next.t,
   });
 });
 

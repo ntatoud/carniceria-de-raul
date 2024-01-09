@@ -4,7 +4,7 @@ import { generateSaltHashedPassword } from '@/controllers/auth/authController.js
 import { QueryError, RowDataPacket } from 'mysql2';
 import { Request, Response } from 'express';
 import { toastSuccess } from '@/components/toast/index.js';
-
+import i18next from '@/lib/i18n/config.js';
 export const isStrongPassword = (
   password: string
 ): { isStrong: boolean; problems: string[] } => {
@@ -82,6 +82,7 @@ export const registerIfPossible = (
       if (error)
         res.status(502).render('signup.ejs', {
           error: { state: true, message: error.message },
+          t: i18next.t,
         });
 
       if (result.length)
@@ -92,6 +93,7 @@ export const registerIfPossible = (
           },
           isLogged: req.session.isLogged,
           cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+          t: i18next.t,
         });
       else if (!isStrongPassword(password).isStrong)
         res.render('signup.ejs', {
@@ -101,6 +103,7 @@ export const registerIfPossible = (
             isLogged: req.session.isLogged,
             account: req.session.user,
             cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
+            t: i18next.t,
           },
         });
       else {
@@ -112,10 +115,11 @@ export const registerIfPossible = (
             if (error)
               res.status(502).render('signup.ejs', {
                 error: { state: true, message: error.message },
+                t: i18next.t,
               });
 
             req.session.toast = toastSuccess({
-              content: 'Account created successfuly',
+              content: i18next.t('main:toast.success.accountCreated'),
             });
             res.status(200).redirect('/auth/login');
 

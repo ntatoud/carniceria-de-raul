@@ -1,5 +1,5 @@
+import i18next from '@/lib/i18n/config.js';
 import { Request } from 'express';
-
 type Toast = {
   isVisible: boolean;
   title: string;
@@ -19,7 +19,7 @@ export const toastEmpty = (): Toast => {
 export type ToastParams = { title?: string; content: string };
 
 export const toastSuccess = ({
-  title = 'Success',
+  title = i18next.t('main:toast.success.title'),
   content,
 }: ToastParams): Toast => {
   return {
@@ -31,7 +31,7 @@ export const toastSuccess = ({
 };
 
 export const toastError = ({
-  title = 'Error',
+  title = i18next.t('main:toast.error.title'),
   content,
 }: ToastParams): Toast => {
   return {

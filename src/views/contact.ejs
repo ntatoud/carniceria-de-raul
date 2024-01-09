@@ -1,4 +1,3 @@
-<!-- Author : Noé TATOUD -->
 <!doctype html>
 <html lang="en">
 
@@ -18,8 +17,8 @@
   <header><%- include('./layout/layout.ejs') %></header>
   <main class="d-flex flex-column mx-auto">
     <div class=" d-flex flex-column w-100 align-items-center gap-3 mb-5 px-2">
-      <h1><b>Contáctanos</b></h1>
-      <p><b>Contactanos a través de nuestro número de teléfono o nuestro email o si prefieres un trato más personal ven a visitarnos directamente!</b></p>
+      <h1><b><%=t('info.contactUs')%></b></h1>
+      <p><b><%=t('info.contactLine')%></b></p>
     </div>
 
     <div class="contact-infos">
@@ -27,7 +26,7 @@
           id="map"
           class="d-flex flex-column overflow-hidden"
       >
-        <h2 class="px-2"><b>Ubicación</b></h2>
+        <h2 class="px-2"><b><%=t('info.location')%></b></h2>
         <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.614898775068!2d-3.693338524174939!3d40.373062571446596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4226587b9a49ad%3A0x5e872727b4691e0b!2sMerca%20Sanfermin!5e0!3m2!1ses!2ses!4v1704454151838!5m2!1ses!2ses"
             style="border:0;"
@@ -40,12 +39,12 @@
       </div>
       <div class="d-flex flex-column gap-5">
         <div class="bg-black text-light p-3">
-          <h2><b>Teléfono</b></h2>
+          <h2><b><%=t('info.telephone')%></b></h2>
           <p><b> +34 666 666 666</b></p>
         </div>
 
         <div class="bg-black text-light p-3">
-          <h2><b>Email</b></h2>
+          <h2><b><%=t('info.email')%></b></h2>
           <p><b>carniceriaderaulalmeria@outlook.com</b></p>
         </div>
       </div>
