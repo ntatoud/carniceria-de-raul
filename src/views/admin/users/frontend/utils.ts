@@ -62,8 +62,8 @@ const userCreate = async (event: SubmitEvent) => {
 
 const toastUser = localStorage.getItem('toast');
 if (toastUser === 'update') {
-  toastSuccess('User updated successfully');
+  toastSuccess('Usuario actualizado');
 } else if (toastUser === 'create') {
-  toastSuccess('User created successfully');
+  toastSuccess('Usuario creado');
 }
 localStorage.clear();

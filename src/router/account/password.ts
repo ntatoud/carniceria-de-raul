@@ -2,6 +2,7 @@ import { Router, urlencoded, Request, Response } from 'express';
 import { isStrongPassword } from '@/controllers/auth/signupController.js';
 import { passwordUpdateIfOldPasswordCorrect } from '@/controllers/account/passwordController.js';
 import { toastDispatch } from '@/components/toast/index.js';
+import i18next from '@/lib/i18n/config.js';
 
 const router = Router();
 
@@ -28,6 +29,7 @@ router.use('/', (req: Request, res: Response) => {
     account: req.session.user,
     toast: toastDispatch(req),
     cart: req.session.cart,
+    t: i18next.t,
   });
 });
 

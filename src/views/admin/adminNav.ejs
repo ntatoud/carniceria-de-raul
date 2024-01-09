@@ -1,20 +1,32 @@
 <menu class="admin-menu">
-  <p class="dropdown-header">Administration</p>
-  <a href="/admin/orders"><i class="bi bi-box-seam"></i> Orders</a>
-  <a href="/admin/products"><i class="bi bi-tag"></i> Products</a>
-  <a href="/admin/users"><i class="bi bi-people"></i> Users</a>
+  <p class="dropdown-header"><%= t('admin.administration') %></p>
+  <a href="/admin/orders"
+    ><i class="bi bi-box-seam"></i> <%= t('admin.orders') %></a
+  >
+  <a href="/admin/products"
+    ><i class="bi bi-tag"></i> <%= t('admin.products') %></a
+  >
+  <a href="/admin/users"
+    ><i class="bi bi-people"></i> <%= t('admin.users') %></a
+  >
 </menu>
 
 <menu class="admin-menu mobile dropdown">
   <button
-      class="button dropdown-toggle "
-      data-bs-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
+    class="button dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
   ></button>
   <div class="dropdown-menu dropdown-menu-end">
-    <a href="/admin/orders"><i class="bi bi-box-seam"></i> Orders</a>
-    <a href="/admin/products"><i class="bi bi-tag"></i> Products</a>
-    <a href="/admin/users"><i class="bi bi-people"></i> Users</a>
+    <a href="/admin/orders"
+      ><i class="bi bi-box-seam"></i> <%= t('admin.orders') %></a
+    >
+    <a href="/admin/products"
+      ><i class="bi bi-tag"></i> <%= t('admin.products') %></a
+    >
+    <a href="/admin/users"
+      ><i class="bi bi-people"></i> <%= t('admin.users') %></a
+    >
   </div>
 </menu>

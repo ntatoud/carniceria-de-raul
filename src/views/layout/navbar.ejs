@@ -6,44 +6,45 @@
         <a
             class="nav-link"
             href="/"
-        ><i class="bi bi-house mobile"></i>Inicio</a>
+        ><i class="bi bi-house mobile"></i><%= t('layout.navbar.home') %></a>
       </li>
       <li class="nav-item">
         <a
             class="nav-link"
             href="/shop"
-        ><i class="bi bi-shop mobile"></i>Tienda</a>
+        ><i class="bi bi-shop mobile"></i><%= t('layout.navbar.shop') %></a>
       </li>
       <li class="nav-item">
         <a
             class="nav-link"
             href="/about"
-        ><i class="bi bi-question-circle mobile"></i>Sobre mi</a>
+        ><i class="bi bi-question-circle mobile"></i><%= t('layout.navbar.about')
+          %></a>
       </li>
       <li class="nav-item">
         <a
             class="nav-link"
             href="/contact"
-        ><i class="bi bi-telephone mobile"></i>Contacto</a>
+        ><i class="bi bi-telephone mobile"></i><%= t('layout.navbar.contact') %></a>
       </li>
     </ul>
   </div>
 </nav>
 <!-- <script type="text/javascript" src="/views/layout/navbar.js"> -->
 <script type="text/javascript">
-  const navItems = $(".menu-navbar .nav-link");
+  const navItems = $('.menu-navbar .nav-link');
   // Remove the active tag of the previous item
-  $(".nav-item .active").removeClass("active");
+  $('.nav-item .active').removeClass('active');
 
   // Add the active tag to the new current item
   const currentPath = window.location.pathname;
   const currentElement = navItems.filter((index, navItem) => {
     if (
-      navItem.getAttribute("href") === currentPath ||
-      (navItem.getAttribute("href") === "/shop" &&
-        currentPath.includes("/shop/"))
+      navItem.getAttribute('href') === currentPath ||
+      (navItem.getAttribute('href') === '/shop' &&
+        currentPath.includes('/shop/'))
     )
       return navItem;
   });
-  currentElement.addClass("active");
+  currentElement.addClass('active');
 </script>

@@ -1,4 +1,3 @@
-<!-- Author : Noé TATOUD -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +18,7 @@
         method="post"
         role="form"
     >
-      <h2>Sign Up</h2>
+      <h2><%=t('auth.signup')%></h2>
       <%if(error.state) {%>
       <span class="credential-error bi bi-exclamation-triangle">
         <%=error.message%>
@@ -27,33 +26,33 @@
       <%}%>
         <div class="d-flex flex-row gap-3">
           <div class="form-group">
-            <label for="name">Name</label>
-            <input
-              name="name"
-              type="text"
-              class="form-control"
-              id="name"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="surname">Surname</label>
-            <input
-              name="surname"
-              type="text"
-              class="form-control"
-              id="surname"
-              required
-            />
-          </div>
-        </div>
-        <%- include('./auth/email-password-form.ejs', {type: "signup"}) %>
+            <label for="name"><%=t('auth.name')%></label>
+      <input
+          name="name"
+          type="text"
+          class="form-control"
+          id="name"
+          required
+      />
+      </div>
+      <div class="form-group">
+        <label for="surname"><%=t('auth.surname')%></label>
+        <input
+            name="surname"
+            type="text"
+            class="form-control"
+            id="surname"
+            required
+        />
+      </div>
+      </div>
+      <%- include('./auth/email-password-form.ejs', {type: "signup"}) %>
       <button
           type="submit"
           class="button button-primary"
           disabled
       >
-        Create Account
+        <%=t('auth.createAccount')%>
       </button>
     </form>
   </main>

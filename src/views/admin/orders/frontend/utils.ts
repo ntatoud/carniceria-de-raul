@@ -7,7 +7,6 @@ const orderDelete = async (event: MouseEvent) => {
     type: 'delete',
     data: { id },
     success: () => {
-      toastSuccess('Order Deleted Successfully');
       orderRow.remove();
     },
   });

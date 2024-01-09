@@ -35,15 +35,15 @@
           </div>
           <% if(+product.stock === 0) {%>
           <div class="product-stock tag-empty">
-            Agotado<i class="bi bi-cart-x"></i>
+            <%=t('shop.outOfOrder')%><i class="bi bi-cart-x"></i>
           </div>
           <% } else if(product.stock < 25) {%>
           <div class="product-stock tag-warning">
-            Solo queda <%=product.stock%><i class="bi bi-cart-check"></i>
+            <%=t('shop.onlyLeft')%> <%=product.stock%><i class="bi bi-cart-check"></i>
           </div>
           <% } else {%>
           <div class="product-stock tag-full">
-            Disponible <i class="bi bi-cart-check"></i>
+            <%=t('shop.available')%> <i class="bi bi-cart-check"></i>
           </div>
           <% } %>
         </div>

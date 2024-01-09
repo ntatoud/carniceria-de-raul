@@ -1,5 +1,6 @@
 import { Router, Request, Response, urlencoded } from 'express';
 import { addOrderToSession } from '@/controllers/order/infosController.js';
+import i18next from '@/lib/i18n/config.js';
 
 const router = Router();
 
@@ -22,6 +23,7 @@ router.use('/', (req: Request, res: Response) => {
     isLogged: req.session.isLogged,
     account: req.session.user,
     cart: req.session.cart,
+    t: i18next.t,
   });
 });
 
