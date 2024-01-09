@@ -143,8 +143,11 @@
         },
         success: (res) => {
           toastSuccess(t('toast.success.statusChange'))
+          location.reload()
+
           $(`.orders-table #${orderId} .status`).html(`
             <i class="tag-status ${+isDone ? 'tag-green bi-check' : 'tag-warning  bi bi-clock'} p-sm-1"></i>`)
+          $(event.currentTarget).attr("id", `${orderId}-${isDone}`)
         },
         error: (xhr) => {
           toastError(xhr.status + xhr.statusText);

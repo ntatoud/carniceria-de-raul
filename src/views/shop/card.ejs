@@ -27,7 +27,7 @@
     <% }%>
     <a href="/shop/<%=product.category.toLowerCase()%>/<%=product.productId%>">
       <img
-          src="/assets/images/products/<%=product.category.toLowerCase()%>.webp"
+          src="<%=!!product.image ? "/assets/images/products/"+product.image : "/assets/images/products/"+product.category.toLowerCase()+`.webp`%>"
           role="img"
           alt="Image showing the product <%=product.name[0] + product.name.toLowerCase().slice(1)%>"
           aria-label="Image showing the product <%=product.name[0] + product.name.toLowerCase().slice(1)%>"

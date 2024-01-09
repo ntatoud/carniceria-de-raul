@@ -1,10 +1,21 @@
-import { getOrdersByUserId } from '@/controllers/account/myOrdersControllers.js';
+import {
+  generateBillPDFFromOrderId,
+  getOrdersByUserId,
+} from '@/controllers/account/myOrdersControllers.js';
 import { getOrderFromId } from '@/controllers/admin/ordersController.js';
 import { Router, urlencoded, Request, Response } from 'express';
 
 const router = Router();
 
 router.use(urlencoded({ extended: true }));
+
+router.get('/pdf/:id', (req: Request, res: Response) => {
+  if (!req.params.id) {
+    res.sendStatus(502);
+  } else {
+    generateBillPDFFromOrderId(req, res, req.params.id);
+  }
+});
 
 router.get('/:id', (req: Request, res: Response) => {
   const orderId = req.params.id;

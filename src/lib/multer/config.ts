@@ -9,7 +9,7 @@ const storage = diskStorage({
     file: Express.Multer.File,
     callback: (error: Error | null, destination: string) => void
   ) => {
-    callback(null, 'public/assets/images/products/');
+    callback(null, 'public/assets/images/products');
   },
   filename: (
     req: Request,

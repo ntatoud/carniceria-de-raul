@@ -16,6 +16,10 @@
   border: none;
 }
 
+.auth-tab {
+  margin-top: 5rem;
+}
+
 .tab,
 .tab * {
   text-decoration: none;

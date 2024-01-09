@@ -6,7 +6,7 @@ const populateModal = (event: MouseEvent) => {
   ];
 
   $('.modal-delete-confirm button.confirm').attr('id', itemId!);
-
+  $('.modal-delete-confirm .modal-header h5').remove();
   $('.modal-delete-confirm .modal-header').prepend(`<h5
     class="modal-title"
   >Esta apunto de borrar <b>${itemName}</b></h5>`);

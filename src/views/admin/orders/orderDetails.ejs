@@ -15,26 +15,91 @@
 
 <body>
   <header><%- include('./layout/layout.ejs') %></header>
-  <%- include('./layout/mainbar.ejs', {title: "Orders", backLink: onAdmin ? "/admin/orders" : "/account/my-orders"}) ;%>
-  <main class="d-flex flex-row">
-    <div class="order-container d-flex flex-column">
-      <%orderProducts.map((product) => {%>
-      <div class="product-row d-flex">
-        <div><%=product.productName%></div>
-        <div>
-          <%=product.quantity%> x <%=product.productPrice%> =
-          <%=product.quantity*product.productPrice%>
+  <%- include('./layout/mainbar.ejs', {title: onAdmin ? "Orders" : "My orders", backLink: onAdmin ? "/admin/orders" : "/account/my-orders"}) ;%>
+  <main>
+
+    <div class="title d-flex gap-3 w-100 align-items-center">
+      <%if(onAdmin) {%>Client:<%}%>
+      <b><%=orderProducts[0].userName%> <%=orderProducts[0].userSurname%></b>
+      <span class="text-bg-secondary px-2"><%=orderProducts[0].email ?? orderProducts[0].userEmail%></span>
+    </div>
+
+    <div class="data-container">
+      <div class="order-container d-flex flex-column justify-content-center">
+        <%orderProducts.map((product) => {%>
+        <div class="product-row d-flex">
+          <div>
+            <b><%=product.productName[0]+product.productName.slice(1).toLowerCase()%></b>
+            <%if(product.weight){%>
+            <div><%=product.weight%>g</div>
+            <%}%>
         </div>
-        <div></div>
+        <div>
+          <div>
+            x<%= product.quantity %>
+          </div>
+          <%if(product.sale) {%>
+          <div class="text-danger">
+            <%if(product.unit === '€/kg') {%>
+            <b>
+              <%=(product.quantity*product.productSalePrice*product.weight/1000).toFixed(2)%>€
+            </b>
+            <%} else {%>
+            <b>
+              <%=(product.quantity*product.productSalePrice).toFixed(2)%>€
+            </b> <%}%>
+        </div>
+        <%} else {%>
+            <%if(product.unit === '€/kg') {%>
+            <b>
+              <%=(product.quantity*product.productPrice*product.weight/1000).toFixed(2)%>€
+            </b>
+            <%} else {%>
+            <b>
+              <%=(product.quantity*product.productPrice).toFixed(2)%>€
+            </b> <%}%>
+          <%}%>
+          </div>
+        </div>
+        <%})%>
+
       </div>
-      <%})%>
-      <div class="order-summary d-flex">
-        <b>Total: </b> <%=orderProducts?.totalPrice%>
+      <div class="order-summary d-flex flex-column gap-2">
+        <div>
+          Ordered on: <b>
+            <%= 
+        String(orderProducts[0].orderDate.getDate()).padStart(2, '0')
+        +'/'
+        +String(orderProducts[0].orderDate.getMonth()+1).padStart(2, '0')
+        +'/'
+        + orderProducts[0].orderDate.getFullYear()%>
+          </b>
+        </div>
+        <p>
+        <div>
+          Recovery date: <b>
+            <%= 
+        String(orderProducts[0].recoveryDate.getDate()).padStart(2, '0')
+        +'/'
+        +String(orderProducts[0].recoveryDate.getMonth()+1).padStart(2, '0')
+        +'/'
+        + orderProducts[0].recoveryDate.getFullYear()%>
+          </b>
+        </div>
+        <div class="mt-2">
+          Comment : <b>
+            <%=orderProducts[0].comment%>
+          </b>
+        </div>
+        <div class="mt-4">
+          Total: <b><%=orderProducts[0]?.totalPrice%> €</b>
+        </div>
       </div>
+
     </div>
   </main>
   <script src="/views/admin/users/frontend/utils.js"></script>
-  <script src="/views/layout/frontend/utils.js"></script>
+  <script src="/views/layout/frontend.js"></script>
   <%-include('../scripts.ejs')%>
 
 </body>

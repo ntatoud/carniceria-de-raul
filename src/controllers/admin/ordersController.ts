@@ -18,6 +18,10 @@ export const getOrderFromId = (
   const getOrderAndProduct = `SELECT \
     o.orderId, \
     o.userId, \
+    o.email,
+    u.name as userName,
+    u.surname as userSurname,
+    u.email as userEmail,
     po.quantity, \
     po.weight,
     o.orderDate, \
@@ -26,11 +30,15 @@ export const getOrderFromId = (
     o.comment, \
     p.productId,
     p.name as productName,
-    p.price as productPrice
+    p.price as productPrice,
+    p.sale as productSale,
+    p.salePrice as productSalePrice,
+    p.unit
     FROM \
     orders o \
     JOIN products_orders po ON o.orderId = po.orderId \
     JOIN products p ON po.productId = p.productId \
+    JOIN users u ON o.userId = u.userId
     WHERE \
     o.orderId = ${id};`;
 

@@ -28,7 +28,7 @@
   <main class="d-flex flex-column align-items-center">
     <%- include('./orderNav.ejs') %>
     <div class="progress-bar d-flex flex-row">
-      <span class="billing current bi bi-check">
+      <span class="billing current">
         <%=t('cart.billingAddress')%>
       </span>
       <span class="contact pending bi bi-chevron-right"> <%=t('cart.contact')%> </span>
@@ -383,7 +383,7 @@
   </main>
   <%-include('../scripts.ejs')%>
 
-  <script src="/views/order/infos/frontend/utils.js"></script>
+  <script src="/views/order/frontend/infos.js"></script>
   </script>
 </body>
 

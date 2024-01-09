@@ -20,13 +20,14 @@
 @media all and (max-width: 768px) {
   .mainbar {
     position: fixed;
-    top: 7rem;
+    top: 4rem;
     width: 100%;
     font-size: var(--font-xl);
     padding-left: 10%;
     padding-right: 10%;
     justify-content: center;
   }
+
   .mainbar .button {
     position: absolute;
     left: 10%;

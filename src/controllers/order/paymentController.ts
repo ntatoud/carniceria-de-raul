@@ -58,7 +58,6 @@ export const createOrderFromSession = (
           (error: QueryError | null) => {
             if (error) databaseError(error, '/payment/pay');
             else {
-              console.log(order);
               connection.execute(
                 'SELECT orderId from orders WHERE userId = ? AND recoveryDate = ?',
                 [order?.userId, order?.recoveryDate],
@@ -67,9 +66,7 @@ export const createOrderFromSession = (
                     databaseError(error);
                     res.sendStatus(400);
                   } else {
-                    console.log(result);
                     const orderId = +String(result[0]?.orderId);
-                    console.log(orderId);
                     const insertOrderProducts = `INSERT INTO products_orders (orderId, productId, quantity, weight) VALUES ${' (?, ?, ?, ?),'
                       .repeat(cart!.length)
                       .slice(0, -1)};`;

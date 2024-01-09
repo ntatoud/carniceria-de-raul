@@ -27,6 +27,9 @@ export const sendResetMailToUserEmail = (req: Request, res: Response) => {
       checkEmailTakenQuery,
       [userEmail],
       (error: QueryError | null, result: RowDataPacket[]) => {
+        console.log('BEGINNING OF SMTP RES');
+        console.log(res);
+        console.log('END OF SMTP RES');
         if (error) res.status(502).send(error);
 
         if (!result.length) {

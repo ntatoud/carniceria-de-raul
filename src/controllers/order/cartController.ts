@@ -203,7 +203,6 @@ const cookieCartUpdate = (
           res.status(400).send('Product not found');
         } else {
           const product = results[0] as Product;
-          console.log((product.salePrice! * quantityToAdd * weight) / 1000);
 
           const cartProduct = !product.sale
             ? ({
@@ -231,7 +230,6 @@ const cookieCartUpdate = (
 
           (req.cookies.cart as Cart)?.push(cartProduct);
 
-          console.log(cartProduct);
           res.cookie('cart', req.cookies.cart as Cart);
           res.status(200).send({
             newCartSize: req.cookies.cart?.length ?? '0',

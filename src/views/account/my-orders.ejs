@@ -43,26 +43,51 @@
 
             <a
                 href="
-              /shop"
+                /shop"
                 class="button button-link"
             ><%= t('orders.validateCart') %><i class="bi bi-arrow-right"></i></a>.
           </div>
 
         </div>
         <%} else {%>
-        <%orders.map((order) => {%>
+        <b>
+          <div class="d-flex w-100 h-100 justify-content-between px-4">
+            <p>ID</p>
+            <p>Recovery date</p>
+            <p>Price</p>
+            <p>Factura</p>
+          </div>
+        </b>
 
-        <div class="d-flex position-relative">
+        <%orders.map((order) => {%>
+        <div class="orders-container d-flex position-relative">
           <a
               href="/account/my-orders/<%=order.orderId%>"
               class="position-absolute w-100 h-100"
           ></a>
-          <div class="">
-            <%=order.recoveryDate%>
+          <div class="id">
+            <%=order.orderId%>
           </div>
           <div>
-            <%=order.totalPrice%>
+            <%= 
+        String(order.recoveryDate.getDate()).padStart(2, '0')
+        +'/'
+        +String(order.recoveryDate.getMonth()+1).padStart(2, '0')
+        +'/'
+        + order.recoveryDate.getFullYear()%>
           </div>
+          <div>
+            <%=order.totalPrice%>€
+          </div>
+          <a
+              class="button button-secondary"
+              type="button"
+              role="button"
+              href="/account/my-orders/pdf/<%=order.orderId%>"
+              aria-label="Download pdf bill"
+              data-bs-toggle="tooltip"
+              title="Download pdf bill"
+          ><i class="bi bi-download"></i></a>
         </div>
         <%})}%>
       </div>

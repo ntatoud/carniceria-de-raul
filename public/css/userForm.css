@@ -5,6 +5,7 @@
 .user-form {
   align-items: center;
   width: 40rem;
+  max-width: 95vw;
   margin-top: 8rem;
   padding: 1.5rem;
   gap: 1.5rem;

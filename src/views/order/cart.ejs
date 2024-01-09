@@ -27,8 +27,22 @@
 
       <div class="section-title"><%=t('cart.myCart')%></div>
       <%if(!cart?.length) {%>
+
       <div class="empty-cart">
         <%=t('cart.emptyCart')%>
+        <div class="d-flex gap-3 align-items-center">
+
+          <a
+              href="/shop"
+              class="button button-primary p-2"
+          >Keep shoping</a>
+
+          <a
+              href="
+          /shop"
+              class="button button-link"
+          >Connect <i class="bi bi-arrow-right"></i></a>.
+        </div>
 
       </div>
       <% }else {%>
@@ -47,11 +61,11 @@
         >
           <div class="product-cell image">
             <img
-                src="/assets/images/products/<%=product.category?.toLowerCase() ?? 'ternera'%>.webp"
+                src="<%=!!product.image ? "/assets/images/products/"+product.image : "/assets/images/products/"+ (product.category?.toLowerCase() ?? 'ternera') + `.webp`%>"
                 role="img"
                 alt="Image showing the product <%=product.name[0] + product.name.toLowerCase().slice(1)%>"
                 aria-label="Image showing the product <%=product.name[0] + product.name.toLowerCase().slice(1)%>"
-            ></img>
+            />
           </div>
           <div class="product-cell product-infos">
             <div class="name">
