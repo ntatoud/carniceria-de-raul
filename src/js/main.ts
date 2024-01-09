@@ -7,6 +7,7 @@ const setCookies = (mode: boolean) => {
     data: { areAllowed: mode },
     success: (res) => {
       cookieBannerHide();
+      console.log(res.areCookiesAllowed);
       if (res.areCookiesAllowed) {
         $('.product-form button[type="submit"]').removeClass(
           'cookies-redirect'
@@ -24,7 +25,7 @@ $.ajax({
     if (!res.areCookiesAllowed && res.areCookiesAllowed === undefined) {
       cookieBannerShow();
     }
-    if (!res.areCookiesAllowed) {
+    if (res.areCookiesAllowed === 'false') {
       $('.product-form button[type="submit"]').addClass('cookies-redirect');
     }
   },
