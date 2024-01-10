@@ -108,7 +108,14 @@
     "change": "Cambia",
     "usedEmail": "Inserisci l'email utilizzata per creare l'account",
     "goBack": "Indietro",
-    "sendEmail": "Invia"
+    "sendEmail": "Invia",
+    "pwdError1": "contenere almeno 8 caratteri",
+    "pwdError2": "contenere almeno 1 lettera maiuscola",
+    "pwdError3": "contenere almeno 1 lettera minuscola",
+    "pwdError4": "contenere almeno 1 cifra",
+    "pwdError5": "contenere almeno 1 carattere speciale",
+    "emailExist": "Esiste già un account con questa email.",
+    "pwdError6": "La tua password è troppo debole"
   },
   "shop": {
     "filters": "Filtri",
@@ -144,7 +151,14 @@
     "myOrders": "I miei ordini",
     "noOrders": "Non hai ordini",
     "keepShopping": "Continua lo shopping",
-    "validateCart": "Convalida il carrello"
+    "validateCart": "Convalida il carrello",
+    "recoveryDate": "Data di recupero",
+    "price": "Prezzo",
+    "billing": "Fatturazione",
+    "id": "ID",
+    "orderedOn": "Ordinato il",
+    "comment": "Commento",
+    "total": "Totale"
   },
   "admin": {
     "orders": "Ordini",

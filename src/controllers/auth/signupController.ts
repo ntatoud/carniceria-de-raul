@@ -12,31 +12,31 @@ export const isStrongPassword = (
   const problems: string[] = [];
   if (password.length < 8) {
     isStrong = false;
-    problems.push('Be at least 8 characters long');
+    problems.push(i18next.t('main:auth.pwdError1'));
   }
 
   // Check if the password contains at least one uppercase letter
   if (!/[A-Z]/.test(password)) {
     isStrong = false;
-    problems.push('Contain at least 1 Uppercase letter');
+    problems.push(i18next.t('main:auth.pwdError2'));
   }
 
   // Check if the password contains at least one lowercase letter
   if (!/[a-z]/.test(password)) {
     isStrong = false;
-    problems.push('Contain at least 1 Lowercase letter');
+    problems.push(i18next.t('main:auth.pwdError3'));
   }
 
   // Check if the password contains at least one digit
   if (!/\d/.test(password)) {
     isStrong = false;
-    problems.push('Contain at least 1 digit');
+    problems.push(i18next.t('main:auth.pwdError4'));
   }
 
   // Check if the password contains at least one special character
   if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
     isStrong = false;
-    problems.push('Contain at least 1 Special character');
+    problems.push(i18next.t('main:auth.pwdError5'));
   }
   return { isStrong, problems };
 };
@@ -89,7 +89,7 @@ export const registerIfPossible = (
         res.render('signup.ejs', {
           error: {
             state: true,
-            message: 'An account already exists with this email.',
+            message: i18next.t('main:auth.emailExist'),
           },
           isLogged: req.session.isLogged,
           cart: req.session.isLogged ? req.session.cart : req.cookies.cart,
@@ -99,7 +99,7 @@ export const registerIfPossible = (
         res.render('signup.ejs', {
           error: {
             state: true,
-            message: 'Your password is too weak',
+            message: i18next.t('main:auth.pwdError6'),
             isLogged: req.session.isLogged,
             account: req.session.user,
             cart: req.session.isLogged ? req.session.cart : req.cookies.cart,

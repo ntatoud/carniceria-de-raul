@@ -108,7 +108,14 @@
     "change": "Change",
     "usedEmail": "Please enter the mail used to create the account",
     "goBack": "Back",
-    "sendEmail": "Send"
+    "sendEmail": "Send",
+    "pwdError1": "at least 8 characters",
+    "pwdError2": "at least 1 Uppercase letter",
+    "pwdError3": "at least 1 Lowercase letter",
+    "pwdError4": "at least 1 digit",
+    "pwdError5": "at least 1 Special character",
+    "emailExist": "An account already exists with this email.",
+    "pwdError6": "Your password is too weak"
   },
   "shop": {
     "filters": "Filters",
@@ -144,7 +151,14 @@
     "myOrders": "My orders",
     "noOrders": "You do not have any orders",
     "keepShopping": "Keep shopping",
-    "validateCart": "Validate cart"
+    "validateCart": "Validate cart",
+    "recoveryDate": "Recovery date",
+    "price": "Price",
+    "billing": "Billing",
+    "id": "ID",
+    "orderedOn": "Ordered on",
+    "comment": "Comment",
+    "total": "Total"
   },
   "admin": {
     "orders": "Orders",
@@ -212,7 +226,7 @@
       },
       "accountCreated": "Account created.",
       "payment": "Payment successful. Order created.",
-      "statusChange": "Statut updated.",
+      "statusChange": "Status updated.",
       "orderDelete": "Order deleted"
     },
     "error": {

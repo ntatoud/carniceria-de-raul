@@ -56,6 +56,7 @@ const LANGUAGE_TABLE = [
   { id: 'es', name: 'Español', flag: '🇪🇸' },
   { id: 'fr', name: 'Français', flag: '🇫🇷' },
   { id: 'en', name: 'English', flag: '🇬🇧' },
+  { id: 'it', name: 'Italiano', flag: '🇮🇹' },
 ];
 
 const langDisplay =

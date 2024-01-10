@@ -108,7 +108,14 @@
     "change": "Changer",
     "usedEmail": "Veuillez entrer le mail que vous avez utilisé pour vous inscrire",
     "goBack": "Retour",
-    "sendEmail": "Envoyer le mail"
+    "sendEmail": "Envoyer le mail",
+    "pwdError1": "comporter au moins 8 caractères",
+    "pwdError2": "contenir au moins 1 lettre majuscule",
+    "pwdError3": "contenir au moins 1 lettre minuscule",
+    "pwdError4": "contenir au moins 1 chiffre",
+    "pwdError5": "contenir au moins 1 caractère spécial",
+    "emailExist": "Un compte existe déjà avec cet e-mail.",
+    "pwdError6": "Votre mot de passe est trop faible"
   },
   "shop": {
     "filters": "Filtres",
@@ -144,7 +151,14 @@
     "myOrders": "Mes commandes",
     "noOrders": "Vous n'avez pas de commandes",
     "keepShopping": "Continuer vos achats",
-    "validateCart": "Valider le panier"
+    "validateCart": "Valider le panier",
+    "recoveryDate": "Date de récupération",
+    "price": "Prix",
+    "billing": "Facturation",
+    "id": "ID",
+    "orderedOn": "Commandé le",
+    "comment": "Commentaire",
+    "total": "Total"
   },
   "admin": {
     "orders": "Commandes",

@@ -108,7 +108,14 @@
     "change": "Cambiar",
     "usedEmail": "Ingrese el correo que utilizó para registrarse",
     "goBack": "Atras",
-    "sendEmail": "Enviar Correo"
+    "sendEmail": "Enviar Correo",
+    "pwdError1": "tener al menos 8 caracteres",
+    "pwdError2": "contener al menos 1 letra mayúscula",
+    "pwdError3": "contener al menos 1 letra minúscula",
+    "pwdError4": "contener al menos 1 dígito",
+    "pwdError5": "contener al menos 1 carácter especial",
+    "emailExist": "Ya existe una cuenta con este correo electrónico.",
+    "pwdError6": "Tu contraseña es demasiado débil"
   },
   "shop": {
     "filters": "Filtros",
@@ -144,7 +151,14 @@
     "myOrders": "Mis pedidos",
     "noOrders": "No tienes pedidos",
     "keepShopping": "Seguir comprando",
-    "validateCart": "Confirmar carrito"
+    "validateCart": "Confirmar carrito",
+    "recoveryDate": "Fecha de recuperación",
+    "price": "Precio",
+    "billing": "Facturación",
+    "id": "ID",
+    "orderedOn": "Ordenado el",
+    "comment": "Comentario",
+    "total": "Total"
   },
   "admin": {
     "orders": "Pedidos",

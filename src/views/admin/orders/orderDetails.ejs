@@ -66,7 +66,7 @@
       </div>
       <div class="order-summary d-flex flex-column gap-2">
         <div>
-          Ordered on: <b>
+          <%= t('orders.orderedOn') %>: <b>
             <%= 
         String(orderProducts[0].orderDate.getDate()).padStart(2, '0')
         +'/'
@@ -77,7 +77,7 @@
         </div>
         <p>
         <div>
-          Recovery date: <b>
+          <%= t('orders.recoveryDate') %>: <b>
             <%= 
         String(orderProducts[0].recoveryDate.getDate()).padStart(2, '0')
         +'/'
@@ -87,12 +87,12 @@
           </b>
         </div>
         <div class="mt-2">
-          Comment : <b>
+          <%= t('orders.comment') %> : <b>
             <%=orderProducts[0].comment%>
           </b>
         </div>
         <div class="mt-4">
-          Total: <b><%=orderProducts[0]?.totalPrice%> €</b>
+          <%= t('orders.total') %>: <b><%=orderProducts[0]?.totalPrice%> €</b>
         </div>
       </div>
 
