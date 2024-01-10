@@ -234,5 +234,21 @@
       "token": "Token no valido",
       "passwordMatch": "Contraseñas son diferentes."
     }
+  },
+  "about": {
+    "cookieTitle1": "¿Qué son las cookies?",
+    "paragraph1": "Las cookies son pequeños archivos de texto que su navegador almacena en su dispositivo. Sirven para diversos fines, como recordar sus preferencias o proporcionar funcionalidades esenciales durante su visita.",
+    "cookieTitle2": "¿Cómo utilizamos las cookies?",
+    "paragraph2": "Utilizamos cookies con el único fin de mantener su carrito de la compra cuando no ha iniciado sesión. Estas cookies nos ayudan a garantizar una experiencia de compra fluida almacenando temporalmente información sobre los artículos que ha añadido a su carrito.",
+    "cookieTitle3": "Tipos de cookies",
+    "paragraph3": "Cookies de sesión: Estas cookies son temporales y se eliminan al cerrar el navegador. Se utilizan para mantener su carrito durante su sesión de navegación.",
+    "cookieTitle4": "Gestión de cookies",
+    "paragraph4": "Puede controlar y gestionar las cookies en la configuración de su navegador. No obstante, tenga en cuenta que desactivar las cookies esenciales puede afectar a la funcionalidad de determinadas partes del sitio web.",
+    "cookieTitle5": "Cookies de terceros",
+    "paragraph5": "En este sitio web no utilizamos cookies de terceros con fines de seguimiento o publicidad.",
+    "cookieTitle6": "Cambios en esta política de cookies",
+    "paragraph6": "Podemos actualizar esta Política de Cookies de vez en cuando para reflejar los cambios en nuestras prácticas o por otras razones operativas, legales o reglamentarias. Visite esta página periódicamente para mantenerse informado sobre el uso que hacemos de las cookies.",
+    "cookieTitle7": "Contactanos",
+    "paragraph7": "Si tiene alguna pregunta o duda sobre el uso que hacemos de las cookies, póngase en contacto con nosotros."
   }
 }
