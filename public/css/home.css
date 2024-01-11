@@ -36,9 +36,11 @@ main {
   width: 40rem;
   gap: 1rem;
 }
+
 .banner-content > * {
   width: fit-content;
 }
+
 .banner-content .title .add-on {
   font-family: 'Just Another Hand';
   color: var(--gray-600);
@@ -58,6 +60,7 @@ main {
 .banner-content .banner-body {
   font-size: 1.5rem;
   color: var(--gray-600);
+  max-width: 95vw;
 }
 
 .banner-content .banner-body a {
@@ -65,6 +68,10 @@ main {
   font-size: var(--font-xl);
   padding: 1rem 2rem;
   margin: 2rem 0;
+}
+
+.banner-content .banner-button {
+  display: flex;
 }
 
 .section {
@@ -186,9 +193,23 @@ main {
     margin: 0;
     border-radius: 0;
   }
+
+  .banner-content .banner-button {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .banner-content .banner-button a {
+    margin: 0;
+  }
+
   .section {
     transform: rotate(-2deg) translateX(-4%);
+    height: 35rem;
   }
+
   .section .section-content {
     text-align: center;
     width: 90%;
