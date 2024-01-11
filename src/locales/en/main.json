@@ -234,5 +234,21 @@
       "token": "Invalid token",
       "passwordMatch": "Passwords mismatch"
     }
+  },
+  "about": {
+    "cookieTitle1": "What are Cookies?",
+    "paragraph1": "Cookies are small text files that are stored on your device by your web browser. They serve various purposes, such as remembering your preferences or providing essential functionality during your visit.",
+    "cookieTitle2": "How We Use Cookies",
+    "paragraph2": "We use cookies solely for the purpose of maintaining your shopping cart when you are not logged in. These cookies help us ensure a seamless shopping experience by temporarily storing information about the items you have added to your cart.",
+    "cookieTitle3": "Types of Cookies",
+    "paragraph3": "Session Cookies: These cookies are temporary and are deleted when you close your browser. They are used to maintain your cart during your browsing session.",
+    "cookieTitle4": "Managing Cookies",
+    "paragraph4": "You can control and manage cookies in your browser settings. However, please be aware that disabling essential cookies may affect the functionality of certain parts of the website.",
+    "cookieTitle5": "Third-Party Cookies",
+    "paragraph5": " We do not use third-party cookies on this website for tracking or advertising purposes.",
+    "cookieTitle6": "Changes to this Cookie Policy",
+    "paragraph6": " We may update this Cookie Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. Please revisit this page periodically to stay informed about our use of cookies.",
+    "cookieTitle7": "Contact Us",
+    "paragraph7": " If you have any questions or concerns about our use of cookies, please contact us."
   }
 }

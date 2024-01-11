@@ -234,5 +234,21 @@
       "token": "Token invalide",
       "passwordMatch": "Les mots de passe sont différents"
     }
+  },
+  "about": {
+    "cookieTitle1": "Qu'est-ce qu'un cookie ?",
+    "paragraph1": "Les cookies sont de petits fichiers texte qui sont stockés sur votre appareil par votre navigateur web. Ils servent à diverses fins, comme la mémorisation de vos préférences ou la fourniture de fonctionnalités essentielles lors de votre visite.",
+    "cookieTitle2": "Comment nous utilisons les cookies",
+    "paragraph2": "Nous utilisons des cookies dans le seul but de gérer votre panier d'achat lorsque vous n'êtes pas connecté. Ces cookies nous aident à garantir une expérience d'achat transparente en stockant temporairement des informations sur les articles que vous avez ajoutés à votre panier.",
+    "cookieTitle3": "Types de cookies",
+    "paragraph3": "Cookies de session : Ces cookies sont temporaires et sont supprimés lorsque vous fermez votre navigateur. Ils sont utilisés pour conserver votre panier pendant votre session de navigation.",
+    "cookieTitle4": "Gestion des cookies",
+    "paragraph4": "Vous pouvez contrôler et gérer les cookies dans les paramètres de votre navigateur. Toutefois, sachez que la désactivation des cookies essentiels peut affecter la fonctionnalité de certaines parties du site web.",
+    "cookieTitle5": "Cookies de tiers",
+    "paragraph5": "Nous n'utilisons pas de cookies de tiers sur ce site web à des fins de suivi ou de publicité.",
+    "cookieTitle6": "Modifications de la présente politique en matière de cookies",
+    "paragraph6": "Nous pouvons mettre à jour la présente politique en matière de cookies de temps à autre pour refléter des changements dans nos pratiques ou pour d'autres raisons opérationnelles, juridiques ou réglementaires. Nous vous invitons à consulter régulièrement cette page pour vous tenir informés de notre utilisation des cookies.",
+    "cookieTitle7": "Nous contacter",
+    "paragraph7": "Si vous avez des questions ou des préoccupations concernant notre utilisation des cookies, veuillez nous contacter."
   }
 }

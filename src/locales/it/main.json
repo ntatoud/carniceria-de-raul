@@ -234,5 +234,21 @@
       "token": "Token non valido",
       "passwordMatch": "Le password non corrispondono"
     }
+  },
+  "about": {
+    "cookieTitle1": "Cosa sono i cookie?",
+    "paragraph1": "I cookie sono piccoli file di testo che vengono memorizzati sul vostro dispositivo dal vostro browser web. Servono a vari scopi, come ricordare le vostre preferenze o fornire funzionalità essenziali durante la vostra visita.",
+    "cookieTitle2": "Come utilizziamo i cookie",
+    "paragraph2": "Utilizziamo i cookie al solo scopo di mantenere il vostro carrello quando non avete effettuato l'accesso. Questi cookie ci aiutano a garantire un'esperienza di acquisto senza interruzioni, memorizzando temporaneamente le informazioni sugli articoli aggiunti al carrello.",
+    "cookieTitle3": "Tipi di cookie",
+    "paragraph3": "Cookie di sessione: Questi cookie sono temporanei e vengono cancellati alla chiusura del browser. Vengono utilizzati per mantenere il carrello dell'utente durante la sessione di navigazione.",
+    "cookieTitle4": "Gestione dei cookie",
+    "paragraph4": "È possibile controllare e gestire i cookie nelle impostazioni del browser. Tuttavia, si tenga presente che la disabilitazione dei cookie essenziali può compromettere la funzionalità di alcune parti del sito.",
+    "cookieTitle5": "Cookie di terze parti",
+    "paragraph5": "Su questo sito web non utilizziamo cookie di terze parti per scopi di tracciamento o pubblicitari.",
+    "cookieTitle6": "Modifiche alla presente Informativa sui cookie",
+    "paragraph6": "La presente Informativa sui cookie può essere aggiornata di tanto in tanto per riflettere le modifiche apportate alle nostre pratiche o per altri motivi operativi, legali o normativi. Vi invitiamo a consultare periodicamente questa pagina per rimanere informati sul nostro utilizzo dei cookie.",
+    "cookieTitle7": "Contatto",
+    "paragraph7": "In caso di domande o dubbi sul nostro utilizzo dei cookie, vi preghiamo di contattarci."
   }
 }
