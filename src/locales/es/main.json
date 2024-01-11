@@ -216,7 +216,7 @@
   },
   "toast": {
     "success": {
-      "title": "Suceso",
+      "title": "Hecho",
       "passwordUpdate": "Contraseña actualizada.",
       "accountUpdate": "Contraseña actualizada.",
       "connection": "Conexión efectuada con exito",
