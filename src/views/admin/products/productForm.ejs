@@ -83,37 +83,44 @@
   </div>
   <div class="form-group col-md-5">
     <label for="salePrice"><%= t('shop.discountedPrice') %></label>
-    <input
-        name="salePrice"
-        type="number"
-        step="0.01"
-        class="form-control"
-        id="salePrice"
-        value="<%=product?.salePrice ?? ""%>"
-          <%if(product?.sale){%>required<%} else{%>
-          disabled
-          <%}%> />
+          <input
+              name="salePrice"
+              type="number"
+              step="0.01"
+              class="form-control"
+              id="salePrice"
+              value="<%=product?.salePrice ?? ""%>"
+              <%if(product?.sale){%>required<%} else{%>
+              disabled
+              <%}%> />
   </div>
   <div class="form- col-md-2">
     <label for="sale"><%= t('shop.sale') %></label
-    >
-    <%if(product?.sale){%>
-          <option
-              value="1"
-              selected
           >
-            <div class="bg-warning">SI</div>
-          </option>
-          <option value="0">
-            NO
-          </option>
-          <%} else {%>
-          <option value="1">SI</option>
-          <option
-              value="0"
-              selected
-          >NO</option>
-          <%}%>
+          <select
+              class="form-select"
+              name="sale"
+              id="sale"
+              required
+          >
+
+            <%if(product?.sale){%>
+            <option
+                value="1"
+                selected
+            >
+              <div class="bg-warning">SI</div>
+            </option>
+            <option value="0">
+              NO
+            </option>
+            <%} else {%>
+            <option value="1">SI</option>
+            <option
+                value="0"
+                selected
+            >NO</option>
+            <%}%>
 
        
     </select>
@@ -121,29 +128,29 @@
 </div>
 <div class="form-group">
   <label for="category"><%= t('shop.categories.category') %></label>
-      <select
-          class="form-select col-md-1"
-          name="category"
-          id="category"
-          onclick="setIsRequired(event)"
-          required
-      >
-        <option
-            value="Ternera"
-            selected
-        ><%= t('shop.beef') %></option>
-        <option value="Pollo"><%= t('shop.chicken') %></option>
-        <option value="Cerdo"><%= t('shop.pig') %></option>
-        <option value="Elaborado"><%= t('shop.processing') %></option>
-      </select>
-  </div>
-  <div class="form-group">
-    <label for="description"><%= t('shop.description') %></label>
-    <textarea
-        name="description"
-        type="textarea"
-        id="description"
-        class="form-control textarea"
-        value="<%=product?.description%>"
-    ></textarea>
-  </div>
+            <select
+                class="form-select col-md-1"
+                name="category"
+                id="category"
+                onclick="setIsRequired(event)"
+                required
+            >
+              <option
+                  value="Ternera"
+                  selected
+              ><%= t('shop.beef') %></option>
+              <option value="Pollo"><%= t('shop.chicken') %></option>
+              <option value="Cerdo"><%= t('shop.pig') %></option>
+              <option value="Elaborado"><%= t('shop.processing') %></option>
+            </select>
+      </div>
+      <div class="form-group">
+        <label for="description"><%= t('shop.description') %></label>
+        <textarea
+            name="description"
+            type="textarea"
+            id="description"
+            class="form-control textarea"
+            value="<%=product?.description%>"
+        ></textarea>
+      </div>
