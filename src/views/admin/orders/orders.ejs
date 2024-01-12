@@ -104,16 +104,6 @@
                 >
                   <i class="bi bi-arrow-repeat"></i> <%= t('admin.changeStatus') %>
                 </button>
-                <button
-                    class="dropdown-item text-danger"
-                    type="button"
-                    id="<%=order.orderId%>_<%=order.orderId%>"
-                    data-bs-toggle="modal"
-                    data-bs-target=".modal-delete-confirm"
-                    onclick="populateModal(event)"
-                >
-                  <i class="bi bi-trash"></i> <%= t('admin.delete') %>
-                </button>
               </div>
             </td>
           </tr>
@@ -143,11 +133,14 @@
         },
         success: (res) => {
           toastSuccess(t('toast.success.statusChange'))
-          location.reload()
 
           $(`.orders-table #${orderId} .status`).html(`
             <i class="tag-status ${+isDone ? 'tag-green bi-check' : 'tag-warning  bi bi-clock'} p-sm-1"></i>`)
           $(event.currentTarget).attr("id", `${orderId}-${isDone}`)
+
+
+          location.reload()
+
         },
         error: (xhr) => {
           toastError(xhr.status + xhr.statusText);

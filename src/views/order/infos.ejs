@@ -53,6 +53,7 @@
                   type="text"
                   id="city"
                   name="city"
+                  value="<%=account.city%>"
                   required
               />
               <span class="error empty bi bi-exclamation-circle"><%=t('info.cityError')%></span>
@@ -64,6 +65,7 @@
                   type="text"
                   id="postalCode"
                   name="postalCode"
+                  value="<%=account.postalCode%>"
                   required
               />
               <span class="error empty bi bi-exclamation-circle"><%=t('info.postCodeError')%></span>
@@ -75,6 +77,7 @@
                   type="text"
                   id="country"
                   name="country"
+                  value="<%=account.country%>"
                   required
               />
               <span class="error empty bi bi-exclamation-circle"><%=t('info.countryError')%></span>
@@ -87,6 +90,7 @@
                 type="text"
                 id="address"
                 name="address"
+                value="<%=account.address%>"
                 required
             />
             <span class="error empty bi bi-exclamation-circle"><%=t('info.addressError')%></span>
@@ -118,6 +122,7 @@
                   type="tel"
                   id="phone"
                   name="phone"
+                  value="<%=account.phone%>"
                   aria-describedby="phoneHelp"
               />
               <div class="input-group-append">
