@@ -49,6 +49,7 @@ export const productUpdate = (res: Response, product: Product, id: string) => {
     product.salePrice ?? null,
     product.image ?? '',
     product.description,
+    product.category ?? 'Ternera',
     id,
   ];
 
