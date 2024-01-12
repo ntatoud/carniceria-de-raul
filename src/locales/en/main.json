@@ -145,7 +145,8 @@
     "outOfOrder": "Out of stock",
     "available": "Available",
     "onlyLeft": "Only",
-    "weight": "Weight"
+    "weight": "Weight",
+    "best": "Bestseller"
   },
   "orders": {
     "myOrders": "My orders",

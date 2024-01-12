@@ -7,7 +7,6 @@ const setCookies = (mode: boolean) => {
     data: { areAllowed: mode },
     success: (res) => {
       cookieBannerHide();
-      console.log(res.areCookiesAllowed);
       if (res.areCookiesAllowed) {
         $('.product-form button[type="submit"]').removeClass(
           'cookies-redirect'

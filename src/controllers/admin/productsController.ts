@@ -16,14 +16,16 @@ export const productCreate = (res: Response, product: Partial<Product>) => {
     product.unit,
     product.stock,
     product.sale,
-    product.salePrice ?? null,
+    product.best,
+    String(product.salePrice) === '' ? null : product.salePrice,
     product.image ?? null,
     product.description,
     product.category ?? 'Ternera',
   ];
+  console.log(queryParams);
 
   const createProductQuery =
-    'INSERT INTO products (name, price, unit, stock, sale, salePrice, image, description, category) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);';
+    'INSERT INTO products (name, price, unit, stock, sale, best, salePrice, image, description, category) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
 
   connection.query(
     createProductQuery,
@@ -46,15 +48,17 @@ export const productUpdate = (res: Response, product: Product, id: string) => {
     product.price,
     product.stock,
     product.sale,
-    product.salePrice ?? null,
+    product.best,
+    String(product.salePrice) === '' ? null : product.salePrice,
     product.image ?? '',
     product.description,
     product.category ?? 'Ternera',
     id,
   ];
 
+  console.log(queryParams);
   const updateProductQuery =
-    'UPDATE products SET name = ?, price = ?, stock = ?, sale = ?, salePrice = ?, image = ?, description = ? WHERE productId = ?;';
+    'UPDATE products SET name = ?, price = ?, stock = ?, sale = ?, best= ?, salePrice = ?, image = ?, description = ?, category= ? WHERE productId = ?;';
   connection.query(
     updateProductQuery,
     queryParams,

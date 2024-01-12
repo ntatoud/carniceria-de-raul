@@ -145,7 +145,8 @@
     "outOfOrder": "Epuisé",
     "available": "Disponible",
     "onlyLeft": "Plus que",
-    "weight": "Poids"
+    "weight": "Poids",
+    "best": "Meilleur vente"
   },
   "orders": {
     "myOrders": "Mes commandes",

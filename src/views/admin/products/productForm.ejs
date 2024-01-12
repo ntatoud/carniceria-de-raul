@@ -36,7 +36,7 @@
   />
 </div>
 <div class="row justify-content-center">
-  <div class="form-group col-md-5">
+  <div class="form-group col-md-3">
     <label for="price"><%= t('shop.defaultPrice') %></label>
     <div class="input-group">
       <input
@@ -81,7 +81,7 @@
       </div>
     </div>
   </div>
-  <div class="form-group col-md-5">
+  <div class="form-group col-md-3">
     <label for="salePrice"><%= t('shop.discountedPrice') %></label>
           <input
               name="salePrice"
@@ -92,16 +92,16 @@
               value="<%=product?.salePrice ?? ""%>"
           />
       </div>
-      <div class="form- col-md-2">
-        <label for="sale"><%= t('shop.sale') %></label>
+      <div class="form-group col-md-2">
+        <label for="best"><%= t('shop.best') %></label>
         <select
             class="form-select"
-            name="sale"
-            id="sale"
+            name="best"
+            id="best"
             required
         >
 
-          <%if(product?.sale){%>
+          <%if(product?.best){%>
           <option
               value="1"
               selected
@@ -122,37 +122,67 @@
        
     </select>
   </div>
+  <div class="form-group col-md-2">
+    <label for="sale"><%= t('shop.sale') %></label>
+          <select
+              class="form-select"
+              name="sale"
+              id="sale"
+              required
+          >
+
+            <%if(product?.sale){%>
+            <option
+                value="1"
+                selected
+            >
+              <div class="bg-warning">SI</div>
+            </option>
+            <option value="0">
+              NO
+            </option>
+            <%} else {%>
+            <option value="1">SI</option>
+            <option
+                value="0"
+                selected
+            >NO</option>
+            <%}%>
+
+   
+</select>
+</div>
 </div>
 <div class="form-group">
   <label for="category"><%= t('shop.categories.category') %></label>
-          <select
-              class="form-select col-md-1"
-              name="category"
-              id="category"
-              onclick="setIsRequired(event)"
-              required
-          >
-            <option
-                value="Ternera"
-                <%if(product?.category === "Ternera" || !product?.category) {%>selected<%}%>
+            <select
+                class="form-select col-md-1"
+                name="category"
+                id="category"
+                onclick="setIsRequired(event)"
+                required
+            >
+              <option
+                  value="Ternera"
+                  <%if(product?.category === "Ternera" || !product?.category) {%>selected<%}%>
               ><%= t('shop.categories.Ternera') %></option
-            >
-            <option
-                value="Pollo"
-                <%if(product?.category === "Pollo") {%>selected<%}%>
+              >
+              <option
+                  value="Pollo"
+                  <%if(product?.category === "Pollo") {%>selected<%}%>
               ><%= t('shop.categories.Pollo') %></option
-            >
-            <option
-                value="Cerdo"
-                <%if(product?.category === "Cerdo") {%>selected<%}%>
+              >
+              <option
+                  value="Cerdo"
+                  <%if(product?.category === "Cerdo") {%>selected<%}%>
               ><%= t('shop.categories.Cerdo') %></option
-            >
-            <option
-                value="Elaborado"
-                <%if(product?.category === "Elaborado") {%>selected<%}%>
+              >
+              <option
+                  value="Elaborado"
+                  <%if(product?.category === "Elaborado") {%>selected<%}%>
               ><%= t('shop.categories.Elaborado') %></option
-            >
-          </select>
+              >
+            </select>
       </div>
       <div class="form-group">
         <label for="description"><%= t('shop.description') %></label>
